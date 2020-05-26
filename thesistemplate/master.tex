@@ -1,0 +1,238 @@
+% Remove the oneside option below for double sided printing (e.g. for final (post-viva) submission)
+\documentclass[a4paper,12pt,oneside,openright]{book}
+\usepackage[colorlinks=true, linkcolor=black!50!blue, urlcolor=blue, citecolor=blue, anchorcolor=blue]{hyperref}
+\usepackage[font=small,labelfont=bf,margin=0mm,labelsep=period,tableposition=top]{caption}
+% Preamble commands go here
+\usepackage{graphicx,placeins}
+\usepackage{afterpage}
+\usepackage{epsfig,cite}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage{multirow}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{tikz-3dplot}
+\usepackage{enumitem}
+\usepackage{customisations}
+\usepackage{mathtools}
+\usepackage{slashed}
+%\usepackage{subcaption}
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{textcomp} % textcomp provides extra text symbols (like a degrees celsius symbol)
+% New commands
+\def\truev{\mathcal{T}}
+% COMMANDS
+\def\smallfrac#1#2{\hbox{$\frac{#1}{#2}$}}
+\def\half{\smallfrac{1}{2}}
+\def\third{\smallfrac{1}{3}}
+\def\quarter{\smallfrac{1}{4}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bea}{\begin{eqnarray}}
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+\newcommand{\ben}{\begin{enumerate}}
+\newcommand{\een}{\end{enumerate}}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\lc}{\left[}
+\newcommand{\rc}{\right]}
+\newcommand{\lp}{\left(}
+\newcommand{\rp}{\right)}
+\newcommand{\as}{\alpha_s}
+\newcommand{\aq}{\alpha_s\left( Q^2 \right)}
+\newcommand{\amz}{\alpha_s\left( M_Z^2 \right)}
+\newcommand{\aqq}{\alpha_s \left( Q^2_0 \right)}
+\newcommand{\aqz}{\alpha_s \left( Q^2_0 \right)}
+\def\toinf#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow\infty }}}}
+\def\tozero#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow0 }}}}
+\def\toone#1{\mathrel{\mathop{\sim}\limits_{\scriptscriptstyle
+{#1\rightarrow1 }}}}
+\def\frac#1#2{{{#1}\over {#2}}}
+\def\gsim{\mathrel{\rlap{\lower4pt\hbox{\hskip1pt$\sim$}}
+    \raise1pt\hbox{$>$}}}         %greater than or approx. symbol
+\def\lsim{\mathrel{\rlap{\lower4pt\hbox{\hskip1pt$\sim$}}
+    \raise1pt\hbox{$<$}}}         %less than or approx. symbol
+\newcommand{\mrexp}{\mathrm{exp}}
+\newcommand{\dat}{\mathrm{dat}}
+\newcommand{\one}{\mathrm{(1)}}
+\newcommand{\two}{\mathrm{(2)}}
+\newcommand{\art}{\mathrm{art}}
+\newcommand{\rep}{\mathrm{rep}}
+\newcommand{\net}{\mathrm{net}}
+\newcommand{\stopp}{\mathrm{stop}}
+\newcommand{\sys}{\mathrm{sys}}
+\newcommand{\stat}{\mathrm{stat}}
+\newcommand{\diag}{\mathrm{diag}}
+\newcommand{\pdf}{\mathrm{pdf}}
+\newcommand{\tot}{\mathrm{tot}}
+\newcommand{\minn}{\mathrm{min}}
+\newcommand{\mut}{\mathrm{mut}}
+\newcommand{\partt}{\mathrm{part}}
+\newcommand{\dof}{\mathrm{dof}}
+\newcommand{\NS}{\mathrm{NS}}
+\newcommand{\cov}{\mathrm{cov}}
+\newcommand{\gen}{\mathrm{gen}}
+\newcommand{\cut}{\mathrm{cut}}
+\newcommand{\parr}{\mathrm{par}}
+\newcommand{\val}{\mathrm{val}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\checkk}{\mathrm{check}}
+\newcommand{\reff}{\mathrm{ref}}
+\newcommand{\Mll}{M_{ll}}
+\newcommand{\extra}{\mathrm{extra}}
+\newcommand{\draft}[1]{}
+\newcommand{\comment}[1]{{\bf \it  #1}}
+\def\beq{\begin{equation}}
+\def\eeq{\end{equation}}
+
+% Added by MU 
+\def \a{\alpha}
+\def \b{\beta}
+\def \g{\gamma}
+\def \z{\zeta}
+\def \t{{\bf T}} % vector of theoretical predictions
+\def \c{{\bf c}} % vector of coefficients of theoretical predictions
+\def \y{{\bf y}} % vector of experimental data
+\def \s{{\bf \sigma}} % experimental covariance matrix
+% Added by JR
+\def\lapprox{\lower .7ex\hbox{$\;\stackrel{\textstyle <}{\sim}\;$}}
+\def\gapprox{\lower .7ex\hbox{$\;\stackrel{\textstyle >}{\sim}\;$}}
+\def\half{\smallfrac{1}{2}}
+\def\GeV{{\rm GeV}}
+\def\TeV{{\rm TeV}}
+\def\ap{{a'}}
+\def\vp{{v'}}
+\def\e{\epsilon}
+\def\d{{\rm d}}
+\def\calN{{\cal N}}
+\def\shat{\hat{s}}
+\def\barq{\bar{q}}
+\def\qq{q \bar q}
+\def\uu{u \bar u}
+\def\dd{d \bar d}
+\def\pp{p \bar p}
+\def\xa{x_{1}}
+\def\xb{x_{2}}
+\def\xaa{x_{1}^{0}}
+\def\xbb{x_{2}^{0}}
+\def\smx{\stackrel{x\to 0}{\longrightarrow}}
+\def\Li{{\rm Li}}
+
+\newcommand{\pmz}{{\pm}\hspace{-.9em}{\bigcirc}} 
+%Alternatively: {\pm \atop 0}
+
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\newcommand{\tmop}[1]{\ensuremath{\operatorname{#1}}}
+\newcommand{\tmtextit}[1]{{\itshape{#1}}}
+\newcommand{\tmtextrm}[1]{{\rmfamily{#1}}}
+\newcommand{\tmtexttt}[1]{{\ttfamily{#1}}}
+
+\usepackage{tabularx}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% End preamble
+
+% REPLACE THESE with your thesis title, your name and the date of submission of the thesis
+\title{Theoretical Uncertainties in Parton Distribution Functions}
+\author{Rosalyn Laura Pearson}
+\date{May 2020} % of submission
+
+\begin{document}
+
+% Thesis front matter - title page, abstract, acknowledgements, declaration and table of contents
+% See customisations.sty to modify the title page or declaration
+\singlespacing
+\maketitlepage
+\frontmatter
+\eighteenptleading
+\input{thesis-frontmatter/abstract}
+
+\singlespacing
+% Uncomment this line if you need to declare published work which forms part of the thesis
+\declarationpublications{\cite{ }}
+\makedeclaration
+
+\input{thesis-frontmatter/acknowledgements}
+
+\tableofcontents
+
+%\cleardoublepage
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\contentsname}
+%\setcounter{tocdepth}{2}
+%\tableofcontents
+
+%\cleardoublepage
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\listfigurename}
+%\listoffigures
+
+%\cleardoublepage
+%\phantomsection
+%\addcontentsline{toc}{chapter}{\listtablename}
+%\listoftables
+
+\section{Critical Dependencies}
+\bi
+\item Computing power on Eddie. I need to run PDF fits on the cluster but these often queue for a long time, and I have had many issues with fits crashing/the cluster being down. This is slowing my progress considerably. I can get around this somewhat by calling in favours with other NNPDF members at different universities to run some of these for me, but otherwise it is slow work.
+\ei
+
+\section{List of Publications}
+\bi
+\item {\bf Towards parton distribution functions with theoretical uncertainties}, Pearson, R. L. and Voisey, C. Nuclear and Particle Physics Proceedings, Volumes 300-302, July-September 2018, Pages 24-29, e-Print: 1810.01996 [hep-ph]
+\item {\bf Nuclear Uncertainties in the Determination of Proton PDFs}, NNPDF Collaboration: Richard D. Ball et al. (Dec 21, 2018), Published in: Eur.Phys.J.C 79 (2019) 3, 282, e-Print: 1812.09074 [hep-ph]
+\item {\bf A first determination of parton distributions with theoretical uncertainties}, NNPDF Collaboration: Rabah Abdul Khalek et al. (May 10, 2019), Published in: Eur.Phys.J. C (2019) 79:838, e-Print: 1905.04311 [hep-ph]
+\item {\bf Uncertainties due to Nuclear Data in Proton PDF Fits}, Rosalyn Pearson, Richard Ball, Emanuele Roberto Nocera (Jun 14, 2019), Published in: PoS DIS2019 (2019) 027, Contribution to: DIS 2019, 027  
+\item {\bf Parton Distributions with Theory Uncertainties: General Formalism and First Phenomenological Studies}, NNPDF Collaboration: Rabah Abdul Khalek et al. (Jun 25, 2019) Published in: Eur.Phys.J.C 79 (2019) 11, 931, e-Print: 1906.10698 [hep-ph]
+\ei
+
+\section{Outline of chapter contents}
+The table of contents above outlines what will appear in the thesis. Chapter 1 will be based on my first year review, Chapters 2 and 3 will be based on the papers 1905.04311 and 1906.10698 and Chapter 4 will be based on 1812.09074. Chapters 5 and 6 detail projects yet to be completed.
+
+\addcontentsline{toc}{chapter}{Introduction} % what looks better section or chapter?
+\section*{Introduction} % * prevents the numbering. We already added it manually to toc above
+
+%------------------------------------------------
+% Include main matter here
+\mainmatter
+\eighteenptleading
+\include{background/background}
+\include{thuncsinpdfs/thuncsinpdfs}
+\include{mhous/mhous}
+\include{nuclear/nuclear}
+\include{deuteron/deuteron}
+\include{ht/ht}
+\include{conclusion/conclusion}
+
+\appendix
+\addtocontents{toc}{\protect\tocappendix}
+%\include{appendix1/appendix1}
+%\include{appendix2/appendix2}
+
+\backmatter
+
+\singlespace
+
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+% Choose a bibliography style to suit your taste here
+% This one was downloaded from http://web.reed.edu/cis/help/latex/bibtexstyles.html (June 2012)
+\bibliographystyle{ChicagoReedweb}
+\bibliography{background/backgroundbib, thuncsinpdfs/thuncsinpdfsbib, mhous/mhousbib, nuclear/nuclearbib, ht/htbib, deuteron/deuteronbib}
+\end{document}

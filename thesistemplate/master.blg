@@ -1,0 +1,151 @@
+This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: master.aux
+A level-1 auxiliary file: background/background.aux
+A level-1 auxiliary file: mhous/mhous.aux
+A level-1 auxiliary file: nuclear/nuclear.aux
+A level-1 auxiliary file: deuteron/deuteron.aux
+A level-1 auxiliary file: ht/ht.aux
+A level-1 auxiliary file: conclusion/conclusion.aux
+A level-1 auxiliary file: appendix1/appendix1.aux
+A level-1 auxiliary file: appendix2/appendix2.aux
+The style file: ChicagoReedweb.bst
+Database file #1: background/backgroundbib.bib
+Warning--string name "d.60.113006" is undefined
+--line 44 of file background/backgroundbib.bib
+Database file #2: mhous/mhousbib.bib
+Database file #3: nuclear/nuclearbib.bib
+Repeated entry---line 153 of file nuclear/nuclearbib.bib
+ : @article{Dulat:2015mca
+ :                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 409 of file nuclear/nuclearbib.bib
+ : @article{Ball:2017nwa
+ :                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 644 of file nuclear/nuclearbib.bib
+ : @article{Onengut:2005kv
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 658 of file nuclear/nuclearbib.bib
+ : @article{Goncharov:2001qe
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 701 of file nuclear/nuclearbib.bib
+ : @article{Ball:2009mk
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 735 of file nuclear/nuclearbib.bib
+ : @incollection{Ball:2018odr
+ :                           ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 781 of file nuclear/nuclearbib.bib
+ : @article{Gao:2017yyd
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 791 of file nuclear/nuclearbib.bib
+ : @article{Kovarik:2015cma
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 808 of file nuclear/nuclearbib.bib
+ : @article{Eskola:2016oht
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 824 of file nuclear/nuclearbib.bib
+ : @article{deFlorian:2011fp
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 858 of file nuclear/nuclearbib.bib
+ : @article{Buckley:2014ana
+ :                         ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 892 of file nuclear/nuclearbib.bib
+ : @article{Aad:2012sb
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1269 of file nuclear/nuclearbib.bib
+ : @article{Aad:2015auj
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1386 of file nuclear/nuclearbib.bib
+ : @article{Aad:2014xaa
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1606 of file nuclear/nuclearbib.bib
+ : @article{Khachatryan:2015oaa
+ :                             ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "ob:ellis"
+Warning--I didn't find a database entry for "Peskin:1995ev"
+Warning--I didn't find a database entry for "Burgess:2007zi"
+Warning--I didn't find a database entry for "Srednicki:1019751"
+Warning--I didn't find a database entry for "Ball:2018twp"
+Warning--I didn't find a database entry for "AbdulKhalek:2019bux"
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Warning--to sort, need author or key in desy
+Name 1 in "S. Alekhin, J. Blumlein, and S. Moch" has a comma at the end for entry Alekhin:2013nda
+while executing---line 1847 of file ChicagoReedweb.bst
+Name 1 in "S. Alekhin, J. Blumlein, and S. Moch" has a comma at the end for entry Alekhin:2013nda
+while executing---line 1847 of file ChicagoReedweb.bst
+Name 1 in "R. D. Ball, and A. Deshpande" has a comma at the end for entry Ball:2018odr
+while executing---line 1847 of file ChicagoReedweb.bst
+Name 1 in "R. D. Ball, and A. Deshpande" has a comma at the end for entry Ball:2018odr
+while executing---line 1847 of file ChicagoReedweb.bst
+Warning--empty author in desy
+Warning--empty title in desy
+Warning--empty journal in desy
+Warning--empty journal in Gao:2017yyd
+Name 1 in "R. D. Ball, and A. Deshpande" has a comma at the end for entry Ball:2018odr
+while executing---line 1920 of file ChicagoReedweb.bst
+Name 1 in "R. D. Ball, and A. Deshpande" has a comma at the end for entry Ball:2018odr
+while executing---line 1920 of file ChicagoReedweb.bst
+Warning--empty journal in Ball:2018odr
+Warning--empty title in jr:dokshitzer
+Warning--empty title in jr:gribov
+Name 1 in "S. Alekhin, J. Blumlein, and S. Moch" has a comma at the end for entry Alekhin:2013nda
+while executing---line 1920 of file ChicagoReedweb.bst
+Name 1 in "S. Alekhin, J. Blumlein, and S. Moch" has a comma at the end for entry Alekhin:2013nda
+while executing---line 1920 of file ChicagoReedweb.bst
+You've used 36 entries,
+            3202 wiz_defined-function locations,
+            1327 strings with 18147 characters,
+and the built_in function-call counts, 27664 in all, are:
+= -- 3118
+> -- 657
+< -- 37
++ -- 374
+- -- 192
+* -- 1544
+:= -- 3302
+add.period$ -- 139
+call.type$ -- 36
+change.case$ -- 210
+chr.to.int$ -- 30
+cite$ -- 46
+duplicate$ -- 2776
+empty$ -- 1665
+format.name$ -- 275
+if$ -- 5484
+int.to.chr$ -- 7
+int.to.str$ -- 1
+missing$ -- 295
+newline$ -- 184
+num.names$ -- 140
+pop$ -- 986
+preamble$ -- 1
+purify$ -- 204
+quote$ -- 0
+skip$ -- 1510
+stack$ -- 0
+substring$ -- 1345
+swap$ -- 2184
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 324
+warning$ -- 8
+while$ -- 159
+width$ -- 0
+write$ -- 425
+(There were 23 error messages)

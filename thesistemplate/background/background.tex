@@ -1,0 +1,268 @@
+\chapter{Background - 60\%}
+Over the past 100 years, following the discovery of the atomic nucleus by Rutherford in 1911, great
+strides have been made towards understanding subatomic structure. We now know that atoms are made up of hadrons (such as protons and neutrons) and leptons
+(such as the electron). Interactions between these constituents and with gravity come from
+force-carrying bosons. Probing hadrons with high energy photons shows that
+they are composed of quarks, which do not exist independently. This means that they can only be
+studied within a hadronic environment. 
+
+\begin{wrapfigure}{l}{0.6\textwidth}     
+          \includegraphics[width=6cm]{background/proton_cartoon.jpg}
+        \caption{A visualisation of the internal structure of the proton \cite{desy}. Quarks (the blobs) are bound together
+          by gluons (the loopy lines).}
+\label{fig:proton}                 
+\end{wrapfigure}
+
+The Standard Model of particle physics has proven thus
+far to be an extremely accurate  model of nature, and the current focus is on providing ever more precise
+experimental and theoretical results to test it and search for new physics which it can't explain.
+
+Cutting edge particle physics experiments are currently being carried out at the Large Hadron Collider
+(LHC). The LHC predominantly collides protons. At a basic level we can think of
+a proton as being composed of two up quarks and one down quark ($uud$), bound together by the strong
+interaction. However, the situation is vastly more complex than this.
+
+
+The proton is in reality
+highly complicated and inaccessible to the normal perturbative calculations of Quantum Field Theory
+- Fig. ~\ref{fig:proton}.
+Such objects can only be treated using probabilistic methods. When two protons collide we do not know which constituents,
+or {\it partons} are interacting, or what individual properties they have, such as their momentum and spin. We need
+some way of relating the known properties of the proton to the unknown properties of the partons.
+One way of doing this is using parton distribution functions (PDFs), which to first approximation give the
+probability of picking out a certain type of parton with certain properties.
+
+Confinement of the quarks means experimental data is collected at the hadronic level, whereas theoretical predictions using Quantum Field Theory are made at the partonic level. The parton model provides a
+link between the two; in this framework partonic predictions
+are convolved with corresponding PDFs, summing over all possible partonic interactions. This produces PDF-dependent
+hadronic predictions. For useful theoretical predictions we therefore need as precise and accurate a handle on the PDFs as possible.
+
+PDFs are unknowns in perturbative Quantum Chromodynamics (QCD), the theory of
+the strong interaction. Crucially, they are process independent. This means that
+they can be determined in a global fit between a wealth of experimental data and
+theoretical predictions. Once constrained, they can then be applied to any process. Any errors in PDF determination will propagate through to future predictions. There are three
+places these errors can be introduced:
+\begin{enumerate}
+\item Experimental errors
+\item Theoretical errors
+\item Errors from fitting procedure (methodological).
+\end{enumerate}
+Until recently, experimental errors were the dominant source of error, meaning that theoretical
+errors have been largely ignored in standard PDF fits.
+However, with the onset of higher and higher precision experiments, we need to introduce a proper
+treatment of theoretical errors.
+
+For comprehensive references dealing with Quantum Field Theory and the Standard
+Model the reader is referred to Refs. \cite{ob:ellis}\cite{Peskin:1995ev}\cite{Burgess:2007zi}\cite{Srednicki:1019751}.
+
+\section{Parton Distribution Functions (PDFs) in Hadroproduction}
+
+In the Standard Model of particle physics, the strong force is responsible for short range interactions
+which bind together quarks. The theory of the strong force is known as QCD
+and corresponds to the Lagrangian
+
+\beq
+  \mathcal{L}_{QCD} = - \frac{1}{4} F_{\alpha \beta}^A F_A^{\alpha \beta} + \sum_{flavours} \bar{q}_a(i \slashed{D}-m)_{ab}q_b
+\eeq
+where the field strength tensor is given by
+\beq
+  F_{\alpha \beta}^A = \bigg[ \partial_\alpha \mathcal{A}_\beta^A - \partial_\beta \mathcal{A}_\alpha^A
+    - g f^{ABC} \mathcal{A}_\alpha^B \mathcal{A}_\beta^C \bigg]
+\eeq
+(ignoring gauge-fixing and ghost terms) \cite{ob:ellis}. Upper case Latin letters label
+\textit{colour}, lower case Latin letters label \textit{flavour} and lower case Greek letters
+run over components. The first term comes from self-interacting gluons,
+$\mathcal{A}$, and the second term comes from quarks, $q$, which obey the Dirac equation.
+
+Hadroproduction at the LHC consists of processes like $pp \to X$ where $p$ is a proton and $X$ is some 
+final hadronic state.
+This means experimental measurements are typically of some observable based on cross-section $\sigma_{pp\to X}$.
+Theoretical predictions are usually performed at the partonic level, for interactions between partons $a$
+and $b$, \textit{i.e.} $\hat{\sigma}_{ab \to X}$. The convention is that hats apply to partonic variables and no-hats apply to hadronic variables. Factorisation theorems \cite{jr:collins} allow the hadronic cross
+section to be expressed as a convolution of the partonic cross sections with relevant PDFs $f$:
+
+\beq
+  \sigma_{pp \to X} (s, M_X^2) = \sum_{a,b} \int dx_1 dx_2\ f_a(x, \mu_F^2)\ f_b (x_2, \mu_F^2)\ \hat{\sigma}_{ab \to X} (x_1x_2s, M_X^2, \mu_R^2, \mu_F^2)
+\label{factorisation}
+\eeq  
+  
+where $x$ is the momentum fraction of the proton associated with each parton, $s$ is the proton
+centre-of-mass frame energy and $M_X$ is the invariant mass of the final state $X$. 
+
+PDFs depend on the scale $\mu_F$ at which the factorisation is applied. However, this is an artificially
+introduced scale so observables such as $\sigma_{pp \to X}$ must be independent of it. This observation
+leads to a series of coupled partial differential ``renormalisation group'' equations relating PDFs at
+different scales known
+as the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP)
+equations~\cite{jr:altarelli}\cite{jr:dokshitzer}\cite{jr:gribov}:
+
+\beq
+  \mu_F \frac{d}{d\mu_F} f_i (y, \mu_F^2) = \sum_j \int_z^1 \frac{dz}{z} \mathcal{P}_{ij}\bigg(
+  \frac{y}{z}, \alpha_s \bigg) f_j (z, \mu_F^2).
+\label{eq:DGLAP}
+\eeq
+
+These show that the scale dependence of a given parton's PDF depends on all the other partons' PDFs through
+``splitting functions'' $\mathcal{P}_{ij}$, which in turn depend on the strong coupling constant $\alpha_s$.
+
+Although PDFs may seem at first sight to be totally unknown there are some theoretical observations which
+we can use to constrain their form.
+These are known as the ``sum rules''~\cite{ob:ellis}. One thing
+which intuitively makes sense is that if you add up all the momenta of the partons you end up with the
+momentum of the proton. This enforces the condition
+
+\beq
+  \int_0^1 dx \sum_i x f_i(x,Q^2) = 1.
+\eeq
+
+The other thing we know about the
+proton is that it is made up of two up and one down (and no strange)
+``valence'' quarks. So we can normalise the PDFs using the expressions 
+
+\begin{subequations}
+ \beq
+   \int_0^1 dx \big( f_u - f_{\bar{u}} \big) = 2
+ \eeq
+ \beq
+   \int_0^1 dx \big( f_d - f_{\bar{d}} \big) = 1
+ \eeq
+ \beq
+   \int_0^1 dx \big( f_s - f_{\bar{s}} \big) = 0.
+ \eeq
+\end{subequations}
+
+Note that these conditions require that the PDFs are integrable. 
+
+\subsection{PDF Fitting Strategy}
+
+There are a number of groups currently active in carrying out PDF fits and these include
+\begin{itemize}
+\item MSTW~\cite{Martin:2009bu}
+\item CTEQ~\cite{Dulat:2015mca}
+\item NNPDF~\cite{Ball:2017nwa}
+\item HERAPDF/xFitter~\cite{CooperSarkar:2011aa}
+\item ABM~\cite{Alekhin:2013nda}.
+\end{itemize}
+
+This section focusses on the techniques adopted by NNPDF.
+There are two main features of the NNPDF strategy which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{background/general_strategy_diagram.pdf}
+\caption{NNPDF general strategy.}
+\label{flowchart}
+\end{figure}
+
+\begin{enumerate}
+\item  Use of Monte Carlo rather than Hessian approach to error analysis. 
+    \item  Fitting using artificial neural networks.
+\end{enumerate}
+
+Fig. \ref{flowchart} outlines the NNPDF general strategy and Fig. \ref{code} shows the fitting code structure. Experimental data is converted into an ensemble of $N$ artificial Monte Carlo replicas or \textit{pseudodata}. These are randomly generated in accordance with multi-Gaussian distributions centred around each data point, with variance given by the experimental uncertainty (see Fig. \ref{MC}). Each Monte Carlo replica contains the same number of data points as the original experimental measurements. Given enough replicas, the Monte Carlo set contains complete experimental information; the experimental central value can be retrieved by taking the mean, and the experimental variance is the variance calculated over the replicas. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.7\textwidth]{background/monte_carlo.pdf}
+\caption{Generation of Monte Carlo replicas of pseudodata using a Gaussian probability density
+  function which has the same mean and variance as the experimental data. This means that the
+  mean and variance of the replicas can reproduce those of the experimental data arbitrarily
+  closely, given enough replicas.}
+\label{MC}
+\end{figure}
+
+
+NNPDF uses a variety of experimental data from a number of particle colliders. These are observables such as cross sections, differential cross sections and structure functions. Fig. \ref{data} is a plot of the $(x,Q^2)$ range spanned by the datasets in the latest NNPDF3.1~\cite{Ball:2017nwa} release. Here $x$ and $Q$ are Bj\"orken variables corresponding to the parton momentum fraction and the energy scale of the process. The majority of the data are from DIS.
+
+\begin{figure}
+\centering
+\includegraphics[width=15cm]{background/NNPDF31_nlo_as_0118_1000_markers0_fitcontext_plot_xq2.png}
+\caption{Plot of the $(x,Q^2)$ range spanned by data included in the latest NNPDF3.1 NLO fit.}
+\label{data}
+\end{figure}
+
+Theoretical predictions of parton-level observables are computed using external codes such as \texttt{MCFM}~\cite{jr:mcfm}, \texttt{DYNNLO}~\cite{Catani:2009sm}, \texttt{FEWZ}~\cite{Gavin:2010az} and \texttt{NLOjet++}~\cite{Catani:1996vz}. These are converted to higher orders as necessary using QCD and electroweak correction (``$k$'') factors. They are then combined with DGLAP evolution kernels, which evolve PDFs from an initial reference energy scale to the energy scale of each experiment using the DGLAP equations (Eqn. \ref{eq:DGLAP}). 
+
+Next, $M$ independent artificial neural networks are generated. These are combined with the partonic theory and compared to the experiments in a global fit. Here each pseudodata set is fitted against all the neural networks, which learn the functional form of the PDF.  The best fit is determined based on some suitable figure of merit such as $\chi^2$ value between the experimental observables and the theoretical observables calculated using the current iteration of PDFs. 
+
+In order to prevent overlearning, where the neural network also fits random fluctuations in the data, the pseudodata are divided into two sets, one for training and one for validation. At each step in the fit the $\chi^2$ is computed for both sets, but minimisation is based only on the training set. When the $\chi^2$ of the validation set stops decreasing, this signifies that overlearning has begun so any subsequent versions of the PDF can be discarded. 
+
+\begin{figure}
+  \begin{minipage}[c]{0.40\textwidth}
+    \caption{
+       The Monte Carlo replicas for the down valence quark PDF NNPDF3.1 at NLO. The scale is Q = 10 GeV
+    } \label{replicas}
+  \end{minipage}
+  \begin{minipage}[c]{0.55\textwidth}
+    \includegraphics[width=\textwidth]{background/Qs0_NNPDF31NLO_plot_pdfreplicas_d_v.png}
+  \end{minipage}\hfill
+\end{figure}
+The whole fitting process produces $N$ ``best fit'' neural networks, which act as a Monte Carlo parametrisation of the PDF (for example Fig. \ref{replicas}). This means that the PDF and its error can be extracted by taking the mean and standard deviation. The final PDFs are made publicly available on the LHAPDF \cite{Buckley:2014ana} website (\texttt{https://lhapdf.hepforge.org/}).
+
+\section{Parametrisation and Neural Networks}
+
+PDFs at a given energy scale can be evolved to any other scale using the DGLAP equations 
+(Eqn. \ref{eq:DGLAP}).
+In order to aid the fitting process, the PDFs undergo \textit{preprocessing};
+they are parametrised as:
+
+\beq
+  f_i(x) = A_i x^{-\alpha_i} (1-x)^{\beta_i} N_i(x)
+\eeq
+
+\begin{wrapfigure}{L}{0.5\textwidth}
+\centering
+\includegraphics[width=0.48\textwidth]{background/nnet.png}
+\caption{Schematic depiction of an artificial neural network.}
+\label{nnet}
+\end{wrapfigure}
+where $A_i$ are coefficients set by the sum rules (see earlier) and $\alpha_i$ and $\beta_i$ are parameters
+to be fitted. $N_i(x)$ are artificial neural networks. This form is chosen to force the 
+PDFs to 0 at large $x$. 
+
+Inspired by how the brain processes information, neural networks are composed of a collection of nodes
+known as \textit{neurones}, connected together in various ways. They are trained by example, so
+have the capability to learn a PDF's functional form given a set of data. The layout consists
+of input layers, hidden layers and output layers, as shown in Fig. \ref{nnet}. In a feed-forward
+neural network, information can only be passed in one direction through the layers (from 
+input to output). Here, the output
+of a neurone in the $l^{th}$ layer is given by
+\beq
+  \xi_i^{(l)} = g \bigg( \sum_j^{inputs} \omega_{ij}^{(l)} \xi_j^{(l-1)} + \theta_i^{(l)} \bigg)
+\eeq
+where the $\omega$s and $\theta$s are ``weights'' and ``thresholds''; parameters to be minimised
+with respect to.  $g$ is an ``activation function'' which is set to
+\beq
+  g(a) =
+\begin{cases}
+ \frac{1}{1 + e^{-a}} &\text{for hidden layers}\\
+  a &\text{for output layer}.
+\end{cases}
+\eeq
+
+\section{Experimental Uncertainties}
+
+Experimental uncertainties are implemented via a \textit{covaraince matrix} which links vectors of
+data points. This encapsulates the total breakdown of errors, $\rho$, and can be constructed: 
+\beq
+  \sigma_{ij} = \delta_{ij}\rho_i^{uncorr}\rho_j^{uncorr} + \sum_a^{+}\rho_{i,a}\rho_{j,a} +
+  \bigg( \sum_m^{\times}\rho_{i,m}\rho_{j,m} \bigg) T^0_i T^0_j.
+\label{eq:expcov}
+\eeq
+The notation $\sum^{+}$ indicates a sum over additive systematics and $\sum^\times$ over
+multiplicative systematics (more on this below).
+
+Here the uncorrelated statistical uncertainties appear down the diagonal, but correlated
+systematic uncertainties can also appear on the off-diagonals. Correlated uncertaintes include
+those which link multiple data points, for example systematic uncertainties from a particular
+detector which will affect all of its data in a similar way.
+
+Systematic uncertainties further divide into two types, ``additive'' and ``multiplicative''.
+Additive systematics are perhaps a more familiar type of error, and are independent of the
+datapoint values themselves. On the other hand,  multiplicative systematics depend on the measured values. In the context of particle physics 
+experiments, a common example is total detector luminosity. This is because recorded cross
+sections are dependent on the luminosity of the detector; a higher luminosity means more
+collisions will take place so the measured cross section will be greater.
+
+The covariance matrix is used in two places during the fit; the generation of pseudodata and calculation
+of $\chi^2$.
