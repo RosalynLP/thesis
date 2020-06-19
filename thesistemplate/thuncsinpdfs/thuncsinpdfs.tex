@@ -29,12 +29,14 @@ When determining PDFs we incorporate information from experiments in the form of
 
 Each data point is a measurement of some fundamental ``true" value, $\truev_i$, dictated by the underlying physics. In order to make use of the data in a Bayesian framework, we assume that the experimental values follow a Gaussian distribution about the unknown $\truev$. Then, assuming the same prior for $D$ and $\truev$, we can write an expression for the conditional probability of $\truev$ given the known data $D$:
 \beq
+\label{eqn:gaussexp}
 P(\truev|D) = P(D|\truev) \propto \exp\bigg( -\frac{1}{2}(\truev_i-D_i)C_{ij}^{-1}(\truev_j - D_j)\bigg).
 \eeq
 However, in a PDF fit we cannot fit to the unknown true values $\truev$, and must make do with predictions based on current theory $T_i$. This is the origin of theory uncertainties in PDF fits; where our theory is incomplete, fails to describe the physics well enough, or where approximations are made, we will introduce all kinds of subtle biases into the PDF fit. The theory predictions themselves also depend on PDFs, so uncertainties already present in the PDFs are propagated through. This, in particular, leads to a high level of correlation because the PDFs are universal, and shared between all the theory predictions. 
 
 We can take a similar approach when writing an expression for the conditional probability of the true values $\truev$ given the available theory predictions $T$, by assuming that the true values are Gaussianly distributed about the theory predictions.
 \beq
+\label{eqn:gausstheory}
 P(\truev|T) = P(T|\truev) \propto \exp\bigg( -\frac{1}{2}(\truev_i-T_i)S_{ij}^{-1}(\truev_j - T_j)\bigg),
 \eeq
 where $S_{ij}$ is a ``theory covariance matrix" encapsulating the magnitude and correlation of the various theory errors. We will need to do some work to determine $S_{ij}$ for the different sources of error, and this will be outlined in detail in the following chapters. 
@@ -51,15 +53,44 @@ and, because $\int D^N \truev P(\truev |TD) = 1$ as all possible probabilities f
 \beq
 P(D|T) =  \int D^N \truev P(\truev |T) P(D|\truev). 
 \eeq
-We can always write the theory predictions $T$ in terms of their shifts $\Delta$ relative the true values $\truev$:
+We can always write the theory predictions $T$ in terms of their shifts $\D$ relative the true values $\truev$:
 \beq
-\Delta_i \equiv \truev_i - T_i.
+\D_i \equiv \truev_i - T_i.
 \eeq
-
-
-
-
-
+These shifts quantify the accuracy of the theoretical predictions, and can be thought of as nuisance parameters in the PDF fit. We can express the above integral in terms of the shifts $\D_i$, making use of the assumptions of Gaussianity in Eqns. \ref{eqn:gaussexp} and \ref{eqn:gausstheory}:
+\beq
+\begin{split}
+\label{eq:probdatgivth}
+P(D|T) &\propto \int D^N \D \exp \bigg(-\frac{1}{2}(D_i - T_i -\D_i)\\
+&\times C_{ij}^{-1} (D_j -T_j -\D_j) - \frac{1}{2}\D_i S_{ij}^{-1} \D_j \bigg).
+\end{split}
+\eeq
+To evalute the Gaussian integrals, consider the exponent: switching to a vector notation for the time being, we can expand this out and then complete the square, making use of the symmetry of $S$ and $C$:
+\bdm
+(D-T-\D)^T C^{-1}(D-T-\D) + \D^T S^{-1} \D  
+= D^T(C^{-1} + S^{-1})\D -\D^T C^{-1} (D-T)
+ - (D-T)^T C^{-1}\D + (D-T)^T C^{-1}(D-T) 
+= (\D - (C^{-1} + S^{-1})^{-1} C^{-1}(D-T))^T(C^{-1}+S^{-1}) 
+\times (\D - (C^{-1} + S^{-1})^{-1} C^{-1}(D-T)) 
+-(D-T)^TC^{-1}(C^{-1} + S^{-1})^{-1}C^{-1}(D-T) 
++(D-T)^T C^{-1}(D-T).
+\edm
+Now, integrating Eqn. \ref{eq:probdatgivth} over $\D$ leads to a constant from the Gaussian integrals, which we can absorb, and only the parts of the exponent without $\D$ remain:
+\bdm
+P(T|D) = P(D|T) \propto \exp \bigg(-\frac{1}{2}(D-T)^T (C^{-1}-C^{-1}(C^{-1}+S^{-1})^{-1}C^{-1})(D-T) \bigg).
+\edm
+We can further simplify this by noting that
+\bdm
+(C^{-1}+S^{-1})^{-1} = (C^{-1}(C+S)S^{-1})^{-1} = S(C+S)^{-1}C,
+\edm
+which means we can rewrite
+\bdm
+C^{-1}-C^{-1}(C^{-1}+S^{-1})^{-1}C^{-1} = C^{-1} - C^{-1}S(C+S)^{-1} = (C^{-1}(C+S)-C^{-1}S)(C+S)^{-1} =(C+S)^{-1}.
+\edm
+Finally, with indices restored we are left with 
+\bdm
+P(T|D) \propto \exp \bigg(-\frac{1}{2}(D_i-T_i)(C+S)^{-1}_{ij}(D_j-T_j) \bigg).
+\edm
 
 Use the expression for conditional probability $P(X \cap Y)=P(X|Y)P(Y)$ and integrate over all possible values of the true theory $T$ (as this is an unknown):
 %

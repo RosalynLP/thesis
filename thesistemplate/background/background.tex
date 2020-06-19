@@ -1,68 +1,48 @@
-\chapter{Background - 60\%}
-Over the past 100 years, following the discovery of the atomic nucleus by Rutherford in 1911, great
-strides have been made towards understanding subatomic structure. We now know that atoms are made up of hadrons (such as protons and neutrons) and leptons
-(such as the electron). Interactions between these constituents and with gravity come from
-force-carrying bosons. Probing hadrons with high energy photons shows that
-they are composed of quarks, which do not exist independently. This means that they can only be
-studied within a hadronic environment. 
+\chapter{Background}
 
-\begin{wrapfigure}{l}{0.6\textwidth}     
-          \includegraphics[width=6cm]{background/proton_cartoon.jpg}
-        \caption{A visualisation of the internal structure of the proton \cite{desy}. Quarks (the blobs) are bound together
-          by gluons (the loopy lines).}
-\label{fig:proton}                 
-\end{wrapfigure}
+Parton distribution functions (PDFs) bridge the gap between short and long range physics, allowing perturbative Quantum Chromodynamics (QCD) to be applied at the hadronic scale. They embody the incalculable strongly coupled dynamics, and are determined by a comparison of perturbative theory with experiment. Once determined, their form is process-independent and so they can be re-deployed in future calculations. 
 
-The Standard Model of particle physics has proven thus
-far to be an extremely accurate  model of nature, and the current focus is on providing ever more precise
-experimental and theoretical results to test it and search for new physics which it can't explain.
+This section provides some background to PDFs neccesary for understanding the remainder of this thesis. It is divided in to two main parts, being the necessary physics and the necessary methodology of PDF determination.
 
-Cutting edge particle physics experiments are currently being carried out at the Large Hadron Collider
-(LHC). The LHC predominantly collides protons. At a basic level we can think of
-a proton as being composed of two up quarks and one down quark ($uud$), bound together by the strong
-interaction. However, the situation is vastly more complex than this.
+To review the physics, we begin by looking at the process of deep inelastic scattering (DIS), and how the na\"ive parton model was developed to explain these experimental observations. Next we look at this in the context of QCD, see how PDFs fit into the picture, and how they evolve with the scale of the physics. Finally we briefly touch on hadron-hadron collisions, which along with DIS constitute the bulk of the processes in modern PDF fits.
 
+To review the methodology we consider the NNPDF fitting strategy, explaining how theory and experiment are used together with neural networks to determine PDFs.
 
-The proton is in reality
-highly complicated and inaccessible to the normal perturbative calculations of Quantum Field Theory
-- Fig. ~\ref{fig:proton}.
-Such objects can only be treated using probabilistic methods. When two protons collide we do not know which constituents,
-or {\it partons} are interacting, or what individual properties they have, such as their momentum and spin. We need
-some way of relating the known properties of the proton to the unknown properties of the partons.
-One way of doing this is using parton distribution functions (PDFs), which to first approximation give the
-probability of picking out a certain type of parton with certain properties.
+\subsection{Deep inelastic scattering}
 
-Confinement of the quarks means experimental data is collected at the hadronic level, whereas theoretical predictions using Quantum Field Theory are made at the partonic level. The parton model provides a
-link between the two; in this framework partonic predictions
-are convolved with corresponding PDFs, summing over all possible partonic interactions. This produces PDF-dependent
-hadronic predictions. For useful theoretical predictions we therefore need as precise and accurate a handle on the PDFs as possible.
+Deep inelastic scattering (DIS) experiments were some of the earliest high energy physics experiments to involve hadrons. The set-up constitutes a beam of charged leptons scattering off a stationary hadronic target, for example electrons incident on protons, as shown in Fig. \ref{fig:dis}. In the deep inelastic regime, there is a large momentum transfer, $q=k-k'$, mediated by a virtual photon. The proton, with initial momentum $P$, fragments into some hadronic state $X$, and the electron starts with energy $E$ and momentum $k$ and ends with energy $E'$ and momentum $k'$. The momentum transfer is large enough that the masses of the proton and electron can be neglected. 
 
-PDFs are unknowns in perturbative Quantum Chromodynamics (QCD), the theory of
-the strong interaction. Crucially, they are process independent. This means that
-they can be determined in a global fit between a wealth of experimental data and
-theoretical predictions. Once constrained, they can then be applied to any process. Any errors in PDF determination will propagate through to future predictions. There are three
-places these errors can be introduced:
-\begin{enumerate}
-\item Experimental errors
-\item Theoretical errors
-\item Errors from fitting procedure (methodological).
-\end{enumerate}
-Until recently, experimental errors were the dominant source of error, meaning that theoretical
-errors have been largely ignored in standard PDF fits.
-However, with the onset of higher and higher precision experiments, we need to introduce a proper
-treatment of theoretical errors.
+\begin{figure}[H]
+\label{fig:dis}
+\centering
+\includegraphics[width=0.7\textwidth]{../diagrams/disdiag.pdf}
+\caption{Deep inelastic scattering}
+\end{figure}
 
-For comprehensive references dealing with Quantum Field Theory and the Standard
-Model the reader is referred to Refs. \cite{ob:ellis}\cite{Peskin:1995ev}\cite{Burgess:2007zi}\cite{Srednicki:1019751}.
-
-\section{Parton Distribution Functions (PDFs) in Hadroproduction}
+It is customary to define some useful variables for help in the analysis, listed in the table below.
+\begin{table}[H]
+\centering
+\begin{tabular}{l|l|l}
+  Variable & Definition & Interpretation   \\
+ \hline
+  $Q^2$ & $- q^2 = -(k-k')^2$   & momentum transfer    \\
+  $\nu$ & $p \cdot q = M(E'-E)$ & energy transfer  \\
+  $x$   & $\frac{Q^2}{2\nu}$    & scaling parameter \\
+  $y$   & $\frac{q \cdot p}{k \cdot p} = 1 - \frac{E'}{E}$ & inelasticity $\epsilon$ (0,1)
+\end{tabular}
+\end{table}
+\subsection{The parton model}
+\subsection{Quantum Chromodynamics (QCD)}
+\subsection{The QCD improved parton model and factorisation}
+\subsection{Evolution and the DGLAP equation}
+\subsection{Hadroproduction}
 
 In the Standard Model of particle physics, the strong force is responsible for short range interactions
-which bind together quarks. The theory of the strong force is known as QCD
-and corresponds to the Lagrangian
+which bind together quarks. The theory of the strong force is known as Quantum Chromodynamics (QCD),
+with corresponding Lagrangian
 
 \beq
-  \mathcal{L}_{QCD} = - \frac{1}{4} F_{\alpha \beta}^A F_A^{\alpha \beta} + \sum_{flavours} \bar{q}_a(i \slashed{D}-m)_{ab}q_b
+  \mathcal{L}_{QCD} = - \frac{1}{4} F_{\alpha \beta}^A F_A^{\alpha \beta} + \sum_{flavours} \bar{q}_a(i \slashed{D}-m)_{ab}q_b,
 \eeq
 where the field strength tensor is given by
 \beq
@@ -71,15 +51,15 @@ where the field strength tensor is given by
 \eeq
 (ignoring gauge-fixing and ghost terms) \cite{ob:ellis}. Upper case Latin letters label
 \textit{colour}, lower case Latin letters label \textit{flavour} and lower case Greek letters
-run over components. The first term comes from self-interacting gluons,
+run over dimensions. The first term in the Lagrangian arises from self-interacting gluons,
 $\mathcal{A}$, and the second term comes from quarks, $q$, which obey the Dirac equation.
 
-Hadroproduction at the LHC consists of processes like $pp \to X$ where $p$ is a proton and $X$ is some 
+Hadroproduction at the LHC consists of processes like $pp \to X$, where $p$ is a proton and $X$ is some 
 final hadronic state.
-This means experimental measurements are typically of some observable based on cross-section $\sigma_{pp\to X}$.
+This means experimental measurements are typically of some observable based on the cross-sections $\sigma_{pp\to X}$.
 Theoretical predictions are usually performed at the partonic level, for interactions between partons $a$
-and $b$, \textit{i.e.} $\hat{\sigma}_{ab \to X}$. The convention is that hats apply to partonic variables and no-hats apply to hadronic variables. Factorisation theorems \cite{jr:collins} allow the hadronic cross
-section to be expressed as a convolution of the partonic cross sections with relevant PDFs $f$:
+and $b$, \textit{i.e.} $\hat{\sigma}_{ab \to X}$. The convention here is that hats apply to partonic variables and no-hats apply to hadronic variables. Factorisation theorems \cite{jr:collins} allow the hadronic cross
+section to be expressed as a convolution of the partonic cross sections with relevant PDFs, $f$:
 
 \beq
   \sigma_{pp \to X} (s, M_X^2) = \sum_{a,b} \int dx_1 dx_2\ f_a(x, \mu_F^2)\ f_b (x_2, \mu_F^2)\ \hat{\sigma}_{ab \to X} (x_1x_2s, M_X^2, \mu_R^2, \mu_F^2)
@@ -89,7 +69,7 @@ section to be expressed as a convolution of the partonic cross sections with rel
 where $x$ is the momentum fraction of the proton associated with each parton, $s$ is the proton
 centre-of-mass frame energy and $M_X$ is the invariant mass of the final state $X$. 
 
-PDFs depend on the scale $\mu_F$ at which the factorisation is applied. However, this is an artificially
+PDFs depend on the scale, $\mu_F$, at which the factorisation is applied. However, this is an artificially
 introduced scale so observables such as $\sigma_{pp \to X}$ must be independent of it. This observation
 leads to a series of coupled partial differential ``renormalisation group'' equations relating PDFs at
 different scales known
@@ -107,8 +87,7 @@ These show that the scale dependence of a given parton's PDF depends on all the 
 
 Although PDFs may seem at first sight to be totally unknown there are some theoretical observations which
 we can use to constrain their form.
-These are known as the ``sum rules''~\cite{ob:ellis}. One thing
-which intuitively makes sense is that if you add up all the momenta of the partons you end up with the
+These are known as the ``sum rules''~\cite{ob:ellis}. Intuitively, adding up all the momenta of the partons must equal the
 momentum of the proton. This enforces the condition
 
 \beq
@@ -117,14 +96,15 @@ momentum of the proton. This enforces the condition
 
 The other thing we know about the
 proton is that it is made up of two up and one down (and no strange)
-``valence'' quarks. So we can normalise the PDFs using the expressions 
+``valence'' quarks. Any other quarks must be pair-produced from the sea, and
+therefore come with an antiquark of the same flavour. So we can normalise the PDFs using the expressions: 
 
 \begin{subequations}
  \beq
-   \int_0^1 dx \big( f_u - f_{\bar{u}} \big) = 2
+   \int_0^1 dx \big( f_u - f_{\bar{u}} \big) = 2;
  \eeq
  \beq
-   \int_0^1 dx \big( f_d - f_{\bar{d}} \big) = 1
+   \int_0^1 dx \big( f_d - f_{\bar{d}} \big) = 1;
  \eeq
  \beq
    \int_0^1 dx \big( f_s - f_{\bar{s}} \big) = 0.
@@ -133,19 +113,41 @@ proton is that it is made up of two up and one down (and no strange)
 
 Note that these conditions require that the PDFs are integrable. 
 
-\subsection{PDF Fitting Strategy}
 
-There are a number of groups currently active in carrying out PDF fits and these include
-\begin{itemize}
-\item MSTW~\cite{Martin:2009bu}
-\item CTEQ~\cite{Dulat:2015mca}
-\item NNPDF~\cite{Ball:2017nwa}
-\item HERAPDF/xFitter~\cite{CooperSarkar:2011aa}
-\item ABM~\cite{Alekhin:2013nda}.
-\end{itemize}
+\section{Determining PDFs}
+\subsection{Experimental uncertainties}
 
-This section focusses on the techniques adopted by NNPDF.
-There are two main features of the NNPDF strategy which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
+Experimental uncertainties are implemented via a \textit{covaraince matrix} which links vectors of
+data points. This encapsulates the total breakdown of errors, $\rho$, and can be constructed: 
+\beq
+  \sigma_{ij} = \delta_{ij}\rho_i^{uncorr}\rho_j^{uncorr} + \sum_a^{+}\rho_{i,a}\rho_{j,a} +
+  \bigg( \sum_m^{\times}\rho_{i,m}\rho_{j,m} \bigg) T^0_i T^0_j.
+\label{eq:expcov}
+\eeq
+The notation $\sum^{+}$ indicates a sum over additive systematics and $\sum^\times$ over
+multiplicative systematics (more on this below).
+
+Here the uncorrelated statistical uncertainties appear down the diagonal, but correlated
+systematic uncertainties can also appear on the off-diagonals. Correlated uncertaintes include
+those which link multiple data points, for example systematic uncertainties from a particular
+detector which will affect all of its data in a similar way.
+
+Systematic uncertainties further divide into two types, ``additive'' and ``multiplicative''.
+Additive systematics are perhaps a more familiar type of error, and are independent of the
+datapoint values themselves. On the other hand,  multiplicative systematics depend on the measured values. In the context of particle physics 
+experiments, a common example is total detector luminosity. This is because recorded cross
+sections are dependent on the luminosity of the detector; a higher luminosity means more
+collisions will take place so the measured cross section will be greater.
+
+The covariance matrix is used in two places during the fit; the generation of pseudodata and calculation
+of $\chi^2$.
+
+\subsection{Pseudodata}
+\subsection{NNPDF fitting strategy}
+
+There are a number of groups currently active in carrying out PDF fits and these include MSTW~\cite{Martin:2009bu}, CTEQ~\cite{Dulat:2015mca}, NNPDF~\cite{Ball:2017nwa}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2013nda}.
+
+The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will henceforth concentrate on this fitting strategy. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
 
 \begin{figure}
 \centering
@@ -155,11 +157,11 @@ There are two main features of the NNPDF strategy which differ from other fittin
 \end{figure}
 
 \begin{enumerate}
-\item  Use of Monte Carlo rather than Hessian approach to error analysis. 
-    \item  Fitting using artificial neural networks.
+\item  the use of Monte Carlo rather than Hessian approach to error analysis;
+    \item  fitting using artificial neural networks.
 \end{enumerate}
 
-Fig. \ref{flowchart} outlines the NNPDF general strategy and Fig. \ref{code} shows the fitting code structure. Experimental data is converted into an ensemble of $N$ artificial Monte Carlo replicas or \textit{pseudodata}. These are randomly generated in accordance with multi-Gaussian distributions centred around each data point, with variance given by the experimental uncertainty (see Fig. \ref{MC}). Each Monte Carlo replica contains the same number of data points as the original experimental measurements. Given enough replicas, the Monte Carlo set contains complete experimental information; the experimental central value can be retrieved by taking the mean, and the experimental variance is the variance calculated over the replicas. 
+Fig. \ref{flowchart} outlines the NNPDF general strategy. Experimental data is converted into an ensemble of $N$ artificial Monte Carlo replicas or \textit{pseudodata}. These are randomly generated in accordance with multi-Gaussian distributions centred around each data point, with variance given by the experimental uncertainty (see Fig. \ref{MC}). Each Monte Carlo replica contains the same number of data points as the original experimental measurements. Given enough replicas, the Monte Carlo set contains complete experimental information; the experimental central value can be retrieved by taking the mean, and the experimental variance is the variance calculated over the replicas. 
 
 \begin{figure}
 \centering
@@ -198,27 +200,7 @@ In order to prevent overlearning, where the neural network also fits random fluc
   \end{minipage}\hfill
 \end{figure}
 The whole fitting process produces $N$ ``best fit'' neural networks, which act as a Monte Carlo parametrisation of the PDF (for example Fig. \ref{replicas}). This means that the PDF and its error can be extracted by taking the mean and standard deviation. The final PDFs are made publicly available on the LHAPDF \cite{Buckley:2014ana} website (\texttt{https://lhapdf.hepforge.org/}).
-
-\section{Parametrisation and Neural Networks}
-
-PDFs at a given energy scale can be evolved to any other scale using the DGLAP equations 
-(Eqn. \ref{eq:DGLAP}).
-In order to aid the fitting process, the PDFs undergo \textit{preprocessing};
-they are parametrised as:
-
-\beq
-  f_i(x) = A_i x^{-\alpha_i} (1-x)^{\beta_i} N_i(x)
-\eeq
-
-\begin{wrapfigure}{L}{0.5\textwidth}
-\centering
-\includegraphics[width=0.48\textwidth]{background/nnet.png}
-\caption{Schematic depiction of an artificial neural network.}
-\label{nnet}
-\end{wrapfigure}
-where $A_i$ are coefficients set by the sum rules (see earlier) and $\alpha_i$ and $\beta_i$ are parameters
-to be fitted. $N_i(x)$ are artificial neural networks. This form is chosen to force the 
-PDFs to 0 at large $x$. 
+\subsection{Neural Networks}
 
 Inspired by how the brain processes information, neural networks are composed of a collection of nodes
 known as \textit{neurones}, connected together in various ways. They are trained by example, so
@@ -240,29 +222,28 @@ with respect to.  $g$ is an ``activation function'' which is set to
 \end{cases}
 \eeq
 
-\section{Experimental Uncertainties}
+\subsection{Parametrisation}
+\subsection{Preprocessing}
+PDFs at a given energy scale can be evolved to any other scale using the DGLAP equations 
+(Eqn. \ref{eq:DGLAP}).
+In order to aid the fitting process, the PDFs undergo \textit{preprocessing};
+they are parametrised as:
 
-Experimental uncertainties are implemented via a \textit{covaraince matrix} which links vectors of
-data points. This encapsulates the total breakdown of errors, $\rho$, and can be constructed: 
 \beq
-  \sigma_{ij} = \delta_{ij}\rho_i^{uncorr}\rho_j^{uncorr} + \sum_a^{+}\rho_{i,a}\rho_{j,a} +
-  \bigg( \sum_m^{\times}\rho_{i,m}\rho_{j,m} \bigg) T^0_i T^0_j.
-\label{eq:expcov}
+  f_i(x) = A_i x^{-\alpha_i} (1-x)^{\beta_i} N_i(x)
 \eeq
-The notation $\sum^{+}$ indicates a sum over additive systematics and $\sum^\times$ over
-multiplicative systematics (more on this below).
 
-Here the uncorrelated statistical uncertainties appear down the diagonal, but correlated
-systematic uncertainties can also appear on the off-diagonals. Correlated uncertaintes include
-those which link multiple data points, for example systematic uncertainties from a particular
-detector which will affect all of its data in a similar way.
-
-Systematic uncertainties further divide into two types, ``additive'' and ``multiplicative''.
-Additive systematics are perhaps a more familiar type of error, and are independent of the
-datapoint values themselves. On the other hand,  multiplicative systematics depend on the measured values. In the context of particle physics 
-experiments, a common example is total detector luminosity. This is because recorded cross
-sections are dependent on the luminosity of the detector; a higher luminosity means more
-collisions will take place so the measured cross section will be greater.
-
-The covariance matrix is used in two places during the fit; the generation of pseudodata and calculation
-of $\chi^2$.
+\begin{wrapfigure}{L}{0.5\textwidth}
+\centering
+\includegraphics[width=0.48\textwidth]{background/nnet.png}
+\caption{Schematic depiction of an artificial neural network.}
+\label{nnet}
+\end{wrapfigure}
+where $A_i$ are coefficients set by the sum rules (see earlier) and $\alpha_i$ and $\beta_i$ are parameters
+to be fitted. $N_i(x)$ are artificial neural networks. This form is chosen to force the 
+PDFs to 0 at large $x$. 
+\subsection{Positivity}
+\subsection{Cross validation}
+\subsection{Postprocessing}
+\subsection{Closure tests}
+\subsection{Experimental and theoretical input}
