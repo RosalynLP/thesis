@@ -1,0 +1,25 @@
+\documentclass[tikz,border=3mm]{standalone}
+\usepackage{tikz-feynman}
+\begin{document}
+\begin{tikzpicture}
+\begin{feynman}
+\vertex (li);
+\vertex [below=2cm of li] (hi);
+\vertex [right=of li] (a);
+\path (a) ++ (20:2) node[vertex] (lf);
+\vertex [below right=of a] (b);
+\vertex [right=of b] (hf1);
+\vertex [blob, right=of hi] (c) {};
+\path (c.-5) ++ (00:2) node[vertex] (hf2);
+\path (c.-40-|hf2.center) node[vertex] (hf3);
+
+\diagram* {
+    (li) -- [fermion, edge label=\(k\)] (a) -- [fermion, edge label=\(k'\)] (lf),
+    (hi) -- [fermion, edge label=\(P\)] (c) -- [fermion, edge label=\(p\)] (b),
+    (a) -- [photon, edge label=\(q\)] (b) -- [fermion] (hf1),
+    (c.-5) -- [fermion] (hf2),
+    (c.-40) -- [with arrow=0.52] (hf3)
+};
+\end{feynman}
+\end{tikzpicture}
+\end{document}
