@@ -2,7 +2,7 @@
 \usepackage{tikz-feynman}
 \begin{document}
 \begin{tikzpicture}
-\begin{feynman}
+\begin{feynman}[every blob={/tikz/fill=blue!30,/tikz/inner sep=2pt}]
 \vertex (li);
 \vertex [below=1.5cm of li] (hi);
 \vertex [right=of li] (a);
@@ -15,7 +15,7 @@
 
 \diagram* {
     (li) -- [fermion, edge label=\(k\)] (a) -- [fermion, edge label=\(k'\)] (lf),
-    (hi) -- [fermion, edge label=\(P\)] (c),
+    (hi) -- [fermion, edge label=\(p\)] (c),
     (a) -- [photon, edge label=\(q\)] (c),
     (c.+30) -- [fermion] (hf1),
     (c) -- [fermion] (hf2),

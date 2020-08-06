@@ -4,10 +4,12 @@
 \begin{tikzpicture}
 \begin{feynman}[every blob={/tikz/fill=blue!30,/tikz/inner sep=2pt}]
 \vertex (li);
-\vertex [below=2cm of li] (hi);
+\vertex [below=4cm of li] (hi);
 \vertex [right=of li] (a);
 \path (a) ++ (20:2) node[vertex] (lf);
 \vertex [below right=of a] (b);
+\vertex [below =of b] (g);
+\vertex [right =of g] (gf);
 \vertex [right=of b] (hf1);
 \vertex [blob, right=of hi] (c) {};
 \path (c.-5) ++ (00:2) node[vertex] (hf2);
@@ -15,11 +17,14 @@
 
 \diagram* {
     (li) -- [fermion, edge label=\(k\)] (a) -- [fermion, edge label=\(k'\)] (lf),
-    (hi) -- [fermion, edge label=\(p\)] (c) -- [fermion, edge label=\(\xi p\)] (b),
-    (a) -- [photon, edge label=\(q\)] (b) -- [fermion, edge label=\(\xi p + q\)] (hf1),
+    (hi) -- [fermion, edge label=\(p\)] (c) -- [fermion, edge label=\(yp\)] (g) -- [fermion, edge label=\(zy p \equiv xp\)] (b),
+    (a) -- [photon, edge label=\(q\)] (b) -- [fermion, edge label=\(x p + q\)] (hf1),
+    (g) -- [gluon, edge label=\((1-z)yp\)] (gf);
     (c.-5) -- [fermion] (hf2),
     (c.-40) -- [with arrow=0.52] (hf3)
 };
+%\vertex [below=of hf1] (g);
+%\draw [gluon, edge label=\((1-z)yp\)] ($(c)!0.5!(b)$) -- (g);
 \end{feynman}
 \end{tikzpicture}
 \end{document}

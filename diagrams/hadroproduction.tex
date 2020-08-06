@@ -1,0 +1,28 @@
+\documentclass[tikz,border=3mm]{standalone}
+\usepackage{tikz-feynman}
+\begin{document}
+\begin{tikzpicture}
+\begin{feynman}[every blob={/tikz/fill=blue!30,/tikz/inner sep=2pt}]
+\vertex (li);
+\vertex [below=2cm of li] (hi);
+\vertex [blob, right=of li] (a) {$f_i(x_1)$};
+\path (a.+5) ++ (00:2) node[vertex] (lf1);
+\path (a.+60-|lf1.center)node[vertex] (lf2);
+\vertex [blob, below right=of a] (b) {$\hat{\sigma}_i$};
+\vertex [right=of b] (hf1);
+\vertex [blob, right=of hi] (c) {$f_j(x_2)$};
+\path (c.-5) ++ (00:2) node[vertex] (hf2);
+\path (c.-60-|hf2.center) node[vertex] (hf3);
+
+\diagram* {
+    (li) -- [fermion, edge label=\(p_1\)] (a) -- [fermion] (lf1),
+    (hi) -- [fermion, edge label=\(p_2\)] (c) -- [fermion, edge label=\(x_1 p_1\)] (b),
+    (a) -- [fermion, edge label=\(x_2 p_2\)] (b) -- [fermion] (hf1),
+    (c.-5) -- [fermion] (hf2),
+    (c.-20) -- [with arrow=0.52] (hf3),
+    (a.+20) -- [fermion] (lf2)
+    
+};
+\end{feynman}
+\end{tikzpicture}
+\end{document}

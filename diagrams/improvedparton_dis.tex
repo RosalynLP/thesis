@@ -4,12 +4,12 @@
 \begin{tikzpicture}
 \begin{feynman}[every blob={/tikz/fill=blue!30,/tikz/inner sep=2pt}]
 \vertex (li);
-\vertex [below=2cm of li] (hi);
+\vertex [below=3cm of li] (hi);
 \vertex [right=of li] (a);
 \path (a) ++ (20:2) node[vertex] (lf);
-\vertex [below right=of a] (b);
+\vertex [blob, below right=of a] (b) {$\hat{\sigma}_i$};
 \vertex [right=of b] (hf1);
-\vertex [blob, right=of hi] (c) {};
+\vertex [blob, right=of hi] (c) {$f_i(x)$};
 \path (c.-5) ++ (00:2) node[vertex] (hf2);
 \path (c.-40-|hf2.center) node[vertex] (hf3);
 
