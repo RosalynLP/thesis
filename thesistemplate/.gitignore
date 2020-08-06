@@ -1,0 +1,11 @@
+.log
+.aux
+.bbl
+.blg
+.dvi
+.lof
+.out
+.synctex.gz
+.toc
+.fls
+pdf-img
