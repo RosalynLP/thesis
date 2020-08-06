@@ -9,13 +9,16 @@ To review the physics, we begin by looking at the process of deep inelastic scat
 To review the methodology we consider the NNPDF fitting strategy, explaining how theory and experiment are used together with neural networks to determine PDFs.
 
 \subsection{Deep inelastic scattering}
+For a more in-depth analysis, see Refs. \cite{pinkbook, hm}. In the following background sections we rely heavily on Ref. \cite{nikhefnotes}.
 
-Deep inelastic scattering (DIS) experiments were some of the earliest high energy physics experiments to involve hadrons. The set-up constitutes a beam of charged leptons scattering off a stationary hadronic target, for example electrons incident on protons, as shown in Fig. \ref{fig:dis}. In the deep inelastic regime, there is a large momentum transfer, $q=k-k'$, mediated by a virtual photon. The proton, with initial momentum $P$, fragments into some hadronic state $X$, and the electron starts with energy $E$ and momentum $k$ and ends with energy $E'$ and momentum $k'$. The momentum transfer is large enough that the masses of the proton and electron can be neglected. 
+The notion of bombarding matter to uncover its structure has led to many important discoveries in the last hundred or so years, starting with the Geiger-Marsen experiments from 1908-1913 and the subsequent discovery of the atomic nucleus \cite{nucleus}. In the decades following the discovery of the neutron in 1932, nuclei were probed at higher energies, leading to them being understood in terms of ``form factors" which parametrised their electric and magnetic distributions. At this stage it was clear that they were not point-like particles and so a series of important experiments were carried out in the 1960s at the Standford Linear Accelerator (SLAC), involving a high energy beam of charged leptons scattering off a stationary hadronic target. This process is known as Deep Inelastic Scattering (DIS). 
+
+In this section we will consider the example of electrons incident on protons, as shown in Fig. \ref{fig:dis}. In the deep inelastic regime, there is a large momentum transfer, $q=k-k'$, mediated by a virtual photon. The proton, $P$, with initial momentum $p$, fragments into some hadronic state $X$, and the electron starts with energy $E$ and momentum $k$ and ends with energy $E'$ and momentum $k'$. The momentum transfer is large enough that the masses of the proton and electron can be neglected. 
 
 \begin{figure}[H]
-\label{fig:dis}
 \centering
 \includegraphics[width=0.7\textwidth]{../diagrams/disdiag.pdf}
+\label{fig:dis}
 \caption{Deep inelastic scattering}
 \end{figure}
 
@@ -28,62 +31,238 @@ It is customary to define some useful variables for help in the analysis, listed
   $Q^2$ & $- q^2 = -(k-k')^2$   & momentum transfer    \\
   $\nu$ & $p \cdot q = M(E'-E)$ & energy transfer  \\
   $x$   & $\frac{Q^2}{2\nu}$    & scaling parameter \\
-  $y$   & $\frac{q \cdot p}{k \cdot p} = 1 - \frac{E'}{E}$ & inelasticity $\epsilon$ (0,1)
+  $y$   & $\frac{q \cdot p}{k \cdot p} = 1 - \frac{E'}{E}$ & inelasticity $\in [0,1]$
 \end{tabular}
 \end{table}
+The interaction is made up of a leptonic current (that of the electron) and a hadronic current (the fragmentation of the proton from $P$ to $X$). This means we can express the squared matrix element, $|\mathcal{M}|^2,$ as
+\be
+\label{eqn:matrixelement}
+|\mathcal{M}|^2 = \mathcal{N}_1 \frac{\alpha^2}{q^4} L_{\mu\nu} W^{\mu\nu},
+\ee
+where $L_{\mu\nu}$ is the leptonic part, determined from perturbative Quantum Electrodynamics (QED), and $W^{\mu\nu}$ is the hadronic part, containing the incalculable strongly coupled dynamics. $\alpha$ is the QED coupling constant and $\mathcal{N}_1$ is a normalisation constant.
+
+From QED, for an unpolarised photon beam in the DIS regime we can use the Feynman rules to write
+\bdm
+\label{eqn:ltensor}
+L_{\mu\nu} = \sum_{spins} \bar{u}(k')\gamma_\mu u(k) \bar{u}(k) \gamma_\nu u(k')
+=  Tr \big(\slashed{k'}\gamma_\mu \slashed{k} \gamma_\nu \big)
+= \mathcal{N}_2 \bigg( k_\mu k'_\nu + k_\nu k'_\mu -g_{\mu\nu} k\cdot k' \bigg)
+= \mathcal{N}_2 \bigg(4 k_\mu k_\nu - 2k_\mu q_\nu - 2 k_\nu q_\mu + g_{\mu \nu} q^2\bigg),
+\edm
+where in the last line we used the fact that the electron is massless so $
+0 = k^{'2} = q^2 + k^2 - 2 q \cdot k \implies q^2 = 2 q \cdot k.$ We have also introduced another constant, $\mathcal{N}_2$.
+
+Finding the hadronic tensor is more difficult because we lack knowledge of the hadronic states $P$ and $X$, so our only constraints are that $W^{\mu\nu}$ is Lorentz-invariant and that the electromagnetic current must be conserved, so $q \cdot W =0$. This allows us to write its general form as
+\bdm
+\label{eqn:htensor}
+W^{\mu\nu}(p,q) = - \bigg(g^{\mu\nu} - \frac{q^\mu q^\nu}{q^2}\bigg) W_1(p,q)
++ \bigg(p^\mu - q^\mu \frac{p \cdot q}{q^2}\bigg) \bigg(p^\nu  - q^\nu \frac{p \cdot q}{q^2} \bigg) W_2 (p, q),
+\edm
+where $W_1$ and $W_2$ are scalar functions which encapsulate the strong dynamics. These scalar functions are often written as:
+\begin{equation}
+\begin{split}
+F_1(x,Q^2) &= W_1(p,q); \\
+F_2(x,Q^2) &= \nu W_2(p,q); \\
+F_L(x,Q^2) &= F_2(x,Q^2) - 2x F_1(x,Q^2),
+\end{split}
+\end{equation}
+and are known as the ``structure functions". Often the hadronic tensor is parametrised in terms of $F_2$ and $F_L$, the latter of which is the longitudinal structure function and encapsulates the longitudinal component. 
+
+We can now combine Eqns. \ref{eqn:ltensor} and \ref{eqn:htensor} in Eqn. \ref{eqn:matrixelement}, making use of the fact that due to current conservation $q^\mu L_{\mu \nu} = 0$ to help simplify things. This leads us to the result:
+\bdm
+\label{eqn:disamplitude}
+|\mathcal{M}|^2 = \mathcal{N}_1\mathcal{N}_2^2 \frac{\alpha^2}{q^4} \bigg\{ (-2q^2)W_1(p,q) + \bigg( 4(p \cdot k)^2 - 4 (p \cdot q)(p \cdot k)) \bigg)W_2(p,q) \bigg\}.
+\edm
+
 \subsection{The parton model}
+Carrying out DIS experiments allows us to measure the structure functions for different values of $x$ and $Q^2$. It transpired that no clear $Q^2$ dependence was observed, and this is known as Bj\"orken scaling \cite{Callan:1973pu}. Because $Q^2$ is the photon's squared momentum, it corresponds to the energy at which the hadron is being probed. The fact that the structure functions are not dependent on this suggests that the interaction is point-like. This led to the formulation of the ``parton model", which described the proton as a composite state made up of point-like particles termed ``partons"\cite{Feynman:1969wa, Feynman:1969ej, Feynman:1973xc}. 
+
+Furthermore, $F_L(x)$ was measured to be 0, known as the Callan-Gross relation \ref{Callan:1968zza, Callan:1973pu}, which suggests that the point-like particles could not absorb longitudinal photons. This fitted in nicely with the quark models developed shortly before \cite{GellMann:1962xb, GellMann:1964nj, Zweig:1964jf, Dothan:1965aa}, which described hadrons in terms of spin-1/2 quarks; spin-1/2 particles cannot interact with longitudinal photons. This was the first experimental evidence for the existence of quarks.
+
+In the DIS regime, $Q^2$ is large and so the virtual photon probes at the short timescale $1/Q$, meaning that the interaction will be effectively instantaneous when compared with the inner proton dynamics which operate at the QCD scale $1/\lambda_{QCD} \sim $ 1 fm.  In the parton model we make the assumption that the partons have only a small momentum transverse to the proton's, and that they are effectively on shell for the interaction ($k^2 \approx 0$). In addition, we consider the process in the infinite momentum frame of the proton, in which it is Lorentz contracted by $M/P$ (a small number), so we can assume the photon will only interact with one parton because it will only traverse a narrow cross-section of the proton. The updated picture is shown in Fig. \ref{fig:disparton}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{../diagrams/parton_dis.pdf}
+\label{fig:disparton}
+\caption{DIS in the parton model. One parton with momentum $p$ interacts with the virtual photon, and the other partons ``spectate".}
+\end{figure}
+
+We parametrise the momentum of the interacting parton as $\xi p$, $\xi \in [0,1]$. The parton in the final state has negligible mass so its momentum squared is zero:
+\be
+\begin{split}
+(\xi p+q)^2 &= 0  \\
+\implies 2 \xi p \cdot q + q^2 &= 0 \\
+\implies 2 \xi p \cdot q - Q^2 &= 0  \\
+\implies \xi &= \frac{Q^2}{2p \cdot q} \equiv x.
+\end{split}
+\ee
+This allows us to identify the parton's momentum fraction in this frame with the Bj\"orken $x$ variable.
+
+We can think of the total collection of interactions in terms of a weighted sum over the interactions between the photon and the individual point-like partons, and so can write the proton-level hadronic tensor, $W_{\mu\nu}$ in terms of the parton-level ones, $\hat{W}^q_{\mu\nu}$, as
+\be
+W_{\mu\nu} = \sum_q  f_q(x) \hat{W}^q_{\mu\nu} \delta(Q^2 - 2xp \cdot q)
+= \frac{1}{Q^2} \sum_q  f_q(x) \hat{W}^q_{\mu\nu} \delta(1 - \frac{2xp \cdot q}{Q^2}),
+\ee
+where $q$ runs over the possible quark flavours and $f_q$ are distributions, with $f_q(x)dx$ giving the probability that in an interaction a parton of flavour $q$ will be found in the momentum range $x \to x +dx$. We call these functions ``parton distribution functions" (PDFs). The delta function appears due to integration over the final phase space of X, and enforces conservation of momentum. Using Eqn \ref{eqn:matrixelement}, we can see that
+\be
+\label{eqn:ampcomparison}
+|\mathcal{M}|^2 = \frac{1}{Q^2} \sum_q  f_q(x) |\mathcal{\hat{M}}_q|^2.
+\ee
+This means that the total amplitude can be expressed in terms of the partonic amplitudes and the PDFs. If we assume that the partons are massless Dirac particles, we can infer the partonic amplitudes directly from that of electron-muon scattering. In this scenario the electron has a current like Eqn. \ref{eqn:ltensor}, and the muon has the same, but with the substitutions $k \to p$ and $q \to -q$. Once again we can use $q_\mu L^{\mu \nu} =0$ and the expression
+\be
+|\mathcal{M}_{(e \mu)}|^2 = \mathcal{N}_1 \frac{\alpha^2}{q^4} L^{(e)}_{\mu\nu} L_{(\mu)}^{\mu\nu}
+\ee
+to show (in the massless limit)
+\be 
+|\mathcal{M}_{(e \mu)}|^2 = \mathcal{N}_1\mathcal{N}_2^2 \frac{\alpha^2}{q^4} \bigg( 16 (p \cdot k)^2 + 8 q^2 (p \cdot k) + 2 q^4 \bigg).
+\ee
+Using the symmetry of Fig. \ref{fig:disparton}, we can see this is analogous to $|\mathcal{\hat{M}}_q|^2$ under the substitution $p \to xp$, provided we replace the charge of the electron, $e$, with that of the parton, $e_q$, so that $\alpha \to e_q \alpha$. Making use of the expression $p \cdot k = Q^2/2xy$,
+\be 
+\begin{split}
+|\mathcal{\hat{M}}_q|^2 &= \mathcal{N}_1\mathcal{N}_2^2 \frac{e_q^2 \alpha^2}{q^4} \bigg\{ 4 (2xp \cdot k)^2 + 4 (2 x p\cdot k) q^2 + 2q^4 \bigg\} \\
+&= \mathcal{N}_1\mathcal{N}_2^2 \frac{e_q^2 \alpha^2}{Q^4} \bigg\{ 4 \bigg(\frac{Q^2}{y}\bigg)^2 - 4 \bigg(\frac{Q^2}{y}\bigg) Q^2 + 2Q^4 \bigg\} \\ 
+&= \mathcal{N}_1\mathcal{N}_2^2 e_q^2 \alpha^2 \bigg\{ 2 + 4 \bigg( \frac{1-y}{y^2} \bigg) \bigg\}.
+\end{split}
+\ee 
+Now we can use this alongside Eqn. \ref{eqn:disamplitude} in  Eqn. \ref{eqn:ampcomparison}, giving us
+\be 
+\begin{split}
+F_1 &\equiv W_1 = \sum_q f_q(x)e_q^2, \\
+F_2 &\equiv \nu W_2 = 2x \sum_q f_q(x) e_q^2.
+\end{split}
+\ee
+We see immediately that the Callan-Gross relation, $F_L(x) \equiv F_2(x) - 2x F_1(x) = 0$, is satisfied, as was observed experimentally.
+
+However, it was soon observed that this relation only held in the limit $Q^2 \to \infty$, and that at smaller scales there were so-called ``scaling violations". In order to understand this behaviour it is necessary to revisit the parton model in the light of Quantum Chromodynamics (QCD).
+
 \subsection{Quantum Chromodynamics (QCD)}
+QCD is the theory of the strong force. This is responsible for binding together hadrons, and explains the short-range interactions which occur within them. It is a gauge theory where the quark fields are realised as fundamental representations of the $SU(3)$ symmetry group and interactions between them are carried out via gauge bosons termed ``gluons", which are expressed in the adjoint representation \cite{grinstein2006introductory}. 
+
+Quark models showed that the structure of observed hadrons can be explained using the $SU(3)_f$ group alongside the association of quarks with different ``flavours"  \cite{GellMann:1962xb, GellMann:1964nj, Zweig:1964jf, Dothan:1965aa} . The additional $SU(3)_c$ colour symmetry was put forwards in order that the quarks satisfied Fermi-Dirac statistics \cite{Greenberg:1964pe}. Each quark is assigned an additional colour ((anti-)red, green or blue) in such a way that the composite hadrons are colourless. The additional local symmetry is accompanied by eight gauge bosons, the gluons. Colour is the charge of QCD, just as electric charge is for QED. An important difference is that, unlike chargeless photons in QED, the gluons themselves also have colour and this leads to complex self-interactions. 
+
+
+QCD can be expressed through the Lagrangian
+\be
+\mathcal{L} = -\frac{1}{4}F_{\mu \nu}^a F^{a \mu \nu} + \bar{q}^i(i \slashed{\mathcal{D}}_i^j - m \delta_i^j) q_j,
+\ee
+where the covariant derivative is
+\be 
+\mathcal{D}_\mu \psi(x) = (\partial_\mu -i\sqrt{4 \pi \alpha_s}T^a A_\mu^a) \psi(x) ,
+\ee
+and the field strength tensor is
+\be 
+F^a_{\mu \nu} = \partial_\mu A_\nu^a - \partial_\nu A_\mu^a + \sqrt{4 \pi \alpha_s} f^{abc} A_\mu^b A_\nu^c.
+\ee
+The indices $\mu, \nu$ are spacetime indices, $i, j$ are quark colour indices and $a,b, c$ are gluon colour indices. The first term in the Lagrangian arises from the self-interacting gluons, $A$, and the second term from the quarks, $q$, which obey the Dirac equation. $\alpha_s$ is the strong coupling constant, which dictates the strength of the interaction, and $T^a$ are the eight $SU(3)$ generators. $f^{abc}$ are the SU(3) structure constants. For simplicity we have assumed all quarks have the same mass, $m$. Note that gauge fixing and ghost terms are omitted. For more information see Ref. \cite{pinkbook}.
+
+Colour self-interactions give rise to the important properties of ``confinement" and ``asymptotic freedom". The QCD potential is of the form
+\be 
+V(r) \sim \frac{\alpha}{r} + kr,
+\ee
+where the first term drops off with distance like QED, but the second term comes from the self-interactions and means that separating two quarks takes infinite energy. This explains why we have not observed free quarks (``confinement"). Additionally, the QCD colour charge decreases with shorter distances. This means that at very short distances or high energies the quarks become ``free", which is known as ``asymptotic freedom". This crucial fact allows us to applythe tool of perturbation theory in such regimes. 
+
+QCD is subject to divergences in the ultra-violet (high energies) and infra-red (low energies). The former are regulated by renormalisation, which introduces a ``renormalisation scale", $\mu_R$. This is non-physical, and so observables cannot depend on it. This observation leads to a ``renormalisation group equation" (RGE), which can be solved by the introduction of a running coupling, dependent on the scale $Q^2$ (i.e. $\alpha_s \to \alpha_s(Q^2)$), which satisfies
+\be
+\label{eqn:rge}
+Q^2 \frac{\partial \alpha_s}{\partial Q^2} = \beta (\alpha_s),
+\ee
+The beta function, $\beta(\alpha_s)$, can be expressed perturbatively as an expansion in $\alpha_s$ and is currently known to N$^3$LO.
+
+At one-loop order the solution of this equation is
+\be 
+\alpha_s(Q^2) = \frac{\alpha_s(\mu_R^2)}{1+ \beta_0 \alpha_s (\mu_R^2) \ln\big(\frac{Q^2}{\mu_R^2}\big)},
+\ee
+where $\beta_0$ is the first coefficient of the $\beta$ expansion. From this solution we can explicitly see asymptotic freedom because $\alpha_s$ decreases as the energy scale increases. We also see the role of the renormalisation scale in specifying a particular reference value for $\alpha_s$. This solution is not exact because the RGE \ref{eqn:rge} only holds to all orders. Any residual $\mu_R$ dependence characterises the accuracy of our calculation, because going to higher and higher orders should reduce this dependence, eventually to 0.
+
+Quantities are infra-red safe if they do not depend on long-distance physics. This means we can apply perturbation theory because $\alpha_s$ is small enough in the short-distance regime. Unforunately at the partonic level structure functions and cross sections are not infra-red safe. 
+
 \subsection{The QCD improved parton model and factorisation}
-\subsection{Evolution and the DGLAP equation}
+
+In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at a long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into IR divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In IR-safe observables the soft and collinear divergences exactly canel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short- and long- scale physics. 
+
+This is done using the factorisation theorem \ref{Collins:1989gx}, which allows us to factorise the incalculable long-distance physics into the PDFs, meaning we are able to use perturbative QCD as a predictive theory. The PDFs are then non-perturbative, meaning we must obtain them from experiments, but they are universal quantities and so once determined can be applied everywhere, much like the coupling constants. This process introduces the artificial ``factorisation scale", $\mu_F$, in addition to the renormalisation scale. The factorisation scale separates the short- and long- distance physics; loosely, if a parton's transverse momentum is less than $\mu_F$ it is considered part of the hadron and is factored into the PDFs, otherwise it is seen as taking part in the hard scattering process, and will appear in the partonic cross section.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{../diagrams/improvedparton_dis.pdf}
+\label{fig:improvedparton}
+\caption{Factorisation and the QCD improved parton model}
+\end{figure}
+
+
+We can write a DIS cross section as
+\be
+\sigma^{DIS} = \sum_i \int dx f_i(x, \mu_F^2) \hat{\sigma}_i \bigg(x, \frac{Q^2}{\mu_F^2} \bigg),
+\ee
+corresponding to Fig \ref{fig:improvedparton}. 
+
+We can see how this works in practice by considering the case where a quark emits a gluon before interaction with the photon, such as in Fig. \ref{fig:scalingviolation}. Here the parent parton, with fraction $y$ of the proton's momentum, emits a gluon giving rise to a daughter parton with a fraction $z$ of the parent hadron's momentum. We can see that $z = x/y$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{../diagrams/scalingviolation.pdf}
+\label{fig:scalingviolation}
+\caption{A quark radiating a gluon before interacting.}
+\end{figure}
+
+It transpires (see Ref. \cite{hm} for the derivation) that the structure function $F_2$ can be expressed as
+\begin{dmath}
+\label{eqn:stfn}
+\frac{F_2(x,Q^2)}{x} = \sum_i e_i^2 \int_x^1 \frac{dy}{y} f_i(y) \bigg[ \delta \bigg( 1- \frac{x}{y} \bigg) + \frac{\alpha_s}{2 \pi} \mathcal{P}_{qq} \bigg( \frac{x}{y} \bigg) \ln \bigg( \frac{Q^2}{m^2} \bigg) \bigg].
+\end{dmath}
+$m$ is a cutoff introduced to regularise the collinear divergence and you can see that as $m \to 0$ the structure function diverges. A divergence also occurs for $(1-z) \to 0$, and this is a soft divergence because it corresponds to the gluon being emitted with zero momentum. The quantity $\mathcal{P}_{qq}$ is the quark-quark ``splitting function", detailing the probability that a quark emits a gluon leaving a daughter quark with fraction $z$ of the parent's momentum. In the $\overline{MS}$ renormalisation scheme this has the form
+\be 
+\mathcal{P}_{qq} = \frac{4}{3} \bigg( \frac{1+z^2}{1-z} \bigg).
+\ee
+We want an expression which is free from the soft and collinear divergences. We can proceed by defining
+\be 
+\mathcal{I}^i_{qq}(x) \equiv \frac{\alpha_s}{2 \pi} \int_x^1 \frac{dy}{y} f_i(y)\mathcal{P}_{qq} \bigg( \frac{x}{y} \bigg),
+\ee
+and separating \ref{eq:stfn} into a singular part and a calculable part, like
+\begin{dmath}
+\frac{F_2(x,Q^2)}{x} = \sum_i e_i^2 \bigg[ f_i(x) + \mathcal{I}^i_{qq}(x)  \ln \bigg( \frac{\mu_F^2}{m^2} \bigg) + \mathcal{I}^i_{qq}(x)  \ln \bigg( \frac{Q^2}{\mu_F^2} \bigg) \bigg].
+\end{dmath}
+Notice we introduced the artificial factorisation scale, $\mu_F$, to do this. Grouping the singular terms together as
+\be
+f_i(x, \mu_F^2) =  f_i(x) + \mathcal{I}^i_{qq}(x)  \ln \bigg( \frac{\mu_F^2}{m^2} \bigg),
+\ee
+we have factorised the divergences into the PDF $f_i(x)$, giving a new PDF, $f_i(x, \mu_F^2)$ , which also depends on $\mu_F$.
+and noting that at leading order $f_i(y) = f_i(y, \mu_F^2)$, we are able to write
+\begin{dmath}
+\frac{F_2(x,Q^2)}{x} = \sum_i e_i^2 \bigg[ f_i(x, \mu_F^2) + \frac{\alpha_s}{2 \pi} \int_x^1 \frac{dy}{y} f_i(y, \mu_F^2)\mathcal{P}_{qq} \bigg( \frac{x}{y} \bigg) \ln \bigg( \frac{Q^2}{\mu_F^2} \bigg) \bigg]+ \mathcal{O}(\alpha_s^2).
+\end{dmath}
+We know that $F_2$ is an observable quantity and thus should be independent of $\mu_F$, leading to a RGE:
+\be
+\begin{split}
+\frac{1}{e_i^2x} \frac{\partial F_2(x,Q^2)}{\partial \ln \mu_F^2} &= \frac{\partial f_i(x,\mu_F^2)}{\partial \ln \mu_F^2} \\ &+ \frac{\alpha_s}{2 \pi} \int_x^1 \frac{dy}{y} \bigg( \frac{\partial f_i(y,\mu_F^2)}{\partial \ln \mu_F^2}\ln \bigg( \frac{Q^2}{\mu_F^2} \bigg) -  f_i(y, \mu_F^2) \bigg)\mathcal{P}_{qq} \bigg( \frac{x}{y} \bigg)\\ &= 0.
+\end{split}
+\ee
+This can be further simplified by noting that $\frac{\partial f_i(y,\mu_F^2)}{\partial \ln \mu_F^2}$ is of $\mathcal{O}(\alpha_s^2)$, and so
+\be
+\frac{\partial f_i(x,\mu_F^2)}{\partial \ln \mu_F^2}  =  \frac{\alpha_s}{2 \pi} \int_x^1 \frac{dy}{y} f_i(y, \mu_F^2)\mathcal{P}_{qq} \bigg( \frac{x}{y} \bigg).
+\ee
+This equation describes the evolution of the newly defined PDFs with scale, a product of the factorisation of the divergences into them. In practice this equation is solved numerically. 
+
+When we also include the gluon as a parton, we open ourselves up to more splitting possibilities (e.g. gluon $\to$ quark and gluon $\to$ gluon), and this result generalises to a set of coupled differential equations known as the DGLAP equations~\cite{jr:altarelli, jr:dokshitzer,jr:gribov}:
+\be 
+\frac{\partial f_i}{ \partial \ln \mu_F^2} = \sum_i \frac{\alpha_s}{2 \pi} \mathcal{P}_{ij} \otimes f_j,
+\ee
+where we have used the Mellin convolution, defined
+\be 
+\mathcal{P} \otimes f \equiv \int_x^1 \frac{dy}{y} \mathcal{P} \bigg( \frac{x}{y} \bigg)f(y, \mu_F^2),
+\ee
+and the index $i$ runs from $-n_f$ to $n_f$ (where $n_f$ is the number of flavours), with the negative indices referring to the antiquarks, 0 to the gluon and the positive ones to the quarks.
+
 \subsection{Hadroproduction}
 
-In the Standard Model of particle physics, the strong force is responsible for short range interactions
-which bind together quarks. The theory of the strong force is known as Quantum Chromodynamics (QCD),
-with corresponding Lagrangian
+At the LHC most processes involve the interaction of two protons. Hadron-hadron collisions can be approached in much the same way as DIS, but instead the process is like in Fig. \ref{fig:hadroproduction}.
 
-\beq
-  \mathcal{L}_{QCD} = - \frac{1}{4} F_{\alpha \beta}^A F_A^{\alpha \beta} + \sum_{flavours} \bar{q}_a(i \slashed{D}-m)_{ab}q_b,
-\eeq
-where the field strength tensor is given by
-\beq
-  F_{\alpha \beta}^A = \bigg[ \partial_\alpha \mathcal{A}_\beta^A - \partial_\beta \mathcal{A}_\alpha^A
-    - g f^{ABC} \mathcal{A}_\alpha^B \mathcal{A}_\beta^C \bigg]
-\eeq
-(ignoring gauge-fixing and ghost terms) \cite{ob:ellis}. Upper case Latin letters label
-\textit{colour}, lower case Latin letters label \textit{flavour} and lower case Greek letters
-run over dimensions. The first term in the Lagrangian arises from self-interacting gluons,
-$\mathcal{A}$, and the second term comes from quarks, $q$, which obey the Dirac equation.
-
-Hadroproduction at the LHC consists of processes like $pp \to X$, where $p$ is a proton and $X$ is some 
-final hadronic state.
-This means experimental measurements are typically of some observable based on the cross-sections $\sigma_{pp\to X}$.
-Theoretical predictions are usually performed at the partonic level, for interactions between partons $a$
-and $b$, \textit{i.e.} $\hat{\sigma}_{ab \to X}$. The convention here is that hats apply to partonic variables and no-hats apply to hadronic variables. Factorisation theorems \cite{jr:collins} allow the hadronic cross
-section to be expressed as a convolution of the partonic cross sections with relevant PDFs, $f$:
-
-\beq
-  \sigma_{pp \to X} (s, M_X^2) = \sum_{a,b} \int dx_1 dx_2\ f_a(x, \mu_F^2)\ f_b (x_2, \mu_F^2)\ \hat{\sigma}_{ab \to X} (x_1x_2s, M_X^2, \mu_R^2, \mu_F^2)
-\label{factorisation}
-\eeq  
-  
-where $x$ is the momentum fraction of the proton associated with each parton, $s$ is the proton
-centre-of-mass frame energy and $M_X$ is the invariant mass of the final state $X$. 
-
-PDFs depend on the scale, $\mu_F$, at which the factorisation is applied. However, this is an artificially
-introduced scale so observables such as $\sigma_{pp \to X}$ must be independent of it. This observation
-leads to a series of coupled partial differential ``renormalisation group'' equations relating PDFs at
-different scales known
-as the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP)
-equations~\cite{jr:altarelli}\cite{jr:dokshitzer}\cite{jr:gribov}:
-
-\beq
-  \mu_F \frac{d}{d\mu_F} f_i (y, \mu_F^2) = \sum_j \int_z^1 \frac{dz}{z} \mathcal{P}_{ij}\bigg(
-  \frac{y}{z}, \alpha_s \bigg) f_j (z, \mu_F^2).
-\label{eq:DGLAP}
-\eeq
-
-These show that the scale dependence of a given parton's PDF depends on all the other partons' PDFs through
-``splitting functions'' $\mathcal{P}_{ij}$, which in turn depend on the strong coupling constant $\alpha_s$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{../diagrams/hadroproduction.pdf}
+\label{fig:hadroproduction}
+\caption{Factorisation in hadron-hadron collisions.}
+\end{figure}
 
 Although PDFs may seem at first sight to be totally unknown there are some theoretical observations which
 we can use to constrain their form.
