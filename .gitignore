@@ -8,4 +8,5 @@
 *.synctex.gz
 *.toc
 *.fls
-pdf-img
+*.sty
+pgf-img
