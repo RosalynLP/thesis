@@ -4,6 +4,7 @@
 *.blg
 *.dvi
 *.lot
+*.lof
 *.out
 *.synctex.gz
 *.toc
