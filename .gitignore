@@ -3,10 +3,11 @@
 *.bbl
 *.blg
 *.dvi
-*.lof
+*.lot
 *.out
 *.synctex.gz
 *.toc
 *.fls
 *.sty
+*.bib
 pgf-img
