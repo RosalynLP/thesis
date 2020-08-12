@@ -1,0 +1,17 @@
+\documentclass{standalone}
+
+\usepackage{neuralnetwork}
+
+\begin{document}
+    \begin{neuralnetwork}[height=6]
+        \newcommand{\xinputs}{$x$, $logx$}
+        \newcommand{\x}[2]{$\xi^{(1)}_#2$}
+        \newcommand{\y}[2]{$f$}
+        \newcommand{\hfirst}[2]{\small $\xi^{(2)}_#2$}
+        \newcommand{\hsecond}[2]{\small $\xi^{(3)}_#2$}
+        \inputlayer[count=2, bias=false, title=Input\\layer, text=\x]
+        \hiddenlayer[count=5, bias=false, title=Hidden\\layer 1, text=\hfirst] \linklayers
+        \hiddenlayer[count=3, bias=false, title=Hidden\\layer 2, text=\hsecond] \linklayers
+        \outputlayer[count=1, title=Output\\layer, text=\y] \linklayers
+    \end{neuralnetwork}
+\end{document}

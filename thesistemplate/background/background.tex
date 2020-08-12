@@ -192,6 +192,7 @@ This is done using the factorisation theorem \ref{Collins:1989gx}, which allows 
 
 We can write a DIS cross section as
 \be
+\label{eqn:disfact}
 \sigma^{DIS} = \sum_i \int dx f_i(x, \mu_F^2) \hat{\sigma}_i \bigg(x, \frac{Q^2}{\mu_F^2} \bigg),
 \ee
 corresponding to Fig \ref{fig:improvedparton}. 
@@ -245,6 +246,7 @@ This equation describes the evolution of the newly defined PDFs with scale, a pr
 
 When we also include the gluon as a parton, we open ourselves up to more splitting possibilities (e.g. gluon $\to$ quark and gluon $\to$ gluon), and this result generalises to a set of coupled differential equations known as the DGLAP equations~\cite{jr:altarelli, jr:dokshitzer,jr:gribov}:
 \be 
+\label{eqn:DGLAP}
 \frac{\partial f_i}{ \partial \ln \mu_F^2} = \sum_i \frac{\alpha_s}{2 \pi} \mathcal{P}_{ij} \otimes f_j,
 \ee
 where we have used the Mellin convolution, defined
@@ -255,7 +257,10 @@ and the index $i$ runs from $-n_f$ to $n_f$ (where $n_f$ is the number of flavou
 
 \subsection{Hadroproduction}
 
-At the LHC most processes involve the interaction of two protons. Hadron-hadron collisions can be approached in much the same way as DIS, but instead the process is like in Fig. \ref{fig:hadroproduction}.
+At the LHC most processes involve the interaction of two protons. Hadron-hadron collisions can be approached in much the same way as DIS, but instead the process is like in Fig. \ref{fig:hadroproduction}. Because two protons are involved the expression for the cross section is the natural extension of the DIS case (\ref{eq:disfact}):
+\be
+\sigma = \sum_{i,j} \int dx_1 dx_2 f_i(x_1, \mu_F^2) f_j(x_2, \mu_F^2) \hat{\sigma}_{ij}\bigg(x_1, x_2, \frac{Q^2}{\mu_F^2},...\bigg).
+\ee
 
 \begin{figure}[H]
 \centering
@@ -263,6 +268,10 @@ At the LHC most processes involve the interaction of two protons. Hadron-hadron 
 \label{fig:hadroproduction}
 \caption{Factorisation in hadron-hadron collisions.}
 \end{figure}
+
+Write about higher order corrections and factorisation!
+
+\subsection{Sum rules}
 
 Although PDFs may seem at first sight to be totally unknown there are some theoretical observations which
 we can use to constrain their form.
@@ -286,7 +295,7 @@ therefore come with an antiquark of the same flavour. So we can normalise the PD
    \int_0^1 dx \big( f_d - f_{\bar{d}} \big) = 1;
  \eeq
  \beq
-   \int_0^1 dx \big( f_s - f_{\bar{s}} \big) = 0.
+   \int_0^1 dx \big( f_q - f_{\bar{q}} \big) = 0, \qquad q = s, c, t, b.
  \eeq
 \end{subequations}
 
@@ -294,19 +303,35 @@ Note that these conditions require that the PDFs are integrable.
 
 
 \section{Determining PDFs}
+
+In this section we review the necessary background for PDF determination within the NNPDF \cite{nnpdf} framework. First we touch on the experimental and theoretical inputs to PDF fits, then we summarise the NNPDF fitting strategy, and finally we detail information on neural networks specific to this context.
+
+\subsection{Experimental and theoretical input}
+
+
+NNPDF uses a variety of experimental data from a number of particle colliders, including those based at CERN \cite{cern} and Fermilab \cite{fermilab}. These are observables such as cross sections, differential cross sections and structure functions. Fig. \ref{data} is a plot of the $(x,Q^2)$ range spanned by the datasets in the latest NNPDF3.1~\cite{Ball:2017nwa} release. The majority of the data are from DIS processes, which are crucial in determining PDF functional form, but in recent years increasingly more LHC collider data has been added including $t\bar{t}$ production, high energy jets and single top production \cite{Nocera:2019wyk}. For a full review of the data, see Ref. \ref{Ball:2017nwa}.
+
+\begin{figure}
+\centering
+\includegraphics[width=15cm]{background/NNPDF31_nlo_as_0118_1000_markers0_fitcontext_plot_xq2.png}
+\caption{Plot of the $(x,Q^2)$ range spanned by data included in the latest NNPDF3.1 NLO fit.}
+\label{data}
+\end{figure}
+
+Theoretical predictions of the corresponding parton-level observables are computed using external codes such as \texttt{MCFM}~\cite{jr:mcfm}, \texttt{aMC@NLO}~\cite{Alwall:2014hca}, \texttt{DYNNLO}~\cite{Catani:2009sm}, \texttt{FEWZ}~\cite{Gavin:2010az} and \texttt{NLOjet++}~\cite{Catani:1996vz}. These are converted to higher orders of perturbation theory as necessary using QCD and electroweak correction (``$k$'') factors. They are then combined with DGLAP evolution kernels, which evolve PDFs from an initial reference energy scale to the energy scale of each experiment using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). 
+
+
 \subsection{Experimental uncertainties}
 
-Experimental uncertainties are implemented via a \textit{covaraince matrix} which links vectors of
-data points. This encapsulates the total breakdown of errors, $\rho$, and can be constructed: 
+Experimental uncertainties are described using a covaraince matrix, $C_{ij}$, which gives the uncertainties and correlations between each of the data points $i,j = 1,...,N_{dat}$. It encapsulates the total breakdown of errors, $\sigma$, and can be constructed using uncorrelated errors ($\sigma_i^{uncorr}$), and  additive ($\sigma_{i,a}$) and multiplicative  ($\sigma_{i,m}$) correlated systematic errors (more on these below):
 \beq
-  \sigma_{ij} = \delta_{ij}\rho_i^{uncorr}\rho_j^{uncorr} + \sum_a^{+}\rho_{i,a}\rho_{j,a} +
-  \bigg( \sum_m^{\times}\rho_{i,m}\rho_{j,m} \bigg) T^0_i T^0_j.
+  C_{ij} = \delta_{ij}\sigma_i^{uncorr}\sigma_j^{uncorr} + \sum_a^{add.}\sigma_{i,a}\sigma_{j,a} +
+  \bigg( \sum_m^{mult.}\sigma_{i,m}\sigma_{j,m} \bigg) D_i D_j,
 \label{eq:expcov}
 \eeq
-The notation $\sum^{+}$ indicates a sum over additive systematics and $\sum^\times$ over
-multiplicative systematics (more on this below).
+where $D_i$ are the experimental data values.
 
-Here the uncorrelated statistical uncertainties appear down the diagonal, but correlated
+Structurally, the uncorrelated statistical uncertainties appear down the diagonal and these are what we would recognise intuitively as the statistical error ``on a data point". However, correlated
 systematic uncertainties can also appear on the off-diagonals. Correlated uncertaintes include
 those which link multiple data points, for example systematic uncertainties from a particular
 detector which will affect all of its data in a similar way.
@@ -318,15 +343,28 @@ experiments, a common example is total detector luminosity. This is because reco
 sections are dependent on the luminosity of the detector; a higher luminosity means more
 collisions will take place so the measured cross section will be greater.
 
-The covariance matrix is used in two places during the fit; the generation of pseudodata and calculation
-of $\chi^2$.
+Fig. \ref{fig:expcovmat} is an example of an experimental covariance matrix for data included in an NNPDF fit. The data are grouped according to what type of process the interaction belongs to (DIS charged current (CC) and neutral current (NC), Drell-Yan (DY), jets and top production). Systematic correlations within experiments are responsible for off-diagonal contributions, and these are mostly positive correlations but there is some anticorrelated behaviour in DIS CC, as a result of data in different kinematic regimes. 
 
-\subsection{Pseudodata}
+\begin{figure}
+\centering
+\includegraphics[width=15cm]{background/exp_covmat.pdf}
+\caption{An example of an experimental covariance matrix for data included in an NNPDF fit. The data are grouped according to what type of process the interaction belongs to (DIS charged current (CC) and neutral current (NC), Drell-Yan (DY), jets and top production).}
+\label{fig:expcovmat}
+\end{figure}
+
+The covariance matrix can be used to define the $\chi^2$ figure of merit, 
+\be
+\label{eqn:chi2}
+\chi^2 = \frac{1}{N_{dat}} (D_i-T_i) C_{ij}^{-1} (D_j-T_j),
+\ee
+which measures the goodness of fit between the experimental data $D_i$ with associated error breakdown $C_{ij}$, and theory predictions $T_i$. In practice, this definition is subject to d'Agostini bias \cite{DAgostini:1993arp} due to the presence of normalisation uncertainties. To avoid this, NNPDF employ the iterative $t0$ procedure \cite{Ball:2009qv} whereby $D_i$ in Eqn. \ref{eqn:expcov} are replaced initially with the predictions from a baseline fit, and the covariance matrix is iterated concurrently with preprocessing. 
+
+
 \subsection{NNPDF fitting strategy}
 
-There are a number of groups currently active in carrying out PDF fits and these include MSTW~\cite{Martin:2009bu}, CTEQ~\cite{Dulat:2015mca}, NNPDF~\cite{Ball:2017nwa}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2013nda}.
+There are a number of groups currently active in carrying out PDF fits including MSTW~\cite{Martin:2009bu}, CTEQ~\cite{Dulat:2015mca}, NNPDF~\cite{Ball:2017nwa}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2013nda}.
 
-The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will henceforth concentrate on this fitting strategy. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
+The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will concentrate on this fitting strategy. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
 
 \begin{figure}
 \centering
@@ -336,11 +374,13 @@ The work in this thesis has been carried out in the framework developed by the N
 \end{figure}
 
 \begin{enumerate}
-\item  the use of Monte Carlo rather than Hessian approach to error analysis;
-    \item  fitting using artificial neural networks.
+\item  The use of Monte Carlo approach to error analysis;
+    \item  Fitting using artificial neural networks.
 \end{enumerate}
 
-Fig. \ref{flowchart} outlines the NNPDF general strategy. Experimental data is converted into an ensemble of $N$ artificial Monte Carlo replicas or \textit{pseudodata}. These are randomly generated in accordance with multi-Gaussian distributions centred around each data point, with variance given by the experimental uncertainty (see Fig. \ref{MC}). Each Monte Carlo replica contains the same number of data points as the original experimental measurements. Given enough replicas, the Monte Carlo set contains complete experimental information; the experimental central value can be retrieved by taking the mean, and the experimental variance is the variance calculated over the replicas. 
+\subsection{Pseudodata}
+
+WRITE ABOUT PSEUDODATA HERE
 
 \begin{figure}
 \centering
@@ -352,22 +392,6 @@ Fig. \ref{flowchart} outlines the NNPDF general strategy. Experimental data is c
 \label{MC}
 \end{figure}
 
-
-NNPDF uses a variety of experimental data from a number of particle colliders. These are observables such as cross sections, differential cross sections and structure functions. Fig. \ref{data} is a plot of the $(x,Q^2)$ range spanned by the datasets in the latest NNPDF3.1~\cite{Ball:2017nwa} release. Here $x$ and $Q$ are Bj\"orken variables corresponding to the parton momentum fraction and the energy scale of the process. The majority of the data are from DIS.
-
-\begin{figure}
-\centering
-\includegraphics[width=15cm]{background/NNPDF31_nlo_as_0118_1000_markers0_fitcontext_plot_xq2.png}
-\caption{Plot of the $(x,Q^2)$ range spanned by data included in the latest NNPDF3.1 NLO fit.}
-\label{data}
-\end{figure}
-
-Theoretical predictions of parton-level observables are computed using external codes such as \texttt{MCFM}~\cite{jr:mcfm}, \texttt{DYNNLO}~\cite{Catani:2009sm}, \texttt{FEWZ}~\cite{Gavin:2010az} and \texttt{NLOjet++}~\cite{Catani:1996vz}. These are converted to higher orders as necessary using QCD and electroweak correction (``$k$'') factors. They are then combined with DGLAP evolution kernels, which evolve PDFs from an initial reference energy scale to the energy scale of each experiment using the DGLAP equations (Eqn. \ref{eq:DGLAP}). 
-
-Next, $M$ independent artificial neural networks are generated. These are combined with the partonic theory and compared to the experiments in a global fit. Here each pseudodata set is fitted against all the neural networks, which learn the functional form of the PDF.  The best fit is determined based on some suitable figure of merit such as $\chi^2$ value between the experimental observables and the theoretical observables calculated using the current iteration of PDFs. 
-
-In order to prevent overlearning, where the neural network also fits random fluctuations in the data, the pseudodata are divided into two sets, one for training and one for validation. At each step in the fit the $\chi^2$ is computed for both sets, but minimisation is based only on the training set. When the $\chi^2$ of the validation set stops decreasing, this signifies that overlearning has begun so any subsequent versions of the PDF can be discarded. 
-
 \begin{figure}
   \begin{minipage}[c]{0.40\textwidth}
     \caption{
@@ -378,51 +402,77 @@ In order to prevent overlearning, where the neural network also fits random fluc
     \includegraphics[width=\textwidth]{background/Qs0_NNPDF31NLO_plot_pdfreplicas_d_v.png}
   \end{minipage}\hfill
 \end{figure}
-The whole fitting process produces $N$ ``best fit'' neural networks, which act as a Monte Carlo parametrisation of the PDF (for example Fig. \ref{replicas}). This means that the PDF and its error can be extracted by taking the mean and standard deviation. The final PDFs are made publicly available on the LHAPDF \cite{Buckley:2014ana} website (\texttt{https://lhapdf.hepforge.org/}).
+
+Fig. \ref{flowchart} outlines the NNPDF general strategy. Experimental data and uncertainties are converted into an ensemble of $N_{rep}$ pseudodata replicas, encapsulating the data and their multigaussian error distribution. Each of these ($D^{(k)}$) is fitted separately to the theoretical predictions by minimising a target error function based on the $\chi^2$ (Eqn. \ref{eqn:chi2}), resulting in a PDF set of each flavour, $f_q^{(k)}$ (where $q$ runs over the fitted flavours: $g$, $u$, $d$, $s$, $c$, $\bar{u}$, $\bar{d}$, $\bar{s}$, $\bar{c}$). These act as a Monte Carlo parametrisation of the PDFs (for example, Fig. \ref{replicas}).  This means that the PDFs and their errors can be extracted by taking the means and standard deviations over the ensemble. REF A PAPER HERE FOR FULL STRATEGY.
+
+The final PDFs are made publicly available as downloadable files on the LHAPDF \cite{Buckley:2014ana} website. 
+
 \subsection{Neural Networks}
 
-Inspired by how the brain processes information, neural networks are composed of a collection of nodes
-known as \textit{neurones}, connected together in various ways. They are trained by example, so
-have the capability to learn a PDF's functional form given a set of data. The layout consists
-of input layers, hidden layers and output layers, as shown in Fig. \ref{nnet}. In a feed-forward
-neural network, information can only be passed in one direction through the layers (from 
-input to output). Here, the output
-of a neurone in the $l^{th}$ layer is given by
+Inspired by how the brain processes information, in machine learning neural networks are a graph of connected nodes. They are trained by example, so
+have the capability to learn a PDF's functional form given a set of data. The use of neural networks rather than specific functional forms allows us to avoid the theoretical bias which goes into selecting such a functional form. The layout, or ``architecture", consists
+of input layers, hidden layers and output layers. Nodes can be either input nodes or activation nodes, the latter of which have an associated activation function which is applied to their output. Fig. \ref{fig:nn} depicts the architecture currently used by NNPDF. This is a ``2-5-3-1" archiecture, where the numbers refer to the number of nodes in each layer. It is a ``multilayer perceptron", meaning the graph is fully connected, and it is a feed-forward; information can only be passed in one direction through the layers (from 
+input to output). The two inputs are $x$ and $\ln (1/x)$, and the output, $f$, is the PDF at the parametrisation scale, $Q_0$. In this network the output
+of a node in the $l^{th}$ layer is given by
 \beq
   \xi_i^{(l)} = g \bigg( \sum_j^{inputs} \omega_{ij}^{(l)} \xi_j^{(l-1)} + \theta_i^{(l)} \bigg)
 \eeq
 where the $\omega$s and $\theta$s are ``weights'' and ``thresholds''; parameters to be minimised
 with respect to.  $g$ is an ``activation function'' which is set to
 \beq
-  g(a) =
+  g(z) =
 \begin{cases}
- \frac{1}{1 + e^{-a}} &\text{for hidden layers}\\
+ \frac{1}{1 + e^{-z}} &\text{for hidden layers}\\
   a &\text{for output layer}.
 \end{cases}
 \eeq
-
-\subsection{Parametrisation}
-\subsection{Preprocessing}
-PDFs at a given energy scale can be evolved to any other scale using the DGLAP equations 
-(Eqn. \ref{eq:DGLAP}).
-In order to aid the fitting process, the PDFs undergo \textit{preprocessing};
-they are parametrised as:
-
-\beq
-  f_i(x) = A_i x^{-\alpha_i} (1-x)^{\beta_i} N_i(x)
-\eeq
-
-\begin{wrapfigure}{L}{0.5\textwidth}
+The choice of sigmoid activation function for the hidden layers allows sufficient freedom in the functional form, and the linear activation function for the output layer ensures the range of the PDFs is not restricted to [0,1].
+\begin{figure}[H]
 \centering
-\includegraphics[width=0.48\textwidth]{background/nnet.png}
-\caption{Schematic depiction of an artificial neural network.}
-\label{nnet}
-\end{wrapfigure}
-where $A_i$ are coefficients set by the sum rules (see earlier) and $\alpha_i$ and $\beta_i$ are parameters
-to be fitted. $N_i(x)$ are artificial neural networks. This form is chosen to force the 
-PDFs to 0 at large $x$. 
-\subsection{Positivity}
+\includegraphics[width=\textwidth]{../diagrams/neuralnet.pdf}
+\label{fig:nn}
+\caption{Schematic depiction of the 2-5-3-1 architecture of an artificial neural network currently used by NNPDF. In the NNPDF methodology $\xi_1^{(1)}$ and $\xi_2^{(1)}$ are the variables $x$ and $\log x$ respectively.}
+\end{figure}
+
+Genetic algorithm WRITE ABOUT. 
+
+\subsection{Parametrisation, preprocessing and postprocessing}
+A scale of $Q=1.65$ $GeV$ is chosen to parametrise the PDFs at, and then they can be determined at any other scale by evolution using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). The PDFs are fitted parametrised in a ``fitting basis", to help convergence \cite{Ball:2014uwa}, defined:
+\begin{itemize}
+\item $g$;
+\item $\Sigma \equiv \sum_{u,d,s} q_i + \bar{q}_i$;
+\item $T_3 \equiv u - d$;
+\item $T_8 \equiv u + d - 2s$;
+\item $V \equiv \sum_{u, d, s} q_i - \bar{q}_i$;
+\item $V_3 \equiv \bar{u} - \bar{d}$;
+\item $V_8 \equiv \bar{u} - \bar{d} - 2 \bar{s}$;
+\item $c$.
+\end{itemize}
+Since the form of the neural networks ($N_i(x)$) is determined by training on experimental data, the output is not meaningful outwith the data region. The functional form of the PDFs in this so-called ``extrapolation region" is in practice fixed through enforcement of the known high and low $x$ behaviour via ``preprocessing"; the PDFs are parametrised as:
+\beq
+  f_i(x) = A_i x^{-\alpha_i} (1-x)^{\beta_i} N_i(x).
+\eeq
+$A_i$ are normalisation coefficients set by the sum rules and fixed at each iteration of the fit. The powers $\alpha_i$ and $\beta_i$ are fitted parameters determined by iteration from one fit to the next. This preprocessing has the effect that the PDFs approach 0 at large $x$, and generally grow at small $x$. This is because the probability of the existence of a parton is generally small at high $x$ and larger with decreasing $x$ outwith the data region.
+
+Postprocessing is also applied to the PDF replicas to remove those which don't satisfy certain quality conditions. That is, where the target error function or arc-length of the replica is more than four standard deviations outwith the mean, or where the positivity of the resulting cross-sections is not satisfactorily maintained. 
+
 \subsection{Cross validation}
-\subsection{Postprocessing}
-\subsection{Closure tests}
-\subsection{Experimental and theoretical input}
+Neural networks are effective at learning the functional form underlying data. Sometimes they can be ``too effective", picking up not just the underlying law but also the noise. This is known as ``overlearning". 
+
+PIC OF OVERLEARNING
+
+To circumvent this problem, the data is split into a training and a validation set. The training data is used to optimise the neural network, and the validation data is used to test the network output, in a process known as ``cross validation". As training epochs elapse, the target error function compared to both the training and validation data should decrease as the network learns the underlying law. At some point, however, the network will begin to learn the noise in the training data, at which point the training error function will continue to decrease, but the validation error function will stop decreasing and start to increase again. The optimum fit is determined using the ``lookback" method, where after training the model corresponding to the minimum in the validation error function is selected.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{background/crossvalidation.png}
+\label{fig:crossvalidation}
+\caption{Cross validation with the lookback method.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{background/trvalchi2.pdf}
+\label{fig:crossvalidation}
+\caption{Comparing the training and validation $\chi^2$s for the 100 replicas (green circles) of a PDF fit. The red square gives the average.}
+\end{figure}
