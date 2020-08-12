@@ -207,34 +207,31 @@
 Over the past 100 years, following the discovery of the atomic nucleus by Rutherford in 1911, great
 strides have been made towards understanding subatomic structure. We now know that atoms are made up of hadrons (such as protons and neutrons) and leptons
 (such as the electron). Probing hadrons with high energy photons shows that
-they are composed of quarks, which do not exist independently. This means that they can only be
-studied within a hadronic environment. 
-\begin{wrapfigure}{l}{0.6\textwidth}     
-          \includegraphics[width=6cm]{background/proton_cartoon.jpg}
-        \caption{A visualisation of the internal structure of the proton \cite{desy}. Quarks (the blobs) are bound together
-          by gluons (the loopy lines).}
-\label{fig:proton}                 
-\end{wrapfigure}
+they are composed of quarks and gluons.
+\begin{figure}[H]
+\label{fig:proton}
+\centering
+\includegraphics[width=0.6\textwidth]{proton.pdf}
+\caption{A visualisation of the internal structure of the proton. Quarks are bound together by gluons.}
+\end{figure}
 
 The Standard Model of particle physics has proven thus
 far to be an extremely accurate  model of nature at the subatomic scale, and the current focus is on providing ever more precise
 experimental and theoretical results to test it and search for new physics which it cannot explain.
 
 Cutting edge high energy physics experiments are currently being carried out at colliders such as the Large Hadron Collider
-(LHC) at CERN[future colliders], which predominantly collides protons. At a basic level we can think of
+(LHC) at CERN, and there are many plans for new colliders such as the FCC, ILC and CLIC. Many of these experiments involve the collision of protons. At a basic level we can think of
 a proton as being composed of two up quarks and one down quark ($uud$), bound together by the strong
-interaction. However, the situation is vastly more complex than this.
+interaction. However, the proton (Fig. \ref{fig:proton}) is in reality
+highly complicated and inaccessible to the normal perturbative calculations of Quantum Field Theory (QFT), and can only be treated using probabilistic methods. 
 
-
-The proton is in reality
-highly complicated and inaccessible to the normal perturbative calculations of Quantum Field Theory (Fig. ~\ref{fig:proton}).
-Such objects can only be treated using probabilistic methods. When two protons collide we do not know which constituents,
+When two protons collide we do not know which constituents,
 or ``partons" are interacting, or what individual properties they have, such as their momentum and spin. We need
 some way of relating the known properties of the proton to the unknown properties of the partons.
 One way of doing this is using parton distribution functions (PDFs), which to first approximation give the
 probability of picking out a certain type of parton with certain properties.
 
-Confinement of the quarks means experimental data is collected at the hadronic level, whereas theoretical predictions using Quantum Field Theory are made at the partonic level. The parton model provides a
+Confinement of the quarks means experimental data is collected at the hadronic level, whereas theoretical predictions using QFT are made at the partonic level. The parton model provides a
 link between the two; in this framework partonic predictions
 are convolved with corresponding PDFs, summing over all possible partonic interactions. This produces PDF-dependent
 hadronic predictions. For useful theoretical predictions we therefore need as precise and accurate a handle on the PDFs as possible.
@@ -242,7 +239,15 @@ hadronic predictions. For useful theoretical predictions we therefore need as pr
 PDFs are unknowns in perturbative Quantum Chromodynamics (QCD), the theory of
 the strong interaction. Crucially, they are process independent. This means that
 they can be determined in a global fit between a wealth of experimental data and
-theoretical predictions. Once constrained, they can then be applied to any process. Any uncertainties in PDF determination will propagate through to future predictions. There are three
+theoretical predictions. Once constrained, they can then be applied to any process. Fig. \ref{fig:pdfs} shows the fitted functional form of the PDFs.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{pdfflavourplot.pdf}
+\label{fig:pdfs}
+\caption{The different PDF flavours determined in the latest NNPDF3.1 release \cite{Ball:2017nwa}.}
+\end{figure}
+
+Any uncertainties in PDF determination will propagate through to future predictions. There are three
 places these uncertainties can be introduced:
 \begin{enumerate}
 \item experimental uncertainties;
@@ -251,11 +256,6 @@ places these uncertainties can be introduced:
 \end{enumerate}
 Until recently, experimental uncertainties were the dominant source of error, meaning that theory uncertainties have been largely ignored in standard PDF fits.
 However, with the onset of increasingly high precision experiments, a proper treatment of theoretical uncertainties is becoming pressing.
-
-
-\section*{Outline of chapter contents}
-The table of contents above outlines what will appear in the thesis. Chapter 1 will be based on my first year review, Chapters 2 and 3 will be based on the papers 1905.04311 and 1906.10698 and Chapter 4 will be based on 1812.09074. Chapters 5 and 6 detail projects yet to be completed.
-
 
 %------------------------------------------------
 % Include main matter here
