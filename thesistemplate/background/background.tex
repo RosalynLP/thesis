@@ -322,6 +322,7 @@ Theoretical predictions of the corresponding parton-level observables are comput
 
 
 \subsection{Experimental uncertainties}
+\label{sec:expuncs}
 
 Experimental uncertainties are described using a covaraince matrix, $C_{ij}$, which gives the uncertainties and correlations between each of the data points $i,j = 1,...,N_{dat}$. It encapsulates the total breakdown of errors, $\sigma$, and can be constructed using uncorrelated errors ($\sigma_i^{uncorr}$), and  additive ($\sigma_{i,a}$) and multiplicative  ($\sigma_{i,m}$) correlated systematic errors (more on these below):
 \beq
@@ -362,50 +363,53 @@ which measures the goodness of fit between the experimental data $D_i$ with asso
 
 \subsection{NNPDF fitting strategy}
 
-There are a number of groups currently active in carrying out PDF fits including MSTW~\cite{Martin:2009bu}, CTEQ~\cite{Dulat:2015mca}, NNPDF~\cite{Ball:2017nwa}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2013nda}.
+There are a number of groups currently active in carrying out PDF fits including MSTW~\cite{Martin:2009bu}, CTEQ~\cite{Dulat:2015mca}, NNPDF~\cite{nnpdf}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2013nda}.
 
 The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will concentrate on this fitting strategy. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
-
-\begin{figure}
-\centering
-\includegraphics[width=0.8\textwidth]{background/general_strategy_diagram.pdf}
-\caption{NNPDF general strategy.}
-\label{flowchart}
-\end{figure}
-
 \begin{enumerate}
 \item  The use of Monte Carlo approach to error analysis;
     \item  Fitting using artificial neural networks.
 \end{enumerate}
 
-\subsection{Pseudodata}
+In the following sections we will provide an overview of these aspects, which can be found in more detail in Refs. \cite{Ball:2010de, Ball:2012cx, Ball:2017nwa}.
+\subsection{Monte Carlo approach}
 
-WRITE ABOUT PSEUDODATA HERE
-
+The uncertainties in the functional form of PDFs come as a direct consequence of the uncertainties in the experimental and theoretical input. In order to propagate experimental uncertainties through to the PDFs, NNPDF represent the experimental data (central values and uncertainty distribution) as a Monte Carlo ensemble. This is a set of $N_{rep}$ Monte Carlo ``replicas" which, given high enough replica number, have a mean value equal to the data central value and covariance equal to the experimental covariance. Fig. \ref{fig:MC} is a schematic illustrating the generation of these ``pseudodata", $D^{(k)}$, $k=1,...,N_{rep}$.
 \begin{figure}
 \centering
 \includegraphics[width=0.7\textwidth]{background/monte_carlo.pdf}
-\caption{Generation of Monte Carlo replicas of pseudodata using a Gaussian probability density
-  function which has the same mean and variance as the experimental data. This means that the
-  mean and variance of the replicas can reproduce those of the experimental data arbitrarily
-  closely, given enough replicas.}
-\label{MC}
+\caption{Schematic of the generation of Monte Carlo replicas of pseudodata from data with uncertainties.}
+\label{fig:MC}
 \end{figure}
+They are generated using Gaussian random numbers $n_a^{(k)}$ and $\hat{n}_p^{(k)}$:
+\be
+D^{(k)} = (D^0 + \sum_a n_a^{(k)} \sigma^a) \prod_m (1 + \hat{n}_m^{(k)}\sigma^p),
+\ee
+where $D_0$ is the (symmetrised) experimental data value, and $\sigma^a$ and $\sigma^m$ are the additive and multiplicative uncertainties discussed in Sec. \ref{sec:expuncs}. Explicitly, the pseudodata replicas satisfy the relations:
+\be
+\langle D_i^{(k)} \rangle = D_i^0; \qquad (\langle  D_i^{(k)} \rangle -D_i^0)(\langle  D_j^{(k)} \rangle-D_j^0) = C_{ij},
+\ee
+where the notation $\langle \cdot \rangle$ denotes the mean over replicas. Fig. \ref{fig:datarepchorus} shows the distribution of pseudodata for a single data point.
 
 \begin{figure}
-  \begin{minipage}[c]{0.40\textwidth}
-    \caption{
-       The Monte Carlo replicas for the down valence quark PDF NNPDF3.1 at NLO. The scale is Q = 10 GeV
-    } \label{replicas}
-  \end{minipage}
-  \begin{minipage}[c]{0.55\textwidth}
-    \includegraphics[width=\textwidth]{background/Qs0_NNPDF31NLO_plot_pdfreplicas_d_v.png}
-  \end{minipage}\hfill
+\centering
+\includegraphics[width=0.7\textwidth]{background/datarepchorus.png}
+\caption{Histogram of distribution of 100 pseudodata replicas for a single data point, normalised to $D^0$. The purple line is the mean value $\langle D^{(k)} \rangle$, which is equal to $D^0$ to arbitrary precision.}
+\label{fig:datarepchorus}
 \end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{background/generalstrategy.png}
+\caption{NNPDF general strategy.}
+\label{fig:generalstrategy}
+\end{figure}
+Once the pseudodata have been generated, each of these ($D^{(k)}$) is fitted separately to the theoretical predictions by minimising a target error function based on the $\chi^2$ (Eqn. \ref{eqn:chi2}), resulting in a PDF set of each flavour, $f_q^{(k)}$ (where $q$ runs over the fitted flavours: $g$, $u$, $d$, $s$, $c$, $\bar{u}$, $\bar{d}$, $\bar{s}$, $\bar{c}$). These act as a Monte Carlo parametrisation of the PDFs (for example, Fig. \ref{fig:replicas}).  This means that the PDFs and their errors can be extracted by taking the means and standard deviations over the ensemble. The final PDFs are made publicly available as downloadable files on the LHAPDF website \cite{lhapdf, Buckley:2014ana}. 
 
-Fig. \ref{flowchart} outlines the NNPDF general strategy. Experimental data and uncertainties are converted into an ensemble of $N_{rep}$ pseudodata replicas, encapsulating the data and their multigaussian error distribution. Each of these ($D^{(k)}$) is fitted separately to the theoretical predictions by minimising a target error function based on the $\chi^2$ (Eqn. \ref{eqn:chi2}), resulting in a PDF set of each flavour, $f_q^{(k)}$ (where $q$ runs over the fitted flavours: $g$, $u$, $d$, $s$, $c$, $\bar{u}$, $\bar{d}$, $\bar{s}$, $\bar{c}$). These act as a Monte Carlo parametrisation of the PDFs (for example, Fig. \ref{replicas}).  This means that the PDFs and their errors can be extracted by taking the means and standard deviations over the ensemble. REF A PAPER HERE FOR FULL STRATEGY.
-
-The final PDFs are made publicly available as downloadable files on the LHAPDF \cite{Buckley:2014ana} website. 
+\begin{figure}
+\centering
+    \includegraphics[width=0.7\textwidth]{background/Qs0_NNPDF31NLO_plot_pdfreplicas_d_v.png}
+\caption{Monte Carlo replicas for the down valence quark PDF NNPDF3.1 at NLO. } \label{fig:replicas}
+\end{figure}
 
 \subsection{Neural Networks}
 
@@ -426,7 +430,7 @@ with respect to.  $g$ is an ``activation function'' which is set to
   a &\text{for output layer}.
 \end{cases}
 \eeq
-The choice of sigmoid activation function for the hidden layers allows sufficient freedom in the functional form, and the linear activation function for the output layer ensures the range of the PDFs is not restricted to [0,1].
+The choice of sigmoid activation function for the hidden layers allows sufficient non-linear freedom in the functional form, and the linear activation function for the output layer ensures the range of the PDFs is not restricted to [0,1].
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{../diagrams/neuralnet.pdf}
@@ -434,7 +438,7 @@ The choice of sigmoid activation function for the hidden layers allows sufficien
 \caption{Schematic depiction of the 2-5-3-1 architecture of an artificial neural network currently used by NNPDF. In the NNPDF methodology $\xi_1^{(1)}$ and $\xi_2^{(1)}$ are the variables $x$ and $\log x$ respectively.}
 \end{figure}
 
-Genetic algorithm WRITE ABOUT. 
+The training of the neural networks is implemented using a ``genetic algorithm" (CMA-ES), so-called because of the introduction of mutation to the fitting parameters. This additional degree of randomness helps to avoid getting stuck in local minima. In practice, this involves ``mutating" some chosen fraction of the thresholds, $\theta$, by perturbing them at random.
 
 \subsection{Parametrisation, preprocessing and postprocessing}
 A scale of $Q=1.65$ $GeV$ is chosen to parametrise the PDFs at, and then they can be determined at any other scale by evolution using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). The PDFs are fitted parametrised in a ``fitting basis", to help convergence \cite{Ball:2014uwa}, defined:
@@ -457,9 +461,14 @@ $A_i$ are normalisation coefficients set by the sum rules and fixed at each iter
 Postprocessing is also applied to the PDF replicas to remove those which don't satisfy certain quality conditions. That is, where the target error function or arc-length of the replica is more than four standard deviations outwith the mean, or where the positivity of the resulting cross-sections is not satisfactorily maintained. 
 
 \subsection{Cross validation}
-Neural networks are effective at learning the functional form underlying data. Sometimes they can be ``too effective", picking up not just the underlying law but also the noise. This is known as ``overlearning". 
+Neural networks are effective at learning the functional form underlying data. Sometimes they can be ``too effective", picking up not just the underlying law but also the noise. This is known as ``overlearning" (see Fig. \ref{fig:overlearning} for an example).
 
-PIC OF OVERLEARNING
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{background/overfitteddata.png}
+\label{fig:overlearning}
+\caption{Overlearning: the data points (black dots) fluctuate around the linear underlying law (black line), but the neural network continues to minimise the error function until it passes through every data point (blue curve), fitting the noise in the data.}
+\end{figure}
 
 To circumvent this problem, the data is split into a training and a validation set. The training data is used to optimise the neural network, and the validation data is used to test the network output, in a process known as ``cross validation". As training epochs elapse, the target error function compared to both the training and validation data should decrease as the network learns the underlying law. At some point, however, the network will begin to learn the noise in the training data, at which point the training error function will continue to decrease, but the validation error function will stop decreasing and start to increase again. The optimum fit is determined using the ``lookback" method, where after training the model corresponding to the minimum in the validation error function is selected.
 
