@@ -15,7 +15,7 @@ In the NNPDF framework both replica generation and computation of $\chi^2$
 are currently based entirely on these. We must now try to match the ongoing drive to 
 increase experimental precision by including errors introduced at the theoretical level. This is
 especially important given recent data sets such as the $Z$ boson transverse momentum
-distributions~\cite{Aad:2014xaa}~\cite{Khachatryan:2015oaa}~\cite{Aad:2015auj}, which have very high experimental precision. Without
+distributions~\cite{Aad:2014xaa,Khachatryan:2015oaa,Aad:2015auj}, which have very high experimental precision. Without
 the inclusion of theoretical errors, this has led to tension with the other datasets.
 
 In future NNPDF fits theoretical uncertainties will be included following a procedure outlined
@@ -91,79 +91,12 @@ Finally, with indices restored we are left with
 \bdm
 P(T|D) \propto \exp \bigg(-\frac{1}{2}(D_i-T_i)(C+S)^{-1}_{ij}(D_j-T_j) \bigg).
 \edm
+Comparing this result to Eqn. \ref{eqn:gaussexp}, we can confirm that when we possess theoretical predictions, $T_i$, rather than true values, $\truev_i$, we can account for this by adding a theoretical covariance matrix, $S_{ij}$ to the experimental covariance matrix, $C_{ij}$ \cite{Ball:2018odr}. This means the theory uncertainties are on an equal footing with experimental systematic uncertainties. Note that $C_{ij}$ is positive definite by construction and so $(C+S)_{ij}$ is always invertible, even if $S_{ij}$ has negative eigenvalues.
 
-Use the expression for conditional probability $P(X \cap Y)=P(X|Y)P(Y)$ and integrate over all possible values of the true theory $T$ (as this is an unknown):
-%
+Now all that remains is to construct a theory covariance matrix which parametrises each instance of theoretical uncertainty. This is a nebulous task, given that we are not privy to the true values, $\truev$, and so are unable to simply apply the formal definition
 \beq
-\begin{split}
-    \int dT \ P(T|y \cap f)P(y|f) &= \int dT \ P(y|T \cap f)P(T|f)\\
-    P(y|f)                  &= \int dT \ P(y|T \cap f)P(T|f)\,.
-\end{split}
-\label{integ}
+S_{ij} = \langle (\truev_i - T_i) (\truev_j - T_j) \rangle,
 \eeq
-%
-Now assume Gaussian uncertainties for data and theory, of the form $\text{exp}(-\frac{1}{2}\chi^2)$
-%
-\beq
-	P(y|Tf) \propto \text{exp}\bigg( -\frac{1}{2} (y - T)^T \sigma^{-1} (y - T)\bigg)
-\eeq
-%
-\beq
-	P(T|f) \propto \text{exp}\bigg( -\frac{1}{2} (T - T[f])^T s^{-1} (T - T[f])\bigg)
-\eeq
-%
-and substitute these into Eq.~\ref{integ} to get
-%
-\beq
-    P(y|f) \propto \int dT \text{ exp}\bigg(-\frac{1}{2}\bigg[ (y - T)^T \sigma^{-1} (y - T) + (T - T[f])^T s^{-1} (T - T[f])\bigg]\bigg)\,.
-\eeq
-%
-Note that the difference between the full theory $T$ and the theory predictions $T[f]$ defines the total correction, $C$.  Therefore the substitution  $T= T[f] + C \Rightarrow dT = dT[f] + dC$ can be made, noting that $dT[f]=0$ because $T[f]$ is the fixed output of NNPDF analysis. The overall expression then becomes
-%
-\beq
-    P(y|f) \propto \int dC \text{ exp}\bigg(-\frac{1}{2}\bigg[ (y - T[f] - C)^T \sigma^{-1} (y - T[f] - C) + C^T s^{-1} C \bigg]\bigg)
-    \label{v2pyf}
-\eeq
-%
-which can be evaluated by Gaussian integration over shifted variables, leading to
-%
-\beq
-	P(y|f) \propto \text{exp}\bigg(- \frac{1}{2} (y - T[f])^T (\sigma + s)^{-1} (y - T[f])\bigg)\,.
-\eeq
-%
-The final result is that you can treat theoretical errors in exactly the same was as you
-treat experimental errors.
+where $\langle \cdot \rangle$ denotes an average over true values, $\truev$. We need to find methods to calculate the various contributions $S_{ij}$ (be them MHOUs, nuclear corrections, higher twist corrections etc.) which not only encapsulate the per-point theoretical errors but also preserve the correlations between different data points. Unlike experimental uncertainties, these correlations can exist outwith individual experiments; in fact, all data in PDF fits depend themselves on PDFs, and this common link will lead to correlations between all datapoints, albeit of varying strength. 
 
-\section{Sources of Theoretical Uncertainties}
-
-The next step is to estimate the theory covariance matrix, $s$. This can include a number of different theoretical uncertainties that may appear in PDF fits, such as:
-
-\begin{enumerate}
-    \item \textbf{Statistical uncertainties} such as from Monte Carlo generators. These provide diagonal entries to $s$.
-    \item \textbf{Systematic uncertainties}. These are trickier, and can be estimated by varying some fit parameter $\xi$ from its value at the central prediction, $\xi_0$, and applying 
-        \beq
-        s_{ij} = \langle(T[f;\xi]-T[f;\xi_0])_i(T[f;\xi]-T[f;\xi_0])_j\rangle
-        \label{theoryunc}
-    \eeq
-        where the angled brackets denote the averaging over a given range of $\xi$ according to some prescription.
-\end{enumerate}
-Including systematic uncertainties will pose the biggest challenge. We need to identify the
-places they are being introduced and then make a suitable choice of $\xi$. Examples of
-systematic uncertainties we have begun to address are:
-    \bi
-    \item \textbf{Missing higher order uncertainties (MHOUs)}. These are a result of calculations
-      being done only up to a certain perturbative order in the expansion of $\alpha_s$.
-      As discussed in more detail below, we can get a handle on these by varying the artificial
-      renormalisation ($\mu_R$) and factorisation ($\mu_F$) scales introduced in the calculation.
-      Here $\xi$ can be thought of as a vector $(\mu_R, \mu_F)$.
-    \item \textbf{Nuclear and deuteron corrections}. Here data are taken from nuclear targets
-      but the theoretical treatment does not account for this. We can re-calculate the
-      observables under different nuclear models or parametrisations. In this case $\xi$
-      indexes the model or parametrisation used. The use of multiple models helps to remove
-      any systematic bias introduced by each individual one.
-    \ei
-\section{Renormalisation group invariance}
-\section{Scale variation in partonic cross-sections}
-\section{Scale variation in PDF evolution}
-\section{Double scale variations}
-\section{Multiple scale variations}
+The following chapters address several important types of theoretical uncertainties: MHOUs; nuclear uncertainties; deuteron uncertainties. For each type, we show how to construct a theoretical covariance matrix, and present and discuss the results of PDF fits including these covariance matrices.
