@@ -26,17 +26,114 @@ Having established the importance of including MHOUs, in the next section we wil
 
 The most popular method for estimating MHOUs is by ``scale variation". This is based on making theoretical predictions at a range of values of the artificial renormalisation ($\mu_R$) and factorisation ($\mu_F$) scales introduced in Chapter~\ref{chapter:background}. The renormalisation group equation (RGE;~\ref{eqn:rge}) and factorisation theorem only hold to all orders in perturbation theory, and in this case varying the scale values will have no effect on any results. However, when the perturbative expansion is truncated, there will be a residual $\mu_R$ and $\mu_F$ dependence which characterises the degree of MHOU. Varying these scales and observing the impact on the predictions can therefore provide an estimate of the MHOUs. 
 
-Although other approaches to estimating MHOUs, based on the current known orders, have been suggested~\cite{Cacciari:2011ze, David:2013gaa, Bagnaschi:2014wea}, we adopted the method of scale variations not only because it is the most widely used, but also because it is the most easily implemented for our purposes. Firstly, the renormalisation group invariance incorporated automatically, which ensures the MHOUs decrease as the perturbative order increases. Secondly, the scale dependece of $\alpha_s(\mu_R^2)$ and the PDFs is universal to all processes, which is important for PDF fits dealing with a range of interactions. Finally, correlations between data points are implicitly maintained because predictions for different scale values will be smooth functions of kinematics; this ensures that neighbouring regions of phase space will be strongly correlated.
+Although other approaches to estimating MHOUs, based on the current known orders, have been suggested~\cite{Cacciari:2011ze, David:2013gaa, Bagnaschi:2014wea}, we adopted the method of scale variations not only because it is the most widely used, but also because it is the most easily implemented for our purposes. Firstly, the renormalisation group invariance is incorporated automatically, which ensures the MHOUs decrease as the perturbative order increases. Secondly, the scale dependece of $\alpha_s(\mu_R^2)$ and the PDFs is universal to all processes, which is important for PDF fits dealing with a range of interactions. Finally, correlations between data points are implicitly maintained because predictions for different scale values will be smooth functions of kinematics; this ensures that neighbouring regions of phase space will be strongly correlated.
 
-There are, however, some disadvantages. Firstly, the definition of the two scales themselves have been historically approached in various ways, often differently for DIS and hadronic collisions, but also changing over time. Since PDFs use both DIS and hadronic data we need to settle on a consistent approach. Secondly, there is no cut and dry method for determining the range of varied scale choices, and in fact the choice of central scales are themselves to some degree arbitrary; for example, top production processes commonly have both central scales set to the top mass, $m_t$, and DIS processes have both set to Bj\"orken $Q$. Though there is physical motivation for these choices, we could equally well pick 2$m_t$ rather than $m_t$ in the former case, for example. A standard approach is to take the 7-point envelope of the predictions obtained by varying $(\mu_F, \mu_R)$ independently in $\{1/2, 1, 2\}$, excluding $(1/2, 1/2)$ and $(2,2)$. However, in this scenario we do not want a per-point envelope but rather a covariance matrix which retains correlations between data points. We will address both of these points below. 
+There are, however, some disadvantages. Firstly, the definition of the two scales themselves have been historically approached in various ways, often differently for DIS and hadronic collisions, but also changing over time. Since PDFs use both DIS and hadronic data we need to settle on a consistent approach. Secondly, there is no cut and dry method for determining the range of varied scale choices, and in fact the choice of central scales are themselves to some degree arbitrary; for example, top production processes commonly have both central scales set to the top mass, $m_t$, and DIS processes have both set to Bj\"orken $Q$. Though there is physical motivation for these choices, we could equally well pick 2$m_t$ rather than $m_t$ in the former case, for example. A standard approach is to take the 7-point envelope of the predictions obtained by varying $(\mu_F, \mu_R)$ independently in $\{1/2, 1, 2\}$, excluding $(1/2, 1/2)$ and $(2,2)$. However, for our purposes we do not want a per-point envelope but rather a covariance matrix which retains correlations between data points. We will address both of these drawbacks below. 
 
 Finally, scale variation techniques will not pick up any ``new physics" at higher orders, be it additional colour configurations, singularities or mechanisms of interaction. This is harder to deal with, and requires resummation techniques among other methods. In this work we assume these effects to be less important, and do not address them for the time being.
 
+In the remainder of this section we will review the technique of scale variation, and with it the definitions of $\mu_F$ and $\mu_R$. We will converge on a genral formalism that can be applied to both electroproduction and hadroproduction. We will show that there are two independent directions of scale variation and discuss how to combine them, both in single process and multi-process interactions. We will then go on to show how to use this to build a covariance matrix in Sec.~\ref{sec:prescrip}.
+
 \subsection{Renormalisation group invariance}
 
+It is customary when making a theory prediction to pick a renormalisation scale, $\mu_R$, that is indicative of the physical scale of the interaction, $Q$. We will denote this ``central" theory prediction by $T(Q^2)$. In general, a theory prediction at scale $\mu_R$ can be written
+$\overline{T}(\alpha_s(\mu_R^2), \mu_R^2/Q^2)$, where we explicitly note that $\alpha_s$ itself depends on the renormalisation scale. From this we can see that
+\beq
+T(Q^2) \equiv \overline{T}\big(\alpha_s(Q^2), 1 \big).
+\eeq
+The strong coupling constant satisfies the RGE
+\beq \label{eqn:beta}
+\mu_R^2 \frac{d^2}{d\mu_R^2}\alpha_s(\mu_R^2) = \beta \big( \alpha_s (\mu_R^2) \big),
+\eeq
+and we can expand the beta function perturbatively as
+\beq 
+\beta(\alpha_s) = \beta_0 \alpha_s^2 + \beta_1 \alpha_s^3 
++ \beta_2 \alpha_s^4 + \ldots \, .
+\eeq
+
+As discussed in Chapter~\ref{chapter:background}, renormalisation group invariance tells us that a prediction of a physical quantity (such as $\overline{T}$) to all orders must be independent of $\mu_R$, because this scale is unphysical. This means we can write
+\beq \label{eqn:rgetbar}
+  \mu_R^2 \frac{d}{d \mu_R^2} \overline{T} \lp
+  \alpha_s(\mu_R^2), \mu_R^2/Q^2\rp  = 0 .
+\eeq
+
+Before proceeding further, we introduce some variables to make the analysis clearer:
+\beq \label{notn}
+\mu_R^2 = k Q^2,\qquad t = \ln (Q^2 / \Lambda^2), \qquad \kappa = \ln k = \ln \mu_R^2/Q^2,
+\eeq
+where $\Lambda$ is the QCD scale. This means $\alpha_s(\mu_R^2)$ is a function of $\ln \mu_R^2/\Lambda^2 = t + \kappa$.
+
+Revisiting Eqn.~\ref{eqn:rgetbar}, we can write this as
+\bea \label{eqn:newrge}
+	0 & =& \frac{d}{d \kappa} \overline{T}(\alpha_s(t + \kappa), \kappa) \nonumber\\
+	& =& \frac{d} {d \kappa} \alpha_s(t + \kappa) \frac{\partial}{\partial \alpha_s} \overline{T}(\alpha_s(t + \kappa), \kappa) \bigg|_\kappa + \frac{\partial}{\partial \kappa} \overline{T}(\alpha_s(t + \kappa), \kappa) \bigg|_{\alpha_s}\nonumber, \\
+\eea
+assuming that $\overline{T}$ is analytic in $\alpha_s$ and $\kappa$. To simplify this we can use
+\beq 
+	\frac{d}{d \kappa} \alpha_s(t + \kappa) = \frac{d}{dt} \alpha_s(t + \kappa) = \frac{d}{d \ln \mu_R^2} \alpha_s(t + \kappa) = \beta(\alpha_s(t + \kappa) ) \, ,
+\eeq
+where we have used the definition of the beta function (Eqn.~\ref{eqn:beta}), and this means that
+\beq
+	0 = \frac{\partial}{\partial t} \overline{T}(\alpha_s(t + \kappa), \kappa) \bigg|_\kappa + \frac{\partial}{\partial \kappa} \overline{T}(\alpha_s(t + \kappa), \kappa) \bigg|_{\alpha_s} \, .
+\eeq
+We can now Taylor expand $\overline{T}(\alpha_s, \kappa)$ about the central scale $\mu_R^2 = Q^2 \implies k=1 \implies \kappa = 0$ for fixed $\alpha_s$: 
+\bea
+  \overline{T}(\alpha_s(t + \kappa), \kappa) &=& \overline{T}(\alpha_s(t + \kappa), 0)\nonumber\\&&\qquad\qquad +\kappa \frac{\partial}{\partial \kappa} \overline{T}(\alpha_s(t + \kappa), 0) \bigg|_{\alpha_s} + \half \kappa^2 \frac{\partial^2}{\partial \kappa^2} \overline{T}(\alpha_s(t + \kappa, 0)\bigg|_{\alpha_s} + \ldots \qquad \nonumber \\.
+\eea
+Then, using Eqn.~\ref{eqn:newrge}, we can replace $\frac{\partial}{\partial \kappa}$ with
+$-\frac{\partial}{\partial t}$, and write
+\bea \label{eqn:trelation}
+\overline{T}(\alpha_s(t + \kappa), \kappa) &=& \overline{T}(\alpha_s(t + \kappa), 0) - \kappa \frac{\partial}{\partial t} \overline{T}(\alpha_s(t + \kappa), 0) \bigg|_\kappa + \half \kappa^2  \frac{\partial^2}{\partial t^2} \overline{T}(\alpha_s(t + \kappa), 0)\bigg|_\kappa + \ldots \nonumber\\
+&=& T(t + \kappa) - \kappa \frac{d}{dt} T(t + \kappa) + \half \kappa^2  \frac{d^2}{dt^2} T(t + \kappa)+\ldots\>.
+\eea
+This tells us how to find a scale varied theoretical prediction, $\overline{T}$, in terms of the $t$ dependence of the central prediction, $T$. Furthermore, we can express this $t$ dependence as an $\alpha_s$ dependence using
+\beq
+\frac{d}{dt} T(t) = \frac{d \alpha_s(t)}{dt} \frac{\partial}{\partial \alpha_s} \overline{T}(\alpha_s(t), 0) = \beta(\alpha_s(t)) \frac{\partial}{\partial \alpha_s} \overline{T}(\alpha_s(t), 0).
+\eeq
+Noting that $\beta(\alpha_s) = \mathcal{O}(\as^2)$, we see that 
+$\frac{1}{T} \frac{dT}{dt}
+= \mathcal{O}(\alpha_s)$ and $\frac{1}{T} \frac{d^2T}{dt^2} =
+\mathcal{O}(\alpha_s^2)$ etc. The pattern follows that every time a derivative is taken with respect to $t$ you pick up a power of $\alpha_s$ as a consequence of the chain rule in differentiating. Looking back at Eqn. \ref{eqn:trelation} it is clear that each power of $\kappa$ is associated with a power of $\alpha_s$. Expressing the theory prediction perturbatively as
+\be
+T = \alpha_sT_{\text{LO}} + \alpha_s^2 T_{\text{NLO}} + \alpha_s^3 T_{\text{NNLO}} + \ldots\> ,
+\ee
+we can match powers of $\alpha_s$ in Eqn. \ref{eqn:trelation} to obtain the expressions
+\begin{align} \label{eqn:theoryshifts}
+\begin{split}
+	\overline{T}_{\text{LO}}(\alpha_s(t + \kappa), \kappa) & = T_{\text{LO}}(t + \kappa), \\
+	\overline{T}_{\text{NLO}}(\alpha_s(t + \kappa), \kappa) & = T_{\text{NLO}}(t + \kappa) - \kappa\smallfrac{d}{dt}{T}_{\text{LO}}(t + \kappa), \\
+	\overline{T}_{\text{NNLO}}(\alpha_s(t + \kappa), \kappa) & = T_{\text{NNLO}}(t + \kappa) - \kappa\smallfrac{d}{dt}{T}_{\text{NLO}}(t + \kappa) \\
+	&+ \half\kappa^2  \smallfrac{d^2}{dt^2}{T}_{\text{LO}}(t + \kappa).
+\end{split}
+\end{align}
+
+The difference between the scale varied prediction and the central scale prediction,
+\be
+\Delta(t,\kappa) = \overline{T}(\alpha_s(t + \kappa), \kappa) - T(t) \, .
+\ee
+can be used to estimate the MHOU. From Eqn.~\ref{eqn:theoryshifts} we find the explicit expressions for the theory uncertainties
+\be 
+\begin{split}
+\Delta_{\text{LO}}(t,\kappa) & = T_{\text{LO}}(t + \kappa)-T_{\text{LO}}(t), \\
+{\Delta}_{\text{NLO}}(t,\kappa) & = (T_{\text{NLO}}(t + \kappa) - \kappa\smallfrac{d}{dt}{T}_{\text{LO}}(t + \kappa))-T_{\text{NLO}}(t), \\
+{\Delta}_{\text{NNLO}}(t, \kappa) & = (T_{\text{NNLO}}(t + \kappa) - \kappa\smallfrac{d}{dt}{T}_{\text{NLO}}(t + \kappa) \\
+&+ \half\kappa^2  \smallfrac{d^2}{dt^2}{T}_{\text{LO}}(t + \kappa))-T_{\text{NNLO}}(t) \, .
+\end{split}
+\ee
+At LO we can see that the uncertainty results entirely from the choice of $\kappa$, in other words of $\mu_R$ in the $\alpha_s$ evaluation. At NLO we can see that the leading part of $T_{\text{NLO}}(t + \kappa)$ is subtracted off by the $\mathcal{O}(\kappa)$ term, meaning that the uncertainty is reduced with respect to LO. At NNLO, in addition, the $\mathcal{O}(\kappa^2)$ term subtracts off the subleading dependence of $T_{\text{NNLO}}(t + \kappa) - \kappa\smallfrac{d}{dt}{T}_{\text{NLO}}(t + \kappa)$, and so the uncertainty is yet smaller. This pattern of decreased scale variation uncertainties with increased perturbative order reflects our general understanding of the behaviour of MHOUs.
+
+It is also apparent that the size of MHOU depends on the value of $\kappa$, in other words on the size of scale variation. This introduces a degree of arbitrariness into MHOU estimation, with the historical empirical range of choice being $\kappa \in [-\ln 4, \ln 4]$. In practice, we must investigate the dependence of $\Delta$ on $\kappa$, using validation at lower orders against known higher orders to converge on a suitable prescription.  This will be addressed in Sec.~\ref{sec:prescrip}. 
+
+We will now go on to show how RG invariance can be applied to processes involving hadrons, where the partonic cross section is also convolved with a PDF. We will show that in this scenario there are two independent scales, and thus two independent sources of MHOU: one from the $\alpha_s$ dependence in the hard cross section; the other from the anomalous dimensions in the PDF evolution.
+
 \subsection{Scale variation in partonic cross sections}
-\subsubsection{Electroproduction}
-\subsubsection{Hadroproduction}
+We will start with DIS, where there is only one hadron then move to the case of hadron-hadron collisions, such as those carried out at the LHC.
+\subsubsection{Deep Inelastic Scattering}
+For DIS processes, theory predictions are of the structure functions discussed in Chapter~\ref{chapter:background}. These can be expressed as a convolution of a parton level coefficient, $C$, with a PDF, $f$:
+\be 
+F(Q^2) = C(\alpha_s(Q^2)) \otimes f(Q^2).
+\ee
+\subsubsection{Hadron-hadron collisions}
 
 \subsection{Scale variation in evolution of PDFs}
 \subsection{Varying two scales together}
