@@ -127,6 +127,7 @@ It is also apparent that the size of MHOU depends on the value of $\kappa$, in o
 We will now go on to show how RG invariance can be applied to processes involving hadrons, where the partonic cross section is also convolved with a PDF. We will show that in this scenario there are two independent scales, and thus two independent sources of MHOU: one from the $\alpha_s$ dependence in the hard cross section; the other from the anomalous dimensions in the PDF evolution.
 
 \subsection{Scale variation in partonic cross sections}
+\label{subsec:svpartonic}
 We will start with DIS, where there is only one hadron then move to the case of hadron-hadron collisions, such as those carried out at the LHC. In each case we will consider RG invariance to find an expression for $\mu_R$ variation in the partonic observable, for the case where the PDF is evaluated at the physical scale. Scale variation in PDF evolution, i.e. the $\mu_F$ variation, will be addressed in the next section.
 \subsubsection{Deep Inelastic Scattering}
 For DIS processes, theory predictions are of the structure functions discussed in Chapter~\ref{chapter:background}. These can be expressed as a convolution of a parton level coefficient, $C$, with a PDF, $f$:
@@ -199,16 +200,101 @@ Once again using $\smallfrac{d}{dt}\alpha_s(t,\kappa) = \beta(\alpha_s(t, \kappa
 \end{split}
 \end{equation}
 Overall, to evaluate $\overline{\Sigma}$ we can therefore use Eqn.~\ref{eqn:svarhadronic} along with 
-\bea 
+\bea  \label{eqn:svarH}
     \overline{H}(\alpha_s, \kappa) &=& \alpha_s^n h_0 + \alpha_s^{n+1} (h_1 - \kappa n \beta_0 h_0) \nonumber\\ &+&\alpha_s^{n+2} (h_2 - \kappa(n \beta_1 h_0 + (n+1) \beta_0 h_1) \nonumber\\ &&\qquad+ \half \kappa^2 n(n+1) \beta_0^2 h_1) + \ldots .
 \eea
 Again, to evaluate the scale varied cross section, all that is needed is to modify the coefficients at each order using those at the central scale for the surrounding orders.
 \subsection{Scale variation in evolution of PDFs}
-We now turn to the effects of scale variation in the PDFs themselves. This is a crucial contribution to MHOUs because the PDFs are common to predictions for all processes, and therefore responsible for widespread correlations in uncertainty. MHOUs in the PDFs arise from the truncation of the perturbative expansion of the splitting functions(or, in Mellin space, the anomalous dimensions) in the DGLAP evolution equations (Eqn.~\ref{eqn:DGLAP}) discussed in Chapter~\ref{chapter:background}. 
-\subsection{Varying two scales together}
-\subsubsection{Electroproduction}
-\subsection{Hadroproduction}
+We now turn to the effects of scale variation in the PDFs themselves. This is a crucial contribution to MHOUs because the PDFs are common to predictions for all processes, and therefore responsible for widespread correlations in uncertainty. MHOUs in the PDFs arise from the truncation of the perturbative expansion of the splitting functions (or, in Mellin space, the anomalous dimensions) in the DGLAP evolution equations (Eqn.~\ref{eqn:DGLAP}) discussed in Chapter~\ref{chapter:background}. The scale evolution of the PDFs can be encapsulated in Mellin space in the equation
+\be \label{eqn:mellindglap}
+	\mu_F^2 \frac{d}{d \mu_F^2} f(\mu_F^2) = \gamma(\alpha_s(\mu_F^2)) f(\mu_F^2)\, ,
+\ee
+where the parton flavour indices are left implicit and the anomalous dimension, $\gamma$, can be expressed as an expansion in $\alpha_s$ as
+\be  \label{eqn:anomdimexp}
+\gamma(t) =  \alpha_s(t) \gamma_0 + \alpha_s^2(t) \gamma_1^2  + \alpha_s^3(t) \gamma_2^3 + \cdots .
+\ee
+Note that we refer to a separate factorisation scale, $\mu_F$, distinct from the renormalisation scale, $\mu_R$, in the previous section. This is because each scale is associated with a separate RGE and they are therefore independent; to explore the full space of scale variations they need to be considered separately. 
 
+To solve for the PDF, we can integrate Eqn.~\ref{eqn:mellindglap} to give
+\be \label{eqn:pdfint}
+	f(\mu_F^2) = \text{exp}\bigg(\int_{\mu_0}^{\mu_F^2} \frac{d \mu^{2}}{\mu^{2}} \gamma(\alpha_s(\mu^{2}))\bigg) f_0 \, ,
+\ee
+where $f_0$ is the PDF at the initial scale, $\mu_0$. Note that the LHS is independent of the choice of $\mu_0$. To consider the effect of scale variations on the PDF, we can proceed similarly to Sec.~\ref{subsec:svpartonic}, defining 
+\beq \label{eqn:notn2}
+\mu_F^2 = k Q^2,\qquad t = \ln (Q^2 / \Lambda^2), \qquad \kappa = \ln k = \ln \mu_F^2/Q^2,
+\eeq
+and finding the scale varied anomalous dimension
+\be \label{eqn:svanomdim}
+	\overline{\gamma}(\alpha_s(t), \kappa) = \gamma(t) - \kappa
+        \smallfrac{d}{dt}{\gamma}(t) + \half \kappa^2
+        \smallfrac{d^2}{dt^2}{\gamma}(t) + \cdots .
+\ee
+Once again we can use the beta function expansion (Eqn.~\ref{eqn:beta}) alongside Eqn.~\ref{eqn:anomdimexp} to give
+\bea \label{eqn:anomdimresult}
+    \overline{\gamma}(\alpha_s(t + \kappa), \kappa) &=& \alpha_s(t+\kappa) \gamma_0 + \alpha_s^2(t+\kappa) (\gamma_1 - \kappa \beta_0 \gamma_0) \nonumber\\ &+& \alpha_s^3(t+\kappa) (\gamma_2 - \kappa (\beta_1 \gamma_0 + 2 \beta_0 \gamma_1) + \kappa^2 \beta_0^2 \gamma_0) \nonumber\\ &+& \cdots \, ,
+\eea
+which has the same form as Eqn.~\ref{eqn:svarH} upon setting $n=1$. We can use this equation to estimate MHOUs in PDFs, which can be done by refitting the PDF at each scale choice using different anomalous dimensions. This method has been applied in previous analyses~\cite{Martin:1990fq, Virchaux:1991jc, Ridolfi:1999vr}, but the process of refitting the PDFs is computationally intensive and so we would like to avoid having to do this if possible. Instead, we can look directly at the PDF level and consider evaluating the PDFs themselves at different scales, as was done in Ref.~\cite{Altarelli:2008aj}.  
+
+We can define the scale varied PDF as that obtained by varying the scale in the anomalous dimension,
+\be
+\overline{f}(\as(t + \kappa), \kappa) = \text{exp}\bigg(\int_{t_0}^t dt' \overline{\gamma}(\alpha_s(t' + \kappa), \kappa)\bigg) f_0 \, 
+\ee
+Shifting integration variable $t' \to t'- \kappa$ whilst redefining the initial scale, we can then apply Eqn.~\ref{eqn:svanomdim} and expand the exponential, {\it i.e.}
+\bea
+\overline{f}(\as(t + \kappa), \kappa) &=& \text{exp}\bigg(\int_{t_0}^{t+\kappa} dt' \overline{\gamma}(\alpha_s(t'), \kappa)\bigg) f_0 \nonumber\\
+&=& \exp\lp \lc \int_{t_0}^{t + \kappa} dt' \gamma(t')\rc  - \kappa  \gamma(t + \kappa) + \half \kappa^2 \frac{d}{dt} {\gamma}(t + \kappa) + \ldots \rp \nonumber\\
+&& \times \exp\lp \kappa  \gamma(t_0) - \half \kappa^2 \frac{d}{dt} {\gamma}(t_0) + \ldots \rp f_0 \\
+&=& \lc 1 - \kappa \gamma(t + \kappa) + \half \kappa^2
+    (\gamma^2(t + \kappa)+\frac{d}{dt}{\gamma}(t + \kappa)) + \ldots
+    \rc \nonumber\\
+&& \times \exp\lp \int_{t_0}^{t + \kappa} dt' \gamma(t')\rp \exp\lp \kappa  \gamma(t_0) - \half \kappa^2 \frac{d}{dt} {\gamma}(t_0) + \ldots \rp f_0 \nonumber \, .
+\eea
+We can absorb the factor resulting from variation of $t_0$ into the initial PDFs, $f_0$, so that $\exp\lp \kappa  \gamma(t_0) - \half \kappa^2 \frac{d}{dt} {\gamma}(t_0) + \ldots \rp f_0 \to f_0$. Then, noting also that $\exp\lp \int_{t_0}^{t + \kappa} dt' \gamma(t')\rp f_0 = f(t + \kappa)$, we end up with the result
+\be \label{eqn:pdfvarresult}
+\overline{f}(\as(t + \kappa), \kappa) = \lc 1 - \kappa \gamma(t + \kappa) + \half \kappa^2
+    (\gamma^2(t + \kappa)+\frac{d}{dt}{\gamma}(t + \kappa)) + \ldots
+    \rc f(t+ \kappa) \, .
+\ee
+This result, which comes from varying the scale at which the PDF is evaluated, is equivalent to the result which comes from varying the scale in the anomalous dimension, Eqn.~\ref{eqn:anomdimresult}. This is because there is only one RGE and therefore only one scale which the PDF depends on. Furthermore, note that Eqn.~\ref{eqn:pdfvarresult} shows us that the scale dependence can be factorised out of the PDF. This means we are free to instead factor it into the parton level coefficient function, which will always appear convolved with the PDF. This is useful when making a scale varied prediction when only a central PDF is available, and has been used in the past to make predictions for new LHC processes (e.g. Higgs production~\cite{deFlorian:2016spz}). However, in the case where we also want to consider $\mu_R$ variation in the coefficient function, the two scale variations will be mixed up, and this can lead to a complicated interplay, especially in the presence of heavy quark effects. In this work we adopt the method of scale variation for PDFs by using Eqn.~\ref{eqn:pdfvarresult}. 
+
+\subsection{Varying two scales together}
+We now consider the simultaneous variation of $\mu_R$ in the parton level observable and $\mu_F$ in the PDFs, in order to explore the full range of scale variation space. We will derive formulae for scale variation up to NNLO which are needed to construct a MHOU covariance matrix. 
+
+For a DIS process we can write the double-scale-varied structure function as
+\be 
+\overline{F}(Q^2, \mu_F^2, \mu_R^2) = \overline{C}(\alpha_s(\mu_R^2), \mu_R^2/Q^2) \otimes \overline{f}(\alpha_s(\mu_F^2), \mu_F^2/Q^2).
+\ee
+Similarly to before, we can define the variables
+\beq \label{eqn:notn3}
+\mu_{(F/R)}^2 = k_{(F/R)} Q^2,\qquad \kappa_{(F/R)} = \ln k_{(F/R)}, \qquad t_{(F/R)} = t + \kappa_{(F/R)}
+\eeq
+and use them to write the structure function as
+\be 
+    \overline{F}(t, \kappa_f, \kappa_r) = \overline{C}(t_r, \kappa_r)
+    \overline{f}(t_f, \kappa_f).
+\ee
+We then need to apply the equations for the scale varied PDFs and coefficient functions from the previous section, 
+\be 
+\begin{split}
+    &\overline{f} (t_f, \kappa_f) = f(t_f) - \kappa_f
+  \smallfrac{d}{dt}{f}(t_f) + \half \kappa_f^2
+  \smallfrac{d^2}{dt^2}{f}(t_f) + ... \, , \\ 
+    &\overline{C} (t_r, \kappa_r) = C(t_r) - \kappa_r
+  \smallfrac{d}{dt}{C}(t_r) + \half \kappa_r^2
+  \smallfrac{d^2}{dt^2}{C}(t_r) + ...   \, ,
+\end{split}    
+\ee
+and use the fact that $\smallfrac{\partial}{\partial t} \sim \mathcal{O}(\alpha_s)$ to see that
+\bea
+    \overline{F}(t, \kappa_f, \kappa_r) 
+    &=& C(t_r)f(t_f) - \lp \kappa_r \smallfrac{d}{dt}{C}(t_r) f(t_f) +
+    \kappa_f C(t_r) \smallfrac{d}{dt}{f} (t_f)\rp  
+    + \half\Big( \kappa_r^2 \smallfrac{d^2}{dt^2}{C}(t_r)f(t_f) \nonumber\\
+    &&\qquad+ 2\kappa_r \kappa_f
+    \smallfrac{d}{dt}{C}(t_r)\smallfrac{d}{dt}{f}(t_f) + \kappa_f^2
+    C(t_r) \smallfrac{d^2}{dt^2} f(t_f) \Big) +
+    \mathcal{O}(\alpha_s^3) \, . 
+\eea
 \subsection{Scale variation for two processes}
 
 \section{Building the theory covariance matrix}
