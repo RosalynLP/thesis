@@ -58,7 +58,7 @@ As discussed in Chapter~\ref{chapter:background}, renormalisation group invarian
 \eeq
 
 Before proceeding further, we introduce some variables to make the analysis clearer:
-\beq \label{notn}
+\beq \label{eqn:notn}
 \mu_R^2 = k Q^2,\qquad t = \ln (Q^2 / \Lambda^2), \qquad \kappa = \ln k = \ln \mu_R^2/Q^2,
 \eeq
 where $\Lambda$ is the QCD scale. This means $\alpha_s(\mu_R^2)$ is a function of $\ln \mu_R^2/\Lambda^2 = t + \kappa$.
@@ -83,7 +83,7 @@ We can now Taylor expand $\overline{T}(\alpha_s, \kappa)$ about the central scal
 Then, using Eqn.~\ref{eqn:newrge}, we can replace $\frac{\partial}{\partial \kappa}$ with
 $-\frac{\partial}{\partial t}$, and write
 \bea \label{eqn:trelation}
-\overline{T}(\alpha_s(t + \kappa), \kappa) &=& \overline{T}(\alpha_s(t + \kappa), 0) - \kappa \frac{\partial}{\partial t} \overline{T}(\alpha_s(t + \kappa), 0) \bigg|_\kappa + \half \kappa^2  \frac{\partial^2}{\partial t^2} \overline{T}(\alpha_s(t + \kappa), 0)\bigg|_\kappa + \ldots \nonumber\\
+\overline{T}(\alpha_s(t + \kappa), \kappa) &=& \overline{T}(\alpha_s(t + \kappa), 0) - \kappa \frac{\partial}{\partial t} \overline{T}(\alpha_s(t + \kappa), 0) \bigg|_\kappa \nonumber\\ &+& \half \kappa^2  \frac{\partial^2}{\partial t^2} \overline{T}(\alpha_s(t + \kappa), 0)\bigg|_\kappa + \ldots \nonumber\\
 &=& T(t + \kappa) - \kappa \frac{d}{dt} T(t + \kappa) + \half \kappa^2  \frac{d^2}{dt^2} T(t + \kappa)+\ldots\>.
 \eea
 This tells us how to find a scale varied theoretical prediction, $\overline{T}$, in terms of the $t$ dependence of the central prediction, $T$. Furthermore, we can express this $t$ dependence as an $\alpha_s$ dependence using
@@ -127,15 +127,84 @@ It is also apparent that the size of MHOU depends on the value of $\kappa$, in o
 We will now go on to show how RG invariance can be applied to processes involving hadrons, where the partonic cross section is also convolved with a PDF. We will show that in this scenario there are two independent scales, and thus two independent sources of MHOU: one from the $\alpha_s$ dependence in the hard cross section; the other from the anomalous dimensions in the PDF evolution.
 
 \subsection{Scale variation in partonic cross sections}
-We will start with DIS, where there is only one hadron then move to the case of hadron-hadron collisions, such as those carried out at the LHC.
+We will start with DIS, where there is only one hadron then move to the case of hadron-hadron collisions, such as those carried out at the LHC. In each case we will consider RG invariance to find an expression for $\mu_R$ variation in the partonic observable, for the case where the PDF is evaluated at the physical scale. Scale variation in PDF evolution, i.e. the $\mu_F$ variation, will be addressed in the next section.
 \subsubsection{Deep Inelastic Scattering}
 For DIS processes, theory predictions are of the structure functions discussed in Chapter~\ref{chapter:background}. These can be expressed as a convolution of a parton level coefficient, $C$, with a PDF, $f$:
 \be 
-F(Q^2) = C(\alpha_s(Q^2)) \otimes f(Q^2).
+\label{eqn:strfn}
+F(Q^2) = C(x, \alpha_s(Q^2)) \otimes f(x, Q^2),
 \ee
-\subsubsection{Hadron-hadron collisions}
+where $\otimes$ is a convolution in the momentum fraction, $x$, and there is an implicit sum over parton flavours. There will be a MHOU in $F$ due to truncating the coefficient function, $C$, to fixed perturbative order.  We can estimate this by keeping the PDF scale (or factorisation scale) fixed and varying the renormalisation scale in $C$. This will result in a scale-varied structure function,
+\be
+    \overline{F}(Q^2, \mu_R^2) = \overline{C}(\alpha_s(\mu_R^2), \mu_R^2/Q^2)\otimes f(Q^2)\, ,
+\ee
+where we have made the $x$-dependence implicit and the scale dependence explicit in the coefficient function. We can use the quantities defined in Eqn.~\ref{eqn:notn} to write this as
+\be 
+    \overline{F}(t, \kappa) = \overline{C}(\alpha_s(t + \kappa), \kappa)\otimes f(t).
+\ee
+We know that the structure function, an observable, is RG invariant, and, because we are keeping the factorisation scheme fixed, the PDF is independent of $\mu_R$. This means that the coefficient functions must also obey RG invariance, and so in a parallel with Eqn.~\ref{eqn:trelation} we can write
+\be	
+\overline{C}(\alpha_s(t + \kappa), \kappa) = C(t + \kappa) - \kappa \smallfrac{d}{dt} C(t + \kappa) + \half \kappa^2  \smallfrac{d^2}{dt^2} C(t + \kappa)+\ldots,
+\ee
+where, like before, we denote the central scale quantities without a bar. In order to evaluate the derivatives, note that the coefficient function can be expressed as a perturbative expansion in $\alpha_s$,
+\be 
+C(t) = c_0 + \alpha_s(t) c_1 + \alpha_s^2(t) c_2 + \alpha_s^3(t) c_3 +\ldots, 
+\ee
+and that $\smallfrac{d}{dt}\alpha_s(t,\kappa) = \beta(\alpha_s(t, \kappa)$, where the beta function also admits the expansion in Eqn.~\ref{eqn:beta}. Explicitly, this leads us to
+\be 
+\begin{split}
+\smallfrac{d}{dt}{C}(t) & = \alpha_s^2(t) \beta_0 c_1+ \alpha_s^3(t) (\beta_1c_1+2\beta_0c_2) + \ldots,\\
+\smallfrac{d^2}{dt^2}{C}(t) & = 2\alpha_s^3(t) \beta_0^2 c_1+ \ldots,
+\end{split}
+\ee 
+resulting in the perturbative expression for $\mu_R$ variation of $C$:
+\be 
+\begin{split}
+\overline{C}(\alpha_s(t + \kappa), \kappa) = c_0 &+ \alpha_s(t + \kappa) c_1 + \alpha_s^2(t + \kappa) (c_2 - \kappa \beta_0 c_1)\\ 
+&+\alpha_s^3(t + \kappa)\big(c_3-\kappa (\beta_1c_1+2\beta_0c_2)+ \kappa^2 \beta_0^2 c_1\big) + \ldots \, .
+\end{split}
+\ee 
+Using Eqn.~\ref{eqn:strfn} we finally get an expression for the $\mu_R$ variation of $F$:
+\be 
+\begin{split}
+\overline{F}(t, \kappa) = c_0\otimes f(t) &+ \alpha_s(t + \kappa) c_1\otimes f(t) + \alpha_s^2(t + \kappa)  \lp c_2 - \kappa \beta_0 c_1 \rp \otimes f(t)\\ 
+&+\alpha_s^3(t + \kappa) \lp c_3-\kappa (\beta_1c_1+2\beta_0c_2)+ \kappa^2 \beta_0^2 c_1 \rp \otimes f(t) + \ldots\>. 
+\end{split}
+\ee.
+In practice, when predicting scale varied observables, using these equations is relatively straightforward. Because the coefficients, $c_i$ and $\beta_i$, are already known to some order, the workflow consists of some basic algebra to create the new, scale varied, coefficients at each order from the central-scale coefficients at the surrounding orders.
 
+\subsubsection{Hadron-hadron collisions}
+Hadron-hadron collisions can be considered in a similar way to DIS, the difference being that the observable cross section, $\Sigma$, depends on two PDFs, one for each of the hadrons:
+\be 
+    \Sigma(t) = H(t)\otimes( {f}(t)\otimes  {f}(t)) \, ,
+\ee
+where $H$ is the parton level cross section and this time we have used $t = \ln (Q^2 / \Lambda^2)$ from the outset. Once again, there is an implicit sum over parton flavours. As before, we can vary $\kappa = \ln (\mu^2/Q^2)$ in $H$ whilst keeping $f$ fixed, so that
+\be \label{eqn:svarhadronic}
+  \overline{\Sigma}(t,\kappa) = \overline{H} (\as(t+\kappa), \kappa)\otimes(f(t)\otimes f(t)),
+\ee 
+where
+\be 
+\overline{H}(\alpha_s(t), \kappa) = H(t) - \kappa \smallfrac{d}{dt} H(t) + \half \kappa^2  \smallfrac{d^2}{dt^2} H(t)+\ldots\>. 
+\ee
+Because hadron-hadron collisions involve a range of processes, we consider a generic process starting at $O(\alpha_s^n)$ for $n \in \mathbb{Z}$, so that
+\be 
+H(t) = \alpha_s^n(t)h_0 + \alpha_s^{n+1}(t)h_1 + \alpha_s^{n+2}(t)h_2+ \ldots\>.
+\ee
+Once again using $\smallfrac{d}{dt}\alpha_s(t,\kappa) = \beta(\alpha_s(t, \kappa)$ and Eqn.~\ref{eqn:beta} we arrive at
+\begin{equation}
+\begin{split}
+\smallfrac{d}{dt}{H}(t) & = n\alpha_s^{n-1}(t)\beta(\alpha_s) h_0 + (n+1)\alpha_s^n(t)\beta(\alpha_s) h_1 + \ldots \\
+&= \alpha_s^{n+1} n \beta_0 h_0 + \alpha_s^{n+2} (n \beta_1 h_0 + (n+1) \beta_0 h_1) + \ldots\\
+\smallfrac{d^2}{dt^2}{H}(t) & = \alpha_s^{n+2} n(n+1) \beta_0^2 h_0 + \ldots.
+\end{split}
+\end{equation}
+Overall, to evaluate $\overline{\Sigma}$ we can therefore use Eqn.~\ref{eqn:svarhadronic} along with 
+\bea 
+    \overline{H}(\alpha_s, \kappa) &=& \alpha_s^n h_0 + \alpha_s^{n+1} (h_1 - \kappa n \beta_0 h_0) \nonumber\\ &+&\alpha_s^{n+2} (h_2 - \kappa(n \beta_1 h_0 + (n+1) \beta_0 h_1) \nonumber\\ &&\qquad+ \half \kappa^2 n(n+1) \beta_0^2 h_1) + \ldots .
+\eea
+Again, to evaluate the scale varied cross section, all that is needed is to modify the coefficients at each order using those at the central scale for the surrounding orders.
 \subsection{Scale variation in evolution of PDFs}
+We now turn to the effects of scale variation in the PDFs themselves. This is a crucial contribution to MHOUs because the PDFs are common to predictions for all processes, and therefore responsible for widespread correlations in uncertainty. MHOUs in the PDFs arise from the truncation of the perturbative expansion of the splitting functions(or, in Mellin space, the anomalous dimensions) in the DGLAP evolution equations (Eqn.~\ref{eqn:DGLAP}) discussed in Chapter~\ref{chapter:background}. 
 \subsection{Varying two scales together}
 \subsubsection{Electroproduction}
 \subsection{Hadroproduction}
