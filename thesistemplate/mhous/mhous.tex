@@ -314,13 +314,25 @@ and we can apply exactly the same approach as above, leading to
     &&\qquad+ \half \bigg( 2\kappa_F^2 \frac{\partial^2 \Sigma}{\partial t_F^2}\bigg|_{t_R} +  4 \kappa_F \kappa_R \frac{\partial^2 \Sigma}{\partial t_F \partial t_R} \nonumber \\ &&\qquad +  \kappa_R^2 \frac{\partial^2 \Sigma}{\partial t_R^2}\bigg|_{t_F} \bigg)  + \cdots \, ,    
 \eea
 where this time we pick up a factor of 2 with each $\kappa_F\smallfrac{\partial}{\partial t_F}$, due to the two PDFs.
-\subsection{Scale variation for two processes}
-We are now approaching a formalism which can be applied to carry out scale variations for the data included in PDF fits. But first we need to work out how to carry out simultaneous scale variations involving data from more than one process, for example DIS and Drell-Yan. Because the theory covariance matrix contains correlations between each two data points, carrying out simultaneous scale variations for two processes is sufficient because we only need to consider two data points at a time. 
+\subsection{Scale variation for multiple processes}
+We are now approaching a formalism which can be applied to carry out scale variations for the data included in PDF fits. But first we need to work out how to carry out simultaneous scale variations involving data from more than one process, for example DIS and Drell-Yan. 
 
-For the case of two separate processes, the parton level cross sections will be totally independent, so there will be two separate RGEs and therefore two separate renormalisation scales, and hence renormalisation scale variation should be uncorrelated. However, all the processes share a common factorisation scale, and so the factorisation scale variation must be correlated.
+For the case of two separate processes, the parton level cross sections will be totally independent, so there will be two separate RGEs and therefore two separate renormalisation scales, and hence renormalisation scale variation should be uncorrelated. However, all the processes share a common factorisation scale, and so the factorisation scale variation must be correlated. 
 
+This correlation can be complex because the DGLAP equation is a matrix equation, and the anomalous dimension matrix has several independent eigenvalues (at NLO there are two singlet and one non-singlet, and more at higher orders). In order to fully preserve the correlations we ought to consider a separate factorisation scale for each of these components, and fully correlate this across all processes. In this current work, however, we attempt to reduce the complexity by retaining full correlation in the factorisation scale, only varying one scale. This approximation might be inaccurate when considering two processes with evolution dependent on different anomalous dimensions, in which case we would not be fully exploring the scale variation space. We draw attention to this limitation as an area of future study.
+
+Sticking for the time being with correlated factorisation scale variation, for two processes we will have in general three scales: two renormalisation scales and one factorisation scale; $\mu_{R_1}$, $\mu_{R_2}$ and $\mu_F$. If we vary each scale independently by a factor of 2 about their central value we will have seven total scale choices to consider. Each time we add another process we will add another renormalisation scale, and in effect add another dimension to the scale variation. For $p$ independent processes, labelled $a = 1, \ldots, p$, there will be $p+1$ independent scale parameters and $3 + 2p$ total scale variations; one variation is the central scale, two variations up and down for the factorisation scale, and two variations up and down for each of the $p$ renormalisation scales.
 \section{Building the theory covariance matrix}
 \label{sec:prescrip}
+We now have all the components we need to set about constructing a theory covariance matrix; we can carry out double scale variation for both DIS and hadron-hadron processes, and correlate scale variation between multiple processes. All that remains is to formulate a prescription for estimating MHOUs given scale variations.
+
+In Chapter~\ref{chapter:thuncs} we formulated a method for including theory uncertainties in PDFs using a theory covariance matrix composed using a distribution of shifts between theory predictions at fixed order and the unknown all-order ``true" theory. We know that scale variation can be used to provide an estimate of these shifts, but as discussed previously the exact combination of scales is arbitrary. To address this problem, we present a series of prescriptions for constructing the theory covariance matrix, which we will later go on to test using results at known orders and in addition by studying the impact on the PDFs; we can then select the best prescription.
+
+We consider a set of data involving $p$ different types of processes, each with data points $\{i_a\}$, $a = 1, \ldots, p$ and an associated renormalisation scale ratio $\kappa_{r_a} = \ln \mu_{r_a}^2/Q^2$. The theory covariance matrix can be constructed by taking an average over the outer products of the shifts in scale varied theory relative to the central theory. For the $a$-th process, these shifts are
+
+
+
+
 \subsection{Symmetric prescriptions}
 \subsection{Asymmetric prescriptions}
 \subsection{Categorising processes}
