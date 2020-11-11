@@ -261,7 +261,7 @@ This result, which comes from varying the scale at which the PDF is evaluated, i
 We now consider the simultaneous variation of $\mu_R$ in the parton level observable and $\mu_F$ in the PDFs, in order to explore the full range of scale variation space. We will derive formulae for scale variation up to NNLO which are needed to construct a MHOU covariance matrix. 
 
 For a DIS process we can write the double-scale-varied structure function as
-\be 
+\be \label{eqn:doublesv}
 \overline{F}(Q^2, \mu_F^2, \mu_R^2) = \overline{C}(\alpha_s(\mu_R^2), \mu_R^2/Q^2) \otimes \overline{f}(\alpha_s(\mu_F^2), \mu_F^2/Q^2).
 \ee
 Similarly to before, we can define the variables
@@ -269,33 +269,55 @@ Similarly to before, we can define the variables
 \mu_{(F/R)}^2 = k_{(F/R)} Q^2,\qquad \kappa_{(F/R)} = \ln k_{(F/R)}, \qquad t_{(F/R)} = t + \kappa_{(F/R)}
 \eeq
 and use them to write the structure function as
-\be 
-    \overline{F}(t, \kappa_f, \kappa_r) = \overline{C}(t_r, \kappa_r)
-    \overline{f}(t_f, \kappa_f).
+\be
+    \overline{F}(t, \kappa_F, \kappa_R) = \overline{C}(t_R, \kappa_R)
+    \overline{f}(t_F, \kappa_F).
 \ee
 We then need to apply the equations for the scale varied PDFs and coefficient functions from the previous section, 
 \be 
 \begin{split}
-    &\overline{f} (t_f, \kappa_f) = f(t_f) - \kappa_f
-  \smallfrac{d}{dt}{f}(t_f) + \half \kappa_f^2
-  \smallfrac{d^2}{dt^2}{f}(t_f) + ... \, , \\ 
-    &\overline{C} (t_r, \kappa_r) = C(t_r) - \kappa_r
-  \smallfrac{d}{dt}{C}(t_r) + \half \kappa_r^2
-  \smallfrac{d^2}{dt^2}{C}(t_r) + ...   \, ,
+    &\overline{f} (t_F, \kappa_F) = f(t_F) - \kappa_F
+  \smallfrac{d}{dt}{f}(t_F) + \half \kappa_F^2
+  \smallfrac{d^2}{dt^2}{f}(t_F) + ... \, , \\ 
+    &\overline{C} (t_R, \kappa_R) = C(t_R) - \kappa_R
+  \smallfrac{d}{dt}{C}(t_R) + \half \kappa_R^2
+  \smallfrac{d^2}{dt^2}{C}(t_R) + ...   \, ,
 \end{split}    
 \ee
 and use the fact that $\smallfrac{\partial}{\partial t} \sim \mathcal{O}(\alpha_s)$ to see that
 \bea
-    \overline{F}(t, \kappa_f, \kappa_r) 
-    &=& C(t_r)f(t_f) - \lp \kappa_r \smallfrac{d}{dt}{C}(t_r) f(t_f) +
-    \kappa_f C(t_r) \smallfrac{d}{dt}{f} (t_f)\rp  
-    + \half\Big( \kappa_r^2 \smallfrac{d^2}{dt^2}{C}(t_r)f(t_f) \nonumber\\
-    &&\qquad+ 2\kappa_r \kappa_f
-    \smallfrac{d}{dt}{C}(t_r)\smallfrac{d}{dt}{f}(t_f) + \kappa_f^2
-    C(t_r) \smallfrac{d^2}{dt^2} f(t_f) \Big) +
+    \overline{F}(t, \kappa_F, \kappa_R) 
+    &=& C(t_R)f(t_F) - \lp \kappa_F C(t_R) \smallfrac{d}{dt}{f} (t_F)
+    + \kappa_R \smallfrac{d}{dt}{C}(t_R) f(t_F) \rp  \nonumber\\
+    &&\qquad + \half\Big(  \kappa_F^2
+    C(t_R) \smallfrac{d^2}{dt^2} f(t_F)  
+    + 2\kappa_R \kappa_F
+    \smallfrac{d}{dt}{C}(t_R)\smallfrac{d}{dt}{f}(t_F) \nonumber\\
+    &&\qquad \qquad +
+    \kappa_R^2 \smallfrac{d^2}{dt^2}{C}(t_R)f(t_F)\Big) +
     \mathcal{O}(\alpha_s^3) \, . 
 \eea
+Taking a closer look, and comparing to Eqn.~\ref{eqn:doublesv}, we can write this in terms of partial derivatives of $F$:
+\bea
+    \overline{F}(t, \kappa_F, \kappa_R)  &=& F(t_F,t_R) - \bigg( \kappa_F\ \frac{\partial F}{\partial t_F}\bigg|_{t_R} + \kappa_R\ \frac{\partial F}{\partial t_R}\bigg|_{t_F} \bigg) \nonumber\\
+    &&\qquad+ \half \bigg( \kappa_F^2 \frac{\partial^2 F}{\partial t_F^2}\bigg|_{t_R} +  2 \kappa_F \kappa_R \frac{\partial^2 F}{\partial t_F \partial t_R} \nonumber \\ &&\qquad +  \kappa_R^2 \frac{\partial^2 F}{\partial t_R^2}\bigg|_{t_F} \bigg)  + \cdots \, .    
+\eea
+Considering this expression, we can think of $\kappa_F\smallfrac{\partial}{\partial t_F}$ and $\kappa_R\smallfrac{\partial}{\partial t_R}$ as being the generators of the two types of scale variations.
+
+For hadronic-hadron processes, the double-scale-varied cross section is instead
+\be 
+\overline{\Sigma}(t_F, t_R, \kappa_F, \kappa_R) = \overline{H}(\as(t_R), \kappa_R)\otimes  \lp \overline{f}(t_F, \kappa_F)\otimes\overline{f}(t_F, \kappa_F) \rp \, .
+\ee
+and we can apply exactly the same approach as above, leading to 
+\bea
+    \overline{\Sigma}(t, \kappa_F, \kappa_R)  &=& \Sigma(t_F,t_R) - \bigg( 2\kappa_F\ \frac{\partial \Sigma}{\partial t_F}\bigg|_{t_R} + \kappa_R\ \frac{\partial \Sigma}{\partial t_R}\bigg|_{t_F} \bigg) \nonumber\\
+    &&\qquad+ \half \bigg( 2\kappa_F^2 \frac{\partial^2 \Sigma}{\partial t_F^2}\bigg|_{t_R} +  4 \kappa_F \kappa_R \frac{\partial^2 \Sigma}{\partial t_F \partial t_R} \nonumber \\ &&\qquad +  \kappa_R^2 \frac{\partial^2 \Sigma}{\partial t_R^2}\bigg|_{t_F} \bigg)  + \cdots \, ,    
+\eea
+where this time we pick up a factor of 2 with each $\kappa_F\smallfrac{\partial}{\partial t_F}$, due to the two PDFs.
 \subsection{Scale variation for two processes}
+We are now approaching a formalism which can be applied to carry out scale variations for the data included in PDF fits. But first we need to work out how to carry out simultaneous scale variations involving data from more than one process, for example DIS and Drell-Yan. Because the theory covariance matrix contains correlations between each two data points, carrying out simultaneous scale variations for two processes is sufficient because we only need to consider two data points at a time. 
+
+For the case of two separate processes, the parton level cross sections will be totally independent, so there will be two separate RGEs and therefore two separate renormalisation scales, and hence renormalisation scale variation should be uncorrelated. However, all the processes share a common factorisation scale, and so the factorisation scale variation must be correlated.
 
 \section{Building the theory covariance matrix}
 \label{sec:prescrip}
