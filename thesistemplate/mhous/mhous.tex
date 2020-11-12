@@ -328,13 +328,119 @@ We now have all the components we need to set about constructing a theory covari
 
 In Chapter~\ref{chapter:thuncs} we formulated a method for including theory uncertainties in PDFs using a theory covariance matrix composed using a distribution of shifts between theory predictions at fixed order and the unknown all-order ``true" theory. We know that scale variation can be used to provide an estimate of these shifts, but as discussed previously the exact combination of scales is arbitrary. To address this problem, we present a series of prescriptions for constructing the theory covariance matrix, which we will later go on to test using results at known orders and in addition by studying the impact on the PDFs; we can then select the best prescription.
 
-We consider a set of data involving $p$ different types of processes, each with data points $\{i_a\}$, $a = 1, \ldots, p$ and an associated renormalisation scale ratio $\kappa_{r_a} = \ln \mu_{r_a}^2/Q^2$. The theory covariance matrix can be constructed by taking an average over the outer products of the shifts in scale varied theory relative to the central theory. For the $a$-th process, these shifts are
+We consider a set of data involving $p$ different types of processes, each with data points $\{i_a\}$, $a = 1, \ldots, p$ and an associated renormalisation scale ratio $\kappa_{R_a} = \ln \mu_{R_a}^2/Q^2$. The theory covariance matrix can be constructed by taking an average over the outer products of the shifts in scale varied theory relative to the central theory. For the $a$-th process, these shifts are
+\be 
+  \Delta_{i_a} (\kappa_F, \kappa_{R_a} ) \equiv
+  T_{i_a}(\kappa_F, \kappa_{R_a}) - T_{i_a}(0,0) \, .
+\ee
+For a given prescription, $m$, we then choose a set of points, $V_m$, in $p+1$-dimensional scale variation space, and construct the theory covariance matrix by summing over these points, normalised by a prescription-dependent factor $N_m$:
+\be 
+  S_{ij} = N_m \sum_{V_m} \Delta_{i_a} (\kappa_f, \kappa_{R_a}) \Delta_{i_b} (\kappa_f, \kappa_{R_b}) \, .
+\ee
+Note that $a$ and $b$ can label either the same or different processes. Importantly, since the covariance matrix is assembled as a sum of outer products it will necessarily be positive semi-definite. However, given that the dimension of the data is $\mathcal{O}(1000)$ and the dimension of $V_m$ will be in general considerably smaller, we expect $S$ to be singular in most instances. 
 
-
-
+It now remains to develop a prescription, $m$. We must consider the full set of data, so there are two scenarios:
+\begin{enumerate}
+\item $i$ and $j$ belong to the same process;
+\item $i$ and $j$ belong to different processes.
+\end{enumerate}
+Because $S$ is rank 2, we only need to consider a maximum of two different processes at any one time. Finally, we can choose how to correlate the scale variation; we can pick a ``symmetric prescription", in which the scales are varied independently, or an ``asymmetric prescription", where they are correlated. This second scenario amounts to setting $\mu_F = \mu_R$, which is like varying the scale in the physical cross section; because in a central prediction we typically set both scales to the physical scale of the process (e.g. $Q$ for DIS), we can call this varying the scale of the process. 
 
 \subsection{Symmetric prescriptions}
+In a symmetric prescription, the scales are varied in an uncorrelated way.
+\subsubsection{One process}
+For a single process ($p=1$), there are two scales, $\kappa_F$ and $\kappa_R$. Let us denote the number of independent scales as $s$, so here $s=2$. We can write the theory covariance matrix as
+\be 
+  S_{ij} = n_{m} \sum_{v_{m}} \Delta_{i} (\kappa_F, \kappa_R)\Delta_{j} (\kappa_F, \kappa_R)\, ,
+\ee
+where $v_m$ is the set of $m$ scale-varied points and $n_m$ is a normalisation factor, to be determined. Note that $v_m$ excludes any points for which $\Delta_i$ vanishes, since these will not contribute to $S$. In practice, this means the central point ($\kappa_F = \kappa_R = 0$) is not included. Overall there is one central point and $m$ variations, so we typically refer to a given prescription as an ``$(m+1)$-point prescription". We can find $n_m$ by summing over the number of independent scales, $s$, and averaging over the contributions from each scale, $m$. This means we can write
+\be
+n_m = s/m.
+\ee
+We will now outline three different prescriptions, depicted in Fig.~\ref{fig:symmetricPrescriptions}. In each case we denote the values of the scales $(\kappa_F; \kappa_R)$, varying each by the fixed values $\kappa = \{0, \pm \ln 4\}$, which we denote $\{0, \pm\}$ respectively. We also adopt the notation $\Delta_i^{+0}=\Delta_i(+\ln 4,0)$, $\Delta_i^{0-}=\Delta_i(0,-\ln4 )$, etc. for the shifts.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}
+\centering
+{\begin{tikzpicture}
+\draw[->] (-1.5,0) -- (1.5,0);
+\draw[->] (0,-1.5) -- (0,1.5);
+\filldraw[black] (0,0) circle (2pt);
+\filldraw[black] (-1,0) circle (2pt);
+\filldraw[black] (0,-1) circle (2pt);
+\filldraw[black] (1,0) circle (2pt);
+\filldraw[black] (0,1) circle (2pt);
+\node at (0.5,1.5) {$\kappa_R$};
+\node at (1.9,0) {$\kappa_F$};
+\end{tikzpicture}}\qquad
+{\begin{tikzpicture}
+\draw[->] (-1.5,0) -- (1.5,0);
+\draw[->] (0,-1.5) -- (0,1.5);
+\filldraw[black] (0,0) circle (2pt);
+\filldraw[black] (-1,-1) circle (2pt);
+\filldraw[black] (1,1) circle (2pt);
+\filldraw[black] (1,-1) circle (2pt);
+\filldraw[black] (-1,1) circle (2pt);
+\node at (0.5,1.5) {$\kappa_R$};
+\node at (1.9,0) {$\kappa_F$};
+\end{tikzpicture}}\qquad
+{\begin{tikzpicture}
+\draw[->] (-1.5,0) -- (1.5,0);
+\draw[->] (0,-1.5) -- (0,1.5);
+\filldraw[black] (0,0) circle (2pt);
+\filldraw[black] (-1,0) circle (2pt);
+\filldraw[black] (0,-1) circle (2pt);
+\filldraw[black] (1,0) circle (2pt);
+\filldraw[black] (0,1) circle (2pt);
+\filldraw[black] (-1,-1) circle (2pt);
+\filldraw[black] (1,-1) circle (2pt);
+\filldraw[black] (-1,1) circle (2pt);
+\filldraw[black] (1,1) circle (2pt);
+\node at (0.5,1.5) {$\kappa_R$};
+\node at (1.9,0) {$\kappa_F$};
+\end{tikzpicture}}
+\begin{caption}{Symmetric prescriptions for a single process, indicating
+    the sampled values for the factorization scale $\kappa_F$ and 
+    renormalization scale $\kappa_R$ in each case.
+    %
+    The origin of coordinates corresponds to the
+    central scales $\kappa_f=\kappa_r= 0$.
+    %
+    We show the three prescriptions 
+    $5$-point (left), $\bar{5}$-point (center) and $9$-point (right).
+\label{fig:symmetricPrescriptions}
+  }
+\end{caption}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item \textbf{5-point}: 
+$v_4 = \{(\pm;0), (0; \pm) \}$ and $n_4 = 2/4 = 1/2$. This amounts to scale variation for each scale in turn, keeping the other fixed. We find the covariance matrix
+\be \label{5S}
+    S^{\rm (5pt)}_{ij} = \smallfrac{1}{2}\big\{ \Delta_i^{+0}\Delta_j^{+0} + \Delta_i^{-0} \Delta_j^{-0} + \Delta_i^{0+} \Delta_j^{0+} + \Delta_i^{0-} \Delta_j^{0-}  \big\} \, .
+\ee
+We find that the variations of each scale are added together in quadrature, as one would expect for independent contributions to the MHOU.
+\item \textbf{$\overline{5}$-point}:
+$\overline{v}_4 = \{(\pm; \pm) \}$, where $(\pm;\pm)$ are assumed
+  uncorrelated, and $\overline{n}_4 = 2/4 = 1/2$. This is the complement of 5-point, exploring a different region of scale variation space.
+\be
+ \label{5bS}
+    S^{(\rm \overline{5}pt)}_{ij} = \smallfrac{1}{2}\big\{ \Delta_i^{++}\Delta_j^{++} + \Delta_i^{--}\Delta_j^{--} + \Delta_i^{+-}\Delta_j^{+-} + \Delta_i^{-+} \Delta_j^{-+}\big\} \, .
+\ee
+\item \textbf{9-point}: $v_8=v_4\oplus \overline{v}_4$ (the union of 5-point and
+  $\overline{5}$-point) and $n_8 = 2/8 = 1/4$. Here we include every combination, varying the scales totally independently. 
+\be \label{9S}
+\begin{split}
+    S^{(\rm 9pt)}_{ij} = \smallfrac{1}{4}\big\{ &\Delta_i^{+0} \Delta_j^{+0} + \Delta_i^{-0}\Delta_j^{-0}
+                            + \Delta_i^{0+} \Delta_j^{0+} + \Delta_i^{0-}\Delta_j^{0-} \\
+                            + &\Delta_i^{++}\Delta_j^{++} + \Delta_i^{+-} \Delta_j^{+-}
+                            + \Delta_i^{-+}\Delta_j^{-+} + \Delta_i^{--} \Delta_j^{--} \big\} \, .
+\end{split}                            
+\ee 
+\end{itemize}
+\subsubsection{Two processes}
 \subsection{Asymmetric prescriptions}
+\subsubsection{One process}
+\subsubsection{Two processes}
 \subsection{Categorising processes}
 \subsection{NLO theory covariance matrices}
 
