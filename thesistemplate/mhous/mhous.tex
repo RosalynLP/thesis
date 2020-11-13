@@ -399,14 +399,14 @@ We will now outline three different prescriptions, depicted in Fig.~\ref{fig:sym
 \node at (1.9,0) {$\kappa_F$};
 \end{tikzpicture}}
 \begin{caption}{Symmetric prescriptions for a single process, indicating
-    the sampled values for the factorization scale $\kappa_F$ and 
-    renormalization scale $\kappa_R$ in each case.
+    the sampled values for the factorisation scale $\kappa_F$ and 
+    renormalisation scale $\kappa_R$ in each case.
     %
     The origin of coordinates corresponds to the
-    central scales $\kappa_f=\kappa_r= 0$.
+    central scales $\kappa_F=\kappa_R= 0$.
     %
     We show the three prescriptions 
-    $5$-point (left), $\bar{5}$-point (center) and $9$-point (right).
+    $5$-point (left), $\bar{5}$-point (middle) and $9$-point (right).
 \label{fig:symmetricPrescriptions}
   }
 \end{caption}
@@ -438,9 +438,139 @@ $\overline{v}_4 = \{(\pm; \pm) \}$, where $(\pm;\pm)$ are assumed
 \ee 
 \end{itemize}
 \subsubsection{Two processes}
+In the case that $p=2$ we can have either uncorrelated or partially correlated scale variations. We will have $p+1=3$ independent scales to vary, and our set of scale variation points, $V_m$, will be much larger than for one process ($v_m$). If we label the processes $a=1, b=2$, we can view the two-process covariance matrix as
+\be  
+  S_{ij} = \left(\begin{array}{cc}
+S_{i_1j_1}&S_{i_1j_2}\\ 
+S_{i_2j_1}&S_{i_2j_2}\end{array}\right)\, ,
+\ee
+so the diagonal elements deal with data points in the same process, and the off-diagonals deal with data points in different processes. For the diagonal blocks, the form of $S$ must be equivalent to the $p=1$ case, and so 
+\be
+S_{i_1j_1}= N_m \sum_{V_m} \Delta_{i_1} (\kappa_f, \kappa_{r_1}) \Delta_{j_1} (\kappa_f, \kappa_{r_1})=
+n_{m} \sum_{v_{m}} \Delta_{i_1} (\kappa_f, \kappa_{r_1})\Delta_{j_1} (\kappa_f, \kappa_{r_1}) \, .
+\ee
+This means that $v_m$ must be a subset of $V_m$, so that if we sum over $V_m$ setting $\kappa_{R_2}$ to 0, we should recover $v_m$ up to a degeneracy factor, $d_m$, which is the number of copies of $v_m$ in $V_m$. This means the overall normalisation factor is
+\be 
+N_m = n_m/d_m \, .
+\ee
+We now go on to consider the 5-point, $\overline{5}$-point and 9-points prescriptions for the case of two processes, depicted in Fig.~\ref{fig:symmetricPrescriptions2proc}. We expand the notation to include three scales, that is $(\kappa_F; \kappa_{R_1},\kappa_{R_2})$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\begin{figure}[t]
+\centering
+\includegraphics[scale=0.35]{mhous/plots/5pt_3D.png}
+\includegraphics[scale=0.35]{mhous/plots/5barpt_3D.png}
+\includegraphics[scale=0.35]{mhous/plots/9pt_3D.png}
+\begin{caption}{\small Same as Fig.~\ref{fig:symmetricPrescriptions}, now
+    for the case of two different processes with a common factorisation scale, $\kappa_F,$ and different renormalisation scales, $\kappa_{R_1}$
+    and $\kappa_{R_2}$, so the diagrams are now in 3d.
+    %
+    We again show the three prescriptions $5$-point (left), $\bar{5}$-point (middle) and $9$-point (right).}
+  \label{fig:symmetricPrescriptions2proc}
+\end{caption}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item \textbf{5-point}: 
+We vary the factorisation scale holding the renormalisation scales fixed,  and the renormalisation scales holding the factorisation scale fixed, so that
+$V_4 = \{2(\pm;0,0), (0;\pm,\pm)\}$. This means $V_4$
+  has eight elements in total. The factor of two comes from considering the one-process case, where we can set $\kappa_{R_2}=0$, and must return a multiple of $v_4$. Explicitly, we will get $\{2(\pm;0,0), 2(0;\pm,0)\}$, picking up a factor of two on the second term because there are two terms implicitly here, for $\kappa_{R_2}$ = $+$ and $-$. We need to include a factor of two from the outset on the first term so we end up with an overall factor at the end, in this case $d_4 =2$. This means $N_4 = (1/2)/2 = 1/4$. The off-diagonal blocks of the covariance matrix are evaluated as
+ \be \label{eqn:5ptmult}
+     S^{(\rm 5pt)}_{i_1j_2} = \smallfrac{1}{4}\big\{ 2\Delta_{i_1}^{+0}\Delta_{j_2}^{+0} + 2\Delta_{i_1}^{-0}\Delta_{j_2}^{-0}  
+            + \big(\Delta_{i_1}^{0+} + \Delta_{i_1}^{0-} \big)\big(\Delta_{j_2}^{0+} + \Delta_{j_2}^{0-}\big)\big\}.
+ \ee
+When generalising to 3 processes, we simply write $V_4 = \{4(\pm;0,0,0)$, $(0;\pm,\pm, \pm)\}$, and this time $d_4=4$ by the same arguments as above. However, we can still use Eqn.~\ref{eqn:5ptmult} to evalutate all of the off-diagonal blocks because we will only ever be considering two of the three processes at a time. 
+\item \textbf{$\overline{5}$-point}:
+$\overline{V}_4 = \{(\pm;\pm,\pm)\}$, so we are essentially exploring the outer corners of the 3d scale variation space. $\overline{V}_4$ has eight elements, and there are two elements for each in $\overline{v}_4$, meaning that $\overline{N}_4 = (1/2)/2 = 1/4$. The off-diagonal blocks of the covariance matrix are evaluated as
+\be 
+    S^{(\rm \overline{5}pt)}_{i_1j_2} = \smallfrac{1}{4}\big\{ \big(\Delta_{i_1}^{++} + \Delta_{i_1}^{+-}\big) \big(\Delta_{j_2}^{++} + \Delta_{j_2}^{+-} \big) 
+    + \big(\Delta_{i_1}^{-+} + \Delta_{i_1}^{--}\big) \big(\Delta_{j_2}^{-+} + \Delta_{j_2}^{--} \big) \big\} \, .
+\ee
+For three processes the generalisation is simply $\overline{V}_4 = \{(\pm;\pm,\pm,\pm)\}$, with $\overline{N}_4 = 1/8$. 
+\item \textbf{9-point}: Again, all three scales are varied completely independently and $V_8= \{3(0;\pm,\pm), 2(\pm;\pmz,\pmz)\}$, where $\pmz$ means either $+$, $-$ or $0$. Note the factors of 2 and 3, which arise from arguments similar to that for 5-point; namely, that $V_8$ must reduce to a multiple of $v_8$ when $\kappa_{R_2}$ is set to 0. The overall $d_8$ = 6 and so $N_8 = 1/24$. The off-diagonal blocks of the covariance matrix are 
+\begin{equation}
+\begin{split}
+    S^{(\rm 9pt)}_{i_1j_2} =
+    \smallfrac{1}{24}\big\{&2\big(\Delta_{i_1}^{+0}+\Delta_{i_1}^{++}
+    + \Delta_{i_1}^{+-}\big) \big(\Delta_{j_2}^{+0} +
+    \Delta_{j_2}^{++} + \Delta_{j_2}^{+-} \big) \\ 
+            + &2\big(\Delta_{i_1}^{-0} + \Delta_{i_1}^{-+} +
+            \Delta_{i_1}^{--}\big)\big(\Delta_{j_2}^{-0} +
+            \Delta_{j_2}^{-+} + \Delta_{j_2}^{--} \big) \big\}\\ 
+            + &3\big(\Delta_{i_1}^{0+}+ \Delta_{i_1}^{0-}\big)\big(\Delta_{j_2}^{0+} + \Delta_{j_2}^{0-} \big)\big\}.
+\end{split}            
+\end{equation}
+For three processes, $V_8= \{9(0;\pm,\pm,\pm),
+4(\pm;\pmz,\pmz,\pmz)\}$ and $d_8=36$.
+\end{itemize}
 \subsection{Asymmetric prescriptions}
-\subsubsection{One process}
-\subsubsection{Two processes}
+It is sometimes argued that since only the cross-section is actually physical, a single process has only one scale, namely the ``scale of the process". This is like setting $\kappa_F = \kappa_R$. In addition, it is also possible to consider varying the scale of the process on top of the variation of factorisation and renormalisation scales already considered. The logic behind this is that the three scales each estimate a different source of MHOU:
+\begin{itemize}
+\item Varying the scale of the process estimates the MHOU on the hard cross section which is proportional to collinear logarithms;
+\item Varying the renormalisation scale estimates the MHOU on the hard cross section which is proportional to the beta function;
+\item Varying the factorisation scale estimates the MHOU in the anomalous dimension.
+\end{itemize}
+However, both of these approaches will suppress correlations between uncertainties in PDF evolution across different processes, and may therefore overestimate the MHOU. Ultimately, the best scheme, be it a symmetric or an asymmetric prescription, must be established through a validation procedure such as the one outlined in later sections.
+
+We will now formulate prescriptions for these two asymmetric prescriptions, being the 3-point and 7-point prescriptions, respectively. These are depicted for a single process in Fig.~\ref{fig:AsymmetricPrescriptions1proc}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t]
+\centering
+{\begin{tikzpicture}
+\draw[->] (-1.5,0) -- (1.5,0);
+\draw[->] (0,-1.5) -- (0,1.5);
+\filldraw[black] (0,0) circle (2pt);
+\filldraw[black] (-1,-1) circle (2pt);
+\filldraw[black] (1,1) circle (2pt);
+\node at (0.5,1.5) {$\kappa_R$};
+\node at (1.9,0) {$\kappa_F$};
+\end{tikzpicture}}\qquad
+{\begin{tikzpicture}
+\draw[->] (-1.5,0) -- (1.5,0);
+\draw[->] (0,-1.5) -- (0,1.5);
+\filldraw[black] (0,0) circle (2pt);
+\filldraw[black] (-1,0) circle (2pt);
+\filldraw[black] (0,-1) circle (2pt);
+\filldraw[black] (1,0) circle (2pt);
+\filldraw[black] (0,1) circle (2pt);
+\filldraw[black] (-1,-1) circle (2pt);
+\filldraw[black] (1,1) circle (2pt);
+\node at (0.5,1.5) {$\kappa_R$};
+\node at (1.9,0) {$\kappa_F$};
+\end{tikzpicture}}
+\begin{caption}{Same as Fig.~\ref{fig:symmetricPrescriptions},
+    now in the case of the asymmetric prescriptions for a single process
+    with factorisation scale $\kappa_F$ and renormalisation scale $\kappa_R$.
+    %
+    We display the 
+    $3$-point (left) and $7$-point (right) prescriptions, defined in the text.}
+  \label{fig:AsymmetricPrescriptions1proc}
+\end{caption}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{itemize}
+\item \textbf{3-point}: We set $\kappa_F=\kappa_R$ and vary this scale. We have $v_2 = \{\pm\}$ and $s =1$, $m=2$ and $n_2 = 1/2$, so we are just averaging over the two scale-varied options. For a single process
+\be 
+   S^{(\rm 3pt)}_{ij} = \smallfrac{1}{2}\big\{ \Delta_i^{++}\Delta_j^{++}  + \Delta_i^{--}\Delta_j^{--}\big\} \, .
+\ee
+For two different processes we have $v_2 = \{\pm, \pm\}$, and can see explicitly that we are ignoring the correlations in $\kappa_F$ between the two processes. We have $d_2 =2$ and so $N_2 = (1/2)/2 =1/4$, and the off-diagonal blocks of the covariance matrix are evaluated as
+\be 
+    S^{(\rm 3pt)}_{i_1j_2} = \smallfrac{1}{4}\big\{\big(\Delta_{i_1}^{++} + \Delta_{i_1}^{--} \big) \big(\Delta_{j_2}^{++} + \Delta_{j_2}^{--} \big) \big\}\, .
+\ee
+\item \textbf{7-point}: We combine varying the scale of the process with $\kappa_R$ and $\kappa_F$ variation. We will end up with essentially a combination of 3-point (scale of process) and 5-point (individual factorisation and renormalisation). For a single process, $v_6 = \{(\pm;0),(0;\pm),(+;+),(-;-)\} =\{(\pm;0),(0;\pm),(\overline{\pm;\pm})\}$, where $(\overline{\pm;\pm})$ simply means that the variation is fully correlated (so there are only 2 terms, not 4). Then $s=2$ and $m=6$ so $n_6 =1/3$, and for a single process
+\be
+ S^{(\rm 7pt)}_{ij} = \smallfrac{1}{3}\big\{ \Delta_i^{+0}\Delta_j^{+0} + \Delta_i^{-0}\Delta_j^{-0} + \Delta_i^{0+}\Delta_j^{0+}  + \Delta_i^{0-}\Delta_j^{0-}  
+        + \Delta_i^{++}\Delta_j^{++} + \Delta_i^{--}\Delta_j^{--}  \big\} \, .
+\ee
+For more than one process, variations of the scale of the process are uncorrelated between processes so the $\mu_F$ variation enclosed in the scale of the process variation will be decorrelated. So overall for two processes we will be in a 4d scale variation space, 
+$(\kappa_{F_1},\kappa_{R_1};\kappa_{F_2},\kappa_{R_2})$. Then $V_6=\{2(+,0;+,0),2(-,0;-,0),(0,\pm;0,\pm),(\overline{\pm,\pm};\overline{\pm,\pm})\}$, where $(\overline{\pm,\pm};\overline{\pm,\pm})=\{(+,+;+,+),(+,+;-,-),(-,-;+,+),(-,-;-,-)\}$, and thus $d_6=2$, so $N_6=1/6$, and the off-diagonal theory covariance matrix reads
+\be 
+  \begin{split}
+    S^{(\rm 7pt)}_{i_1j_2} =& \smallfrac{1}{6}\big\{ 2\Delta_{i_1}^{+0} \Delta_{j_2}^{+0}  + 2\Delta_{i_1}^{-0} \Delta_{j_2}^{-0} 
+             + \big(\Delta_{i_1}^{0+}+\Delta_{i_1}^{0-}\big)\big(\Delta_{j_2}^{0+} + \Delta_{j_2}^{0-} \big)
+            \\&+\big(\Delta_{i_1}^{++}+\Delta_{i_1}^{--}\big) \big(\Delta_{j_2}^{++} + \Delta_{j_2}^{--} \big) \big\} \, .
+            \end{split}
+\ee
+\end{itemize}
 \subsection{Categorising processes}
 \subsection{NLO theory covariance matrices}
 
