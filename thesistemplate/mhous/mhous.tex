@@ -571,8 +571,46 @@ $(\kappa_{F_1},\kappa_{R_1};\kappa_{F_2},\kappa_{R_2})$. Then $V_6=\{2(+,0;+,0),
             \end{split}
 \ee
 \end{itemize}
-\subsection{Categorising processes}
+
+\section{Results for the theory covariance matrix}
+In this section we summarise the data used to calculate theory covariance matrices using the prescriptions in the previous section. We divide the data into processes, each with a distinct renormalisation scale. We present the theory covariance matrices for each prescription at NLO.
+
+\subsection{Input data and process categorisation}
+In order to use these prescriptions, we must first divide our data into distinct ``processes". There is some degree of arbitrariness here, but the idea is to group together data which might have a similar structure of MHOUs under a common renormalisation scale. First we will review the data included in these fits, then we will outline the process categorisation. This is summarised in Table~\ref{tab:datasets_process_categorisation}.
+
+The data considered here are a mildly altered version of those in NNPDF3.1~\cite{Ball:2017nwa}. More exactly, they include: fixed-target~\cite{Arneodo:1996kd,Arneodo:1996qe,
+Whitlow:1991uw,bcdms1,bcdms2,Goncharov:2001qe,MasonPhD,Onengut:2005kv} 
+and HERA~\cite{Abramowicz:2015mha} deep-inelastic inclusive structure functions;
+charm cross-sections from HERA~\cite{Abramowicz:1900rp};
+gauge boson production from the Tevatron~\cite{Aaltonen:2010zza,Abazov:2007jy,
+D0:2014kma,Abazov:2013rja}; electroweak boson production, 
+inclusive jet, $Z$ $p_T$ distributions, and $t\bar{t}$ total and differential
+cross-sections from ATLAS~\cite{Aad:2011dm,Aaboud:2016btc,Aad:2014qja,
+Aad:2013iua,Aad:2015auj,Aad:2011fc,Aad:2014kva,Aaboud:2016pbd,Aad:2015mbv},
+CMS~\cite{Chatrchyan:2013tia,Chatrchyan:2012xt,Chatrchyan:2013mza,
+Khachatryan:2016pev,Khachatryan:2015oaa,Chatrchyan:2012bja,Khachatryan:2016mqs, 
+Khachatryan:2015uqb,Khachatryan:2015oqa} 
+and LHCb~\cite{Aaij:2012vn,Aaij:2012mda,Aaij:2015gna,Aaij:2015zlq}. In total they make up 2819 data points.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \input{mhous/tables/datasets_process_categorisation.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We identify five categories to divide the data into: neutral current DIS (DIS NC); charged current DIS (DIS CC); Drell-Yan (DY); jet production (JET); and top production (TOP). These represent groups of data with similar expected MHO terms. For instance, predictions for DY processes can be differential in differing variables, but all are obtained by integrating the same underlying, fully differential, distribution. This means they should have a similar perturbative structure. On the other hand, these distributions constrain different PDFs and so complex correlations between the PDFs will be introduced. Note that DIS is split up into CC and NC due to the differing structure of interaction.
+
 \subsection{NLO theory covariance matrices}
+As with other NNPDF fits, theoretical predictions are provided 
+by {\tt APFEL}~\cite{Bertone:2013vaa} for the DIS structure functions
+and by {\tt APFELgrid}~\cite{Bertone:2016lga} combined with
+{\tt APPLgrid}~\cite{Carli:2010rw} for the hadronic
+cross-sections.
+%
+The evaluation of these scale-varied cross-sections has been validated
+by means of independent programs, in particular with {\tt HOPPET}~\cite{Salam:2008qg}
+and {\tt OpenQCDrad}~\cite{Alekhin:2012ig}
+for the DIS structure functions, and with the built-in scale variation
+functionalities of {\tt APPLgrid}. All these NLO cross-sections are evaluated using the central NLO PDF obtained by performing a NLO fit to the same dataset, for consistency. These predictions are then used to construct the theory covariance matrices using the {\tt ReportEngine} software~\cite{zahari_kassabov_2019_2571601}.
+
+
 
 \section{Validating the theory covariance matrix}
 \label{sec:valid}

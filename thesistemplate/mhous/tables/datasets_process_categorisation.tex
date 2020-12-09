@@ -1,13 +1,16 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{center}
-  \renewcommand*{\arraystretch}{1.50}
-  \small
-\begin{tabular}{|c|l|c|c|c|}
+%-------------------------------------------------------------------------------
+\begin{table}[!t]
+  %\rowcolors{2}{gray!25}{white}
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.13}
+  \begin{tabularx}{\textwidth}{llccc}
 \toprule
-  Process Type & Dataset   &  Reference    &  $N_{\rm dat}$     & $N_{\rm dat}$ (total)      \\
+
+  \textbf{Process Type} &  \textbf{Dataset}   &   \textbf{Reference}    &   \textbf{$N_{\rm dat}$}     &  \textbf{$N_{\rm dat}$ (process)}      \\
 \midrule
 \multirow{5}{*}{DIS NC}  & NMC    &  \cite{Arneodo:1996kd,Arneodo:1996qe}  & 134  &
-\multirow{5}{*}{1593} \\
+\multirow{5}{*}{1593}  \\
         & SLAC     & \cite{Whitlow:1991uw}     & 12  &    \\
         & BCDMS   & \cite{bcdms1,bcdms2}      & 530  & \\
         & HERA $\sigma^p_{NC}$     & \cite{Abramowicz:2015mha} & 886  & \\
@@ -49,8 +52,15 @@ ATLAS $\sigma_{tt}^{\rm top}$       & \cite{Aad:2014kva, Aaboud:2016pbd}  & 3  &
 & CMS $\sigma_{tt}^{\rm top}$   & \cite{Khachatryan:2016mqs, Khachatryan:2015uqb}       &  3 &   \\
 & CMS $t\bar{t}$ rap   & \cite{Khachatryan:2015oqa}& 10   &   \\
 \bottomrule
-Total    &         &        & 2819  &  2819  \\
-\bottomrule
-\end{tabular}
-\end{center}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \textbf{Total}    &         &        &  \textbf{2819}  &   \textbf{2819}  \\
+\bottomrule \\
+  \end{tabularx}
+ \caption{\small Input data and process categorisation.
+    %
+    Each dataset is assigned to one of five categories:
+    neutral-current DIS (DIS NC),
+    charged-current DIS (DIS CC), Drell-Yan (DY), jet production (JET) and top quark
+    pair production (TOP).
+    \label{tab:datasets_process_categorisation}}
+\end{table}
+%-------------------------------------------------------------------------------
