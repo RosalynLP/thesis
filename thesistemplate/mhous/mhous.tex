@@ -598,18 +598,69 @@ and LHCb~\cite{Aaij:2012vn,Aaij:2012mda,Aaij:2015gna,Aaij:2015zlq}. In total the
 We identify five categories to divide the data into: neutral current DIS (DIS NC); charged current DIS (DIS CC); Drell-Yan (DY); jet production (JET); and top production (TOP). These represent groups of data with similar expected MHO terms. For instance, predictions for DY processes can be differential in differing variables, but all are obtained by integrating the same underlying, fully differential, distribution. This means they should have a similar perturbative structure. On the other hand, these distributions constrain different PDFs and so complex correlations between the PDFs will be introduced. Note that DIS is split up into CC and NC due to the differing structure of interaction.
 
 \subsection{NLO theory covariance matrices}
-As with other NNPDF fits, theoretical predictions are provided 
-by {\tt APFEL}~\cite{Bertone:2013vaa} for the DIS structure functions
+All calculations are performed using 
+the same settings as in~\cite{Ball:2017nwa}. Theoretical predictions are provided by {\tt APFEL}~\cite{Bertone:2013vaa} for the DIS structure functions
 and by {\tt APFELgrid}~\cite{Bertone:2016lga} combined with
 {\tt APPLgrid}~\cite{Carli:2010rw} for the hadronic
-cross-sections.
-%
-The evaluation of these scale-varied cross-sections has been validated
-by means of independent programs, in particular with {\tt HOPPET}~\cite{Salam:2008qg}
-and {\tt OpenQCDrad}~\cite{Alekhin:2012ig}
-for the DIS structure functions, and with the built-in scale variation
-functionalities of {\tt APPLgrid}. All these NLO cross-sections are evaluated using the central NLO PDF obtained by performing a NLO fit to the same dataset, for consistency. These predictions are then used to construct the theory covariance matrices using the {\tt ReportEngine} software~\cite{zahari_kassabov_2019_2571601}.
+cross-sections. They are all evaluated using the central NLO PDF obtained by performing a NLO fit to the same dataset, for consistency. The resulting predictions are then used to construct the theory covariance matrices using the {\tt ReportEngine} software~\cite{zahari_kassabov_2019_2571601}.
 
+We now present the theory covariance matrices at NLO, and discuss their features. In Fig.~\ref{fig:diag_covmats} we compare the square root of the diagonal elements of the experiment ($C$) and theory ($S$) covariance matrices, normalised to experimental data values; these are equivalent to the fractional per-point uncertainties. In this and what follows, the data are grouped by process and, within each process, by dataset according to Table~\ref{tab:datasets_process_categorisation}, wherein they are binned according to kinematics. $S$ is the 9-pt covariance matrix, being that with the largest number of independent scale variations. On the whole, the size of NLO MHOUs is comparable to the experimental uncertainties, and we can see that each will dominate in different regions. One particularly striking instance of this is seen in the HERA data, which can be found in the middle of DIS NC: for high ($x$, $Q^2$) there is low statistics and so the experimental uncertainties dominate; for low ($x$, $Q^2$) perturbation theory holds less strongly and the MHOUs dominate. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t!]
+  \begin{center}
+    \includegraphics[width=1.0\linewidth]{mhous/plots/9pt_diagonal_elements.pdf}
+    \caption{\small Comparison of the per-point experimental 
+    (blue) and 9-point theoretical (red) uncertainties, normalised to data. In this and what follows, data are grouped by process and, within each process, by dataset, following
+  Table~\ref{tab:datasets_process_categorisation} 
+        \label{fig:diag_covmats} }
+  \end{center}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[t!]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{mhous/plots/exp_covmat.pdf}
+    \includegraphics[width=0.49\linewidth]{mhous/plots/th_covmat_9pt.pdf}
+    \caption{\small Comparison of the  experimental $C_{ij}$ (left)
+      and the 9-point theoretical  $S_{ij}$  
+      (right) covariance matrices.
+      %
+      Entries are displayed as a percentage of the experimental value.
+      }
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We can also explore the structure of correlations between data points by viewing the covariance matrices as a whole. In Fig.~\ref{fig:covmats} we show $C$ alongside $S$ (9-point) as a $\%$ of experimental data value. It is immediately obvious that $S$ contains a much richer and more vibrant structure than $C$; experimental correlations only exist within experiments as they exist in isolation. However, predictions for these experiments originate from a common theoretical framework, and therefore theory uncertainties can exist between any two data points, regardless of experimental origin. In particular, data points within the same process are assigned a common renormalisation scale, inducing correlations between them. Furthermore, all points are predicted using the same PDFs and, in the 9-point prescription, share a common factorisation scale. This introduces entries in $S$ outwith individual processes. Along the block diagonal we note that correlations within an individual experiments are broadly positive, due to these points sharing a close kinematic region. In other regions we see a mixture of positive and negative correlations, for example HERA is generally positively correlated with DY but negatively correlated with fixed target DIS. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[htb!]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{mhous/plots/exp_corrmat.pdf}
+    \includegraphics[width=0.49\linewidth]{mhous/plots/expth_corrmat_5pt.pdf}
+\vskip-0.5cm
+    \includegraphics[width=0.49\linewidth]{mhous/plots/expth_corrmat_5barpt.pdf}
+    \includegraphics[width=0.49\linewidth]{mhous/plots/expth_corrmat_9pt.pdf}
+\vskip-0.5cm
+\includegraphics[width=0.49\linewidth]{mhous/plots/expth_corrmat_3pt.pdf}
+    \includegraphics[width=0.49\linewidth]{mhous/plots/expth_corrmat_7pt.pdf}
+    \caption{\small Comparison of the experimental correlation matrix (top left) and the
+      the combined experimental and theoretical correlation matrices computed using the prescriptions described in Sec.~\ref{sec:prescrip}: the symmetric prescriptions (5-pt top right, $\overline{5}$-pt centre left, 9-pt centre right); and asymmetric prescriptions (3-pt bottom left, 7-pt bottom right).
+  \label{fig:corrmats} }
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The exact structure of $S$ is dependent on the chosen prescription in Sec.~\ref{sec:prescrip}. In Fig.~\ref{fig:corrmats} we delve into these differences by comparing correlation matrices, defined
+\be
+\text{corr}^A_{ij} \equiv \frac{A_{ij}}{\sqrt{A_{ii}}\sqrt{A_{jj}}}.
+\ee
+This removes the effect of the differing magnitude of entries, laying bare the underlying structure; a value of 1 corresponds to full correlation between two points, a value of 0 corresponds to no correlation and a value of -1 corresponds to full anticorrelation. This time we look at the impact of adding the theory covariance matrix to the experiement covariance matrix. In all cases a richer structure emerges, however we note that
+\begin{itemize}
+\item For 3-point the correlations between processes are a lot weaker, and this is because both factorisation and renormalisation scale are uncorrelated between processes.
+\item For 7-point (the other asymmetric prescription), the correlations are weaker than in 5-point despite the fact that 7-point uses the same scale variation points as 5-point plus two additional ones. This is because the $\mu_F$ variation is combined with the uncorrelated ``scale of process" variation.
+\item All three symmetric prescriptions show similar patterns of correlation.
+\end{itemize}
+From this, it seems that any of the symmetric prescriptions might be a suitable choice. However, in the next section we outline more quantitative tests to validate whether or not each prescription provides a reasonable estimate of MHOUs, and hence determine the best prescription. 
 
 
 \section{Validating the theory covariance matrix}
