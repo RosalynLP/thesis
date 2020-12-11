@@ -630,10 +630,9 @@ We now present the theory covariance matrices at NLO, and discuss their features
   \end{center}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 We can also explore the structure of correlations between data points by viewing the covariance matrices as a whole. In Fig.~\ref{fig:covmats} we show $C$ alongside $S$ (9-point) as a $\%$ of experimental data value. It is immediately obvious that $S$ contains a much richer and more vibrant structure than $C$; experimental correlations only exist within experiments as they exist in isolation. However, predictions for these experiments originate from a common theoretical framework, and therefore theory uncertainties can exist between any two data points, regardless of experimental origin. In particular, data points within the same process are assigned a common renormalisation scale, inducing correlations between them. Furthermore, all points are predicted using the same PDFs and, in the 9-point prescription, share a common factorisation scale. This introduces entries in $S$ outwith individual processes. Along the block diagonal we note that correlations within an individual experiments are broadly positive, due to these points sharing a close kinematic region. In other regions we see a mixture of positive and negative correlations, for example HERA is generally positively correlated with DY but negatively correlated with fixed target DIS. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[htb!]
+\begin{figure}[H]
   \begin{center}
     \includegraphics[width=0.49\linewidth]{mhous/plots/exp_corrmat.pdf}
     \includegraphics[width=0.49\linewidth]{mhous/plots/expth_corrmat_5pt.pdf}
@@ -649,7 +648,6 @@ We can also explore the structure of correlations between data points by viewing
   \end{center}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 The exact structure of $S$ is dependent on the chosen prescription in Sec.~\ref{sec:prescrip}. In Fig.~\ref{fig:corrmats} we delve into these differences by comparing correlation matrices, defined
 \be
 \text{corr}^A_{ij} \equiv \frac{A_{ij}}{\sqrt{A_{ii}}\sqrt{A_{jj}}}.
@@ -662,9 +660,188 @@ This removes the effect of the differing magnitude of entries, laying bare the u
 \end{itemize}
 From this, it seems that any of the symmetric prescriptions might be a suitable choice. However, in the next section we outline more quantitative tests to validate whether or not each prescription provides a reasonable estimate of MHOUs, and hence determine the best prescription. 
 
-
 \section{Validating the theory covariance matrix}
 \label{sec:valid}
+Whilst in general the structure of MHOs is unknown to us, due to the perturbative nature of calculations we do know that the MHOU is dominated by the next MHO; so at NLO we expect the MHOU to be dominated by the NNLO terms. A good test of the NLO theory covariance matrix, therefore, is that it reliably encapsulates the known NNLO predictions. In this section we describe a method of validation based on this observation.
+
+We summarise the procedure here, before going into some considerable detail in Subsec.~\ref{subsec:val_details}. We consider the space of experimental data, $D$, spanned by the vector of experimental data points, $D_i$, $i=1,\dots, N_{dat}$. The theory covmat, $S_{ij}$ acts as a linear operator on this space. We know that $S_{ij}$ is positive semi-definite and symmetric, and therefore has positive or zero eigenvalues only. As an uncertainty matrix, $S_{ij}$ defines ellipsoids, $E$, of given confidence level. These lie in the subspace $S \in D$, and are centred on the NLO prediction, $T_i^{NLO}$. A test of the efficacy of $S_{ij}$ is that the 1-$\sigma$ ellipse broadly encapsulates the known shift to the next higher order, $\delta_i \sim T_i^{NNLO} - T_i^{NLO}$. Note that here $T_i^{NNLO}$ must be evaluated using the same NLO PDF, to ensure that the shift is due only to perturbative differences and not to effects from refitting. This is a robust test, owing to the great difference between $\text{dim}\ D\ \sim 1000$ and $\text{dim}\ S\ \sim 10$; for a random matrix we would expect only 1\% of $\delta_i$ to lie in $S$. 
+
+\subsection{Details of validation procedure}
+\label{subsec:val_details}
+Recall that the ellipse $E \in S \in D$, where $\text{dim}\ D\ = N_{dat}$ and $\text{dim}\ S\ = N_{sub}$.
+We define dimensionless quantities by normalising to the theory prediction at NLO:
+\beq 
+\widehat{S}_{ij} = \frac{S_{ij}}{T_i^{NLO}T_j^{NLO}}; \qquad \delta_i = \frac{T_i^{NNLO} - T_i^{NLO}}{T_i^{NLO}}.
+\eeq
+We expect the component of $\delta_i$ along each axis of the ellipse, $E$, to be the same order as the 1-$\sigma$ ellipse. Physically, this means that the eigenvectors of $S_{ij}$ correctly estimate all the independent directions of uncertainty in theory space. The size of the shift in each direction is given by the corresponding eigenvalue. The null subspace of $E$, \textit{i.e.}, directions with vanishing eigenvalues, corresponds to directions in $D$ where the theory uncertainty is very small and can be neglected.
+
+We can find the eigenvectors and eigenvalues of $\widehat{S}_{ij}$ by diagonalising it. The non-zero eigenvalues are $\lambda^\alpha \equiv (s^\alpha)^2;\ \alpha =1,\dots,N_{sub}$ and there are $N_{dat} - N_{sub}$ additional zero eigenvalues - this is a large number. We choose the eigenvectors, $e_i^\alpha$, to be orthonormal such that
+\be
+\sum_i e_i^\alpha e_i^\beta = \delta^{\alpha \beta}.
+\ee
+This diagonalisation procedure is somewhat involved owing to the large number of zero eigenvalues. To make this easier, we can project $\widehat{S}$ onto the subspace, $S$, where all the eigenvalues are positive definite by construction. We can then perform the diagonalisation here. We can make this projection by noting that $S$ is spanned by the vectors used to construct $S_{ij}$, that is $\{\Delta_i(\kappa_F, \kappa_{R_a}): \kappa_F, \kappa_{R_a} \in V_m\}$. Correspondingly, $\hat{S}_{ij}$ is spanned by $\hat{\Delta}_i \equiv \delta_i/T_i^{NLO}$. The caveat is that not all of these vectors are linearly independent, and so we must find a linearly independent subset of these on a case by case basis, of which there will be $N_{sub}$. We now consider each of the prescriptions in Sec.~\ref{sec:prescrip} in turn.
+\subsubsection{3-point}
+Here the factorisation scale is always correlated with the renormalisation scale variation so we can consider  $(\kappa_{R_1}, \kappa_{R_2}, \dots , \kappa_{R_p})$ only. The table below summarises the possible permutations of scale variations under this scheme; each type of scale variation configuration is displayed alongisde the number of permutations of this type.
+\begin{center}
+\rowcolors{3}{blue!40!}{blue!20!}
+\begin{tabular}{ |p{3cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{3-point} \\
+\hline
+No. of vectors & $(\kappa_{R_1}, \kappa_{R_2}, \dots , \kappa_{R_p})\ $  \\
+\hline
+1 & $(+, +, +, \dots)$ \\
+1 & $(-, -, -, \dots)$   \\
+$p$ & $(-, +, +, \dots)$ and cyclic\\
+$p$    & $(+, -, -, \dots)$ and cyclic \\
+\hline
+\end{tabular}
+\end{center}
+So we na\"ively have $2+2p$ vectors in this space. However, these are not all linearly independent. Explicitly, we have the following restrictions:
+\begin{itemize}
+\item If we sum all of the cyclic permutations in the lower two rows we get $p \big(\ (+, +, +, \dots) + (-, -, -, \dots)\ \big)$, which is just $p$ times the sum of the first two rows. This is one restriction;
+\item Each pair of complimentary cyclic permutations, \textit{e.g.}, $(-, +, +, \dots)$ and $(+, -, -, \dots)$, sum to the sum of the first two rows. These are another $p$ restrictions.
+\end{itemize}
+Overall this means we have $2+2p-1-p=p+1$ linearly independent contributions, and so $N_{sub}^{3pt} = p+1$. This means we can choose rows 1 and 3 as our linearly independent vectors.
+
+\subsubsection{5-point}
+We can apply similar arguments here, this time also considering the factorisation scale.
+\begin{center}
+\rowcolors{3}{blue!40!}{blue!20!}
+\begin{tabular}{ |p{3cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{5-point} \\
+\hline
+No. of vectors & $(\kappa_F; \kappa_{R_1}, \kappa_{R_2}, \dots , \kappa_{R_p})\ $  \\
+\hline
+2 & $(\pm; 0, 0, 0, \dots)$ \\
+1 & $(0; -, -, -, \dots)$   \\
+1 & $(0; +, +, +, \dots)$ \\
+$p$ & $(0; -, +, +, \dots)$ and cyclic\\
+$p$    & $(0; +, -, -, \dots)$ and cyclic \\
+\hline
+\end{tabular}
+\end{center}
+Again we the same $p+1$ restrictions as in 3-point and so $N_{sub} = 3 + 2p - (p+1) = p+3$. We choose rows 1, 3 and 4 as our linearly independent vectors.
+
+\subsubsection{$\overline{5}$-point}
+\begin{center}
+\rowcolors{3}{blue!40!}{blue!20!}
+\begin{tabular}{ |p{3cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{$\overline{5}$-point} \\
+\hline
+No. of vectors & $(\kappa_F; \kappa_{R_1}, \kappa_{R_2}, \dots , \kappa_{R_p})\ $  \\
+\hline
+2 & $(\pm; +, +, +, \dots)$ \\
+2 & $(\pm; -, -, -, \dots)$ \\
+2$p$ & $(\pm; -, +, +, \dots)$ and cyclic\\
+2$p$  & $(\pm; +, -, -, \dots)$ and cyclic \\
+\hline
+\end{tabular}
+\end{center}
+This time since we have $\pm$ for every possibility, there are $2(p+1)$ restrictions, and so $N_{sub}=4+4p-2(p+1)=2p+2$. We choose rows 1 and 3 as our linearly independent vectors.
+
+\subsubsection{7-point}
+This is just the sum of 3-point and 5-point, so $N_{sub} = p+1 + p+3 = 2p+4$. Likewise we combine the vectors from 3-point and 5-point.
+
+\subsubsection{9-point}
+\begin{center}
+\rowcolors{3}{blue!40!}{blue!20!}
+\begin{tabular}{ |p{3cm}|p{6cm}|  }
+\hline
+\multicolumn{2}{|c|}{9-point} \\
+\hline
+No. of vectors & $(\kappa_F; \kappa_{R_1}, \kappa_{R_2}, \dots , \kappa_{R_p})\ $  \\
+\hline
+3 & $(\pmz; +, +, +, \dots)$ \\
+3 & $(\pmz; -, -, -, \dots)$ \\
+3$p$ & $(\pmz; -, +, +, \dots)$ and cyclic\\
+3$p$  & $(\pmz; +, -, -, \dots)$ and cyclic \\
+2 & $(\pm; 0, 0, 0, \dots)$ \\
+2$p$ & $(\pm; 0, -, -, \dots)$   and cyclic\\
+2$p$ & $(\pm; 0, +, +, \dots)$ and cyclic \\
+\hline
+\end{tabular}
+\end{center}
+This time we have $3(p+1)$ restrictions from the top four rows and an additional $2(p+1)$ from the bottom three, so overall $N_{sub}=6 + 6p + 2 + 4p -3(p+1)-2(p+1) = 5p+3$. We choose rows 1, 3 and 7 as our linearly independent vectors.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[scale=0.27]{mhous/plots/subspace_diag.png}
+    \caption{\small Schematic representation of the geometric relation
+      between the shift vector, $\delta\in D$, (here drawn as 3d), and
+      the component, $\delta^S$, of the shift vector which lies in the 
+subspace, $S$ (here drawn as 2d), containing the ellipse, $E$, defined by the theory covariance matrix. The angle $\theta$ between $\delta$ and $\delta^S$ is also shown: the dotted line shows the other side of the triangle, $\delta^{\rm miss}\in D/S$.
+    \label{fig:subspace_diagram} }
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Now that we have determined a suitable subspace, we can project the shift, $\delta_i$, onto these eigenvectors:
+\be
+\delta^\alpha = \sum_i \delta_i e_i^\alpha.
+\ee
+For a reasonable covariance matrix, $\delta^\alpha$ should be a similar size to $E$ in each dimension. We can then find the total component of the shift in $S$, 
+\be
+\delta_i^S = \sum_\alpha \delta^\alpha e_i^\alpha,
+\ee
+and the complementary component in the remaining space, $D/S$,
+\be 
+\delta_i^{miss} = \delta_i - \delta_i^S.
+\ee
+The validation will be a success if most of $\delta$ is in $S$, i.e. $|\delta_i^{miss}| \ll |\delta_i|$. Fig.~\ref{fig:subspace_diagram} depicts the relationship between these objects. Note that $\delta$, $\delta^S$ and $\delta^{miss}$ make up a right angled triangle, with some angle, $\theta$, between $\delta$ and $\delta^S$. For a successful validation, $\theta$ should be ``small".  Although there is no distinct cut-off of values here, note that given the dimension of $D$ is 100 times larger than $S$, for a random covariance matrix we would expect $\theta$ very close to 90$\degree$.
+
+\subsection{Results of validation tests}
+We now apply the validation tests outlined thus far to the NLO theory covariance matrices for the various prescriptions.
+
+A first check can be done by comparing the diagonal elements, $\sigma_i$ where $\widehat{S}_{ii} = (\sigma_i)^2$, with the shifts $\delta_i$. This tests whether the per-point errors encompass the NLO to NNLO shift.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[t!]
+  \begin{center}
+    \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_5pt_global.pdf}
+    \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_5barpt_global.pdf}
+    \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_9pt_global.pdf}
+%\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{figure}[htb!]
+    \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_3pt_global.pdf}
+    \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_7pt_global.pdf}
+    \caption{\small The diagonal uncertainties  $\sigma_i$ (red)
+      symmetrized about zero,
+      compared to the shift $\delta_i$ for each
+      datapoint (black), for the prescriptions. From top to bottom:  5-point
+      $\overline{5}$-point, 9-point, 3-point and 7-point (bottom). All values
+      are shown as percentage of the central theory prediction.}
+    \label{fig:diag_shift_validation_asymmetric}
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[h]
+	\centering
+	\input{mhous/tables/global_efficiencies.tex}
+        \vspace{5mm}
+	\caption{\small The angle $\theta$  Eq.~(\ref{eq:theta}) between this
+          shift and its component $\delta_i^S$ lying within the
+          subspace $S$ (see Fig.~\ref{fig:subspace_diagram})
+          spanned by the theory covariance matrix for  different
+          prescriptions. The dimension of the subspace $S$ in each case
+          is also given.}
+	\label{tab:global_efficiencies}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{table}[h]
+	\centering
+	\small
+	\input{mhous/tables/process_efficiencies.tex}
+        \vspace{3mm}
+	\caption{Same as Table~\ref{tab:global_efficiencies}
+          for each process of Table~\ref{tab:datasets_process_categorisation}. The number of data points in each process is given directly below the name of the process.}
+	\label{tab:process_efficiencies}
+\end{table}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{PDFs with missing higher order uncertainties}
 \label{sec:pdfs}
