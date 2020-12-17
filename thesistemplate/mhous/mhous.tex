@@ -794,35 +794,33 @@ The validation will be a success if most of $\delta$ is in $S$, i.e. $|\delta_i^
 \subsection{Results of validation tests}
 We now apply the validation tests outlined thus far to the NLO theory covariance matrices for the various prescriptions.
 
-A first check can be done by comparing the diagonal elements, $\sigma_i$ where $\widehat{S}_{ii} = (\sigma_i)^2$, with the shifts $\delta_i$. This tests whether the per-point errors encompass the NLO to NNLO shift.
+A first check can be done by comparing the diagonal elements, $\sigma_i$ where $\widehat{S}_{ii} = (\sigma_i)^2$, with the shifts, $\delta_i$. This tests whether the per-point errors encompass the NLO to NNLO shift. In Fig.~\ref{fig:diag_shift_validation_asymmetric}, these comparisons are shown for all the prescriptions. Clearly, the shape of the MHOU is similar to the shape of the shift for the majority of the data and for each prescription. In fact, there is little difference between the prescriptions, except for the size of the uncertainty; 5-point is the least conservative and $\overline{5}$-point is the most conservative. From this we can see that the theory covmat is qualitatively descriptive of the observed higher order shift, in terms of size and correlation. We also note that the majority of the influence of prescription choice is on the off-diagonal elements. The range of scale variation looks to be broadly appropriate, therefore, with the caveat that for some points the MHOU is overestimated (see in particular NC DIS). This is a conservative treatment, however it could affect the weighting of data sets adversely.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[t!]
+\begin{figure}[H]
   \begin{center}
+      \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_3pt_global.pdf}
     \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_5pt_global.pdf}
     \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_5barpt_global.pdf}
-    \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_9pt_global.pdf}
-%\end{figure}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\begin{figure}[htb!]
-    \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_3pt_global.pdf}
     \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_7pt_global.pdf}
+    \includegraphics[width=14cm, height=4.3cm]{mhous/plots/shift_diag_cov_comparison_9pt_global.pdf}
     \caption{\small The diagonal uncertainties  $\sigma_i$ (red)
       symmetrized about zero,
       compared to the shift $\delta_i$ for each
-      datapoint (black), for the prescriptions. From top to bottom:  5-point
-      $\overline{5}$-point, 9-point, 3-point and 7-point (bottom). All values
+      datapoint (black), for the prescriptions. From top to bottom: 3-point, 5-point
+      $\overline{5}$-point, 7-point and 9-point (bottom). All values
       are shown as percentage of the central theory prediction.}
     \label{fig:diag_shift_validation_asymmetric}
   \end{center}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+To examine the efficacy of the correlations, we must turn to the methods discussed in the previous section. We first look at the angle, $\theta$, between the shift and its component in the subspace, $S$, spanned by the theory covariance matrix. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\input{mhous/tables/global_efficiencies.tex}
         \vspace{5mm}
-	\caption{\small The angle $\theta$  Eq.~(\ref{eq:theta}) between this
-          shift and its component $\delta_i^S$ lying within the
+	\caption{\small The angle, $\theta$, between the NNLO-NLO
+          shift and its component, $\delta_i^S$, lying within the
           subspace $S$ (see Fig.~\ref{fig:subspace_diagram})
           spanned by the theory covariance matrix for  different
           prescriptions. The dimension of the subspace $S$ in each case
@@ -830,9 +828,9 @@ A first check can be done by comparing the diagonal elements, $\sigma_i$ where $
 	\label{tab:global_efficiencies}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+Tab.~\ref{tab:global_efficiencies} displays these values for each of the prescriptions. All of these are reasonably small, given that $N_{sub} \ll N_{dat}$, but 9-point is the best, with $\theta = 26 \degree$, due to the more comprehensive structure of scale variations. 3-point is unsurprisingly, the worst, suggesting that lack of correlation in the factorisation scale misses important correlations in the universal PDF evolution.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[h]
+\begin{table}[H]
 	\centering
 	\small
 	\input{mhous/tables/process_efficiencies.tex}
@@ -842,6 +840,61 @@ A first check can be done by comparing the diagonal elements, $\sigma_i$ where $
 	\label{tab:process_efficiencies}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Tab.~\ref{tab:process_efficiencies} shows the same analysis carried out individually for the various processes. The same hierarchy of prescriptions is evident within each process, with $\theta$ smallest for the processes with the least data (e.g. TOP). This is expected, since larger collections of data span a greater kinematic range and include a richer structure, which is correspondingly harder to capture. DIS NC, the largest process, is the most poorly described. Note that the global value for $\theta$ is better than this, and so it is correlations within individual processes which seem most critical.
+
+Having established what fraction of $\delta_i$ falls within $S$, we now go on to look at the complimentary component which falls outside, $\delta_i^{miss}$. Fig.~\ref{fig:deltamiss} shows this alongside $\delta_i$. The missing element is non-zero for all processes, and with a shape following that of the shift. This suggests there could be a component of $\delta_i$ which is missing for most data points, pointing to a poor estimation of the MHOU in the PDFs, which are common to all data. A good candidate for this is that the factorisation scale variation, as mentioned before, is only approximate; it would be better to include a separate variation for each of the eigenvalues of evolution, e.g. splitting up the singlet and non-singlet.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.99\textwidth]{mhous/plots/deltamiss_plot.pdf}
+    \caption{The NNLO-NLO shift, $\delta_i$ (black), compared to its 
+component, $\delta_i^{\rm miss}$ (blue), which lies outside the subspace $S$, computed using the 9-point prescription.}
+    \label{fig:deltamiss}
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We know the component of the shift in the space of theory uncertainties, $S$, but we still need to see what fraction of this is encapsulated by the ellipse, $E$. To do this we look at the eigenvalues of the theory covariance matrix, $\lambda^\alpha = (s^\alpha)^2$. These are the lengths of the semi-axes of $E$, and there are as many as $N_{sub}$. We can compare them to $\delta^\alpha$, the projections of the shift onto each eigenvector. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[scale=0.55]{mhous/plots/projector_eigenvalue_ratio_3pt_global.pdf}
+    \includegraphics[scale=0.55]{mhous/plots/projector_eigenvalue_ratio_5pt_global.pdf}
+    \includegraphics[scale=0.55]{mhous/plots/projector_eigenvalue_ratio_5barpt_global.pdf}
+    \includegraphics[scale=0.55]{mhous/plots/projector_eigenvalue_ratio_7pt_global.pdf}
+    \includegraphics[scale=0.55]{mhous/plots/projector_eigenvalue_ratio_9pt_global.pdf}
+    \caption{\small The projection, $\delta^\alpha$, of the normalized shift vector,
+      $\delta_i$, along each eigenvector, $e^\alpha_i$, of the normalized theory covariance
+      matrix, compared to the corresponding eigenvalue ,
+    $s^\alpha$, ordered
+      by the size of the projections (from largest to
+      smallest). In each case results are shown as absolute (upper) and
+      as ratios $\delta^\alpha/s^\alpha$ (lower), the horizontal line indicating when this ratio is one.  The length of the 
+        component of 
+       $\delta_i$ that is not captured at all by the theory covariance 
+    matrix, $|\delta^{\rm miss}_i|$ is also shown (blue star).
+      Prescriptions are ordered numerically: (top left) 3-point, 5-point
+      $\overline{5}$-point, 7-point and 9-point (bottom right)}
+        \label{fig:evals_all_prescriptions}
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=0.95\textwidth]{mhous/plots/eigenvector_plot_10.pdf}\\
+    \caption{\small The components  $e^\alpha_i$ (green) of the eigenvectors, corresponding
+      to the five largest eigenvalues for the 9-point theory covariance matrix. The NNLO-NLO shift, $\delta_i$ (black), is shown for comparison.
+    \label{fig:evecs1} }
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Fig.~\ref{fig:evals_all_prescriptions} shows these values for each prescription. All the prescriptions do a reasonable job, in that the largest eigenvalue is similar to the projection of the shift in that direction. Additionally, the size of the eigenvalues tends to decrease as the shift in that direction decreases. As expected, 3-point overestimates the uncertainty, with $\delta^\alpha < s^\alpha$ for all eigenvalues. This is also the case for most of 5- and $\overline{5}$-point. However, for the more complicated 7- and 9-point there is a better estimation for the larger eigenvalues, although a high scatter and poor prediction for the smaller ones; note that this is a result of only six scales being varied, so there is limited information available. Additionally, the missing component is less than the largest projection for the symmetric prescriptions but is greater for the asymmetric prescriptions. This, once again, supports the adoption of a symmetric prescription.
+
+Finally we investigate the components of the eigenvectors in the data space, $D$. The five largest of these for the 9-point are plotted in Fig.~\ref{fig:evecs1}, alongside $\delta$. Each of these can be identified with a component of the variation. From largest to smallest: 1 is largely DIS NC; 2 is a mixture of DIS NC and CC; 3 is DY; 4 is DIS CC; 5 is JETS. Unsurprisingly, the largest is dominated by the largest process, and so on, until the important TOP contribution appears at the (unshown) 9th eigenvector.
+
+Overall, we have shown that all of the prescriptions capture most of the important features of the MHOs, and that 9-point does so the most accurately, given its more complex structure of scale variation. We therefore adopt 9-point as our chosen prescription, and proceed in the next section to include a 9-point theory covariance matrix in NLO PDF fits.
+
 
 \section{PDFs with missing higher order uncertainties}
 \label{sec:pdfs}
