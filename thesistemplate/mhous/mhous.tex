@@ -1008,6 +1008,14 @@ Comparing the different prescriptions (Fig.~\ref{fig:Global-NLO-CovMatTH-prescri
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 Finally we compare using $S$ in only fitting or sampling (Fig~\ref{fig:Global-NLO-CovMatTH-tests}). For sampling only, the PDF uncertainty increases dramatically, with poor fit quality, especially in the quark distributions. For fitting only, the central value is affected due to the change in relative weights of the datasets, such that it is similar to that for fitting + sampling. The uncertainty, however, shows only a very small change in the data region. This all arises because the inclusion of MHOUs in data generation cause the pseudodata broadness to increase dramatically, which is in turn balanced by a relaxation of tensions due to the inclusion of MHOUs in fitting. This has the effect of a sizeable shift in central values with only a small increase in uncertainties. 
 
+\section{Overview}
+\label{sec:overview}
+We have presented the first PDFs with MHOUs included in their uncertainties, paving the way for the routine inclusion of theory uncertainties in future PDFs. This chapter has been primarily focussed on the formalism necessary for including MHOUs, and on the validation of the method. We find that scale variation appears to work well for this purpose, and that our prescriptions for combining scales are more successful and free from instabilities than the established ``envelope" techniques. It is also clear that there is scope for more complex scale variation techniques, particularly for the factorisation scale, which as a first step could be split into singlet and non-singlet variation. 
 
-\section{Impact on phenomenology}
-\label{sec:mhoupheno}
+The PDFs detailed in this chapter, along with PDFs with varied scales, are available in {\tt LHAPDF} format~\cite{Buckley:2014ana} from the NNPDF website:
+
+\begin{center}
+ \href{http://nnpdf.mi.infn.it/nnpdf3-1th/}{\tt http://nnpdf.mi.infn.it/nnpdf3-1th/}
+\end{center}
+
+It now remains to investigate the impact of including MHOUs in PDFs on phenomenology, that is, in using them to compute predictions for cross-sections. For this some thorough analysis is required to address the potential ``double counting" of theory uncertainties, where they are included both in the PDF and in the hard cross-section. We will address this in considerable detail in the following chapter.
