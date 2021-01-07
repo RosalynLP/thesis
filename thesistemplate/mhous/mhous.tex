@@ -940,13 +940,73 @@ This means that if there were no other changes we would expect PDF uncertainties
 
 The PDFs considered in this section are summarised in Table~\ref{tab:thcovmatFits}. NNLO PDFs with MHOUs are to
 be determined in a future work. The $\phi$ and $\chi^2$ values
-for these fits are shown in Tabs.~\ref{table:phitable_covth_global_nlo}, \ref{table:chi2table_covth_global_nlo}, broken down by process type and, for $\chi^2$ by dataset. 
+for these fits are shown in Tabs.~\ref{table:phitable_covth_global_nlo}, \ref{table:chi2table_covth_global_nlo}, broken down by process type and, for $\chi^2$ by dataset.
 
+\subsection{Fit quality}
 We can see that including MHOUs causes the $\chi^2$ to decrease, both globally and for many individual datasets. This is an indication that the fit quality has improved, and is to be expected as we have added additional uncertainties. This varies slightly by prescription, with 9-point showing the greatest improvement, down 3\%, which is comparable to the NNLO value. This suggests that the theory uncertainty is doing a reasonable job of accounting for the NNLO correction. Individual datasets follow a similar trend, with the caveat that at NNLO some datasets acquire additional uncertainties, which confuses the comparison (e.g. CMS $Z$ $p_{T}$). $\phi$ increases by 30\% for 9-point, less than the expected value of $r_\phi$=1.69, suggesting a resolution of tension between datasets. This is relatively stable across prescription choice, although a little higher for 9-point. 
 
 Let us now turn our attention to the fits were $S$ is only included in the sampling or the fitting. For sampling only, we expect the uncertainty to increase, leading to broad fluctuations in the data replicas, but because this is not accounted for in the $\chi^2$ the fit quality should be worse. This is indeed what we see, with the $\chi^2$ increasing and the $\phi$ tripling in value.  For fitting only, the MHOU should mostly affect the weighting between datasets, and therefore the central value of the PDFs. We can see that the $\chi^2$ is close to that of the fit with $S$ in fitting \textit{and} sampling, and the $\phi$ increases less. But it is clear that it is inclusion of $S$ in the fitting which drives the best fit.
 
+\subsection{Form of PDFs}
+We now consider the form of the PDFs themselves. Fig~\ref{fig:Global-NLO-CovMatTH} shows the NLO PDFs before and after adding (9-point) MHOUs. These are compared to the central value of the NNLO $C$-only PDF. Results are shown at the parametrisation scale, $Q=1.6$ GeV, alongside a higher scale, $Q=10$ GeV, for $g$, $\Sigma$, $\bar{d}$ and $s^+ = s + \bar{s}$. In the data region, the PDF uncertainties increase a small amount, but the biggest difference is in the significant shift of central value, up to 1-$\sigma$. This corresponds with what we saw earlier in the $\phi$ values, which increase only a small amount, suggesting that tension in the data region has been partially resolved. Outwith the data region, however, the uncertainties increase more, particularly in the poorly-understood extrapolation region at very low $x$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+       \includegraphics[scale=0.35]{mhous/plots/xg-Global-NLO-CovMatTH-EXP-vsTH16.pdf}
+    \includegraphics[scale=0.35]{mhous/plots/xg-Global-NLO-CovMatTH-EXP-vsTH.pdf}
+         \includegraphics[scale=0.35]{mhous/plots/xsinglet-Global-NLO-CovMatTH-EXP-vsTH16.pdf}
+    \includegraphics[scale=0.35]{mhous/plots/xsinglet-Global-NLO-CovMatTH-EXP-vsTH.pdf}
+         \includegraphics[scale=0.35]{mhous/plots/xdbar-Global-NLO-CovMatTH-EXP-vsTH16.pdf}
+    \includegraphics[scale=0.35]{mhous/plots/xdbar-Global-NLO-CovMatTH-EXP-vsTH.pdf}
+       \includegraphics[scale=0.35]{mhous/plots/xsp-Global-NLO-CovMatTH-EXP-vsTH16.pdf}
+   \includegraphics[scale=0.35]{mhous/plots/xsp-Global-NLO-CovMatTH-EXP-vsTH.pdf}
 
+   \caption{\small NLO PDFs based on $C$ and $C+S^{\rm (9pt)}$ normalised
+     to the former, alongside the central value of the NNLO fit based on $C$.
+     %
+     Results are shown at $Q=1.6$ GeV (left column) and $Q=10$ GeV (right column). From top to bottom: gluon; total quark singlet;
+     anti-down quark; total strangeness.
+    \label{fig:Global-NLO-CovMatTH} }
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[scale=0.35]{mhous/plots/xg-Global-NLO-CovMatTH-prescriptions.pdf}
+    \includegraphics[scale=0.35]{mhous/plots/xg-ERR-Global-NLO-CovMatTH-prescriptions-uncertainties.pdf}
+    \includegraphics[scale=0.35]{mhous/plots/xsinglet-Global-NLO-CovMatTH-prescriptions.pdf}
+     \includegraphics[scale=0.35]{mhous/plots/xsinglet-ERR-Global-NLO-CovMatTH-prescriptions-uncertainties.pdf}
+    \includegraphics[scale=0.35]{mhous/plots/xdbar-Global-NLO-CovMatTH-prescriptions.pdf}
+     \includegraphics[scale=0.35]{mhous/plots/xdbar-ERR-Global-NLO-CovMatTH-prescriptions-uncertainties.pdf}
+   \includegraphics[scale=0.35]{mhous/plots/xsp-Global-NLO-CovMatTH-prescriptions.pdf}
+   \includegraphics[scale=0.35]{mhous/plots/xsp-ERR-Global-NLO-CovMatTH-prescriptions-uncertainties.pdf}
+   \caption{\small Same as Fig.~\ref{fig:Global-NLO-CovMatTH} but comparing the 3-, 7-, and 9-point prescriptions, normalised
+     to 9-point. The right hand panel shows the 
+     relative PDF uncertainties for clarity.
+    \label{fig:Global-NLO-CovMatTH-prescriptions} }
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+We can see that the central values are compatible with the NNLO ones within uncertainties, but more strikingly it is especially evident at the parametrisation scale that adding MHOUs tends to shift the central value towards the NNLO one. Although this shift is scale dependent, given that NLO and NNLO PDFs evolve differently, this agreement is still somewhat apparent at the higher scale; the strange content shifts up and the gluon shifts down. 
+%
+Comparing the different prescriptions (Fig.~\ref{fig:Global-NLO-CovMatTH-prescriptions}), it is apparent that the results are fairly stable, with the asymmetric prescriptions (3-point and 7-point) showing closer similarity to one another but with 3-point having slightly larger uncertainties.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[scale=0.35]{mhous/plots/xg-Global-NLO-CovMatTH-tests.pdf}
+    \includegraphics[scale=0.35]{mhous/plots/xsinglet-Global-NLO-CovMatTH-tests.pdf}
+    \includegraphics[scale=0.35]{mhous/plots/xdbar-Global-NLO-CovMatTH-tests.pdf}
+   \includegraphics[scale=0.35]{mhous/plots/xsp-Global-NLO-CovMatTH-tests.pdf}
+   \caption{\small Same as Fig.~\ref{fig:Global-NLO-CovMatTH}, now comparing $C+S^{(\rm 9pt)}$ fit with those in which
+     the theory covariance matrix $S$ is included either in the $\chi^2$
+     definition or in the generation of Monte Carlo replicas, but not on both.
+    \label{fig:Global-NLO-CovMatTH-tests} }
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Finally we compare using $S$ in only fitting or sampling (Fig~\ref{fig:Global-NLO-CovMatTH-tests}). For sampling only, the PDF uncertainty increases dramatically, with poor fit quality, especially in the quark distributions. For fitting only, the central value is affected due to the change in relative weights of the datasets, such that it is similar to that for fitting + sampling. The uncertainty, however, shows only a very small change in the data region. This all arises because the inclusion of MHOUs in data generation cause the pseudodata broadness to increase dramatically, which is in turn balanced by a relaxation of tensions due to the inclusion of MHOUs in fitting. This has the effect of a sizeable shift in central values with only a small increase in uncertainties. 
 
 
 \section{Impact on phenomenology}
