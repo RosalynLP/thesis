@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[t]
+\begin{table}[H]
 \begin{center}
 \renewcommand*{\arraystretch}{1.78}
 \footnotesize
-\begin{tabular}{|l|c|c|ccc|cc|c|}
+\resizebox{0.8\textwidth}{!}{\begin{tabular}{|l|c|c|ccc|cc|c|}
   \toprule
-  &    & \multicolumn{7}{c|}{$\chi^2/n_{\rm dat}$ in the NNPDF3.1 global fits}   \\
- Process & $n_{\rm dat}$ & \multicolumn{6}{c|}{NLO}  & NNLO  \\
+  &    & \multicolumn{7}{c|}{$\chi^2/N_{\rm dat}$}   \\
+ Process & $N_{\rm dat}$ & \multicolumn{6}{c|}{NLO}  & NNLO  \\
  &  & $C$ & $C+S^{(\rm 9pt)}$   &  $C+S^{(\rm 7pt)}$  &  $C+S^{(\rm 3pt)}$ & $C+S^{(\rm 9pt)}_{\rm fit}$ &
   $C+S^{(\rm 9pt)}_{\rm sampl}$   &  $C$ \\
 \toprule
@@ -19,21 +19,9 @@ TOP       & 26   & 1.260  & 1.012   & 1.016 & 1.077 & 1.001 & 1.264 & 1.068 \\
 \midrule
 Total     & 2819 & 1.139  & 1.109   & 1.129 & 1.139 & 1.113 & 1.217 & 1.105 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
+ \vspace*{-1cm} 
 \end{center}
-\caption{The values of the $\chi^2/N_{\rm dat}$ and of the $\phi$ estimator
-  in the NNPDF3.1 global fits
-  with the theory covariance matrix $S$, compared to the results based on including only
-  the experimental covariance matrix $C$. Results are shown
-for  the 9-, 7-, and 3- point prescriptions.
-  %
-  For the 9-point prescription we also show  results obtained
-  including the theory covariance matrix
-only in the $\chi^2$ definition Eq.~(\ref{eq:chi2_v3}) but not
-in the data generation Eq.~(\ref{eq:dgen}) and conversely.
-  Values corresponding to the
-  NNLO fit with  experimental covariance matrix $C$ only are also shown.
   \label{table:chi2table_covth_global_nlo}
-}
   \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

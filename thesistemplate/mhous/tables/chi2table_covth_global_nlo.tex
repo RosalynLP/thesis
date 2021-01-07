@@ -1,13 +1,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{table}[!p]
+\begin{table}[H]
 \begin{center}
 \renewcommand*{\arraystretch}{1.4}
 \scriptsize
-\begin{tabular}{|l|c|c|ccc|cc|c|}
+ \resizebox{\textwidth}{!}{\begin{tabular}{|l|c|c|ccc|cc|c|}
 %\begin{tabular}{lcccccccc}
   \toprule
   &    & \multicolumn{7}{c|}{$\chi^2/N_{\rm dat}$ in the NNPDF3.1 global fits}   \\
- Dataset & $n_{\rm dat}$ & \multicolumn{6}{c|}{NLO}  & NNLO  \\
+ Dataset & $N_{\rm dat}$ & \multicolumn{6}{c|}{NLO}  & NNLO  \\
  &  & $C$ & $C+S^{(\rm 9pt)}$   &  $C+S^{(\rm 7pt)}$  &  $C+S^{(\rm 3pt)}$ & $C+S^{(\rm 9pt)}_{\rm fit}$ &
   $C+S^{(\rm 9pt)}_{\rm samp}$   &  $C$ \\
 \toprule
@@ -61,21 +61,9 @@ CMS $t\bar{t}$ rap                      &   10 & 0.950 & 0.910 & 0.923 & 0.933 &
 \midrule
 \bf Total                               & \bf 2819 & \bf 1.139 & \bf 1.109 & \bf 1.129 & \bf 1.139 & \bf 1.113 & \bf 1.220 & \bf 1.105 \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{center}
-\caption{The values of the $\chi^2/N_{\rm dat}$ in NLO global fits
-  with the theory covariance matrix $S$, compared to the results based on including only
-  the experimental covariance matrix $C$. Results are shown
-  for  the 9-, 7-, and 3- point prescriptions.
-  %
-  For the 9-point prescription we also show results obtained
-  including the theory covariance matrix in the $\chi^2$ 
-  definition Eq.~(\ref{eq:chi2_v3}) but not
-  in the data generation Eq.~(\ref{eq:dgen}) (marked $S_{\rm fit}^{9pt}$) 
-  and then in the data generation Eq.~(\ref{eq:dgen}) but not in the $\chi^2$ 
-  definition Eq.~(\ref{eq:chi2_v3}) (marked $S_{\rm sampl}^{9pt}$).
-  Values corresponding to the
-  NNLO fit with  experimental covariance matrix $C$ only are also shown.
+\caption{Same as in Tab.~\ref{tab:phitable_covth_global_nlo} but broken down by dataset.
   \label{table:chi2table_covth_global_nlo}
 }
   \end{table}

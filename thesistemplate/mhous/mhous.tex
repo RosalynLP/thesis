@@ -898,6 +898,56 @@ Overall, we have shown that all of the prescriptions capture most of the importa
 
 \section{PDFs with missing higher order uncertainties}
 \label{sec:pdfs}
+In this section we present aim of this project: PDFs at NLO with the sysematic inclusion of MHOUs. We compare NLO PDFs with and without MHOUs against the known NNLO PDFs, addressing the stability of the results to changes in prescription for the covariance matrix (9-pt vs 7-pt vs 3-pt). We break down the impact of MHOUs by including them separately in the Monte-Carlo sampling or the fitting. 
+
+To recap, there are only two places in which a theory covariance matrix changes the PDF determination: 
+\subsubsection{Sampling}
+Recall that Monte Carlo pseudodata replicas $D_i^{(k)}$, $k=1, \dots N_{rep}$, are generated such that their covariance gives the total covariance matrix:
+\be 
+\lim_{N_{rep} \to \infty} \frac{1}{N_{rep}(N_{rep}-1)} \sum_{k=1}^{N_{rep}} (D_i^{(k)}- \langle D_i \rangle)(D_j^{(k)}- \langle D_j \rangle) = C_{ij} + S_{ij},
+\ee
+where $\langle \dots \rangle$ denotes an average over replicas. 
+\subsubsection{Fitting}
+During fitting the $\chi^2$ is minimised, and this depends on $S_{ij}$ through the equation:
+\be
+\chi^2 = \frac{1}{N_{dat}} \sum_{i,j}^{N_{dat}} (D_i - T_i) (C+S)_{ij}^{-1}(D_j - T_j),
+\ee
+where $C_{ij}$ is the t0 covariance matrix to avoid d'Agostini bias, as mentioned previously~\cite{DAgostini:1993arp, Ball:2009qv}.
+
+We can assess the quality of the fit using this $\chi^2$ estimator alongside the $\phi$ estimator, defined as
+\be 
+\phi = \sqrt{ \langle \chi^2_{exp}[T_i] \rangle - \chi^2_{exp}[\langle T_i \rangle ] },
+\ee
+where $\chi^2_{exp}$ is evaluated using the (non-t0) experimental covariance matrix, $C_{ij}$. Following Ref.~\cite{Ball:2014uwa}, this can be expressed as
+\be 
+\phi = \sqrt{ \frac{1}{N_{dat}} \sum_{i,j=1}^{N_{dat}} (C_{ij} + S_{ij})^{-1} X_{ij} },
+\ee
+where $X_{ij} = \langle T_i T_j \rangle - \langle T_i \rangle \langle T_j \rangle$ is the covariance matrix of theoretical predictions. Thiis is a measure of the consistency of the data; if they are consistent, then they should combine to reduce the uncertainty and so $\phi \ll 1$. The result should be a factor of $r_{\phi}$ greater than when $S$ is not included, where
+\be
+r_{\phi} = \sqrt{1 + \frac{1}{N_{dat}} \sum_{i,j=1}^{N_{dat}} C_{ij}^{-1} S_{ij} }.
+\ee
+?? Work out why ??
+This means that if there were no other changes we would expect PDF uncertainties to increase by $r_{\phi}$ upon including MHOUs. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \input{mhous/tables/list-fits-thcovmat.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \input{mhous/tables/chi2table_phi_global.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \input{mhous/tables/chi2table_covth_global_nlo.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The PDFs considered in this section are summarised in Table~\ref{tab:thcovmatFits}. NNLO PDFs with MHOUs are to
+be determined in a future work. The $\phi$ and $\chi^2$ values
+for these fits are shown in Tabs.~\ref{table:phitable_covth_global_nlo}, \ref{table:chi2table_covth_global_nlo}, broken down by process type and, for $\chi^2$ by dataset. 
+
+We can see that including MHOUs causes the $\chi^2$ to decrease, both globally and for many individual datasets. This is an indication that the fit quality has improved, and is to be expected as we have added additional uncertainties. This varies slightly by prescription, with 9-point showing the greatest improvement, down 3\%, which is comparable to the NNLO value. This suggests that the theory uncertainty is doing a reasonable job of accounting for the NNLO correction. Individual datasets follow a similar trend, with the caveat that at NNLO some datasets acquire additional uncertainties, which confuses the comparison (e.g. CMS $Z$ $p_{T}$). $\phi$ increases by 30\% for 9-point, less than the expected value of $r_\phi$=1.69, suggesting a resolution of tension between datasets. This is relatively stable across prescription choice, although a little higher for 9-point. 
+
+Let us now turn our attention to the fits were $S$ is only included in the sampling or the fitting. For sampling only, we expect the uncertainty to increase, leading to broad fluctuations in the data replicas, but because this is not accounted for in the $\chi^2$ the fit quality should be worse. This is indeed what we see, with the $\chi^2$ increasing and the $\phi$ tripling in value.  For fitting only, the MHOU should mostly affect the weighting between datasets, and therefore the central value of the PDFs. We can see that the $\chi^2$ is close to that of the fit with $S$ in fitting \textit{and} sampling, and the $\phi$ increases less. But it is clear that it is inclusion of $S$ in the fitting which drives the best fit.
+
+
+
 
 \section{Impact on phenomenology}
 \label{sec:mhoupheno}
