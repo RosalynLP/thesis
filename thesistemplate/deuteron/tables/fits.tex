@@ -1,0 +1,34 @@
+\begin{table}[!t]
+  \rowcolors{2}{gray!25}{white}
+  \centering
+  \scriptsize
+  \renewcommand{\arraystretch}{1.13}
+  \begin{tabularx}{\textwidth}{lllX}
+    \toprule
+    \rowcolor{gray!40}
+    {\bf Iteration }  & {\bf Dataset }            & {\bf Fit ID }        & { \bf Description }\\
+    \midrule
+    Baseline    & Proton and Deuteron & global-base    & Same as {\tt base} fit in~\cite{Faura:2020oom}.\\
+    \midrule
+    Iteration 0 & Proton              & proton-ite0    & Same as baseline, but restricted to the proton dataset\\
+    \midrule
+    Iteration 1 & Deuteron            & deuteron-ite1  & Same as baseline, but restricted to the deuteron dataset
+                                                         and supplemented with a proton covariance matrix determined
+                                                         from the proton-ite0 fit according to
+                                                         Eq.~\eqref{eq:protoncovmatrix}.\\
+                & Proton and Deuteron & global-ite1-dw & Same as baseline, but supplemented with a deuteron covariance
+                                                         matrix determined from the deuteron-ite1 fit according to
+                                                         Eq.~\eqref{eq:deuteroncovmatrix}.\\
+    \midrule
+    Iteration 2 & Deuteron            & deuteron-ite2  & Same as deuteron-ite1, but with a proton covariance matrix
+                                                         determined from the global-ite1-dw fit.\\
+                & Proton and Deuteron & global-ite2-dw & Same as global-ite1-dw, but with a deuteron covariance matrix
+                                                         determined from the deuteron-ite2 fit.\\
+                & Proton and Deuteron & global-ite2-sh & Same as global-ite2-sh, but with a deuteron covariance matrix
+                                                         and shifts determined according to
+                                                         Eqs.~\eqref{eq:deuteroncovmatrixnew}-\eqref{eq:deuteroncovmatrixshift}.\\
+    \bottomrule
+  \end{tabularx}
+  \caption{A summary of the fits performed in this study, see text for details.}
+  \label{tab:fits}
+\end{table}

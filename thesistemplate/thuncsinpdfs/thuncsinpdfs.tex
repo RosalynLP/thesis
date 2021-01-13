@@ -56,6 +56,7 @@ P(D|T) =  \int D^N \truev P(\truev |T) P(D|\truev).
 \eeq
 We can always write the theory predictions $T$ in terms of their shifts $\D$ relative the true values $\truev$:
 \beq
+\label{eqn:thshift}
 \D_i \equiv \truev_i - T_i.
 \eeq
 These shifts quantify the accuracy of the theoretical predictions, and can be thought of as nuisance parameters in the PDF fit. We can express the above integral in terms of the shifts $\D_i$, making use of the assumptions of Gaussianity in Eqns. \ref{eqn:gaussexp} and \ref{eqn:gausstheory}:
@@ -96,6 +97,7 @@ Comparing this result to Eqn. \ref{eqn:gaussexp}, we can confirm that when we po
 
 Now all that remains is to construct a theory covariance matrix which parametrises each instance of theoretical uncertainty. This is a nebulous task, given that we are not privy to the true values, $\truev$, and so are unable to simply apply the formal definition
 \beq
+\label{eqn:covmat_formal_def}
 S_{ij} = \langle (\truev_i - T_i) (\truev_j - T_j) \rangle,
 \eeq
 where $\langle \cdot \rangle$ denotes an average over true values, $\truev$. We need to find methods to calculate the various contributions $S_{ij}$ (be them MHOUs, nuclear corrections, higher twist corrections etc.) which not only encapsulate the per-point theoretical errors but also preserve the correlations between different data points. Unlike experimental uncertainties, these correlations can exist outwith individual experiments; in fact, all data in PDF fits depend themselves on PDFs, and this common link will lead to correlations between all datapoints, albeit of varying strength. 
