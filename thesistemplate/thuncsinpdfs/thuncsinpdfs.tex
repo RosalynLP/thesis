@@ -1,15 +1,15 @@
 \chapter{Theory uncertainties in PDFs}
 \label{chapter:thuncs}
-\bi 
-\item What are theory uncertainties?
-\item Why are they now important?
-\item Types of unc - see below
-\item Bayesian interpretation of these uncertainties - there is one "true" value e.g. for the higher order value, so need to estimate uncertainty bc will never know the size of e.g. MHOU unless you go ahead and calc - maybe ref d'Agostini paper on Bayesian interpretation
-\item Will use Bayesian framework and assume Gaussianity of the expected true value of theory calc
-\item Show C+S in fit - plus sign because exp and th unc are independent so combine errors in quadrature. They are also on an equal footing in terms of their effect on the PDFs
-\item When many datasets/global fit, can have v strong theory correlations even across different experiments, because the underlying theory connects them
+The concept of experimental uncertainties is one that is familiar to any scientist. Whenever we make a measurement it is accompanied by an uncertainty which quantifies our degree of confidence in its accuracy. The smaller this uncertainty is, the more useful the measurement is. Not providing an uncertainty arguably renders the measurement useless, as the implicit uncertainty could in principle be arbitrarily large. 
 
-\ei
+But uncertainties also apply to theoretical predictions. In a broad sense, there is some uncertainty associated with our degree of confidence in a particular theoretical model, but even within the parameters of a model a prediction can often be uncertain. In the case of QCD there are many contributions to this uncertainty. One of the most obvious is the truncation of the perturbation series to fixed order, necessary because successively complex calculations are required for increasing orders. Other contributions include: non-perturbative effects such as higher-twist terms, treatment of heavy quarks and the impact of nuclear environments~\cite{Forte:2010ta, Ball:2013gsa}; and choice of model parameters such as $\alpha_s$ and particle masses, which have to be determined from experiment, and are subject to different theoretical definitions~\cite{Hoang:2014oea,Ball:2018iqk}.
+
+PDFs are produced in fits which compare experimental measurements with theoretical predictions, so uncertainties in both these places should end up in the PDFs. In the past we have got away with arguing that theory uncertainties are small compared to experimental uncertainties~\cite{Ball:2013gsa}, and so the experimental ones with dominate the PDF uncertainty. In regions where this is not the case, such as the higher-twist region, the data are simply not included in the fit. But such an argument is increasingly becoming a stretch, due to ultra-precision measurements, the advent of the high-luminosity LHC~\cite{HL-LHC}, and anticipated future colliders~\cite{FCC, CLIC, ILC}.
+
+To calculate theoretical uncertainties we must first consider what it is we are trying to calculate. Underlying the uncertainty is a ``true" value, which we are unable to determine exactly. This suggests a Bayesian approach is most appropriate~\cite{DAgostini:1998klm,DAgostini:2003bpu}, where the uncertainty quantifies our belief that the true value lies within a certain range. We will use such a Bayesian framework, and assume Gaussianity of the expected true value of the theory calculation in order to simplify the situation. This should be sufficient to capture the main features of the uncertainty. 
+
+In this section we will show that including general theory uncertainties in PDFs can be done by constructing a theory covariance matrix, $S$, to complement the experimental covariance matrix, $C$. Theory uncertainties can then be included in a fit by the replacement $C \to C + S$~\cite{Ball:2018odr}. The plus sign appears because the experimental and theoretical uncertainties are independent, so the errors are combined in quadrature. They are also on an equal footing in terms of their effect on the PDFs. When there are many data sets, for example in a global fit, there can be very strong correlations in theory uncertainty, even outwith individual experiments. This is because the underlying theory connects different predictions, even when the corresponding data comes from different experiments. 
+
 \section{Fitting PDFs including theory uncertainties}
 Historically, experimental uncertainties have been the dominant source of error in PDF fits. 
 In the NNPDF framework both replica generation and computation of $\chi^2$ 
@@ -20,7 +20,7 @@ distributions~\cite{Aad:2014xaa,Khachatryan:2015oaa,Aad:2015auj}, which have ver
 the inclusion of theoretical errors, this has led to tension with the other datasets.
 
 In future NNPDF fits theoretical uncertainties will be included following a procedure outlined
-by Ball \& Desphande \cite{Ball:2018odr}. This hinges on a result from Bayesian statistics
+by Ball \& Deshpande \cite{Ball:2018odr}. This hinges on a result from Bayesian statistics
 which applies to Gaussian errors. Namely, theory uncertainties can be included by directly 
 adding a theoretical
 covariance matrix to the experimental covariance matrix prior to the fitting. A brief summary of

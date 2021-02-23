@@ -26,7 +26,7 @@ Having established the importance of including MHOUs, in the next section we wil
 
 The most popular method for estimating MHOUs is by ``scale variation". This is based on making theoretical predictions at a range of values of the artificial renormalisation ($\mu_R$) and factorisation ($\mu_F$) scales introduced in Chapter~\ref{chapter:background}. The renormalisation group equation (RGE;~\ref{eqn:rge}) and factorisation theorem only hold to all orders in perturbation theory, and in this case varying the scale values will have no effect on any results. However, when the perturbative expansion is truncated, there will be a residual $\mu_R$ and $\mu_F$ dependence which characterises the degree of MHOU. Varying these scales and observing the impact on the predictions can therefore provide an estimate of the MHOUs. 
 
-Although other approaches to estimating MHOUs, based on the current known orders, have been suggested~\cite{Cacciari:2011ze, David:2013gaa, Bagnaschi:2014wea}, we adopted the method of scale variations not only because it is the most widely used, but also because it is the most easily implemented for our purposes. Firstly, the renormalisation group invariance is incorporated automatically, which ensures the MHOUs decrease as the perturbative order increases. Secondly, the scale dependece of $\alpha_s(\mu_R^2)$ and the PDFs is universal to all processes, which is important for PDF fits dealing with a range of interactions. Finally, correlations between data points are implicitly maintained because predictions for different scale values will be smooth functions of kinematics; this ensures that neighbouring regions of phase space will be strongly correlated.
+Although other approaches to estimating MHOUs, based on the current known orders, have been suggested~\cite{Cacciari:2011ze, David:2013gaa, Bagnaschi:2014wea, Bonvini:2020xeo}, we adopted the method of scale variations not only because it is the most widely used, but also because it is the most easily implemented for our purposes. Firstly, the renormalisation group invariance is incorporated automatically, which ensures the MHOUs decrease as the perturbative order increases. Secondly, the scale dependece of $\alpha_s(\mu_R^2)$ and the PDFs is universal to all processes, which is important for PDF fits dealing with a range of interactions. Finally, correlations between data points are implicitly maintained because predictions for different scale values will be smooth functions of kinematics; this ensures that neighbouring regions of phase space will be strongly correlated.
 
 There are, however, some disadvantages. Firstly, the definition of the two scales themselves have been historically approached in various ways, often differently for DIS and hadronic collisions, but also changing over time. Since PDFs use both DIS and hadronic data we need to settle on a consistent approach. Secondly, there is no cut and dry method for determining the range of varied scale choices, and in fact the choice of central scales are themselves to some degree arbitrary; for example, top production processes commonly have both central scales set to the top mass, $m_t$, and DIS processes have both set to Bj\"orken $Q$. Though there is physical motivation for these choices, we could equally well pick 2$m_t$ rather than $m_t$ in the former case, for example. A standard approach is to take the 7-point envelope of the predictions obtained by varying $(\mu_F, \mu_R)$ independently in $\{1/2, 1, 2\}$, excluding $(1/2, 1/2)$ and $(2,2)$. However, for our purposes we do not want a per-point envelope but rather a covariance matrix which retains correlations between data points. We will address both of these drawbacks below. 
 
@@ -953,17 +953,17 @@ We now consider the form of the PDFs themselves. Fig~\ref{fig:Global-NLO-CovMatT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
-       \includegraphics[scale=0.35]{mhous/plots/xg-Global-NLO-CovMatTH-EXP-vsTH16.pdf}
-    \includegraphics[scale=0.35]{mhous/plots/xg-Global-NLO-CovMatTH-EXP-vsTH.pdf}
-         \includegraphics[scale=0.35]{mhous/plots/xsinglet-Global-NLO-CovMatTH-EXP-vsTH16.pdf}
-    \includegraphics[scale=0.35]{mhous/plots/xsinglet-Global-NLO-CovMatTH-EXP-vsTH.pdf}
-         \includegraphics[scale=0.35]{mhous/plots/xdbar-Global-NLO-CovMatTH-EXP-vsTH16.pdf}
-    \includegraphics[scale=0.35]{mhous/plots/xdbar-Global-NLO-CovMatTH-EXP-vsTH.pdf}
-       \includegraphics[scale=0.35]{mhous/plots/xsp-Global-NLO-CovMatTH-EXP-vsTH16.pdf}
-   \includegraphics[scale=0.35]{mhous/plots/xsp-Global-NLO-CovMatTH-EXP-vsTH.pdf}
+       \includegraphics[scale=0.45]{mhous/plots/jplots/pdfscalespecs0_basespecs0_pdfnormalize0_plot_pdfs_g.png}
+    \includegraphics[scale=0.45]{mhous/plots/jplots/pdfscalespecs0_basespecs0_pdfnormalize0_plot_pdfs_g2.png}
+         \includegraphics[scale=0.45]{mhous/plots/jplots/pdfscalespecs0_basespecs1_pdfnormalize0_plot_pdfs_Sigma.png}
+            \includegraphics[scale=0.45]{mhous/plots/jplots/pdfscalespecs0_basespecs1_pdfnormalize0_plot_pdfs_Sigma2.png}
+    \includegraphics[scale=0.45]{mhous/plots/jplots/pdfscalespecs0_basespecs0_pdfnormalize0_plot_pdfs_bard.png}
+         \includegraphics[scale=0.45]{mhous/plots/jplots/pdfscalespecs0_basespecs0_pdfnormalize0_plot_pdfs_bard2.png}
+    \includegraphics[scale=0.45]{mhous/plots/jplots/pdfscalespecs0_basespecs0_pdfnormalize0_plot_pdfs_s.png}
+       \includegraphics[scale=0.45]{mhous/plots/jplots/pdfscalespecs0_basespecs0_pdfnormalize0_plot_pdfs_s2.png}
 
-   \caption{\small NLO PDFs based on $C$ and $C+S^{\rm (9pt)}$ normalised
-     to the former, alongside the central value of the NNLO fit based on $C$.
+   \caption{\small NLO PDFs based on $C$ (green) and $C+S^{\rm (9pt)}$ (orange) normalised
+     to the former, alongside the central value of the NNLO fit based on $C$ (blue line).
      %
      Results are shown at $Q=1.6$ GeV (left column) and $Q=10$ GeV (right column). From top to bottom: gluon; total quark singlet;
      anti-down quark; total strangeness.
@@ -974,15 +974,15 @@ We now consider the form of the PDFs themselves. Fig~\ref{fig:Global-NLO-CovMatT
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
-    \includegraphics[scale=0.35]{mhous/plots/xg-Global-NLO-CovMatTH-prescriptions.pdf}
-    \includegraphics[scale=0.35]{mhous/plots/xg-ERR-Global-NLO-CovMatTH-prescriptions-uncertainties.pdf}
-    \includegraphics[scale=0.35]{mhous/plots/xsinglet-Global-NLO-CovMatTH-prescriptions.pdf}
-     \includegraphics[scale=0.35]{mhous/plots/xsinglet-ERR-Global-NLO-CovMatTH-prescriptions-uncertainties.pdf}
-    \includegraphics[scale=0.35]{mhous/plots/xdbar-Global-NLO-CovMatTH-prescriptions.pdf}
-     \includegraphics[scale=0.35]{mhous/plots/xdbar-ERR-Global-NLO-CovMatTH-prescriptions-uncertainties.pdf}
-   \includegraphics[scale=0.35]{mhous/plots/xsp-Global-NLO-CovMatTH-prescriptions.pdf}
-   \includegraphics[scale=0.35]{mhous/plots/xsp-ERR-Global-NLO-CovMatTH-prescriptions-uncertainties.pdf}
-   \caption{\small Same as Fig.~\ref{fig:Global-NLO-CovMatTH} but comparing the 3-, 7-, and 9-point prescriptions, normalised
+    \includegraphics[scale=0.45]{mhous/plots/jplots/j2g.png}
+    \includegraphics[scale=0.45]{mhous/plots/jplots/jeg.png}
+        \includegraphics[scale=0.45]{mhous/plots/jplots/j2sig.png}
+    \includegraphics[scale=0.45]{mhous/plots/jplots/jesigma.png}
+       \includegraphics[scale=0.45]{mhous/plots/jplots/j2d.png}
+    \includegraphics[scale=0.45]{mhous/plots/jplots/jed.png}
+       \includegraphics[scale=0.44]{mhous/plots/jplots/j2s.png}
+    \includegraphics[scale=0.45]{mhous/plots/jplots/jes.png}
+   \caption{\small Same as Fig.~\ref{fig:Global-NLO-CovMatTH} but comparing the 3- (blue), 7- (orange), and 9-point (green) prescriptions, normalised
      to 9-point. The right hand panel shows the 
      relative PDF uncertainties for clarity.
     \label{fig:Global-NLO-CovMatTH-prescriptions} }
@@ -996,13 +996,13 @@ Comparing the different prescriptions (Fig.~\ref{fig:Global-NLO-CovMatTH-prescri
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
   \begin{center}
-    \includegraphics[scale=0.35]{mhous/plots/xg-Global-NLO-CovMatTH-tests.pdf}
-    \includegraphics[scale=0.35]{mhous/plots/xsinglet-Global-NLO-CovMatTH-tests.pdf}
-    \includegraphics[scale=0.35]{mhous/plots/xdbar-Global-NLO-CovMatTH-tests.pdf}
-   \includegraphics[scale=0.35]{mhous/plots/xsp-Global-NLO-CovMatTH-tests.pdf}
-   \caption{\small Same as Fig.~\ref{fig:Global-NLO-CovMatTH}, now comparing $C+S^{(\rm 9pt)}$ fit with those in which
+    \includegraphics[scale=0.44]{mhous/plots/jplots/j3g.png}
+        \includegraphics[scale=0.44]{mhous/plots/jplots/j3sigma.png}
+       \includegraphics[scale=0.45]{mhous/plots/jplots/j3d.png}
+       \includegraphics[scale=0.44]{mhous/plots/jplots/j3s.png}
+   \caption{\small Same as Fig.~\ref{fig:Global-NLO-CovMatTH}, now comparing $C+S^{(\rm 9pt)}$ fit (green) with those in which
      the theory covariance matrix $S$ is included either in the $\chi^2$
-     definition or in the generation of Monte Carlo replicas, but not on both.
+     definition (orange) or in the generation of Monte Carlo replicas (blue), but not on both.
     \label{fig:Global-NLO-CovMatTH-tests} }
   \end{center}
 \end{figure}
