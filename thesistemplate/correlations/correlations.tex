@@ -119,6 +119,91 @@ so the theory uncertainty is always reduced when information on $D$ is added. Fi
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Decorrelation}
+We will now test out this formalism in the case of a ``perfect fit". This is one where the theory inputs to the fit are flexible enough to fit the data exactly. It is not a especially realistic situation in the context of PDF fits, but will serve as a useful foundation on which to model more complex situations. 
+
+In this perfect fit $P(T|D)$ (Eqn.~\ref{eqn:ptd2}) is maximised when $T=D$, which corresponds to $\chi^2 = 0$. The data and theory are therefore fully correlated, and the expectation value, $E[\cdot]$, and covariance, $\Cov[\cdot]$, of the theory are
+\be
+\label{eq:perfectfit}
+E[T] = D,\qquad \Cov[T] = \Cov[D] = C+S.
+\ee
+Looking back at the definition of $\bar{\lambda}$, we can see that after the fit $\bar{\lambda}=0$, and so Eqn.~\ref{eqn:lambdaposterior} is independent of $T$. The posterior for $\lambda$ has 
+\be 
+\label{eq:meanvarlam}
+E[\lambda] =0,\qquad \Var[\lambda] = Z.
+\ee
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+      \includegraphics[width=0.5\textwidth]{correlations/plots/lambdaperfectfit.png}
+    \caption{Sketch of the prior (Eqn.~\ref{eqn:lambdaprior}) and posterior (Eqn.~\ref{eqn:lambdaposterior}) distributions for $\lambda$ in the case of a perfect fit. The additional information from $D$ reduces the uncertainties but there is no shift as the theory fit the data exactly. \label{fig:lambdaperfect}}
+   
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Fig.~\ref{fig:lambdaperfect} shows a sketch of the effect on the distribution of $\lambda$. What happens if we fit $T$ to $D$ and then use the results of this fit to make predictions for $T$? We can call this an ``autoprediction", because we are making predictions about the theory included in the fit itself. In effect this is like making theory predictions for another set of experimental results where the settings tie up exactly with those already included in the fit. In this scenario, the uncertainty is reduced as the experimental data have added information. Remembering that we can write $T(\lambda) = T + \lambda \beta$, we find
+\be
+\label{eq:perfectcovT}
+\begin{split}
+&E[T(\lambda)] = E[T]=D \\ &{\Cov}[T(\lambda)] 
+= {\Cov}[T] + \Var[\lambda] \beta\beta^T = C+S+ZS.
+\end{split}
+\ee
+There are three contributions to the covariance: the experimental uncertainty in the data, the theory uncertainty in the fit, and the theory uncertainty in the prediction. Note that the theory uncertainty in the prediction is reduced by a factor $Z={\rm Var}[\lambda]$, because of the correlation between this and the theory uncertainty in the fit. Note that:
+\begin{itemize}
+\item ignoring correlations amounts to setting $Z=1$ and we get ${\Cov}[T(\lambda)] = C + 2S$. This is the ``conservative prescription" of Chapter.~\ref{chapter:mhous}.
+\item adopting the approach of \cite{Harland-Lang:2018bxd} and assuming full correlations amounts to setting $Z=0$ and we get ${\Cov}[T(\lambda)] = C + S$, so the conservative prescription double counts with respect to this.
+\end{itemize}
+In reality, the situation is somewhere between these two; we see a partial decorrelation due to the presence of experimental uncertainties.
+
+To get a better sense of the size of decorrelation, let's consider a simple model where the experimental covariance matrix is diagonal and the theory uncertainty is fully correlated. Writing $\beta = s e$, where $s$ is the size of correlated theory uncertainty and $e^Te=1$, we have
+\be
+\label{eq:modelCS}
+C = \sigma^2 \mathbb{I},\qquad S = s^2 e e^T,
+\ee
+where $\sigma$ is the per-point uncertainty. Then we can evaluate:
+\be
+\begin{split}
+\label{eq:modelCplusSinv}
+(C+S)^{-1} &= \frac{1}{\sigma^2}\left(1-\frac{s^2}{\sigma^2+s^2}e e^T\right); \\
+Z &= (1+s^2/\sigma^2)^{-1}.
+\end{split}
+\ee
+so we see that the extent of decorrelation depends on the ratio $s^2/\sigma^2$:
+\begin{itemize}
+\item as $\sigma^2/s^2 \to 0$ we tend to the case of no experimental uncertainties, as considered in \cite{Harland-Lang:2018bxd}, and $Z \to 0$.
+\item as $s^2/\sigma^2 \to 0$, $Z \to 1$, which is the conservative prescription.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+  \begin{center}
+      \includegraphics[width=0.5\textwidth]{correlations/plots/plot1.pdf}
+    \caption{ For a perfect fit within the model Eqn.~\ref{eq:modelCS}.  Comparing the ratios to the conervative prescription of the decorrelated ($R$, Eqn.~\ref{eq:modelR}) and correlated ($R_c$, Eqn.~\ref{eq:modelRc}) autoprediction covariance matrices.  \label{fig:plot1}}
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Now consider the covariance matrix of autopredictions. In the conservative case this is $C + 2S$, which in the direction of $e$ is $\sigma^2 + 2s^2$. In any direction orthogonal to $e$ it is just $\sigma^2$ because there are no theory uncertainties in these directions. We can calculate the ratio of the true covariance matrix to the conservative one within the model in Eqn.~\ref{eq:modelCS}. This ratio is
+\bea
+R = \frac{e^T(C+S+ZS)e}{e^T(C+2S)e} &=& \frac{\sigma^2+(1+Z)s^2}{\sigma^2+2s^2}\nn\\
+&=& 1-\frac{s^4}{\sigma^4+3\sigma^2 s^2 + 2s^4}\nn\\
+&\sim&  \begin{cases}{1 -\smallfrac{ s^4}{\sigma^4} \qquad\mbox{for $s^2\ll\sigma^2 $;}}\\{ \half(1+\smallfrac{3\sigma^2}{2s^2})\qquad \mbox{for $s^2 \gg \sigma^2$.}}\end{cases} 
+\label{eq:modelR}
+\eea
+We can see that
+\begin{itemize}
+\item when experimental uncertainties dominate then the theory uncertainties are almost entirely decorrelated. In this case the conservative prescription is almost exact; only a slight overestimate.
+\item when theory uncertainties dominate then there is very little decorrelation, and the conservative prescription double counts the theory uncertainties.
+\end{itemize}
+When we're between these extremes, we can look at the difference between this ratio and that for the fully correlated case, which is
+\bea
+R_c = \frac{e^T(C+S)e}{e^T(C+2S)e} &=& 1 -\frac{s^2}{\sigma^2+2 s^2}\nn\\
+&\sim& \begin{cases}{1 - \smallfrac{s^2}{\sigma^2} \qquad\mbox{for $s^2\ll \sigma^2$;}}\\{ \half(1+\smallfrac{\sigma^2}{2s^2})\qquad \mbox{for $s^2\gg\sigma^2 $.}}\end{cases} 
+\label{eq:modelRc}
+\eea
+The two ratios are shown in Fig.~\ref{fig:plot1}. When $s^2/\sigma^2$ is small, the effects from decorrelation are the strongest. When $s^2= \sigma^2$, as is the case for many experiments in NNPDF fits, $R=\smallfrac{5}{6}$ and $R_c = \frac{2}{3}$, so the decorrelation result is half way between the fully correlated and conservative cases.
+
+
 \section{Predictions from one-parameter fits}
 \label{sec:p2}
 

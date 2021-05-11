@@ -12,6 +12,7 @@
 \usepackage{multirow}
 \usepackage{url}
 \usepackage[table]{xcolor}
+
 \usepackage{breqn}
 \usepackage{float}
 \usepackage{afterpage}
@@ -137,6 +138,29 @@
 \def\smx{\stackrel{x\to 0}{\longrightarrow}}
 \def\Li{{\rm Li}}
 
+% for Correlations chapter
+\def\Var{{\rm Var}}
+\def\Cov{{\rm Cov}}
+\def\betatil{\widetilde{\beta}}
+\def\lambdatil{\widetilde{\lambda}}
+\def\lambdabar{\overline{\lambda}}
+\def\Ttil{\widetilde{T}}
+\def\Ctil{\widetilde{C}}
+\def\Stil{\widetilde{S}}
+\def\Xtil{\widetilde{X}}
+\def\Ptil{\widetilde{P}}
+\def\ntil{\widetilde{n}}
+\def\Shat{\widehat{S}}
+\def\Xhat{\widehat{X}}
+\def\Yhat{\widehat{Y}}
+\def\Cbar{\overline{C}}
+\def\Sbar{\overline{S}}
+\def\Zbar{\overline{Z}}
+\def\Rbar{\overline{R}}
+\def\Tdot{\dot{T}}
+\def\Ttildot{\skew6\dot\Ttil}
+\def\nn{\nonumber}
+
 \newcommand{\pmz}{{\pm}\hspace{-.9em}{\bigcirc}} 
 %Alternatively: {\pm \atop 0}
 
@@ -158,7 +182,7 @@
 % REPLACE THESE with your thesis title, your name and the date of submission of the thesis
 \title{Theoretical Uncertainties in Parton Distribution Functions}
 \author{Rosalyn Laura Pearson}
-\date{May 2020} % of submission
+\date{July 2021} % of submission
 
 \begin{document}
 
@@ -210,10 +234,9 @@ strides have been made towards understanding subatomic structure. We now know th
 (such as the electron). Probing hadrons with high energy photons shows that
 they are composed of quarks and gluons.
 \begin{figure}[H]
-\label{fig:proton}
 \centering
 \includegraphics[width=0.6\textwidth]{proton.pdf}
-\caption{A visualisation of the internal structure of the proton. Quarks are bound together by gluons.}
+\caption{A visualisation of the internal structure of the proton. Quarks are bound together by gluons.\label{fig:proton}}
 \end{figure}
 
 The Standard Model of particle physics has proven thus
@@ -223,7 +246,7 @@ experimental and theoretical results to test it and search for new physics which
 Cutting edge high energy physics experiments are currently being carried out at colliders such as the Large Hadron Collider
 (LHC)~\cite{LHC} at CERN, and there are plans for new colliders such as the Future Circular Collider~\cite{FCC}, International Linear Collider~\cite{ILC} and Compact Linear Collider~\cite{CLIC}. Many of these experiments involve the collision of protons. At a basic level we can think of
 a proton as being composed of two up quarks and one down quark ($uud$), bound together by the strong
-interaction. However, the proton (Fig. \ref{fig:proton}) is in reality
+interaction. However, the proton (Fig.~\ref{fig:proton}) is in reality
 highly complicated and inaccessible to the normal perturbative calculations of Quantum Field Theory (QFT), and can only be treated using probabilistic methods. 
 
 When two protons collide we do not know which constituents,
@@ -240,12 +263,11 @@ hadronic predictions. For useful theoretical predictions we therefore need as pr
 PDFs are unknowns in perturbative Quantum Chromodynamics (QCD), the theory of
 the strong interaction. Crucially, they are process independent. This means that
 they can be determined in a global fit between a wealth of experimental data and
-theoretical predictions. Once constrained, they can then be applied to any process. Fig. \ref{fig:pdfs} shows the fitted functional form of the PDFs.
+theoretical predictions. Once constrained, they can then be applied to any process. Fig.~\ref{fig:pdfs} shows the fitted functional form of the PDFs.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{pdfflavourplot.pdf}
-\label{fig:pdfs}
-\caption{The different PDF flavours determined in the latest NNPDF3.1 release \cite{Ball:2017nwa}.}
+\caption{The different PDF flavours determined in the latest NNPDF3.1 release \cite{Ball:2017nwa}.\label{fig:pdfs}}
 \end{figure}
 
 Any uncertainties in PDF determination will propagate through to future predictions. There are three
@@ -265,16 +287,14 @@ However, with the onset of increasingly high precision experiments, a proper tre
 \include{background/background}
 \include{thuncsinpdfs/thuncsinpdfs}
 \include{mhous/mhous}
-\include{predictions/predictions}
 \include{nuclear/nuclear}
-%\include{nuclear/deuteron}
-%\include{ht/ht}
+\include{correlations/correlations}
 \include{conclusion/conclusion}
 
 \appendix
 \addtocontents{toc}{\protect\tocappendix}
-\include{appendix1/appendix1}
-\include{appendix2/appendix2}
+%\include{appendix1/appendix1}
+%\include{appendix2/appendix2}
 
 \backmatter
 
@@ -285,5 +305,5 @@ However, with the onset of increasingly high precision experiments, a proper tre
 % Choose a bibliography style to suit your taste here
 % This one was downloaded from http://web.reed.edu/cis/help/latex/bibtexstyles.html (June 2012)
 \bibliographystyle{unsrt}
-\bibliography{background/backgroundbib, thuncsinpdfs/thuncsinpdfsbib, mhous/mhousbib, nuclear/nuclearbib, ht/htbib, nuclear/deuteronbib}
+\bibliography{background/backgroundbib, thuncsinpdfs/thuncsinpdfsbib, mhous/mhousbib, nuclear/nuclearbib, correlations/correlationsbib}
 \end{document}
