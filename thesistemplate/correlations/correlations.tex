@@ -88,7 +88,13 @@ Finally, we can use the Sherman-Morrison formula and Eqn.~\ref{eqn:chi2} to writ
 &\equiv Z^{-1}(\lambda - \bar{\lambda}) + \chi^2,
 \end{split}
 \ee
-where we have defined $\bar{\lambda} = Z \beta^T C^{-1} (D-T)$. Plugging this back into Eqn.~\ref{eqn:ptd2}, we get
+where we have defined 
+\be 
+\label{eqn:lambdabardef}
+\bar{\lambda} = Z \beta^T C^{-1} (D-T). 
+\ee
+
+Plugging this back into Eqn.~\ref{eqn:ptd2}, we get
 \be  
 \begin{split}
 P(T|D) &\propto \int d\lambda \ e^{-\frac{1}{2} \chi^2} \exp \bigg( -\frac{1}{2} Z^{-1} (\lambda - \bar{\lambda})^2 \bigg) \\
@@ -206,6 +212,241 @@ The two ratios are shown in Fig.~\ref{fig:plot1}. When $s^2/\sigma^2$ is small, 
 
 \section{Predictions from one-parameter fits}
 \label{sec:p2}
+In the previous section we considered a perfect fit, where after fitting $T=D$. Now we consider the slightly more realistic scenario, where the fit is not perfect, but the theory predictions, $T(\theta)$, only depend on a single parameter, $\theta$. This is a useful model because it captures the essence of the fitting problem but it is sufficiently simple that we will be able to solve it exactly. The $\chi^2$ (Eqn.~\ref{eqn:chi2}) will be minimised for some $\theta = \theta_0$, with variance $\Var [\theta]$. Once $\theta_0$ has been determined we can then make some predictions, $\Ttil(\theta_0)$, where the tilde denotes they are predictions for theories separate from the fit inputs. These predictions will have uncertainties proportional to $\Var [\theta]$. 
+
+We have assumed that the uncertainties are Gaussian, and so they are differentiable. This means we can linearise $T(\theta)$ about $T(\theta_0) \equiv T_0$:
+\be
+\label{eq:Tlin}
+T(\theta) = T_0 + (\theta-\theta_0)\Tdot_0 + \dots .
+\ee
+We want to determine the uncertainty in the fitted $\theta$, so we need to propagate the uncertainties in the data, $D$, and the theory, $T(\theta)$, into $\theta$. We can do this using the standard NNPDF approach (see Chapter ~\ref{chapter:background}) of generating pseudodata replicas, $D^{(r)}$, which are Gaussianly distributed about the actual data, $D$, with covariance $C+S$. More explicitly, we can define the average over replicas for any function, $F$, of the replicas as
+\be
+\label{eq:repav}
+\langle F(D^{(r)})\rangle =  \smallfrac{1}{N_{\rm rep}}\sum_{r=1}^{N_{\rm rep}}F(D^{(r)}).
+\ee
+Then the replicas will satisfy
+\be 
+\label{eq:repavD}
+\langle D^{(r)}\rangle \equiv D^{(0)}, \qquad \langle (D^{(r)}-D^{(0)})(D^{(r)}-D^{(0)})^T\rangle = C+S.
+\ee
+In the limit of $N_{rep} \to \infty$, $D^{(0)} \to D$, and for finite replicas $D^{(0)}$ differs from $D$ by an amount which tends to zero like $N_{rep}^{-1/2}$.
+
+The fit proceeds by fitting a parameter replica, $\theta^{(r)}$, for each pseudodata replica, $D^{(r)}$, by minimising
+\be
+\label{eq:chi2rep}
+\chi_r^2[\theta] = (T(\theta)-D^{(r)})^T(C+S)^{-1}(T(\theta)-D^{(r)}),
+\ee
+with respect to $\theta$. Using Eqn.~\ref{eq:Tlin}, this leads to 
+ \be
+\label{eq:arep}
+\theta^{(r)} - \theta_0 = \frac{\Tdot_0^T(C+S)^{-1}(D^{(r)}-T_0)}{\Tdot_0^T(C+S)^{-1}\Tdot_0}.
+\ee
+Now $\theta_0 = \langle \theta^{(r)} \rangle$, so using the replica averages in Eqn.~\ref{eq:repavD} we find
+\be
+\label{eq:consistency}
+\Tdot_0^T(C+S)^{-1}(D-T_0)=0,
+\ee
+so we can rewrite Eqn.~\ref{eq:arep} as
+\be
+\label{eq:arep2}
+\theta^{(r)} - \theta_0 = \frac{\Tdot_0^T(C+S)^{-1}(D^{(r)}-D)}{\Tdot_0^T(C+S)^{-1}\Tdot_0}.
+\ee
+Using the fact that $C$ and $S$ are symmetric, 
+\bea
+\Var[\theta] &=& \langle(\theta^{(r)}-\theta_0)^2\rangle\nn\\
+ &=& \frac{\Tdot_0^T(C+S)^{-1}\langle(D^{(r)}-D)(D^{(r)}-D)^T\rangle (C+S)^{-1}\Tdot_0}{(\Tdot_0^T(C+S)^{-1}\Tdot_0)^2}\nn\\
+&=& (\Tdot_0^T(C+S)^{-1}\Tdot_0)^{-1}.
+\label{eq:vara}
+\eea
+Note that:
+\begin{itemize}
+\item data points with a large dependence on $\theta$ have large $\Tdot_0$ and contribute more.
+\item directions with large uncertainty, $(C+S)$, contribute less.
+\end{itemize}
+Now we have the uncertainty in the fitted parameter, $\theta$, we can find the fitting uncertainty. This is the covariance of $T(\theta)$ due to the experimental and theoretical uncertainties from fitting $\theta$. We will call this covariance matrix $X$. Using the fact that $E[T] = \langle T(\theta^{(r)})\rangle = T(\theta_0) = T_0$ and writing $T^{(r)} = T(\theta^{(r)})$,
+\bea
+X\equiv\Cov[T(a)] &=& \langle(T^{(r)}-T_0)(T^{(r)}-T_0)^T\rangle\label{eq:Xdef}\\
+&=& \Tdot_0\langle(\theta^{(r)}-\theta_0)^2\rangle\Tdot_0^T\\
+&=& \Tdot_0(\Tdot_0^T(C+S)^{-1}\Tdot_0)^{-1}\Tdot_0^T\label{eq:Xdef2}\\
+&=& n(n^T(C+S)^{-1}n)^{-1}n^T,
+\label{eq:Xdef3}
+\eea
+where in the last line we define $\Tdot_0 \equiv |\Tdot_0|n$, i.e. $n$ is a unit vector in the direction of $\Tdot_0$. We can see that $X$ depends only on the direction ($n$) of $\Tdot_0$, not its magnitude. Note that $X$ is singular and also that
+\be
+\label{eq:XsqeqX}
+X = X(C+S)^{-1}X,
+\ee
+which will be useful later. Using Eqn.~\ref{eq:arep2} in Eqn.~\ref{eq:Tlin}, we can see that
+\be
+T^{(r)}-T_0 = X(C+S)^{-1}(D^{(r)}-D^{(0)}),
+\label{eq:projection}
+\ee
+so $X(C+S)^{-1}$ projects the data replicas onto the theory replicas.
+
+Now let's revisit the model for covariance matrices, Eqn.~\ref{eq:modelCS}. If we define the angle between the experimental uncertainties and the $\theta$ variation by $\cos \phi = n^T e$, we find that
+\bea
+\label{eq:denom}
+n^T(C+S)^{-1}n &=& \frac{\sigma^2+s^2\sin^2\phi}{\sigma^2(\sigma^2+s^2)},\\
+n^TXn &=& \frac{\sigma^2(\sigma^2+s^2)}{(\sigma^2+s^2\sin^2\phi)}.
+\eea
+Note that using any vector other than $n$ here gives 0. We can see that the effects from the theory uncertainty ($s$) depend on its degree of alignment with $n$, the direction of the parameter dependence. 
+\begin{itemize}
+\item For complete alignment, $\phi=0$ and the variance of $T$ in this direction is $(\sigma^2 + s^2)$.
+\item When they are orthogonal, $\phi= \smallfrac{\pi}{2}$ and the variance is $\sigma^2$, so the theory uncertainty doesn't factor into the fitting.
+\end{itemize}
+
+\subsection{Autopredictions in a single parameter fit}
+Now let's consider making autopredictions in this single parameter fit,
+\be
+\label{eq:autopred}
+T(\theta,\lambda)=T(\theta)+\lambda\beta .
+\ee
+When fitting, we:
+\begin{enumerate}
+\item Maximise $P(T(\theta)|D)$ replica by replica to get $\{ \theta^{(r)} \}$.
+\item Maximise $P(\lambda |T(\theta) D)$ replica by replica, using the values $\{ \theta^{(r)} \}$ from 1., to get  $\{ \lambda^{(r)} \}$.
+\item Average over replicas to obtain the fitted results.
+\end{enumerate}
+For example, from Eqn.~\ref{eqn:lambdabardef} we can write
+\be
+\label{eq:lambdabarz}
+E[\lambda] = \langle \bar{\lambda}(\theta^{(r)}) \rangle =  \overline\lambda(\theta_0) = \beta^T(C+S)^{-1}(D^{(0)}-T_0).
+\ee
+Now that in general $D \neq T_0$, the nuisance parameters can have non-zero expectation values, and this will contribute to the expectation value of the autopredictions:
+\be
+\label{eq:ET}
+E[T(\theta,\lambda)] = \langle T(\theta^{(r)},\overline\lambda(\theta^{(r)})\rangle =  
+T(\theta_0,\overline\lambda(\theta_0)) = T(\theta_0)+\overline\lambda_0\beta.
+\ee
+So the data give information on the theory uncertainty by inducing shifts in the autopredictions:
+\be
+\label{eq:shift}
+\delta T(\theta_0) = \beta\beta^T(C+S)^{-1}(D^{(0)}-T(\theta_0)) = S(C+S)^{-1}(D^{(0)}-T(\theta_0)).
+\ee
+Recall that $n^T(C+S)^{-1}(D^{(0)}-T(\theta_0)) =0$ from Eqn.~\ref{eq:consistency}, so we only get non-zero shifts when $n$ and $e$ (the data and the theory) point in different directions. When they are parallel ($\theta =0$), the theory uncertainty is just absorbed into the fit.
+
+Now let's look at the change in the uncertainty of the autopredictions relative to the original predictions. The variance of $\lambda$ has two independent contributions in this scenario:
+\begin{enumerate}
+\item the width of the posterior, $P(\lambda | T(\theta) D)$;
+\item the fluctuation of $\lambda (\theta)$ due to changing $\theta$ over replicas.
+\end{enumerate}
+So we can write
+\be
+\label{eq:varlamdef}
+\Var[\lambda] = E[(\lambda-\overline\lambda_0)^2] = E[(\lambda-\overline\lambda(\theta^{(r)})^2]+ \langle(\overline\lambda(\theta^{(r)})-\overline\lambda_0)^2\rangle.
+\ee
+It's easiest to first address these two contributions separately. The first term is analogous to that in Sec.~\ref{sec:p1}, and we can use the Sherman Morrison formula again to rewrite it:
+\be
+\begin{split}
+\label{eq:Zdef2}
+E[(\lambda-\overline\lambda(\theta^{(r)})^2] = Z &= (1 + \beta^T C^{-1}  \beta)^{-1} \\ &= 1-\beta^T(C+S)^{-1}\beta,
+\end{split}
+\ee
+As for the second term, we can use the definitions of $\bar{\lambda}$ and $\bar{\lambda}_0$, and then Eqn.~\ref{eq:projection} to write
+\bea
+ \overline\lambda(\theta^{(r)})-\overline\lambda_0 &=& \beta^T(C+S)^{-1}(D^{(r)}-D^{(0)}-(T^{(r)}-T_0))\nn\\
+&=& \beta^T(C+S)^{-1}(D^{(r)}-D^{(0)}-(\theta^{(r)}-\theta_0)\Tdot_0)\nn\\
+&=& \beta^T(C+S)^{-1}(1-X(C+S)^{-1})(D^{(r)}-D^{(0)}).\label{eq:lamalgebra}
+\eea
+So we can then get
+\bea
+ \langle(\overline\lambda(\theta^{(r)})-\overline\lambda_0)^2\rangle &=&
+\beta^T(C+S)^{-1}(1-X(C+S)^{-1})\langle(D^{(r)}-D^{(0)})(D^{(r)}-D^{(0)})^T\rangle\nn\\
+&&\qquad\qquad \times(1-(C+S)^{-1}X)(C+S)^{-1}\beta\nn\\.
+\eea
+Then using Eqn.~\ref{eq:repavD} followed by Eqn.~\ref{eq:XsqeqX}:
+\bea
+ \langle(\overline\lambda(\theta^{(r)})-\overline\lambda_0)^2\rangle &=&\beta^T((C+S)^{-1}-2(C+S)^{-1}X(C+S)^{-1}\nn\\
+&&\qquad +(C+S)^{-1}X(C+S)^{-1}X(C+S)^{-1})\beta
+\label{eq:varlambar1}\\
+&=&\beta^T(C+S)^{-1}\beta-\beta^T(C+S)^{-1}X(C+S)^{-1}\beta
+\label{eq:varlambar2}
+\eea
+So overall 
+\be
+\label{eq:Zbardef}
+\Var[\lambda] = 1 -\beta^T(C+S)^{-1}X(C+S)^{-1}\beta\equiv \Zbar.
+\ee
+We can see that $\bar{Z} \leq 1$ because $(C+S)^{-1}X(C+S)^{-1}$ is positive semidefinite, and noting that $\bar{Z} = Z + \langle(\overline\lambda(\theta^{(r)})-\overline\lambda_0)^2\rangle$, it is clear that $\bar{Z} \geq Z$. When $n=e$, so that the $\theta$ variation and the theory uncertainty are aligned, we get $\bar{Z} = Z$. So in summary
+\be
+\label{zbarbounds}
+0<Z\leq\Zbar\leq 1.
+\ee
+In other words, there is more decorrelation in this constrained fit than in the perfect fit of Sec.~\ref{sec:p1}, because the fit uncertainty causes additional decorrelation. This is the second mechanism for decorrelation we have uncovered, on top of the decorrelation due to experimental uncertainties observed in Sec.~\ref{sec:p1}.
+
+Finally we can use the model for uncertainties (Eqn.~\ref{eq:modelCS}) to show that
+\be
+\label{eq:Zbarmod}
+\Zbar = \frac{\sigma^2 + s^2 \sin^2\phi}{\sigma^2+s^2}.
+\ee
+So, comparing this with the expression for $Z$ (Eqn.~\ref{eq:modelCplusSinv}), $\bar{Z} = Z$ when $\phi =0$, as expected, and $\bar{Z}=1$ when $\phi = \smallfrac{\pi}{2}$; here the data have no effect on the uncertainty, so we have total decorrelation.
+
+Let's also calculate the covariance of autopredictions in the model. This is made up of two contributions:
+\begin{enumerate}
+\item the variation about $\bar{\lambda}$;
+\item the fluctuations of the individual replicas in the fit.
+\end{enumerate}
+\bea
+{\Cov}[T(\theta,\lambda)] &=& E[(\lambda-\lambdabar(\theta))^2]\beta\beta^T 
+ + \Cov[T(\theta,\lambdabar(\theta)]\label{eq:covTsumx}\nn\\
+&=& ZS 
+ + \langle(T(\theta^{(r)},\lambdabar(\theta^{(r)})) -T(\theta_0,\lambdabar_0))^2 \rangle  \label{eq:covTsum}
+\eea
+Let's first calculate
+\bea
+T(\theta^{(r)},\lambdabar(\theta^{(r)}))-T(\theta_0,\lambdabar_0) &=& T(\theta^{(r)}) - T(\theta_0) + (\bar{\lambda}(\theta^{(r)}) - \bar{\lambda_0}) \beta \\
+&=& X(C+S)^{-1}(D^{(r)}-D^{(0)}) \\ &&\qquad + \beta \beta^T (C+S)^{-1}(1-X(C+S)^{-1}) \qquad \qquad \\ && \qquad \times (D^{(r)}-D^{(0)}) \\
+&=& [ X(C+S)^{-1} \\ && \qquad + S(C+S)^{-1}(1-X(C+S)^{-1}) ] \qquad \\ && \qquad \times  (D^{(r)}-D^{(0)}).
+\eea
+Now consider right multiplying the term in $[ \cdot ]$ by $\mathbb{I} = (C+S)(C+S)^{-1}$, and it can be shown that
+\be
+T(\theta^{(r)},\lambdabar(\theta^{(r)}))-T(\theta_0,\lambdabar_0) = (S+C(C+S)^{-1}X)(C+S)^{-1}(D^{(r)}-D^{(0)}).\label{eq:Tarep}
+\ee
+So, using Eqn.~\ref{eq:XsqeqX} to simplify the quadratic in $X$, the second term is
+\bea
+{\Cov}[T(\theta,\lambdabar)]&=&\langle(T(\theta^{(r)},\lambdabar(\theta^{(r)}))-T(\theta_0,\lambdabar_0))(T(\theta^{(r)},\lambdabar(\theta^{(r)}))-T(\theta_0,\lambdabar_0))^T\rangle\nn\\ 
+&=& (S+C(C+S)^{-1}X)(C+S)^{-1}(S+X(C+S)^{-1}C)\nn\\ \qquad
+&=&  S(C+S)^{-1}S + X - S(C+S)^{-1}X(C+S)^{-1}S. \qquad \qquad \label{eq:covTrlamr}
+\eea
+So the total covariance of autopredictions is
+\bea
+{\Cov}[T(\theta,\lambda)] &=& (S - S(C+S)^{-1}S) + (S(C+S)^{-1}S +X - S(C+S)^{-1}X(C+S)^{-1}S)\nn\\
+&=& X + S - S(C+S)^{-1}X(C+S)^{-1}S \\
+&=& X + \bar{Z} S. \label{eq:covTfit2}
+\eea
+This is the same as if we had assumed that $T(\theta)$ and $\lambda$ are uncorrelated, i.e. that
+\be
+{\Cov}[T(\theta,\lambda)] = {\Cov}[T] + \Var[\lambda] \beta\beta^T 
+= X+\Zbar S.\label{eq:covTfit}
+\ee
+So we see that the cross correlations between $T(\theta)$ and $\lambda$ have cancelled.
+
+We can use the model again to calculate the ratio of this covariance to the one given by the conservative prescription:
+\bea
+\Rbar &=& \frac{e^T(X+\Zbar S)e}{e^T(X+S)e}\nn\\
+&=& 1 - \frac{s^4\cos^2\phi}{\sigma^2+ s^2}\frac{\sigma^2+s^2\sin^2\phi}{\sigma^2(\sigma^2+s^2)\cos^2\phi+s^2(\sigma^2+s^2\sin^2\phi)}\nn\\
+&\sim&  \begin{cases}{1 -\smallfrac{ s^4}{\sigma^4} \qquad\qquad\mbox{for $s^2 \ll \sigma^2$;}}\\{ \sin^2\phi +\smallfrac{\sigma^2{\rm cot}^2\phi}{s^2}\qquad \mbox{for $s^2 \gg \sigma^2$.}}\end{cases} 
+\label{eq:modelRbar}
+\eea
+\begin{itemize}
+\item When the experimental uncertainties dominate, $\sigma^2 \gg s^2$  and there is almost total decorrelation, as before. The conservative prescription is a very good approximation.
+\item When the theory uncertainties dominate, $s^2 \gg \sigma^2$, and the extent of decorrelation is $ \propto \sin^2 \phi$. If $n$ and $e$ are closely aligned this is small, but if they're orthogonal then fitting the data has no effect on the theory uncertainty, so we have total decorrelation. In that case the assumption of full correlation is a big underestimate. 
+\end{itemize}
+The ratio to the full correlation case is
+\bea
+\Rbar_c &=& \frac{e^TXe}{e^T(X+S)e}\nn\\
+&\sim& \begin{cases}{1 - \smallfrac{s^2}{\sigma^2\cos^2\phi} \qquad\mbox{for $s^2 \ll \sigma^2$;}}\\{ \smallfrac{\sigma^2{\rm cot}^2\phi}{s^2}\qquad \mbox{for $s^2 \gg \sigma^2$.}}\end{cases} 
+\label{eq:modelRbarc}
+\eea
+Fig.~\ref{fig:plot2} shows a comparison between these two. When $\phi$ is small, the limit of $\smallfrac{s^2}{\sigma^2}$ is reached much more slowly because it requires $s^2 \gg \sigma^2 \cot^2 \phi$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+  \begin{center}
+      \includegraphics[width=0.5\textwidth]{correlations/plots/plot2.pdf}
+    \caption{ For single parameter fit within the model Eqn.~\ref{eq:modelCS}.  Comparing the ratios to the conervative prescription of the decorrelated ($\Rbar$, Eqn.~\ref{eq:modelRbar}) and correlated ($\Rbar_c$, Eqn.~\ref{eq:modelRbarc}) autoprediction covariance matrices.  \label{fig:plot2}}
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Correlated MHOUs in PDF fits}
 \label{sec:p3}
