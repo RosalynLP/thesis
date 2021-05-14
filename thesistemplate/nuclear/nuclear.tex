@@ -1,3 +1,4 @@
+\label{chapter:nuclear}
 \chapter{Nuclear Uncertainties}
 The theory covariance formalism developed in Chapter~\ref{chapter:thuncs} can be applied to any source of theory uncertainty in PDFs. One of the most important of these is nuclear uncertainties. A wide range of data is needed to pin down the form of PDFs, including that where the proton is not in a free state. More precisely, this encompasses DIS and DY fixed target measurements involving deuteron and heavy nuclear targets. In these cases the proton's interaction is altered due to the surrounding nuclear environment, and this difference propagates through to the fitted PDFs, leading to an unwanted shift in their central values and uncertainties. We cannot simply discard these data, as they play a crucial role in the strangeness content of the proton and also the light flavour separation at high $x$, a region important for searches for physics beyond the Standard Model. Instead, we must determine corrections to the PDF central value and additional uncertainties to account for the use of nuclear data.
 
@@ -13,7 +14,8 @@ We can determine nuclear corrections by comparing the theory predictions for nuc
 For the heavy nuclear PDFs we initially used~\cite{Ball:2018twp} a combination of three available nPDF sets (DSSZ~\cite{deFlorian:2011fp},
 nCTEQ15~\cite{Kovarik:2015cma}, and EPPS16~\cite{Eskola:2016oht}), but NNPDF subsequently released its own global nPDFs, nNNPDF2.0~\cite{AbdulKhalek:2020yuc}, which is what we will consider in this Chapter. Given the enhanced difficulty of nPDF determination, all of these nPDF sets are only available at NLO. For the deuteron PDFs we developed a self-consistent iterative procedure to determine deuteron PDFs at NNLO within the NNPDF formalism, and used the output of this to determine deuteron corrections. These deuteron PDFs have the advantage over those from nNNPDF2.0 that they are NNLO, but are based on less data so have larger uncertainties. This should at worst lead to a conservative uncertainty estimation, but we will discuss the comparison in Section~\ref{sec:summandoutlook}.
 
-This chapter is organised as follows. First we review the nuclear data in proton PDF fits (Sec.~\ref{sec:nucdat}). Then we consider heavy nuclear uncertainties including the resulting covariance matrix. We then look at deuteron uncertainties in the same way (Sec.~\ref{sec:deutunc}), before  including combined nuclear uncertainties in NNPDF4.0 proton PDF fits in Sec~\ref{sec:nucpdfs}. We summarise the results in Sec.~\ref{sec:summandoutlook}.
+This chapter is organised as follows. First we review the nuclear data in proton PDF fits (Sec.~\ref{sec:nucdat}). Then we consider heavy nuclear uncertainties including the resulting covariance matrix (Sec.~\ref{sec:nucunc}). We then look at deuteron uncertainties in the same way (Sec.~\ref{sec:deutunc}), before including combined nuclear uncertainties in NNPDF4.0 proton PDF fits in Sec~\ref{sec:nucpdfs}. We summarise the results in Sec.~\ref{sec:summandoutlook}.
+
 
 \section{Nuclear data in PDFs}
 \label{sec:nucdat}
@@ -40,10 +42,13 @@ CHORUS~\cite{Onengut:2005kv} & CC DIS cross sections & $^{208}_{82}$Pb  \\
 \rowcolor{blue!40}
 NuTeV~\cite{Tzanov:2005kr} & DIS dimuon cross sections & $^{56}_{26}$Fe  \\
 \rowcolor{blue!40}
+EMC~\cite{EMC} & $F_2$ charm contributions & $^{56}_{26}$Fe  \\
+\rowcolor{blue!40}
 DYE605~\cite{Heinrich:1989cp} & DY dimuon cross sections & $^{64}_{32}$Cu  \\
 \hline
 \end{tabular}
 \end{center}
+NOTE: EMC may or may not be included
 \section{Heavy nuclear uncertainties}
 \label{sec:hnucunc}
 Heavy nuclear uncertainties can be included using the covariance matrix methodology discussed in Chapter~\ref{chapter:thuncs}.
@@ -57,6 +62,7 @@ S_{ij} = \frac{1}{N_{rep}} \sum_k^{N_{rep}} \Delta_i^{(k)} \Delta_j^{(k)} .
 \ee
 A more ambitious approach is to also try and correct the value of the nuclear observable we use, so that it is based on the nPDF rather than the proton one. This can be done by applying a shift,
 \be 
+\label{eqn:shiftnuc}
 \delta T_i^N = T_i^N[f_N] - T_i^N [f_p],
 \ee
 to the nuclear observables. In this case we must amend the contributions to the covariance matrix so that they are
@@ -79,7 +85,7 @@ f_N = \frac{1}{A} \bigg( Z f_{p/N} + (A-Z) f_{n/N} \bigg).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
   \begin{center}
-    \includegraphics[width=\linewidth]{nuclear/plots/observable_ratio_nuclear.png}
+    \includegraphics[width=\linewidth]{nuclear/plots//observable_ratio_nuclear.png}
    \caption{ Ratio between the nuclear observables computed with nPDFs, $T_i^N[f_N]$, and the central prediction computed with proton PDFs, $\langle T_i^N[f_p] \rangle$. The error is the standard deviation of the distribution of $T_i^N[f_N]$ replicas. Data are organised in bins of increasing $(x, Q^2)$ within each dataset. 
     \label{fig:nucobs} }
   \end{center}
@@ -94,14 +100,14 @@ We now turn to the covariance matrix for heavy nuclear uncertainties. Fig.~\ref{
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
   \begin{center}
-    \includegraphics[width=\linewidth, trim={4cm 0 4cm 0}]{nuclear/plots/diag_covmat_deweighted.png}
+    \includegraphics[width=\linewidth, trim={4cm 0 4cm 0}]{nuclear/plots//diag_covmat_deweighted.png}
         \includegraphics[width=\linewidth, trim={4cm 0 4cm 0}]{nuclear/plots/diag_covmat_shifted.png}
-    \caption{Square root of diagonal elements of covariance matrices for $C$ (purple), $S$ (orange) and $C+S$ (blue). All values are displayed as a \% of data. Top: deweighted; bottom:shifted.
+    \caption{Square root of diagonal elements of covariance matrices for $C$ (purple), $S$ (orange) and $C+S$ (blue). All values are displayed as a \% of data. Top: deweighted; bottom: shifted.
     \label{fig:nuccov1} }
     \end{center}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-For the deweighted case, it is clear that the heavy nuclear uncertainties are comparable to the experimental uncertainties and are larger in most regions other than CHORUS $\bar{\nu}$. This suggests that all datasets apart from that will be significantly deweighted in the fit. We see that the plot has many features in common with Fig.~\ref{fig:nucobs}, in particular the kinematic pattern, and this makes sense as the covariance matrix is composed using the difference in observables when using nPDFs versus proton ones. For the shifted case, we see a marked decrease in the diagonal of $S$, such that deuteron per-point uncertainties seem no longer significant for CHORUS.
+For the deweighted case, it is clear that the heavy nuclear uncertainties are comparable to the experimental uncertainties and are larger in most regions other than CHORUS $\bar{\nu}$. This suggests that all datasets apart from that will be significantly deweighted in the fit. We see that the plot has many features in common with Fig.~\ref{fig:nucobs}, in particular the kinematic pattern, and this makes sense as the covariance matrix is composed using the difference in observables when using nPDFs versus proton ones. For the shifted case, we see a marked decrease in the diagonal of $S$, such that nuclear per-point uncertainties seem no longer significant for CHORUS.
  
  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
 \begin{figure}[h]
@@ -133,7 +139,7 @@ where $f_n$ is the neutron PDF, obtained under the assumption of isospin invaria
 \begin{figure}[H]
   \begin{center}
     \includegraphics[width=\linewidth]{nuclear/plots/deut_flowchart.pdf}
-   \caption{ Outline of the iterative procedure used to determine proton PDFs with deuteron uncertainties. The data is split into proton data and deuteron data. The proton data is used to find proton-only PDFs which are needed to fit deuteron observables in deuteron-only PDFs. These are used to construct a deuteron covariance matrix which is used in a global proton PDF fit. The whole process is iterated to consistency.
+   \caption{ Outline of the iterative procedure used to determine proton PDFs with deuteron uncertainties. The data is split into proton data and deuteron data. The proton data are used to find proton-only PDFs which are needed to fit deuteron observables in deuteron-only PDFs. These are used to construct a deuteron covariance matrix which is used in a global proton PDF fit. The whole process is iterated to consistency.
     \label{fig:flowchart} }
   \end{center}
 \end{figure}
@@ -141,7 +147,7 @@ where $f_n$ is the neutron PDF, obtained under the assumption of isospin invaria
 
 The procedure is as follows:
 \begin{enumerate}
-\item The proton data is used to fit pure proton PDFs (uncontaminated by deuteron data), $\{f_p^{(k)}: k=1,\dots, N_{rep} \}$ with central value $f_p^{0} \equiv f_p$.
+\item The proton data are used to fit pure proton PDFs (uncontaminated by deuteron data), $\{f_p^{(k)}: k=1,\dots, N_{rep} \}$ with central value $f_p^{0} \equiv f_p$.
 \item We cannot fit the pure deuteron PDFs without additional input because of the mixed ratio data ($T_i^d[f_d, f_p]$); these data require a proton PDF as input. We can use $f_p^{0}$ from the proton-only fit here, but since this is only the central value we must include a proton covariance matrix to account for the uncertainty due to the proton PDF. This is composed
 \be 
 \label{eq:protoncovmatrix}
@@ -185,13 +191,13 @@ T_i^d[f_d^{(0)}, f_p^{(0)}] - T_i^d[f_s^{(0)}, f_p^{(0)}] &i \in \text{mixed}.
 \end{split}
 \ee
 $S^d$ incorporates correlations between the deuteron data due to their common dependence on the deuteron PDF and, for the ratio data, their consequential dependence on poton PDFs.
-\item Perform a global proton PDF fit incorporating $S^d$ for the deuteron data. These are PDFS with deuteron uncertainties included.
+\item Perform a global proton PDF fit incorporating $S^d$ for the deuteron data. These are PDFs with deuteron uncertainties included.
 \item Use the resulting proton PDFs in place of the proton-only PDFs in Step 2, thus iterating the procedure. We expect this to converge rapidly for a few reasons: first, the influence of deuteron data in a proton fit is small; second, a small change in the proton PDF makes little difference to the deuteron uncertainty; third, the effect of deuteron uncertainties on the weight of data in the fit is anticipated to be small.
 \end{enumerate}
 
-Note that in this procedure we are not double counting the deuteron data; we use them once to determine the deuteron uncertainty and once to do a global fit to find the proton PDFs. Adding uncertainties actually makes the deuteron data count \textit{less}.
-
 \input{nuclear/tables/fits.tex}
+
+Note that in this procedure we are not double counting the deuteron data; we use them once to determine the deuteron uncertainty and once to do a global fit to find the proton PDFs. Adding uncertainties actually makes the deuteron data count \textit{less}.
 
 The fits performed are summarised in Tab.~\ref{tab:fits}. The baseline fit, global-base, is equivalent to the base fit in Ref.~\cite{Faura:2020oom}, and is an NNPDF3.1-style fit with minor amendments. We determine a proton-only fit in what we term ``Iteration 0", and then perform two iterations of determining the deuteron and global proton fits, termed ``Iteration 1" and ``Iteration 2". 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -204,10 +210,10 @@ The fits performed are summarised in Tab.~\ref{tab:fits}. The baseline fit, glob
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-As in the case for heavy nuclear data, it is useful to first look at the effect on the deuteron observables of using the deuteron PDF rather than the proton one. The uncertainties are quite large but the ratio of observables is consistent with 1 in most regions other than high $(x, Q^2)$, where nuclear shadowing is expected to play a part leading to large negative corrections. This mirrors what was seen in the heavy nuclear case (Fig.~\ref{fig:nucobs}).
+As in the case for heavy nuclear data, it is useful to first look at the effect on the deuteron observables of using the deuteron PDF rather than the proton one (Fig.~\ref{fig:deutobs}). The uncertainties are quite large but the ratio of observables is consistent with 1 in most regions other than high $x$, where nuclear shadowing is expected to play a part leading to large negative corrections. This mirrors what was seen in the heavy nuclear case (Fig.~\ref{fig:nucobs}).
 
 \subsection{The deuteron covariance matrix}
-We now go on to investigate the deuteron covariance matrix. The diagonal elements are displayed for Iteration 1 in Fig.~\ref{fig:deutcov1}. Again, we see a pattern that parallels the pattern in the deuteron observable ratios; the size of the per-point uncertainty depends on the kinematics. The deuteron uncertainty is smaller than the experimental uncertainty for the  pure deuteron datasets (SLAC and BCDMS), but is comparable for the mixed ratio data (NMC and DYE866/NuSea). This is because ratio data have smaller experimental uncertainties due to a significant cancellation of systematic errors. 
+We now go on to investigate the deuteron covariance matrix. The diagonal elements are displayed for Iteration 1 in Fig.~\ref{fig:deutcov}. Again, we see a pattern that parallels the pattern in the deuteron observable ratios; the size of the per-point uncertainty depends on the kinematics. The deuteron uncertainty is smaller than the experimental uncertainty for the  pure deuteron datasets (SLAC and BCDMS), but is comparable for the mixed ratio data (NMC and DYE866/NuSea). This is because ratio data have smaller experimental uncertainties due to a significant cancellation of systematic errors. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
@@ -222,8 +228,86 @@ We now go on to investigate the deuteron covariance matrix. The diagonal element
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The bottom part of the figure shows the full matrix plots, and we can see immediately the richness of structure introduced by the deuteron covariance matrix. As above, we see the most impact on the ratio data: NMC and DYE866/NuSea. The figures show only the deweighted case, but this is qualitatively similar to the shifted case. 
-\section{PDFs with nuclear corrections}
+
+As an additional investigation, we can use the fitted deuteron PDFs to evaluate a correction to $F_2$ by computing the ratio $F_2^d/F_2^p$. This can then be compared to the result from nNNPDF2.0 and to the parametric correction used in MMHT2014 analyses~\ref{Harland-Lang:2014zoa}, which is based on four fitted parameters. This comparison can be seen in Fig.~\ref{fig:deutpdfcomp} at $Q$ = 10 GeV. From this, deuteron correction to the structure function is clearly small, just a few percent across the whole of $x$. The shape of the distribution also fits that expected from nuclear shadowing, with a dip at large $x$. However, the NNPDF NNLO determination has an uncertainty of similar size to the correction. This uncertainty is greater than for nNNPDF2.0, despite the fact the latter are NLO, because nNNPDF2.0 fit with a wider range of deuteron and heavy nuclear data by using continuity of $A/Z$ as a constraint. Nevertheless, the subsequent reduction in uncertainty is less marked here than at the PDF level. The MMHT14 correction has the smallest uncertainties overall, which arise from the assumed uncertainty in the theoretical model. All of the estimates are consistent within uncertainties, with the one determined here the most conservative, especially given the lack of model dependence. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+      \includegraphics[width=0.8\linewidth]{nuclear/plots/deut_10.png}
+    \caption{$F_2^d/F_2^p$ evaluated using deuteron PDFs from the present determination (deuteron-ite2), deuteron PDFs from nNNPDF2.0, and via the model correction used in MMHT2014 fits.
+    \label{fig:deutpdfcomp} }
+    \end{center}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{PDFs with nuclear uncertainties}
 \label{sec:nucpdfs}
-Going to have to use 4.0 PDFs here.
+Having constructed and studied deuteron and heavy nuclear uncertainties, we can then include them in fits. Table~\ref{tab:fits-unc} summarises the various configurations of nuclear uncertainties and shifts. The NNPDF4.0 release includes (deweighted) deuteron and heavy nuclear uncertainties as a default, so it serves as the baseline for comparison.
+
+\input{nuclear/tables/fits-unc.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+      \includegraphics[width=0.3\linewidth, trim={0 4.0cm 0 1cm}]{nuclear/plots/spiderchi2_1.png}
+    \includegraphics[width=0.3\linewidth, trim={0 2.9cm 0 0}]{nuclear/plots/spiderchi2_2.png}
+        \includegraphics[width=0.3\linewidth, trim={0 2.9cm 0 0}]{nuclear/plots/spiderchi2_3.png}
+      \includegraphics[width=0.3\linewidth, trim={0 1.2cm 0 1cm}]{nuclear/plots/spiderphi_1.png}
+    \includegraphics[width=0.3\linewidth]{nuclear/plots/spiderphi_2.png}
+        \includegraphics[width=0.3\linewidth, trim={0 0.2cm 0 0}]{nuclear/plots/spiderphi_3.png}
+    \caption{Partial $\chi^2$ (top row) and $\phi$  (bottom row) values broken down by nuclear dataset for the fits in Table \ref{tab:fits-unc}. All other datasets are collected under OTHER. 
+    \label{fig:chi2phi} }
+    \end{center}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{nuclear/tables/tab-total-chi2.tex}
+
+Table~\ref{tab:totchi2} gives the total $\chi^2$ and $\phi$ values for these fits, where $\phi$ gives the ratio of uncertainties after fitting to the original data uncertainties, averaged over data points, and is defined in Eqn. 24 of \cite{Ball:2014uwa}. The partial values per nuclear dataset can be seen in Fig.~\ref{fig:chi2phi}. Overall, including nuclear uncertainties causes the $\chi^2$ to drop from 1.27 to 1.17, indicating a substantially better fit quality. This is to be expected, seeing as we are adding an uncertainty into the fit, accompanied by an increase in $\phi$. The NNPDF4.0 baseline gives the best fit, which is dominated by the inclusion of heavy nuclear uncertainties without a shift. The impact at the nuclear dataset level is striking, with a significant improvement in both $\chi^2$ and $\phi$ for most of these datasets. The difference between the deweighted and shifted prescriptions, however, is minimal.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+      \includegraphics[width=0.49\linewidth]{nuclear/plots/ubar1.png}
+     \includegraphics[width=0.49\linewidth]{nuclear/plots/dbar1.png}
+    \caption{Impact of including nuclear uncertainties in NNPDF4.0. The default (green) is to include them for all nuclear data. Fits with no nuclear uncertainties (orange) and with only heavy nuclear uncertainties (blue) are also shown.
+    \label{fig:pdfs1} }
+    \end{center}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+It's also helpful to look at the PDFs themselves. Nuclear uncertainties have an effect which is important in the large $x$ region, where the nuclear data are. Firstly, we would like to know what impact adding nuclear uncertainties has on the PDFs. In Fig.~\ref{fig:pdfs1} we compare NNPDF4.0 to the fit without nuclear uncertainties. Including nuclear uncertainties causes a significant change to the shape of the PDFs in the large $x$ region. This corresponds to the nuclear shadowing region, where nPDFs are lower compared to proton ones. Having no nuclear uncertainties causes the PDFs to be pulled downwards in this region, in the direction of the nPDFs.
+
+Also displayed in Fig.~\ref{fig:pdfs1} is a fit with only heavy nuclear uncertainties. It is clear that heavy nuclear uncertainties are responsible for the bulk of the impact, which is expected given the impact at the data level is more significant for thcese data (see Figs.~\ref{fig:nuccov1} and ~\ref{fig:deutcov}).
+
+Secondly, we would like to look at what happens when we also apply a shift to the nuclear data, following Eqn.~\ref{eqn:shiftnuc}. This can be seen in Figs.~\ref{fig:pdfs2} and \ref{fig:pdfs3}. The first figure shows this for all the data together, and the second shows a deuteron and heavy nuclear separately. There is a clear reduction of PDF uncertainties when using the shifted prescription versus the deweighted prescription. However, as we saw before, there is little impact at the level of $\chi^2$ and $\phi$ values. From this we can conclude that the deweighted prescription is the more conservative one. Given this, and that it leads to a slightly lower total $\chi^2$ and $\phi$, we opted to use the deweighted prescription in NNPDF4.0; including only an uncertainty for both deuteron and heavy nuclear data.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+      \includegraphics[width=0.49\linewidth]{nuclear/plots/ubar2.png}
+     \includegraphics[width=0.49\linewidth]{nuclear/plots/dbar2.png}
+    \caption{NNPDF4.0 (green) versus a fit where the nuclear data are also shifted according to Eqn.~\ref{eqn:shiftnuc} (orange).
+    \label{fig:pdfs2} }
+    \end{center}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+      \includegraphics[width=0.49\linewidth]{nuclear/plots/deutcomp.png}
+     \includegraphics[width=0.49\linewidth]{nuclear/plots/nuccomp.png}
+    \caption{The impact of shifting (blue) versus deweighting (orange) for deuteron (left) and heavy nuclear (right) data separately.
+    \label{fig:pdfs3} }
+    \end{center}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \section{Summary and outlook}
+Nuclear data are important in PDF fits, but effects due to the nuclear environment are hard to quantify. To bring PDFs to 1\% accuracy, we need  to address these ``small" but nevertheless important differencecs. We used the theory covariance matrix formalism outlined in Chapter~\ref{chapter:thuncs} to include nuclear uncertainties in the next generation PDF fits. We adopted an empirical approach by recalculating predictions for nuclear observables with nuclear PDFs and using the shifts in predictions to construct a nuclear covariance matrix. 
+
+We analysed deuteron and heavy nuclear data separately, using nNNPDF2.0 for heavy nuclear PDFs, and fitting deuteron PDFs using an iterative proceduere in the NNPDF3.1 methodology. The resulting uncertainties are a crucial ingredient in the latest release, NNPDF4.0. They lead to a reduced global $\chi^2$ and the relaxation of tension between the nuclear DIS and LHC DY data. Including the uncertainties causes a modest shift in the central value of PDFs and an increase in errors, in the high $x$ nuclear data region. This difference is driven by the heavy nuclear data. We also investigated a procedure to shift the nuclear predictions, which was equivalent within errors to including only an uncertainty, but with a slightly higher global $\chi^2$. Given this, we adopted using an uncertainty only as the conservative approach. 
+
+
 \label{sec:summandoutlook}
