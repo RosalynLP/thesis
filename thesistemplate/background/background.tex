@@ -448,8 +448,7 @@ The choice of sigmoid activation function for the hidden layers allows sufficien
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{../diagrams/neuralnet.pdf}
-\label{fig:nn}
-\caption{Schematic depiction of the 2-5-3-1 architecture of an artificial neural network currently used by NNPDF. In the NNPDF methodology $\xi_1^{(1)}$ and $\xi_2^{(1)}$ are the variables $x$ and $\log x$ respectively.}
+\caption{Schematic depiction of the 2-5-3-1 architecture of an artificial neural network currently used by NNPDF. In the NNPDF methodology $\xi_1^{(1)}$ and $\xi_2^{(1)}$ are the variables $x$ and $\log x$ respectively. \label{fig:nn}}
 \end{figure}
 
 The training of the neural networks is implemented using a ``genetic algorithm" (CMA-ES), so-called because of the introduction of mutation to the fitting parameters. This additional degree of randomness helps to avoid getting stuck in local minima. In practice, this involves ``mutating" some chosen fraction of the thresholds, $\theta$, by perturbing them at random.
@@ -500,23 +499,28 @@ To circumvent this problem, the data is split into a training and a validation s
 \caption{Comparing the training and validation $\chi^2$s for the 100 replicas (green circles) of a PDF fit. The red square gives the average.}
 \end{figure}
 
-\section{NNPDF4.0 - TODO after PDF4LHC}
-The earlier parts of this section describe the methodology for the NNPDF3.1~\cite{Ball:2017nwa} release, on which the majority of this thesis is based. However, in 2021 a new release, NNPDF4.0, is expected. The work in Chapter~\ref{chapter:nuclear} is based on this methodology, and so we briefly explain the main developments between NNPDF3.1 and NNPDF4.0.
+\section{NNPDF4.0}
+The earlier parts of this section describe the methodology for the NNPDF3.1~\cite{Ball:2017nwa} release, on which the majority of this thesis is based. However, in 2021 a new release, NNPDF4.0, is expected. The work in Chapter~\ref{chapter:nuclear} is based on this methodology, and so we briefly explain the main developments between NNPDF3.1 and NNPDF4.0. (ref PDF4LHC talk?)
 
 \subsection{Methodology}
+NNPDF4.0 heralds some significant methodological changes to the NNPDF procedure, the most important of which we will outline here. Perhaps most strikingly, the architecture of the neural network is changed~\cite{Carrazza:2019mzf} from that in Fig.~\ref{fig:nn}, which is implemented separately for each flavour, to a single neural network with flexible architecture. The implementation is via Keras~\cite{keras} and Tensorflow~\cite{tensorflow}, and the optimisation is with an inbuilt gradient descent algorithm rather than the genetic algorithm in NNPDF3.1. The stopping criterion follows a patience method where the fit stops once the minimiser is stable for a set length of time. All of these parameters, including architecture are determined via hyperoptimisation with k-folding, which is a process to determine the best combination for stability and performance.
 
-Neural network structural change, tensorflow implementation, hyperopt \& k-folding, methodology correlations
+Additionally, positivity of PDF replicas is now strictly enforced rather than them being allowed to be negative within a threshold. This is following a recent study~\cite{Candido:2020yat} which showed that $\bar{MS}$ PDFs are strictly positive. 
+
+INTEGRABILITY ADD HERE
+
 \subsection{Theory developments}
+There are two main theory developments between NNPDF3.1 and NNPDF4.0. One is the treatment of nuclear and deuteron data using an additional uncertainty. This forms the basis of Chapter~\ref{chapter:nuclear} so we will not discuss it further here.
 
-Electroweak corrns, nuc \& deut corrns (more on this in Chapter~\ref{chapter:nuclear}.
-\subsection{PDF properties}
+The other is the inclusion of NLO electroweak (EW) corrections. This consists of QED corrections to the DGLAP evolution as well as NLO EW corrections for a variety of processes; wherever EW corrections are available they are added to increase precision. This is very important as EW corrections can be up to $\sim 20\%$~\cite{Hollik:2004dz} in some regions. The corrections are provided as interpolation grids via the PineAPPL library~\cite{Carrazza:2020gss}.  
 
-Positivity, integrability and choice of basis.
 \subsection{Validation of PDFs}
+The effectiveness of the fitting methodology has traditionally  been tested using {\it closure tests}~\cite{Ball:2014uwa}, which use a separate PDF to create proxy known ``true values". This procedure has been updated, whereby fits are carried out to many proxy PDF replicas, and the bias and variance of the results are compared. This is made possible by the significantly increased speed of the new fitting methodology. REF SOMETHING HERE?
 
-Closure tests
-\subsection{Datasets and their selection}
+\subsection{New data}
+NNPDF4.0 also includes a large number of additional datasets, including many from the 13 TeV run at the LHC. What's more, many of the existing datasets' implementation has been improved.
 
-New data, weighted fitting and covmat regularisation 
+{\bf Add these from 4.0 paper.}
+
 \subsection{PDF delivery}
 GAN compression
