@@ -42,6 +42,7 @@ S = \beta \beta^T,
 where $\beta$ are real and non-zero. 
 
 \subsection{Nuisance parameters}
+\label{subsec:nuis}
 We can model the theory uncertainty as a fully correlated shift in the theory prediction:
 \be 
 T \to T + \lambda \beta,
@@ -97,6 +98,7 @@ where we have defined
 Plugging this back into Eqn.~\ref{eqn:ptd2}, we get
 \be  
 \begin{split}
+\label{eq:margresult}
 P(T|D) &\propto \int d\lambda \ e^{-\frac{1}{2} \chi^2} \exp \bigg( -\frac{1}{2} Z^{-1} (\lambda - \bar{\lambda})^2 \bigg) \\
 &\propto e^{-\frac{1}{2} \chi^2},
 \end{split}
@@ -265,7 +267,7 @@ Note that:
 \end{itemize}
 Now we have the uncertainty in the fitted parameter, $\theta$, we can find the fitting uncertainty. This is the covariance of $T(\theta)$ due to the experimental and theoretical uncertainties from fitting $\theta$. We will call this covariance matrix $X$. Using the fact that $E[T] = \langle T(\theta^{(r)})\rangle = T(\theta_0) = T_0$ and writing $T^{(r)} = T(\theta^{(r)})$,
 \bea
-X\equiv\Cov[T(a)] &=& \langle(T^{(r)}-T_0)(T^{(r)}-T_0)^T\rangle\label{eq:Xdef}\\
+X\equiv\Cov[T(\theta)] &=& \langle(T^{(r)}-T_0)(T^{(r)}-T_0)^T\rangle\label{eq:Xdef}\\
 &=& \Tdot_0\langle(\theta^{(r)}-\theta_0)^2\rangle\Tdot_0^T\\
 &=& \Tdot_0(\Tdot_0^T(C+S)^{-1}\Tdot_0)^{-1}\Tdot_0^T\label{eq:Xdef2}\\
 &=& n(n^T(C+S)^{-1}n)^{-1}n^T,
@@ -447,12 +449,357 @@ Fig.~\ref{fig:plot2} shows a comparison between these two. When $\phi$ is small,
   \end{center}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Correlated predictions}
+Let's think about making predictions for other observables not in the fit. We denote these $\Ttil_I(\theta)$, $I=1,\ldots , \widetilde{N}$. They depend on the same $\theta$ parameter as the fitted predictions, $T_i(\theta)$, $i=1, \ldots , N$. There are two sources of uncertainty in $\Ttil_I(\theta)$:
+\begin{enumerate}
+\item that coming from the fit, i.e. the uncertainty in $\theta$ due to the experimental uncertainty in $D_i$ and the theory uncertainty in $T_i(\theta)$.
+\item the theory uncertainty in $\Ttil_I(\theta)$ themselves.
+\end{enumerate}
+
+Source 1. is expressed via Eqn.~\ref{eq:vara}. We can write
+\be
+\label{eq:Tlin2}
+\Ttil(\theta) = \Ttil_0 + (\theta-\theta_0)\Ttildot_0,
+\ee
+and use the shorthand notation $\Ttil^{(r)}\equiv\Ttil(\theta^{(r)})$. Then the covariance of $\Ttil_I(\theta)$ due to the uncertainty in $\theta$ is just like we found before for the autopredictions:
+\bea
+\Xtil\equiv\Cov[\Ttil(\theta)] &=& \langle(\Ttil^{(r)}-\Ttil_0)(\Ttil^{(r)}-\Ttil_0)^T\rangle\label{eq:Xtildef}\\
+&=& \Ttildot_0\langle(\theta^{(r)}-\theta_0)^2\rangle\Ttildot_0^T
+= \Ttildot_0(\Tdot_0^T(C+S)^{-1}\Tdot_0)^{-1}\Ttildot_0^T \qquad \qquad \label{eq:Xtildef2}.
+%\\
+%&=& \rtil\ntil(n^T(C+S)^{-1}n)^{-1}\ntil^T.
+%\label{eq:Xtildef3}
+\eea
+
+Source 2. can be either correlated or uncorrelated with that in $T_i(\theta)$. Let's consider first the case where it is uncorrelated, for example if $\Ttil(\theta)$ are for a different type of observable to $T(\theta)$. Then we can associate with them a nuisance parameter, $\lambdatil$, which is uncorrelated with $\lambda$, and has the same prior as $\lambda$. This means we can write
+\be
+\Ttil(\theta,\lambdatil) =  \Ttil(\theta) + \lambdatil\betatil,\label{eq:uncor}
+\ee
+Here $\betatil_I$ give the size of the theory uncertainty in $\Ttil_I(\theta)$. We can proceed by finding the expectation value and covariance of the predictions:
+\bea
+E[\Ttil(\theta,\lambdatil)] &=& \Ttil(\theta_0),\label{eq:uncorpred}\\
+\Cov[\Ttil(\theta,\lambdatil)]&=& \Cov[\Ttil(\theta)]+\Var[\lambdatil]\betatil\betatil^T 
+= \Xtil + \Stil,\label{eq:uncorcov}
+\eea
+where 
+\be
+\Stil = \betatil\betatil^T,\label{eq:Stildef}
+\ee
+is the theory covariance matrix of predictions. What this shows us is that when the theory uncertainty is uncorrelated, we just add it in quadrature to the uncertainty due to $\theta$ in the fit. This matches the recommendations of the conservative prescription.
+
+How about when $\Ttil(\theta)$ are fully correlated to $T(\theta)$? In this case $\lambdatil = \lambda$, and we already have the expectation value and covariance of $\lambda$ for the fit in Eqns.~\ref{eq:lambdabarz},\ref{eq:Zbardef}. So
+\be
+\label{eq:corpredmean}
+E[\Ttil(\theta,\lambda)] = \Ttil(\theta_0) + \overline\lambda(\theta_0)\betatil,
+\ee
+and we get a shift in predictions analogous to the case of the autopredictions, i.e.
+\bea
+\label{eq:shiftpred}
+\delta \Ttil(\theta_0) &=& \betatil\beta^T(C+S)^{-1}(D^{(0)}-T(\theta_0)) \\ &=& \Shat (C+S)^{-1}(D^{(0)}-T(\theta_0)).
+\eea
+Here 
+\be
+\Shat = \betatil\beta^T,\label{eq:Shatdef}
+\ee
+is the cross-correlated theory covariance matrix between $T(\theta)$ and $\Ttil(\theta)$. We can also define, in analogy to Eq.~(\ref{eq:Xdef}) and Eq.~(\ref{eq:Xtildef2}),
+\be
+\Xhat = \Ttildot_0(\Tdot_0^T(C+S)^{-1}\Tdot_0)^{-1}\Tdot_0^T\label{eq:Xhat},
+\ee
+and note the corresponding projective relations 
+\be
+\Xhat(C+S)^{-1}X=\Xhat,\qquad X(C+S)^{-1}\Xhat^T=\Xhat^T,\qquad \Xhat(C+S)^{-1}\Xhat^T=\Xtil \label{eq:XhatsqeqXtil} .
+\ee
+Following on from this, we can write
+\be
+\Ttil(\theta^{(r)})-\Ttil(\theta_0) = \Xhat (C+S)^{-1}(D^{(r)}-D^{(0)}),\label{eq:Ttilrep}
+\ee
+and so
+\be
+\Ttil(\theta^{(r)},\lambdabar(\theta^{(r)}))-\Ttil(\theta_0,\lambdabar_0) = (\Xhat+\Shat-\Shat(C+S)^{-1}X)(C+S)^{-1}(D^{(r)}-D^{(0)}),\label{eq:Ttilarep}
+\ee
+which leads us to the contribution from Source 2.:
+\be
+\Cov[\Ttil(\theta,\lambdabar(\theta)] =  \Shat (C+S)^{-1}\Shat^T + \Xtil - \Shat(C+S)^{-1}X(C+S)^{-1}\Shat^T.\label{eq:covTtilrlamr}
+\ee
+
+Then the full covariance of the predictions is the combination of Source 1. and Source 2. (using Eqn.~\ref{eq:Zdef2}):
+\bea
+{\Cov}[\Ttil(\theta,\lambda)] &=& E[(\lambda-\lambdabar(\theta))^2]\Stil 
+ + \Cov[\Ttil(\theta,\lambdabar(\theta)]\label{eq:covTtilsumx}\\
+&=& (1-\beta^T (C+S)^{-1} \beta)\Stil + \Shat (C+S)^{-1}\Shat^T + \Xtil \\ &&\qquad - \Shat(C+S)^{-1}X(C+S)^{-1}\Shat^T \\
+&=& \Xtil + \Stil - \Shat(C+S)^{-1}X(C+S)^{-1}\Shat^T.\label{eq:covTtilfit2}\\
+&=& \Xtil +\Zbar \Stil. \\
+\eea
+
+In summary, including correlations betwen the theory uncertainties in the fit and the predictions:
+\begin{itemize}
+\item shifts the central value of the prediction;
+\item reduces the uncertainty of the prediction.
+\end{itemize}
+The fit gives information from $D$ about the theory uncertainties, leading to a more precise prediction. Note that all of the theory covariance matrices are positive semidefinite, and that
+\be
+\label{eq:possemdeftil}
+0\leq \Shat^T(C+S)^{-1}\Shat \leq \Stil,
+\ee
+so ${\Cov}[\Ttil(\theta,\lambda)]$ is always reduced by the subtracted term in Eqn.~\ref{eq:covTtilfit2}, but will never be negative (which would be nonsensical in this context). 
+
+We can understand a little more about the various theory covariance matrices by imagining we obtained some experimental measurements, $\widetilde{D}$, corresponding to predictions $\Ttil$. Then we could add these to the fit, and would get a new fitting theory covariance matrix with dimensions $(N+\widetilde{N})\times(N+\widetilde{N})$ and content
+\be
+\left(\begin{array}{cc}
+S&\Shat\\
+\Shat^T&\Stil\end{array}\right)
+ =
+\left(\begin{array}{cc}
+\beta\beta^T&\beta\betatil^T\\
+\betatil\beta^T&\betatil\betatil^T\end{array}\right).
+\label{eq:covmatglobal}
+\ee
+Here the role of $\Shat$ and $\Shat^T$ as cross-correlation theory covariance matrices is clear. We can see that the theory uncertainties in the prediction are consistent with the theory uncertainties we would use when including observables in a fit, which makes sense in the comparison with the autopredictions case. 
 
 \section{Correlated MHOUs in PDF fits}
 \label{sec:p3}
+In this section we add another layer of complexity to the model we are building up. Now the theory values, $T_i[f]$, depend on PDFs, $f$, which are determined in a global fit to the $N$ data points, $D_i$, with experimental covariance $C_{ij}$. The PDFs are then used to make $\widetilde{N}$ theory predictions, $\Ttil_I[f]$.
+
+In a PDF fit there are many potential sources of theory uncertainty, but here we will consider MHOUs, computed with scale variation using a prescription from Chapter~\ref{chapter:mhous}. In this case $S_{ij}$ and $\Stil_{IJ}$ have many non-zero eigenvalues. We can describe them using $n$ nuisance parameters, $\lambda_\alpha$, $\alpha = 1, \dots , n$. Usually $n \ll N$, but we don't impose a limit on $n$ here. 
+
+We will now find the expectation value and covariance of these nuisance parameters, and use those to find the shifts in predictions, and  the change in their uncertainties.
+
+\subsection{Multiple nuisance parameters}
+\label{subsec:p31}
+Here we repeat the analysis of Sec.~\ref{subsec:nuis}, but for multiple nuisance parameters rather than just one. Each nuisance parameter is associated with a shift in theory value $T_i[f]\to T_i[f] + \lambda_\alpha\beta_{i,\alpha}[f]$, using summation notation for $\alpha$. Note that the $\beta_{i,\alpha}$ don't have to be mutually orthogonal. We pick a prior for each nuisance parameter the same as in Sec.~\ref{subsec:nuis}, i.e. 
+\be
+\label{eq:priorf}
+P(\lambda|D)=P(\lambda) \propto \exp\big(-\half\lambda_\alpha\lambda_\alpha\big).
+\ee
+Once again we assume Gaussianity, and now instead of Eq.~(\ref{eq:PTDl}) we get
+\be
+\label{eq:PTDlf}
+P(T|D\lambda)\propto \exp\big(-\half(T[f]+\lambda_\alpha\beta_\alpha-D)^TC^{-1}(T[f]+\lambda_\alpha\beta_\alpha-D)\big).
+\ee
+We can marginalise over $\lambda_\alpha$ to get 
+\be
+\label{eq:marginalise2}
+P(T|D) \propto\int d^n\lambda\, \exp\left(-\half[(T[f]+\lambda_\alpha\beta_\alpha-D)^TC^{-1}(T[f]+\lambda_\beta\beta_\beta-D)+\delta_{\alpha\beta}\lambda_\alpha\lambda_\beta]\right)\, .
+\ee
+The next step is to complete the square in the exponent. After some work, defining 
+\be
+\label{eq:zdefmat}
+Z_{\alpha\beta} = (\delta_{\alpha\beta}+\beta_\alpha^TC^{-1}\beta_\beta)^{-1},
+\ee
+where the bracketed inverse is with respect to $\alpha$, $\beta$, and
+\be
+\label{eq:lambdabarf}
+\overline{\lambda}_\alpha = Z_{\alpha\beta}\beta_\beta^TC^{-1}(D-T),
+\ee
+we end up with
+\be
+\label{eq:integrationf}
+P(T|D)\propto\int d^n\lambda\, \exp\left(-\half(\lambda_\alpha-\overline{\lambda}_\alpha) Z_{\alpha\beta}^{-1}(\lambda_\beta-\overline{\lambda}_\beta) - \half\chi^2\right) \propto \exp(-\half\chi^2).
+\ee
+Note that $\chi^2$ in this expression is given by Eq.~(\ref{eq:chisq}) but where $S = \beta_\alpha\beta^T_\alpha$. Note also the analogy between this and Eqn.~\ref{eq:margresult}. 
+
+We can then use Bayes' Theorem to get the posterior distribution, 
+\be
+\label{eq:posteriorf}
+P(\lambda|TD)\propto \exp\big(-\half(\lambda_\alpha-\overline{\lambda}_\alpha) Z_{\alpha\beta}^{-1}(\lambda_\beta-\overline{\lambda}_\beta)\big),
+\ee
+and from this the expectation and covariance of $\lambda_\alpha$ are
+\be
+\label{eq:meanvarlamf}
+E[\lambda_\alpha] =\lambdabar_\alpha,\qquad E[(\lambda_\alpha-\lambdabar_\alpha)(\lambda_\beta-\lambdabar_\beta)] = Z_{\alpha\beta}.
+\ee
+If we write $\beta = e_\alpha \beta_\alpha$, such that $e_\alpha$ is a unit eigenvector of $Z_{\alpha \beta}$, then the corresponding eigenvalue is $z = (1+\beta^TC^{-1}\beta)^{-1})$. This means $0<z<1$ and so $Z_{\alpha\beta}$ is positive definite, therefore invertible. What's more, if all $z <1$ then $\delta_{\alpha\beta}-Z_{\alpha\beta}$ is also positive definite. We can view $Z_{\alpha\beta}$ as the ``decorrelation matrix", upgrading it from the decorrelation coefficient from Sec.~\ref{subsec:nuis} as there are now many sources of uncertainty. 
+
+We can write, in analogy with before,
+\be
+\label{eq:zdefmat2}
+Z_{\alpha\beta} = \delta_{\alpha\beta}-\beta_\alpha^T(C+S)^{-1}\beta_\beta,
+\ee
+which allows us to rewrite $\overline{\lambda}_\alpha$, using $(1-(C+S)^{-1}S)C^{-1} = (C+S)^{-1}$, as
+\be
+\label{eq:lambdabarfx}
+\overline{\lambda}_\alpha = \beta_\alpha^T(C+S)^{-1}(D-T[f]).
+\ee
+
+\subsection{Fitting PDFs with fixed parametrisation}
+Now we can use the previous section's results in the context of a PDF fit with MHOUs. In this section, we consider a fixed parametrisation of PDFs, like that adopted by, for example MSHT, CTEQ and ABM. Here the PDFs, $f(\theta)$, depend on $m$ parameters, $\theta_p$, $p=1, \dots , m$, where $m < N$ such that the data are able to determine all the parameters through $\chi^2$ minimisation. We will move on to the somewhat different case of PDFs with neural networks (unsurprisingly relevant to NNPDF) in the next section.
+
+We adopt the same approach as in Sec.~\ref{sec:p2}, but fitting $m$ parameters, $\theta_p$, rather than a single one, $\theta$. Writing the PDF that minimises the $\chi^2$ as $f(\theta^0)\equiv f_0$, and using the notation $T_0\equiv T(\theta^0)$, $T_p\equiv \partial T(\theta^0)/\partial\theta_p^0$ with summation convention for $p$, we can linearise $T(\theta)$ as
+\be
+\label{eq:Tlinf}
+T(\theta) = T_0 + (\theta_p-\theta_p^0)T_p + \dots .
+\ee
+Minimising this with respect to $\theta^p$, we find
+\be
+\label{eq:arep2f}
+\theta^{(r)}_p - \theta^0_p = (T_p^T(C+S)^{-1}T_q)^{-1}T_q^T(C+S)^{-1}(D^{(r)}-D),
+\ee
+where the inverse of the left section is with respect to $p,q$. So
+\bea
+\Cov_{pq}[\theta] &=& \langle(\theta^{(r)}_p-\theta_p^0)(\theta^{(r)}_q-\theta_q^0)\rangle\nn\\
+&=& (T_p^T(C+S)^{-1}T_q)^{-1}.
+\label{eq:varaf}
+\eea
+To find $X$, we can separate out the magnitude and direction of $T_p$ by writing $T_p = |T_p|n_p$, where $n_p$ are (not necessarily orthogonal) unit vectors. Then Eq.~\ref{eq:Xdef3} becomes
+\be
+X\equiv\Cov[T[f]] = n_p(n_p^T(C+S)^{-1}n_q)^{-1}n_q^T.
+\label{eq:Xdeffpq}
+\ee
+Note that $X(C+S)^{-1}$ still projects the data replicas onto the theory replicas, and the projective relation for $X$ still holds. 
+
+\subsubsection{Autopredictions}
+First consider the autopredictions, $T(f,\lambda)\equiv T[f]+\lambda_\alpha\beta_\alpha$. We can see that the results from Sec.~\ref{sec:p2} still hold. In particular, the central values of $\overline{\lambda}_\alpha$ are given by Eq.~\ref{eq:lambdabarfx}, and
+the shifts (Eq.~\ref{eq:shift}) are now
+\be
+\label{eq:shiftmult}
+\delta T[f] = \beta_\alpha\beta_\alpha^T(C+S)^{-1}(D^{(0)}-T[f_0]) = S(C+S)^{-1}(D{(0)}-T[f_0]).
+\ee
+The covariance of $\lambda$ becomes an equation for the decorrelation matrix rather than a decorrelation coefficient:
+\be
+\label{eq:Zbardefab}
+\Cov_{\alpha\beta}[\lambda] = \delta_{\alpha\beta} -\beta_\alpha^T(C+S)^{-1}X(C+S)^{-1}\beta_\beta\equiv \Zbar_{\alpha\beta}.
+\ee
+Like before, both $\Zbar_{\alpha\beta}$ and $\delta_{\alpha\beta}-\Zbar_{\alpha\beta}$ are positive semidefinite, so all eigenvalues of $\Zbar_{\alpha\beta}$ lie between zero and one. 
+
+The covariance of the autopredictions then becomes
+\be
+{\Cov}[T(f,\lambda)] = X+\beta_\alpha\Zbar_{\alpha\beta}\beta_\beta^T = X + S - S(C+S)^{-1}X(C+S)^{-1}S.\label{eq:covTfitf}
+\ee
+
+\subsubsection{Predictions for new observables}
+Now consider true predictions for new observables. The shifts (Eq.~\ref{eq:shiftpred}) can be written
+\be
+\label{eq:shiftpredf}
+\delta \Ttil[f] = \betatil_\alpha\beta_\alpha^T(C+S)^{-1}(D^{(0)}-T[f_0]) = \Shat (C+S)^{-1}(D^{(0)}-T[f_0]),
+\ee
+where we have defined $\Shat = \betatil_\alpha\beta_\alpha^T$. 
+
+If the predictions are fully correlated, then $\Ttil(f,\lambda)=\Ttil[f]+\lambda_\alpha\betatil_\alpha$ and
+\be
+{\Cov}[\Ttil(f,\lambda)]
+= \Xtil + \betatil_\alpha\Zbar_{\alpha\beta}\betatil_\beta^T = \Xtil + \Stil - \Shat(C+S)^{-1}X(C+S)^{-1}\Shat\label{eq:covTtilfitf},
+\ee
+where $\Stil = \betatil_\alpha\betatil_\alpha^T$. Finally, we have 
+\be
+\Xtil\equiv\Cov[\Ttil[f]] = \Ttil_p(T_p^T(C+S)^{-1}T_q)^{-1}\Ttil_q^T.
+\label{eq:Xtildeff}
+\ee
+
+\subsection{Fitting NNPDFs}
+In NNPDF we don't use a fixed parametrisation, but instead have a neural network with a very large number of parameters, in general greater than the number of data points. Here the ability to overfit is a danger, so we adopt a cross-validation procedure when finding the optimal $\chi^2$ (see Chapter \ref{chapter:background}). This means that when fitting each data replica, $D^{(r)}$, the $\chi^2$ is not exactly minimised; there is random noise in the system which amounts to a ``functional uncertainty"~\cite{Ball:2014uwa}. We will see in this section that this is responsible for a third mechanism of decorrelation, on top of those due to the experimental uncertainties and the loss of information in the fitting process.
+
+The fact that Eqn.~\ref{eq:chi2rep} is not exactly minimised makes the analytical approach imprecise, and while in general the results in Sec.~\ref{subsec:p31} are valid, the exact relations for the fitted parameters (e.g. Eqn.~\ref{eq:arep2f}) and subsequent results do not hold. We are still able to use the PDF replicas compute, for example
+\be
+X\equiv\Cov[T[f]] = \langle (T^{(r)} - T^{(0)}) (T^{(r)} - T^{(0)})^T\rangle,
+\label{eq:Xdefgen}
+\ee
+where $T^{(r)}\equiv T[f^{(r)}]$, and $T^{(0)}\equiv \langle T^{(r)}\rangle$. However, the projective relation for $X$ is no longer satisfied, and now $X(C+S)^{-1}$ doesn't project the data replicas on to the theory replicas.
+
+The data and theory replicas no longer have an analytic connection, so we have to look instead at their correlations, which we can explicitly compute as 
+\be
+Y\equiv\Cov[T[f],D] = \langle (T^{(r)} - T^{(0)}) (D^{(r)} - D^{(0)})^T\rangle.
+\label{eq:Ydefgen}
+\ee
+Note that $Y$ is in general not symmetric. In the case of a fixed parametrisation, such as in the previous section, then using Eq.~\ref{eq:projection} and Eq.~\ref{eq:repavD} we find $Y=Y^T=X$.
+
+We will now redetermine the covariance of the nuisance parameters, then the autopredictions, and finally the external predictions. This time results will be in terms of $C$, $S$, $X$ and $Y$.
+
+\subsubsection{Covariance of nuisance parameters}
+Starting with
+\be
+\label{eq:lambdabarfxrep}
+\overline{\lambda}^{(r)}_\alpha = \beta_\alpha^T(C+S)^{-1}(D^{(r)}-T^{(r)}),
+\ee
+we can compute
+\begin{eqnarray}
+\langle(\lambdabar_\alpha^{(r)}-\lambdabar_\alpha^{(0)})(\lambdabar_\beta^{(r)}-\lambdabar_\beta^{(0)})\rangle
+&=& \beta_\alpha^T (C+S)^{-1}(C+S+X-Y-Y^T) \qquad \\ && \qquad \times (C+S)^{-1} \beta_\beta,\nn\\
+&=& \beta_\alpha^T (C+S)^{-1}\beta_\beta + \beta_\alpha^T(X-Y-Y^T) \qquad \\ && \qquad \times  (C+S)^{-1} \beta_\beta,\label{eq:covlambdagen}
+\end{eqnarray}
+so
+\be
+\label{eq:Zbardefgen}
+\Cov_{\alpha\beta}[\lambda] = \delta_{\alpha\beta} +\beta_\alpha^T(C+S)^{-1}(X-Y-Y^T)(C+S)^{-1}\beta_\beta\equiv \Zbar_{\alpha\beta}.
+\ee
+Note that when $X=Y=Y^T$ we get back Eqn.~\ref{eq:Zbardefab}. Also, although $\Zbar_{\alpha\beta}$ is still positive semidefinite, the eigenvalues are not bounded above by one any more, as $Y + Y^T$ is not generally positive definite. This means the presence of functional uncertainty can add another decorrelation effect which can be large enough to actually increase the theoretical uncertainties!
+
+\subsubsection{Covariance of autopredictions}
+The shifts in the autopredictions are still given by Eqn.~\ref{eq:shiftmult}, but the covaraince of autopredictions isn't the same. First note that
+\bea
+\label{eq:Talgebra}
+T^{(r)} + \overline{\lambda}_\alpha^{(r)}\beta_\alpha &=& T^{(r)} + S(C+S)^{-1}(D^{(r)}-T^{(r)}) \\ &=&  C(C+S)^{-1}T^{(r)}  + S(C+S)^{-1}D^{(r)},
+\eea
+so
+\begin{eqnarray}
+\label{eq:covTbarx}
+\Cov[T + \overline{\lambda}_\alpha\beta_\alpha] &=& C(C+S)^{-1}X(C+S)^{-1}C+S(C+S)^{-1}S \nn\\
+&&\qquad+ C(C+S)^{-1}Y(C+S)^{-1}S \nn\\
+&&\qquad+ S(C+S)^{-1}Y^T(C+S)^{-1}C. \nn\\
+\end{eqnarray}
+Then we can find the covariance matrix of predictions
+\begin{eqnarray}
+P\equiv\Cov[T(f,\lambda)] &=&\beta_\alpha Z_{\alpha\beta}\beta_\beta^T + \Cov[T + \overline{\lambda}_\alpha\beta_\alpha]\nn\\
+&=& S+C(C+S)^{-1}X(C+S)^{-1}C \nn\\
+&&\qquad+ C(C+S)^{-1}Y(C+S)^{-1}S \nn\\
+&&\qquad+ S(C+S)^{-1}Y^T(C+S)^{-1}C \label{eq:covTfitfun}\\
+&=&X +  \beta_\alpha \Zbar_{\alpha\beta}\beta_\beta^T - (X-Y)(C+S)^{-1}S \nn\\
+&&\qquad- S(C+S)^{-1}(X-Y^T) \label{eq:covTfitfun2}.
+\end{eqnarray}
+Note again that when the functional uncertainty is zero, $X=Y=Y^T$ and we get back Eqn.~\ref{eq:covTfitf}. 
+
+Now let's think about the case when the functional uncertainty is large. Then the theory replicas are almost totally uncorrelated with the data replicas, so $Y$ is much smaller than $C+S$ and $X$. In that situation 
+\be
+P \sim P_{\rm sim} =  S+C(C+S)^{-1}X(C+S)^{-1}C\label{eq:covTfitfunapprox},
+\ee 
+which is a little below the conservative result, $P_{\rm con}=X+S$. 
+
+Revisiting the model (Eqn.~\ref{eq:modelCS}) a final time, we can look explicitly at the relative sizes of these. Using $X= x^2 nn^T$ for a unit vector, $n$, satisfying $e^Tn\equiv\cos\phi$. Then the ratio to the conservative result is
+\bea
+\Rbar_{\rm sim} &=& \frac{e^T(S+C(C+S)^{-1}X(C+S)^{-1}C)e}{e^T(S+X)e}\nn\\
+&=& 1 - \frac{s^2(s^2+2\sigma^2)x^2\cos^2\phi}{(s^2+\sigma^2)^2(s^2+x^2\cos^2\phi)}\nn\\
+&\sim&  \begin{cases}{1 -\smallfrac{ 2s^2}{\sigma^2} \qquad\qquad\mbox{for $s^2 \ll \sigma^2$ or $x^2$;}}\\{1-\smallfrac{x^2\cos^2\phi}{s^2}\qquad \mbox{for $s^2 \gg \sigma^2$ or $x^2$.}}\end{cases} 
+\label{eq:modelRbarapprox}
+\eea
+Fig.~\ref{fig:plot3} shows a plot of this ratio. If $\sigma$ and $x$ are of similar size then $\Rbar_{\rm sim}$ always remains close to one, and there is almost total decorrelation, regardless of whether $s$ is small or large.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[h]
+  \begin{center}
+      \includegraphics[width=0.5\textwidth]{correlations/plots/plot3.pdf}
+    \caption{ For neural network fit within the model Eqn.~\ref{eq:modelCS}.  Comparing the ratios to the conervative prescription of the simplified decorrelated ($\Rbar_{\rm sim}$, Eqn.~\ref{eq:modelRbarapprox}) and correlated ($\Rbar_c$, Eqn.~\ref{eq:modelRbarc}) autoprediction covariance matrices.  \label{fig:plot3}}
+  \end{center}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The effect when $Y \neq 0$ is also sketched. We understand that this will be modest, since the difference between $P_{\rm sim}$ and $P$ is small for both small and large $S$. However, we can get a slight over-decorrelation such that the true result actually goes slightly above the uncorrelated (conservative) result. What's more, this is in a region of relative uncertainties which is occupied by many datasets in current NNPDF fits. 
+
+\subsubsection{Covariance of predictions for new observables}
+Finally, consider predictions for new observables. The shifts are given by Eqn.~\ref{eq:shiftpredf}, and the covariance is
+\begin{eqnarray}
+\Ptil\equiv{\Cov}[\Ttil(f,\lambda)]
+&=& \betatil_\alpha Z_{\alpha\beta}\betatil_\beta^T + \Cov[\Ttil + \overline{\lambda}_\alpha\betatil_\alpha]\nn\\
+&=& \Xtil + \Stil + \Shat(C+S)^{-1}(X-Y-Y^T)(C+S)^{-1}\Shat^T  \nn\\
+&&\qquad -(\Xhat-\Yhat)(C+S)^{-1}\Shat^T \nn\\
+&&\qquad -\Shat(C+S)^{-1}(\Xhat^T-\Yhat^T) \label{eq:covTtilfitfun}\\
+&=&\Xtil +  \betatil_\alpha \Zbar_{\alpha\beta}\betatil_\beta^T - (\Xhat-\Yhat)(C+S)^{-1}\Shat^T \nn\\
+&&\qquad - \Shat(C+S)^{-1}(\Xhat^T-\Yhat^T) \label{eq:covTtilfitfun2}.
+\end{eqnarray}
+Note that we have defined the additional relations:
+\begin{eqnarray} 
+\Xtil&\equiv&\Cov[\Ttil[f]] = \langle (\Ttil^{(r)} -\Ttil^{(0)}) (\Ttil^{(r)} - \Ttil^{(0)})^T\rangle\label{eq:Xtildefgen},\\
+\Xhat&\equiv&\Cov[\Ttil[f],T[f]] = \langle (\Ttil^{(r)} -\Ttil^{(0)}) (T^{(r)} - T^{(0)})^T\rangle\label{eq:Xhatdefgen},\\ 
+\Yhat&\equiv&\Cov[\Ttil[f],D] = \langle (\Ttil^{(r)} -\Ttil^{(0)}) (D^{(r)} - D^{(0)})^T\rangle.
+\end{eqnarray}
+Again, we get the fixed parametrisation result when both $Y=Y^T=X$ and $\Yhat = \Xhat$. When there is a large functional uncertainty, $Y$ and $\Yhat$ are both small, and so
+\bea
+\Ptil_{\rm sim} &=&  \Xtil+\Stil + \Shat(C+S)^{-1}X(C+S)^{-1}\Shat^T \nn\\
+&&\qquad -  \Xhat(C+S)^{-1}\Shat^T-\Shat(C+S)^{-1}\Xhat^T, \label{eq:covTtilfitfunapprox}
+\eea 
+which we expect to be close to the conservative predictions, $\Ptil_{\rm con}\equiv\Xtil+\Stil$.
 
 \section{Numerical results}
 \label{sec:p4}
+Still with us? In this section we will apply all the results we worked up to in Sec.~\ref{sec:p3}. 
+
+
 
 \section{Summary}
 \label{sec:p5}
