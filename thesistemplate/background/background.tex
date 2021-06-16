@@ -4,23 +4,17 @@ Parton distribution functions (PDFs) bridge the gap between short and long range
 
 This section provides some background to PDFs neccesary for understanding the remainder of this thesis. It is divided in to two main parts, being the necessary physics and the necessary methodology of PDF determination.
 
-To review the physics, we begin by looking at the process of deep inelastic scattering (DIS), and how the na\"ive parton model was developed to explain these experimental observations. Next we look at this in the context of QCD, see how PDFs fit into the picture, and how they evolve with the scale of the physics. Finally we briefly touch on hadron-hadron collisions, which along with DIS constitute the bulk of the processes in modern PDF fits.
+To review the physics, we begin by looking at the process of deep inelastic scattering, and how the na\"ive parton model was developed to explain these experimental observations. Next we look at this in the context of QCD, see how PDFs fit into the picture, and how they evolve with the scale of the physics. Finally we briefly touch on hadron-hadron collisions, which along with DIS constitute the bulk of the processes in modern PDF fits.
 
-To review the methodology we consider the NNPDF fitting strategy, explaining how theory and experiment are used together with neural networks to determine PDFs.
+To review the methodology we consider the NNPDF fitting strategy, explaining how theory and experiment are used together with neural networks to determine PDFs. We distinguish between the NNPDF3.1 methodology, on which the results in Chapters \ref{chapter:mhous} and \ref{chapter:correlations} are based, and the NNPDF4.0 methodology, on which the results in Chapter \ref{chapter:nuclear} are based. We note that the difference between these methodologies doesn't affect the main lines of argument in these chapters.
 
+\section{Physics background}
 \subsection{Deep inelastic scattering}
-For a more in-depth analysis, see Refs. \cite{pinkbook, hm}. In the following background sections we rely heavily on Ref. \cite{nikhefnotes}.
+For a more in-depth analysis, see \cite{pinkbook, hm}. In this section we rely heavily on \cite{nikhefnotes, Hartland:2014nha}.
 
-The notion of bombarding matter to uncover its structure has led to many important discoveries in the last hundred or so years, starting with the Geiger-Marsen experiments from 1908-1913 and the subsequent discovery of the atomic nucleus \cite{nucleus}. In the decades following the discovery of the neutron in 1932, nuclei were probed at higher energies, leading to them being understood in terms of ``form factors" which parametrised their electric and magnetic distributions. At this stage it was clear that they were not point-like particles and so a series of important experiments were carried out in the 1960s at the Standford Linear Accelerator (SLAC), involving a high energy beam of charged leptons scattering off a stationary hadronic target. This process is known as Deep Inelastic Scattering (DIS). 
+The notion of bombarding matter to uncover its structure has led to many important discoveries in the last hundred or so years, starting with the Geiger-Marsden experiments from 1908-1913 and the subsequent uncovering of the atomic nucleus \cite{nucleus}. In the decades following the discovery of the neutron in 1932, nuclei were probed at higher energies, leading to them being understood in terms of ``form factors" which parametrised their electric and magnetic distributions. At this stage it was clear that they are not point-like particles and so a series of important experiments were carried out in the 1960s at the Stanford Linear Accelerator (SLAC), involving a high energy beam of charged leptons scattering off a stationary hadronic target. This process is known as Deep Inelastic Scattering (DIS). 
 
 In this section we will consider the example of electrons incident on protons, as shown in Fig. \ref{fig:dis}. In the deep inelastic regime, there is a large momentum transfer, $q=k-k'$, mediated by a virtual photon. The proton, $P$, with initial momentum $p$, fragments into some hadronic state $X$, and the electron starts with energy $E$ and momentum $k$ and ends with energy $E'$ and momentum $k'$. The momentum transfer is large enough that the masses of the proton and electron can be neglected. 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{../diagrams/disdiag.pdf}
-\label{fig:dis}
-\caption{Deep inelastic scattering}
-\end{figure}
 
 It is customary to define some useful variables for help in the analysis, listed in the table below.
 \begin{table}[H]
@@ -40,6 +34,11 @@ The interaction is made up of a leptonic current (that of the electron) and a ha
 |\mathcal{M}|^2 = \mathcal{N}_1 \frac{\alpha^2}{q^4} L_{\mu\nu} W^{\mu\nu},
 \ee
 where $L_{\mu\nu}$ is the leptonic part, determined from perturbative Quantum Electrodynamics (QED), and $W^{\mu\nu}$ is the hadronic part, containing the incalculable strongly coupled dynamics. $\alpha$ is the QED coupling constant and $\mathcal{N}_1$ is a normalisation constant.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{../diagrams/disdiag.pdf}
+\caption{Deep inelastic scattering. \label{fig:dis}}
+\end{figure}
 
 From QED, for an unpolarised photon beam in the DIS regime we can use the Feynman rules to write
 \bdm
@@ -77,14 +76,13 @@ We can now combine Eqns. \ref{eqn:ltensor} and \ref{eqn:htensor} in Eqn. \ref{eq
 \subsection{The parton model}
 Carrying out DIS experiments allows us to measure the structure functions for different values of $x$ and $Q^2$. It transpired that no clear $Q^2$ dependence was observed, and this is known as Bj\"orken scaling \cite{Callan:1973pu}. Because $Q^2$ is the photon's squared momentum, it corresponds to the energy at which the hadron is being probed. The fact that the structure functions are not dependent on this suggests that the interaction is point-like. This led to the formulation of the ``parton model", which described the proton as a composite state made up of point-like particles termed ``partons"\cite{Feynman:1969wa, Feynman:1969ej, Feynman:1973xc}. 
 
-Furthermore, $F_L(x)$ was measured to be 0, known as the Callan-Gross relation \ref{Callan:1968zza, Callan:1973pu}, which suggests that the point-like particles could not absorb longitudinal photons. This fitted in nicely with the quark models developed shortly before \cite{GellMann:1962xb, GellMann:1964nj, Zweig:1964jf, Dothan:1965aa}, which described hadrons in terms of spin-1/2 quarks; spin-1/2 particles cannot interact with longitudinal photons. This was the first experimental evidence for the existence of quarks.
+Furthermore, $F_L(x)$ was measured to be 0, known as the Callan-Gross relation~\cite{Callan:1968zza, Callan:1973pu}, which suggests that the point-like particles could not absorb longitudinal photons. This fitted in nicely with the quark models developed shortly before \cite{GellMann:1962xb, GellMann:1964nj, Zweig:1964jf, Dothan:1965aa}, which described hadrons in terms of spin-1/2 quarks; spin-1/2 particles cannot interact with longitudinal photons. This was the first experimental evidence for the existence of quarks.
 
 In the DIS regime, $Q^2$ is large and so the virtual photon probes at the short timescale $1/Q$, meaning that the interaction will be effectively instantaneous when compared with the inner proton dynamics which operate at the QCD scale $1/\lambda_{QCD} \sim $ 1 fm.  In the parton model we make the assumption that the partons have only a small momentum transverse to the proton's, and that they are effectively on shell for the interaction ($k^2 \approx 0$). In addition, we consider the process in the infinite momentum frame of the proton, in which it is Lorentz contracted by $M/P$ (a small number), so we can assume the photon will only interact with one parton because it will only traverse a narrow cross-section of the proton. The updated picture is shown in Fig. \ref{fig:disparton}.
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{../diagrams/parton_dis.pdf}
-\label{fig:disparton}
-\caption{DIS in the parton model. One parton with momentum $p$ interacts with the virtual photon, and the other partons ``spectate".}
+\caption{\label{fig:disparton}DIS in the parton model. One parton with momentum $p$ interacts with the virtual photon, and the other partons ``spectate".}
 \end{figure}
 
 We parametrise the momentum of the interacting parton as $\xi p$, $\xi \in [0,1]$. The parton in the final state has negligible mass so its momentum squared is zero:
@@ -103,7 +101,7 @@ We can think of the total collection of interactions in terms of a weighted sum 
 W_{\mu\nu} = \sum_q  f_q(x) \hat{W}^q_{\mu\nu} \delta(Q^2 - 2xp \cdot q)
 = \frac{1}{Q^2} \sum_q  f_q(x) \hat{W}^q_{\mu\nu} \delta(1 - \frac{2xp \cdot q}{Q^2}),
 \ee
-where $q$ runs over the possible quark flavours and $f_q$ are distributions, with $f_q(x)dx$ giving the probability that in an interaction a parton of flavour $q$ will be found in the momentum range $x \to x +dx$. We call these functions ``parton distribution functions" (PDFs). The delta function appears due to integration over the final phase space of X, and enforces conservation of momentum. Using Eqn \ref{eqn:matrixelement}, we can see that
+where $q$ runs over the possible quark flavours and $f_q$ are distributions, with $f_q(x)dx$ giving the probability that in an interaction a parton of flavour $q$ will be found in the momentum range $x \to x +dx$. We call these functions ``parton distribution functions" (PDFs). The delta function appears due to integration over the final phase space of $X$, and enforces conservation of momentum. Using Eqn \ref{eqn:matrixelement}, we can see that
 \be
 \label{eqn:ampcomparison}
 |\mathcal{M}|^2 = \frac{1}{Q^2} \sum_q  f_q(x) |\mathcal{\hat{M}}_q|^2.
@@ -153,13 +151,13 @@ and the field strength tensor is
 \be 
 F^a_{\mu \nu} = \partial_\mu A_\nu^a - \partial_\nu A_\mu^a + \sqrt{4 \pi \alpha_s} f^{abc} A_\mu^b A_\nu^c.
 \ee
-The indices $\mu, \nu$ are spacetime indices, $i, j$ are quark colour indices and $a,b, c$ are gluon colour indices. The first term in the Lagrangian arises from the self-interacting gluons, $A$, and the second term from the quarks, $q$, which obey the Dirac equation. $\alpha_s$ is the strong coupling constant, which dictates the strength of the interaction, and $T^a$ are the eight $SU(3)$ generators. $f^{abc}$ are the SU(3) structure constants. For simplicity we have assumed all quarks have the same mass, $m$. Note that gauge fixing and ghost terms are omitted. For more information see Ref. \cite{pinkbook}.
+The indices $\mu, \nu$ are spacetime indices, $i, j$ are quark colour indices and $a,b, c$ are gluon colour indices. The first term in the Lagrangian arises from the self-interacting gluons, $A$, and the second term from the quarks, $q$, which obey the Dirac equation. $\alpha_s$ is the strong coupling constant, which dictates the strength of the interaction, and $T^a$ are the eight $SU(3)$ generators. $f^{abc}$ are the SU(3) structure constants. For simplicity we have assumed all quarks have the same mass, $m$. Note that gauge fixing and ghost terms are omitted. For more information see \cite{pinkbook}.
 
 Colour self-interactions give rise to the important properties of ``confinement" and ``asymptotic freedom". The QCD potential is of the form
 \be 
 V(r) \sim \frac{\alpha}{r} + kr,
 \ee
-where the first term drops off with distance like QED, but the second term comes from the self-interactions and means that separating two quarks takes infinite energy. This explains why we have not observed free quarks (``confinement"). Additionally, the QCD colour charge decreases with shorter distances. This means that at very short distances or high energies the quarks become ``free", which is known as ``asymptotic freedom". This crucial fact allows us to applythe tool of perturbation theory in such regimes. 
+where the first term drops off with distance like QED, but the second term comes from the self-interactions and means that separating two quarks takes infinite energy. This explains why we have not observed free quarks (``confinement"). Additionally, the QCD colour charge decreases with shorter distances. This means that at very short distances or high energies the quarks become ``free", which is known as ``asymptotic freedom". This crucial fact allows us to apply the tool of perturbation theory in such regimes. 
 
 QCD is subject to divergences in the ultra-violet (high energies) and infra-red (low energies). The former are regulated by renormalisation, which introduces a ``renormalisation scale", $\mu_R$. This is non-physical, and so observables cannot depend on it. This observation leads to a ``renormalisation group equation" (RGE), which can be solved by the introduction of a running coupling, dependent on the scale $Q^2$ (i.e. $\alpha_s \to \alpha_s(Q^2)$), which satisfies
 \be
@@ -172,21 +170,20 @@ At one-loop order the solution of this equation is
 \be 
 \alpha_s(Q^2) = \frac{\alpha_s(\mu_R^2)}{1+ \beta_0 \alpha_s (\mu_R^2) \ln\big(\frac{Q^2}{\mu_R^2}\big)},
 \ee
-where $\beta_0$ is the first coefficient of the $\beta$ expansion. From this solution we can explicitly see asymptotic freedom because $\alpha_s$ decreases as the energy scale increases. We also see the role of the renormalisation scale in specifying a particular reference value for $\alpha_s$. This solution is not exact because the RGE \ref{eqn:rge} only holds to all orders. Any residual $\mu_R$ dependence characterises the accuracy of our calculation, because going to higher and higher orders should reduce this dependence, eventually to 0.
+where $\beta_0$ is the first coefficient of the $\beta$ expansion. From this solution we can explicitly see asymptotic freedom because $\alpha_s$ decreases as the energy scale increases. We also see the role of the renormalisation scale in specifying a particular reference value for $\alpha_s$. This solution is not exact because the RGE (Eqn.~\ref{eqn:rge}) only holds to all orders. Any residual $\mu_R$ dependence characterises the accuracy of our calculation, because going to higher and higher orders should reduce this dependence, eventually to 0.
 
-Quantities are infra-red safe if they do not depend on long-distance physics. This means we can apply perturbation theory because $\alpha_s$ is small enough in the short-distance regime. Unforunately at the partonic level structure functions and cross sections are not infra-red safe. 
+Quantities are infrared safe if they do not depend on long-distance physics. This means we can apply perturbation theory because $\alpha_s$ is small enough in the short-distance regime. Unforunately, at the partonic level, structure functions and cross sections are not infrared safe. 
 
 \subsection{The QCD improved parton model and factorisation}
 
-In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at a long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into IR divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In IR-safe observables the soft and collinear divergences exactly canel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short- and long- scale physics. 
+In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into infrared divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In infrared-safe observables the soft and collinear divergences exactly canel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short- and long- scale physics. 
 
-This is done using the factorisation theorem \ref{Collins:1989gx}, which allows us to factorise the incalculable long-distance physics into the PDFs, meaning we are able to use perturbative QCD as a predictive theory. The PDFs are then non-perturbative, meaning we must obtain them from experiments, but they are universal quantities and so once determined can be applied everywhere, much like the coupling constants. This process introduces the artificial ``factorisation scale", $\mu_F$, in addition to the renormalisation scale. The factorisation scale separates the short- and long- distance physics; loosely, if a parton's transverse momentum is less than $\mu_F$ it is considered part of the hadron and is factored into the PDFs, otherwise it is seen as taking part in the hard scattering process, and will appear in the partonic cross section.
+This is done using the factorisation theorem \cite{Collins:1989gx}, which allows us to factorise the incalculable long-distance physics into the PDFs, meaning we are able to use perturbative QCD as a predictive theory. The PDFs are then non-perturbative, meaning we must obtain them from experiments, but they are universal quantities and so once determined can be applied everywhere, much like the coupling constants. This process introduces the artificial ``factorisation scale", $\mu_F$, in addition to the renormalisation scale. The factorisation scale separates the short- and long- distance physics; loosely, if a parton's transverse momentum is less than $\mu_F$ it is considered part of the hadron and is factored into the PDFs, otherwise it is seen as taking part in the hard scattering process, and will appear in the partonic cross section.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{../diagrams/improvedparton_dis.pdf}
-\label{fig:improvedparton}
-\caption{Factorisation and the QCD improved parton model}
+\caption{\label{fig:improvedparton} Factorisation and the QCD improved parton model}
 \end{figure}
 
 
@@ -202,11 +199,10 @@ We can see how this works in practice by considering the case where a quark emit
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{../diagrams/scalingviolation.pdf}
-\label{fig:scalingviolation}
-\caption{A quark radiating a gluon before interacting.}
+\caption{\label{fig:scalingviolation} A quark radiating a gluon before interacting.}
 \end{figure}
 
-It transpires (see Ref. \cite{hm} for the derivation) that the structure function $F_2$ can be expressed as
+It transpires (see \cite{hm} for the derivation) that the structure function $F_2$ can be expressed as
 \begin{dmath}
 \label{eqn:stfn}
 \frac{F_2(x,Q^2)}{x} = \sum_i e_i^2 \int_x^1 \frac{dy}{y} f_i(y) \bigg[ \delta \bigg( 1- \frac{x}{y} \bigg) + \frac{\alpha_s}{2 \pi} \mathcal{P}_{qq} \bigg( \frac{x}{y} \bigg) \ln \bigg( \frac{Q^2}{m^2} \bigg) \bigg].
@@ -219,7 +215,7 @@ We want an expression which is free from the soft and collinear divergences. We 
 \be 
 \mathcal{I}^i_{qq}(x) \equiv \frac{\alpha_s}{2 \pi} \int_x^1 \frac{dy}{y} f_i(y)\mathcal{P}_{qq} \bigg( \frac{x}{y} \bigg),
 \ee
-and separating \ref{eq:stfn} into a singular part and a calculable part, like
+and separating \ref{eqn:stfn} into a singular part and a calculable part, like
 \begin{dmath}
 \frac{F_2(x,Q^2)}{x} = \sum_i e_i^2 \bigg[ f_i(x) + \mathcal{I}^i_{qq}(x)  \ln \bigg( \frac{\mu_F^2}{m^2} \bigg) + \mathcal{I}^i_{qq}(x)  \ln \bigg( \frac{Q^2}{\mu_F^2} \bigg) \bigg].
 \end{dmath}
@@ -228,7 +224,7 @@ Notice we introduced the artificial factorisation scale, $\mu_F$, to do this. Gr
 f_i(x, \mu_F^2) =  f_i(x) + \mathcal{I}^i_{qq}(x)  \ln \bigg( \frac{\mu_F^2}{m^2} \bigg),
 \ee
 we have factorised the divergences into the PDF $f_i(x)$, giving a new PDF, $f_i(x, \mu_F^2)$ , which also depends on $\mu_F$.
-and noting that at leading order $f_i(y) = f_i(y, \mu_F^2)$, we are able to write
+Noting that at leading order $f_i(y) = f_i(y, \mu_F^2)$, we are able to write
 \begin{dmath}
 \frac{F_2(x,Q^2)}{x} = \sum_i e_i^2 \bigg[ f_i(x, \mu_F^2) + \frac{\alpha_s}{2 \pi} \int_x^1 \frac{dy}{y} f_i(y, \mu_F^2)\mathcal{P}_{qq} \bigg( \frac{x}{y} \bigg) \ln \bigg( \frac{Q^2}{\mu_F^2} \bigg) \bigg]+ \mathcal{O}(\alpha_s^2).
 \end{dmath}
@@ -270,7 +266,7 @@ Considering the Mellin transform of the RHS of the DGLAP equation, and suppressi
 where $\gamma(n)_{ij}$ (with parton indices explicit) are known as the anomalous dimensions, and are calculable order by order in perturbation theory. 
 \subsection{Hadroproduction}
 
-At the LHC most processes involve the interaction of two protons. Hadron-hadron collisions can be approached in much the same way as DIS, but instead the process is like in Fig. \ref{fig:hadroproduction}. Because two protons are involved the expression for the cross section is the natural extension of the DIS case (\ref{eq:disfact}):
+At the LHC most processes involve the interaction of two protons. Hadron-hadron collisions can be approached in much the same way as DIS, but instead the process is like in Fig. \ref{fig:hadroproduction}. Because two protons are involved the expression for the cross section is the natural extension of the DIS case (Eqn.~\ref{eqn:disfact}):
 \be
 \sigma = \sum_{i,j} \int dx_1 dx_2 f_i(x_1, \mu_F^2) f_j(x_2, \mu_F^2) \hat{\sigma}_{ij}\bigg(x_1, x_2, \frac{Q^2}{\mu_F^2},...\bigg).
 \ee
@@ -278,17 +274,14 @@ At the LHC most processes involve the interaction of two protons. Hadron-hadron 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{../diagrams/hadroproduction.pdf}
-\label{fig:hadroproduction}
-\caption{Factorisation in hadron-hadron collisions.}
+\caption{\label{fig:hadroproduction}Factorisation in hadron-hadron collisions.}
 \end{figure}
-
-Write about higher order corrections and factorisation!
 
 \subsection{Sum rules}
 
 Although PDFs may seem at first sight to be totally unknown there are some theoretical observations which
 we can use to constrain their form.
-These are known as the ``sum rules''~\cite{ob:ellis}. Intuitively, adding up all the momenta of the partons must equal the
+These are known as the ``sum rules''~\cite{pinkbook}. Intuitively, adding up all the momenta of the partons must equal the
 momentum of the proton. This enforces the condition
 
 \beq
@@ -296,7 +289,7 @@ momentum of the proton. This enforces the condition
 \eeq
 
 The other thing we know about the
-proton is that it is made up of two up and one down (and no strange)
+proton is that it is made up of two up and one down
 ``valence'' quarks. Any other quarks must be pair-produced from the sea, and
 therefore come with an antiquark of the same flavour. So we can normalise the PDFs using the expressions: 
 
@@ -315,23 +308,22 @@ therefore come with an antiquark of the same flavour. So we can normalise the PD
 Note that these conditions require that the PDFs are integrable. 
 
 
-\section{Determining PDFs}
+\section{Methodological background}
 
-In this section we review the necessary background for PDF determination within the NNPDF \cite{nnpdf} framework. First we touch on the experimental and theoretical inputs to PDF fits, then we summarise the NNPDF fitting strategy, and finally we detail information on neural networks specific to this context.
+In this section we review the necessary background for PDF determination within the NNPDF \cite{nnpdf} framework. The results in this thesis are based on two different versions of this: NNPDF3.1 and NNPDF4.0. First we touch on the experimental and theoretical inputs to PDF fits, which are common to both versions. Then we outline the NNPDF3.1 framework, which was used to generate the results in Chapters \ref{chapter:mhous} and \ref{chapter:correlations}. We summarise the NNPDF fitting strategy, and detail information on neural networks specific to this context. Finally, we explain the main differences between this and NNPDF4.0, which was used to generate the results in Chapter \ref{chapter:nuclear}.
 
 \subsection{Experimental and theoretical input}
 
-
-NNPDF uses a variety of experimental data from a number of particle colliders, including those based at CERN \cite{cern} and Fermilab \cite{fermilab}. These are observables such as cross sections, differential cross sections and structure functions. Fig. \ref{data} is a plot of the $(x,Q^2)$ range spanned by the datasets in the latest NNPDF3.1~\cite{Ball:2017nwa} release. The majority of the data are from DIS processes, which are crucial in determining PDF functional form, but in recent years increasingly more LHC collider data has been added including $t\bar{t}$ production, high energy jets and single top production \cite{Nocera:2019wyk}. For a full review of the data, see Ref. \ref{Ball:2017nwa}.
+NNPDF uses a variety of experimental data from a number of particle colliders, including those based at CERN \cite{cern} and Fermilab \cite{fermilab}. These are observables such as cross sections, differential cross sections and structure functions. Fig. \ref{data} is a plot of the $(x,Q^2)$ range spanned by the datasets in the NNPDF3.1~\cite{Ball:2017nwa} release. Much of the data are from DIS processes, which are crucial in determining PDF functional form, but in recent years increasingly more LHC collider data has been added including $t\bar{t}$ production, high energy jets and single top production \cite{Nocera:2019wyk}. For a full review of the data see \cite{EmanueleTalk}.
 
 \begin{figure}
 \centering
 \includegraphics[width=15cm]{background/NNPDF31_nlo_as_0118_1000_markers0_fitcontext_plot_xq2.png}
-\caption{Plot of the $(x,Q^2)$ range spanned by data included in the latest NNPDF3.1 NLO fit.}
+\caption{Plot of the $(x,Q^2)$ range spanned by data included in the NNPDF3.1 NLO fit.}
 \label{data}
 \end{figure}
 
-Theoretical predictions of the corresponding parton-level observables are computed using external codes such as \texttt{MCFM}~\cite{jr:mcfm}, \texttt{aMC@NLO}~\cite{Alwall:2014hca}, \texttt{DYNNLO}~\cite{Catani:2009sm}, \texttt{FEWZ}~\cite{Gavin:2010az} and \texttt{NLOjet++}~\cite{Catani:1996vz}. These are converted to higher orders of perturbation theory as necessary using QCD and electroweak correction (``$k$'') factors. They are then combined with DGLAP evolution kernels, which evolve PDFs from an initial reference energy scale to the energy scale of each experiment using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). 
+Theoretical predictions of the corresponding parton-level observables are computed using external codes~\cite{jr:mcfm,Alwall:2014hca,Catani:2009sm,Gavin:2010az,Catani:1996vz}. These are converted to higher orders of perturbation theory as necessary using QCD and electroweak correction factors (known as ``$c$'' or ``$k$"). They are then combined with DGLAP evolution kernels, which evolve PDFs from an initial reference energy scale to the energy scale of each experiment using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). This evolution is done using \texttt{APFEL}~\cite{Bertone:2013vaa}. 
 
 
 \subsection{Experimental uncertainties}
@@ -339,8 +331,8 @@ Theoretical predictions of the corresponding parton-level observables are comput
 
 Experimental uncertainties are described using a covaraince matrix, $C_{ij}$, which gives the uncertainties and correlations between each of the data points $i,j = 1,...,N_{dat}$. It encapsulates the total breakdown of errors, $\sigma$, and can be constructed using uncorrelated errors ($\sigma_i^{uncorr}$), and  additive ($\sigma_{i,a}$) and multiplicative  ($\sigma_{i,m}$) correlated systematic errors (more on these below):
 \beq
-  C_{ij} = \delta_{ij}\sigma_i^{uncorr}\sigma_j^{uncorr} + \sum_a^{add.}\sigma_{i,a}\sigma_{j,a} +
-  \bigg( \sum_m^{mult.}\sigma_{i,m}\sigma_{j,m} \bigg) D_i D_j,
+  C_{ij} = \delta_{ij}\sigma_i^{uncorr}\sigma_j^{uncorr} + \sum_a \sigma_{i,a}\sigma_{j,a} +
+  \bigg( \sum_m \sigma_{i,m}\sigma_{j,m} \bigg) D_i D_j,
 \label{eq:expcov}
 \eeq
 where $D_i$ are the experimental data values.
@@ -371,23 +363,28 @@ The covariance matrix can be used to define the $\chi^2$ figure of merit,
 \label{eqn:chi2}
 \chi^2 = \frac{1}{N_{dat}} (D_i-T_i) C_{ij}^{-1} (D_j-T_j),
 \ee
-which measures the goodness of fit between the experimental data $D_i$ with associated error breakdown $C_{ij}$, and theory predictions $T_i$. In practice, this definition is subject to d'Agostini bias \cite{DAgostini:1993arp} due to the presence of normalisation uncertainties. To avoid this, NNPDF employ the iterative $t0$ procedure \cite{Ball:2009qv} whereby $D_i$ in Eqn. \ref{eqn:expcov} are replaced initially with the predictions from a baseline fit, and the covariance matrix is iterated concurrently with preprocessing. 
+which measures the goodness of fit between the experimental data $D_i$ with associated error breakdown $C_{ij}$, and theory predictions $T_i$. In practice, this definition is subject to d'Agostini bias \cite{DAgostini:1993arp} due to the presence of normalisation uncertainties. To avoid this, NNPDF employ the iterative $t0$ procedure \cite{Ball:2009qv} whereby $D_i$ in Eqn. \ref{eq:expcov} are replaced initially with the predictions from a baseline fit, and the covariance matrix is iterated concurrently with preprocessing. 
 
 
 \subsection{NNPDF fitting strategy}
 
-There are a number of groups currently active in carrying out PDF fits including MSTW~\cite{Martin:2009bu}, CTEQ~\cite{Dulat:2015mca}, NNPDF~\cite{nnpdf}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2013nda}.
-
-The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will concentrate on this fitting strategy. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
+There are a number of groups currently active in carrying out proton PDF fits including MSHT~\cite{Bailey:2020ooq}, CTEQ~\cite{Hou:2019efy}, NNPDF~\cite{nnpdf}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2019ntu}. The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will concentrate on this fitting strategy, which is summarised in Fig.~\ref{fig:generalstrategy}. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
 \begin{enumerate}
 \item  The use of Monte Carlo approach to error analysis;
     \item  Fitting using artificial neural networks.
 \end{enumerate}
 
-In the following sections we will provide an overview of these aspects, which can be found in more detail in Refs. \cite{Ball:2010de, Ball:2012cx, Ball:2017nwa}.
-\subsection{Monte Carlo approach}
+In the following sections we will provide an overview of these aspects, which can be found in more detail in \cite{Ball:2010de, Ball:2012cx, Ball:2017nwa}.
 
-The uncertainties in the functional form of PDFs come as a direct consequence of the uncertainties in the experimental and theoretical input. In order to propagate experimental uncertainties through to the PDFs, NNPDF represent the experimental data (central values and uncertainty distribution) as a Monte Carlo ensemble. This is a set of $N_{rep}$ Monte Carlo ``replicas" which, given high enough replica number, have a mean value equal to the data central value and covariance equal to the experimental covariance. Fig. \ref{fig:MC} is a schematic illustrating the generation of these ``pseudodata", $D^{(k)}$, $k=1,...,N_{rep}$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{background/generalstrategy.png}
+\caption{NNPDF general strategy.}
+\label{fig:generalstrategy}
+\end{figure}
+
+\subsection{Monte Carlo approach}
+The uncertainties in the functional form of PDFs come as a direct consequence of the uncertainties in the experimental and theoretical inputs. In order to propagate experimental uncertainties through to the PDFs, NNPDF represent the experimental data (central values and uncertainty distribution) as a Monte Carlo ensemble. This is a set of $N_{rep}$ Monte Carlo ``replicas" which, given high enough replica number, have a mean value equal to the data central value and covariance equal to the experimental covariance. Fig. \ref{fig:MC} is a schematic illustrating the generation of these ``pseudodata", $D^{(k)}$, $k=1,...,N_{rep}$.
 \begin{figure}
 \centering
 \includegraphics[width=0.48\linewidth]{background/mcreps_upper.png}
@@ -395,41 +392,48 @@ The uncertainties in the functional form of PDFs come as a direct consequence of
 \caption{Generation of Monte Carlo replicas of pseudodata from data with uncertainties. Left: experimental data; right: five Monte Carlo replicas.}
 \label{fig:MC}
 \end{figure}
-They are generated using Gaussian random numbers $n_a^{(k)}$ and $\hat{n}_p^{(k)}$:
+They are generated using Gaussian random numbers $n_a^{(k)}$ and $\hat{n}_m^{(k)}$:
 \be
 D^{(k)} = (D^0 + \sum_a n_a^{(k)} \sigma^a) \prod_m (1 + \hat{n}_m^{(k)}\sigma^p),
 \ee
-where $D_0$ is the (symmetrised) experimental data value, and $\sigma^a$ and $\sigma^m$ are the additive and multiplicative uncertainties discussed in Sec. \ref{sec:expuncs}. Explicitly, the pseudodata replicas satisfy the relations:
+where $D^0$ is the (symmetrised) experimental data value, and $\sigma^a$ and $\sigma^m$ are the additive and multiplicative uncertainties discussed in Sec. \ref{sec:expuncs}. Explicitly, the pseudodata replicas satisfy the relations:
 \be
 \langle D_i^{(k)} \rangle = D_i^0; \qquad (\langle  D_i^{(k)} \rangle -D_i^0)(\langle  D_j^{(k)} \rangle-D_j^0) = C_{ij},
 \ee
-where the notation $\langle \cdot \rangle$ denotes the mean over replicas. Fig. \ref{fig:datarepchorus} shows the distribution of pseudodata for a single data point.
+in the limit of $N_{rep} \to \infty$, where the notation $\langle \cdot \rangle$ denotes the mean over replicas. Fig. \ref{fig:datarepchorus} shows the distribution of pseudodata for a single data point.
 
-\begin{figure}
+\begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{background/datarepchorus.png}
-\caption{Histogram of distribution of 100 pseudodata replicas for a single data point, normalised to $D^0$. The purple line is the mean value $\langle D^{(k)} \rangle$, which is equal to $D^0$ to arbitrary precision.}
+\caption{Histogram of the distribution of 100 pseudodata replicas for a single data point, normalised to $D^0$. The purple line is the mean value $\langle D^{(k)} \rangle$, which is equal to $D^0$ (black line) to arbitrary precision.}
 \label{fig:datarepchorus}
 \end{figure}
-\begin{figure}
-\centering
-\includegraphics[width=0.8\textwidth]{background/generalstrategy.png}
-\caption{NNPDF general strategy.}
-\label{fig:generalstrategy}
-\end{figure}
-Once the pseudodata have been generated, each of these ($D^{(k)}$) is fitted separately to the theoretical predictions by minimising a target error function based on the $\chi^2$ (Eqn. \ref{eqn:chi2}), resulting in a PDF set of each flavour, $f_q^{(k)}$ (where $q$ runs over the fitted flavours: $g$, $u$, $d$, $s$, $c$, $\bar{u}$, $\bar{d}$, $\bar{s}$, $\bar{c}$). These act as a Monte Carlo parametrisation of the PDFs (for example, Fig. \ref{fig:replicas}).  This means that the PDFs and their errors can be extracted by taking the means and standard deviations over the ensemble. The final PDFs are made publicly available as downloadable files on the LHAPDF website \cite{lhapdf, Buckley:2014ana}. 
+Once the pseudodata have been generated, each replica, $D^{(k)}$, is fitted separately to the theoretical predictions, $T_i[f_q^{(k)}]$, which depend on the PDF replicas, $f_q^{(k)}$ (where $q$ runs over the fitted flavours: $g$, $u$, $d$, $s$, $c$, $\bar{u}$, $\bar{d}$, $\bar{s}$, $\bar{c}$). This is done by fitting the PDFs to minimise a target error function based on the $\chi^2$:
+\be 
+\label{eq:chi2background}
+\chi^{2\ (k)} = \frac{1}{N_{dat}}\sum_q \sum_{i,j=1}^{N_{dat}} (D_i^{(k)}-T_i[f_q^{(k)}])C(t_0)_{ij}^{-1}(D_j^{(k)}-T_j[f_q^{(k)}]).
+\ee
+Here $C(t_0)$ is the t0 covariance matrix, which is Eqn.~\ref{eq:expcov} with $D_i \to t_{0\ i}$, where $t_0$ are theory predictions from a similar previous fit. This is to remove d'Agostini bias~\cite{DAgostini:1993arp, Ball:2009qv}. Doing this fit then results in a PDF set of each flavour. These act as a Monte Carlo parametrisation of the PDFs (for example, Fig. \ref{fig:replicas}).  This means that the PDFs and their errors can be extracted by taking the means and standard deviations over the ensemble. The final PDFs are made publicly available as downloadable files on the LHAPDF website \cite{lhapdf, Buckley:2014ana}. 
 
-\begin{figure}
+\begin{figure}[H]
 \centering
     \includegraphics[width=0.7\textwidth]{background/Qs0_NNPDF31NLO_plot_pdfreplicas_d_v.png}
 \caption{Monte Carlo replicas for the down valence quark PDF NNPDF3.1 at NLO. } \label{fig:replicas}
 \end{figure}
 
-\subsection{Neural Networks}
+\subsection{Neural networks}
 
-Inspired by how the brain processes information, in machine learning neural networks are a graph of connected nodes. They are trained by example, so
-have the capability to learn a PDF's functional form given a set of data. The use of neural networks rather than specific functional forms allows us to avoid the theoretical bias which goes into selecting such a functional form. The layout, or ``architecture", consists
-of input layers, hidden layers and output layers. Nodes can be either input nodes or activation nodes, the latter of which have an associated activation function which is applied to their output. Fig. \ref{fig:nn} depicts the architecture currently used by NNPDF. This is a ``2-5-3-1" archiecture, where the numbers refer to the number of nodes in each layer. It is a ``multilayer perceptron", meaning the graph is fully connected, and it is a feed-forward; information can only be passed in one direction through the layers (from 
+Inspired by how the brain processes information, in machine learning neural networks are graphs of connected nodes. They are trained by example, so
+have the capability to learn a PDF's functional form given a set of data. Using neural networks rather than specific functional forms allows us to avoid the theoretical bias which goes into selecting such a functional form. The layout, or ``architecture", consists
+of input layers, hidden layers and output layers. Nodes can be either input nodes or activation nodes, the latter of which have an associated activation function which is applied to their output. 
+\subsubsection{Neural networks in NNPDF3.1}
+Fig. \ref{fig:nn} depicts the architecture used in NNPDF3.1. This is a ``2-5-3-1" archiecture, where the numbers refer to the number of nodes in each layer. 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\textwidth]{../diagrams/neuralnet.pdf}
+\caption{Schematic depiction of the 2-5-3-1 architecture of an artificial neural network of NNPDF3.1. Here $\xi_1^{(1)}$ and $\xi_2^{(1)}$ are the variables $x$ and $\ln (1/x)$ respectively. \label{fig:nn}}
+\end{figure}
+It is a ``multilayer perceptron", meaning the graph is fully connected, and it is a feed-forward; information can only be passed in one direction through the layers (from 
 input to output). The two inputs are $x$ and $\ln (1/x)$, and the output, $f$, is the PDF at the parametrisation scale, $Q_0$. In this network the output
 of a node in the $l^{th}$ layer is given by
 \beq
@@ -440,21 +444,16 @@ with respect to.  $g$ is an ``activation function'' which is set to
 \beq
   g(z) =
 \begin{cases}
- \frac{1}{1 + e^{-z}} &\text{for hidden layers}\\
-  a &\text{for output layer}.
+ \frac{1}{1 + \exp (-z)} &\text{for hidden layers}\\
+  z &\text{for the output layer}.
 \end{cases}
 \eeq
-The choice of sigmoid activation function for the hidden layers allows sufficient non-linear freedom in the functional form, and the linear activation function for the output layer ensures the range of the PDFs is not restricted to [0,1].
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{../diagrams/neuralnet.pdf}
-\caption{Schematic depiction of the 2-5-3-1 architecture of an artificial neural network currently used by NNPDF. In the NNPDF methodology $\xi_1^{(1)}$ and $\xi_2^{(1)}$ are the variables $x$ and $\log x$ respectively. \label{fig:nn}}
-\end{figure}
+The choice of this sigmoid activation function for the hidden layers allows sufficient non-linear freedom in the functional form, and the linear activation function for the output layer ensures the range of the PDFs is not restricted to [0,1].
 
-The training of the neural networks is implemented using a ``genetic algorithm" (CMA-ES), so-called because of the introduction of mutation to the fitting parameters. This additional degree of randomness helps to avoid getting stuck in local minima. In practice, this involves ``mutating" some chosen fraction of the thresholds, $\theta$, by perturbing them at random.
+The training of the neural networks is implemented using a ``genetic algorithm"~\cite{DelDebbio:2007ee} (CMA-ES), so-called because of the introduction of mutation to the fitting parameters. This additional degree of randomness helps to avoid getting stuck in local minima. In practice, this involves ``mutating" some chosen fraction of the thresholds, $\theta$, by perturbing them at random.
 
 \subsection{Parametrisation, preprocessing and postprocessing}
-A scale of $Q=1.65$ $GeV$ is chosen to parametrise the PDFs at, and then they can be determined at any other scale by evolution using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). The PDFs are fitted parametrised in a ``fitting basis", to help convergence \cite{Ball:2014uwa}, defined:
+A scale of $Q=1.65$ $GeV$ is chosen to parametrise the PDFs at, and then they can be determined at any other scale by evolution using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). The PDFs are fitted parametrised in a ``fitting basis" of eight combinations of flavours, to help convergence \cite{Ball:2014uwa}, defined:
 \begin{itemize}
 \item $g$;
 \item $\Sigma \equiv \sum_{u,d,s} q_i + \bar{q}_i$;
@@ -474,53 +473,43 @@ $A_i$ are normalisation coefficients set by the sum rules and fixed at each iter
 Postprocessing is also applied to the PDF replicas to remove those which don't satisfy certain quality conditions. That is, where the target error function or arc-length of the replica is more than four standard deviations outwith the mean, or where the positivity of the resulting cross-sections is not satisfactorily maintained. 
 
 \subsection{Cross validation}
-Neural networks are effective at learning the functional form underlying data. Sometimes they can be ``too effective", picking up not just the underlying law but also the noise. This is known as ``overlearning" (see Fig. \ref{fig:overlearning} for an example).
-
+Neural networks are effective at learning the functional form which underlies data.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{background/overfitteddata.png}
-\label{fig:overlearning}
-\caption{Overlearning: the data points (black dots) fluctuate around the linear underlying law (black line), but the neural network continues to minimise the error function until it passes through every data point (blue curve), fitting the noise in the data.}
+\caption{\label{fig:overlearning}Overlearning: the data points (black dots) fluctuate around the linear underlying law (black line), but the neural network continues to minimise the error function until it passes through every data point (blue curve), fitting the noise in the data.}
 \end{figure}
-
-To circumvent this problem, the data is split into a training and a validation set. The training data is used to optimise the neural network, and the validation data is used to test the network output, in a process known as ``cross validation". As training epochs elapse, the target error function compared to both the training and validation data should decrease as the network learns the underlying law. At some point, however, the network will begin to learn the noise in the training data, at which point the training error function will continue to decrease, but the validation error function will stop decreasing and start to increase again. The optimum fit is determined using the ``lookback" method, where after training the model corresponding to the minimum in the validation error function is selected.
-
-\begin{figure}[H]
+Sometimes, if there are more degrees of freedom in the PDF than in the data, they can be ``too effective", picking up not just the underlying law but also the noise. This is known as ``overlearning" (see Fig. \ref{fig:overlearning} for an example).
+\begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{background/crossvalidation.png}
-\label{fig:crossvalidation}
-\caption{Cross validation with the lookback method.}
+\caption{\label{fig:crossvalidation} Cross validation with the lookback method.}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[h]
 \centering
 \includegraphics[width=\textwidth]{background/trvalchi2.pdf}
-\label{fig:crossvalidation}
-\caption{Comparing the training and validation $\chi^2$s for the 100 replicas (green circles) of a PDF fit. The red square gives the average.}
+\caption{\label{fig:trvalchi2}Comparing the training and validation $\chi^2$s for the 100 replicas (green circles) of a PDF fit. The red square gives the average.}
 \end{figure}
 
+To circumvent this problem, the data are split into a training and a validation set. The training data are used to optimise the neural network, and the validation data are used to test the network output, in a process known as ``cross validation". As training epochs elapse, the target error function compared to both the training and validation data should decrease as the network learns the underlying law. At some point, however, the network will begin to learn the noise in the training data, at which point the training error function will continue to decrease, but the validation error function will stop decreasing and start to increase again. In NNPDF3.1 we determine the optimum fit using the ``lookback" method, where after training the model corresponding to the minimum in the validation error function is selected.
+
 \section{NNPDF4.0}
-The earlier parts of this section describe the methodology for the NNPDF3.1~\cite{Ball:2017nwa} release, on which the majority of this thesis is based. However, in 2021 a new release, NNPDF4.0, is expected. The work in Chapter~\ref{chapter:nuclear} is based on this methodology, and so we briefly explain the main developments between NNPDF3.1 and NNPDF4.0. (ref PDF4LHC talk?)
+The earlier parts of this section describe the methodology for the NNPDF3.1~\cite{Ball:2017nwa} release, on which Chapters \ref{chapter:mhous} and \ref{chapter:correlations} are based. However, at the time of writing this thesis a new release, NNPDF4.0, is being launched. The work in Chapter~\ref{chapter:nuclear} is based on this methodology, and so we briefly explain the main developments between NNPDF3.1 and NNPDF4.0. For more information see \cite{PDF4LHC, EmanueleTalk}.
 
 \subsection{Methodology}
-NNPDF4.0 heralds some significant methodological changes to the NNPDF procedure, the most important of which we will outline here. Perhaps most strikingly, the architecture of the neural network is changed~\cite{Carrazza:2019mzf} from that in Fig.~\ref{fig:nn}, which is implemented separately for each flavour, to a single neural network with flexible architecture. The implementation is via Keras~\cite{keras} and Tensorflow~\cite{tensorflow}, and the optimisation is with an inbuilt gradient descent algorithm rather than the genetic algorithm in NNPDF3.1. The stopping criterion follows a patience method where the fit stops once the minimiser is stable for a set length of time. All of these parameters, including architecture are determined via hyperoptimisation with k-folding, which is a process to determine the best combination for stability and performance.
+NNPDF4.0 heralds some significant methodological changes to the NNPDF procedure, the most important of which we will outline here. Perhaps most strikingly, the architecture of the neural network is changed~\cite{Carrazza:2019mzf} from that in Fig.~\ref{fig:nn}, which is implemented separately for each flavour, to a single neural network with flexible architecture. The implementation is via \texttt{Keras}~\cite{keras} and \texttt{Tensorflow}~\cite{tensorflow}, and the optimisation is with an inbuilt gradient descent algorithm rather than the genetic algorithm in NNPDF3.1. The stopping criterion follows a patience method where the fit stops once the minimiser is stable for a set length of time. All of these parameters, including architecture are determined via hyperoptimisation with k-folding, which is a process to determine the best combination for stability and performance.
 
-Additionally, positivity of PDF replicas is now strictly enforced rather than them being allowed to be negative within a threshold. This is following a recent study~\cite{Candido:2020yat} which showed that $\bar{MS}$ PDFs are strictly positive. 
-
-INTEGRABILITY ADD HERE
+Additionally, positivity of PDF replicas is now strictly enforced rather than them being allowed to be negative within a threshold. This is following a recent study~\cite{Candido:2020yat} which showed that $\overline{MS}$ PDFs are strictly positive. 
 
 \subsection{Theory developments}
 There are two main theory developments between NNPDF3.1 and NNPDF4.0. One is the treatment of nuclear and deuteron data using an additional uncertainty. This forms the basis of Chapter~\ref{chapter:nuclear} so we will not discuss it further here.
 
-The other is the inclusion of NLO electroweak (EW) corrections. This consists of QED corrections to the DGLAP evolution as well as NLO EW corrections for a variety of processes; wherever EW corrections are available they are added to increase precision. This is very important as EW corrections can be up to $\sim 20\%$~\cite{Hollik:2004dz} in some regions. The corrections are provided as interpolation grids via the PineAPPL library~\cite{Carrazza:2020gss}.  
+The other is the inclusion of NLO electroweak (EW) corrections. This consists of QED corrections to the DGLAP evolution as well as NLO EW corrections for a variety of processes; wherever EW corrections are available they are added to increase precision. This is very important as EW corrections can be up to $\sim 20\%$~\cite{Hollik:2004dz} in some regions. The corrections are provided as interpolation grids via the \texttt{PineAPPL} library~\cite{Carrazza:2020gss}.  
 
 \subsection{Validation of PDFs}
-The effectiveness of the fitting methodology has traditionally  been tested using {\it closure tests}~\cite{Ball:2014uwa}, which use a separate PDF to create proxy known ``true values". This procedure has been updated, whereby fits are carried out to many proxy PDF replicas, and the bias and variance of the results are compared. This is made possible by the significantly increased speed of the new fitting methodology. REF SOMETHING HERE?
+The effectiveness of the fitting methodology has traditionally  been tested using closure tests~\cite{Ball:2014uwa}, which use a separate PDF to create proxy known ``true values". This procedure has been updated, whereby fits are carried out to many proxy PDF replicas, and the bias and variance of the results are compared. This is made possible by the significantly increased speed of the new fitting methodology~\cite{Carrazza:2019mzf}.
 
 \subsection{New data}
-NNPDF4.0 also includes a large number of additional datasets, including many from the 13 TeV run at the LHC. What's more, many of the existing datasets' implementation has been improved.
+NNPDF4.0 also includes a large number of additional datasets, including many from the 13 TeV run at the LHC. What's more, many of the existing datasets' implementation has been improved~\cite{EmanueleTalk}.
 
-{\bf Add these from 4.0 paper.}
-
-\subsection{PDF delivery}
-GAN compression
