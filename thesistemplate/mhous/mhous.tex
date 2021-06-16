@@ -1,12 +1,12 @@
 \chapter{Missing higher order uncertainties}
 \label{chapter:mhous}
-In this chapter we address the dominant source of theoretical uncertainty in current PDF fits: missing higher order uncertainties (MHOUs). In Sec.~\ref{sec:intro} we explain their origin, then in Sec.~\ref{sec:svn} we revise their standard method of estimation, through scale variation. We then show how to use this to construct a theory covariance matrix (Sec.~\ref{sec:prescrip}), and test the validity of this at NLO against the known NNLO result (Sec.~\ref{sec:valid}). Finally, we present the PDFs including MHOUs (Sec.~\ref{sec:pdfs}) and assess the impact on relevant phenomenology (Sec.~\ref{sec:mhoupheno}).
+In this chapter we address the dominant source of theory uncertainty in current PDF fits: missing higher order uncertainties (MHOUs). In Sec.~\ref{sec:intro} we explain their origin, then in Sec.~\ref{sec:svn} we revise their standard method of estimation, through scale variation. We then show how to use this to construct a theory covariance matrix (Sec.~\ref{sec:prescrip}), and test the validity of this at NLO against the known NNLO result (Sec.~\ref{sec:valid}). Finally, we present the PDFs including MHOUs (Sec.~\ref{sec:pdfs}).
 
 \section{Introduction}
 \label{sec:intro}
-PDF fits rely on the comparison of experimental data with theoretical predictions at the partonic level. These predictions are carried out in the framework of perturbation theory, where results are expressed as an expansion in the strong coupling constant, $\alpha_s$. The first non-zero contribution to the expansion is known as ``leading order" (LO), the next is ``next-to-leading order" (NLO), and so on (NNLO, N$^3$LO etc.). Because in the perturbative regime $\alpha_s$ is small (0.118 \cite{pdg}), corrections from higher orders are increasingly small. Predictions must be directly calculated at each order by considering all the possible contributing Feynman diagrams, and this becomes exponentially more complicated with increasing orders; the cutting edge of calculations is currently at the N$^3$LO level. PDFs are fitted using predictions truncated at a given order, with NNLO PDFs being the modern standard. 
+PDF fits rely on the comparison of experimental data with theoretical predictions at the partonic level. These predictions are carried out in the framework of perturbation theory, where results are expressed as an expansion in the strong coupling constant, $\alpha_s$. The first non-zero contribution to the expansion is known as ``leading order" (LO), the next is ``next-to-leading order" (NLO), and so on (NNLO, N$^3$LO etc.). Because in the perturbative regime $\alpha_s$ is small (0.117910 $\pm$ 0.000009 \cite{pdg}), corrections from higher orders are increasingly small. Predictions must be directly calculated at each order by considering all the possible contributing Feynman diagrams, and this becomes exponentially more complicated with increasing orders; the cutting edge of calculations is currently at the N$^3$LO level. PDFs are fitted using predictions truncated at a given order, with NNLO PDFs being the modern standard. 
 
-These missing higher order terms in the expansion for theory predictions lead to missing higher order uncertainties (MHOUs), which are currently the dominant source of error in PDF fits. We can see that going from LO to NLO to NNLO in Fig.~\ref{fig:pdf_order_comp} that the functional form of the PDF changes, and that the change from LO to NLO is greater than that from NLO to NNLO. MHOUs are currently not included in the PDF errors, justified historically by the claim that they are small compared to experimental contributions to the PDF error, especially at NNLO. This justification, however, is now on shakier ground with PDF uncertainties dropping as low as 1\% at the electroweak scale. QCD MHOU errors themselves are typically $\mathcal{O}$(1\%)~\cite{Campbell:2017hsr} and, with the current push to N$^3$LO precision, will only become increasingly important as time goes on. 
+These missing higher order terms in the expansion for theory predictions lead to MHOUs, which are currently the dominant source of error in PDF fits. We can see that going from LO to NLO to NNLO in Fig.~\ref{fig:pdf_order_comp} that the functional form of the PDF changes, and that the change from LO to NLO is greater than that from NLO to NNLO. MHOUs are currently not included in the PDF errors, justified historically by the claim that they are small compared to experimental contributions to the PDF error, especially at NNLO. This justification, however, is now on shakier ground with PDF uncertainties dropping as low as 1\% at the electroweak scale. QCD MHOU errors themselves are typically $\mathcal{O}$(1\%)~\cite{Campbell:2017hsr} and, with the current push to N$^3$LO precision, will only become increasingly important as time goes on. 
 
 \begin{figure}[!t]
 \centering
@@ -28,11 +28,11 @@ The most popular method for estimating MHOUs is by ``scale variation". This is b
 
 Although other approaches to estimating MHOUs, based on the current known orders, have been suggested~\cite{Cacciari:2011ze, David:2013gaa, Bagnaschi:2014wea, Bonvini:2020xeo}, we adopted the method of scale variations not only because it is the most widely used, but also because it is the most easily implemented for our purposes. Firstly, the renormalisation group invariance is incorporated automatically, which ensures the MHOUs decrease as the perturbative order increases. Secondly, the scale dependece of $\alpha_s(\mu_R^2)$ and the PDFs is universal to all processes, which is important for PDF fits dealing with a range of interactions. Finally, correlations between data points are implicitly maintained because predictions for different scale values will be smooth functions of kinematics; this ensures that neighbouring regions of phase space will be strongly correlated.
 
-There are, however, some disadvantages. Firstly, the definition of the two scales themselves have been historically approached in various ways, often differently for DIS and hadronic collisions, but also changing over time. Since PDFs use both DIS and hadronic data we need to settle on a consistent approach. Secondly, there is no cut and dry method for determining the range of varied scale choices, and in fact the choice of central scales are themselves to some degree arbitrary; for example, top production processes commonly have both central scales set to the top mass, $m_t$, and DIS processes have both set to Bj\"orken $Q$. Though there is physical motivation for these choices, we could equally well pick 2$m_t$ rather than $m_t$ in the former case, for example. A standard approach is to take the 7-point envelope of the predictions obtained by varying $(\mu_F, \mu_R)$ independently in $\{1/2, 1, 2\}$, excluding $(1/2, 1/2)$ and $(2,2)$. However, for our purposes we do not want a per-point envelope but rather a covariance matrix which retains correlations between data points. We will address both of these drawbacks below. 
+There are, however, some disadvantages. Firstly, the definition of the two scales themselves has been historically approached in various ways, often differently for DIS and hadronic collisions, but also changing over time. Since PDFs use both DIS and hadronic data we need to settle on a consistent approach. Secondly, there is no cut and dry method for determining the range of varied scale choices, and in fact the choice of central scales are themselves to some degree arbitrary; for example, top production processes commonly have both central scales set to the top mass, $m_t$, and DIS processes have both set to Bj\"orken $Q$. Though there is physical motivation for these choices, we could equally well pick 2$m_t$ rather than $m_t$ in the former case, for example. A standard approach is to take the 7-point envelope of the predictions obtained by varying $(\mu_F, \mu_R)$ independently in $\{1/2, 1, 2\}$, excluding $(1/2, 1/2)$ and $(2,2)$. However, for our purposes we do not want a per-point envelope but rather a covariance matrix which retains correlations between data points. We will address both of these drawbacks below. 
 
 Finally, scale variation techniques will not pick up any ``new physics" at higher orders, be it additional colour configurations, singularities or mechanisms of interaction. This is harder to deal with, and requires resummation techniques among other methods. In this work we assume these effects to be less important, and do not address them for the time being.
 
-In the remainder of this section we will review the technique of scale variation, and with it the definitions of $\mu_F$ and $\mu_R$. We will converge on a genral formalism that can be applied to both electroproduction and hadroproduction. We will show that there are two independent directions of scale variation and discuss how to combine them, both in single process and multi-process interactions. We will then go on to show how to use this to build a covariance matrix in Sec.~\ref{sec:prescrip}.
+In the remainder of this section we will review the technique of scale variation, and with it the definitions of $\mu_F$ and $\mu_R$. We will converge on a general formalism that can be applied to both electroproduction and hadroproduction. We will show that there are two independent directions of scale variation and discuss how to combine them, both in single process and multi-process interactions. We will then go on to show how to use this to build a covariance matrix in Sec.~\ref{sec:prescrip}.
 
 \subsection{Renormalisation group invariance}
 
@@ -171,7 +171,7 @@ Using Eqn.~\ref{eqn:strfn} we finally get an expression for the $\mu_R$ variatio
 \overline{F}(t, \kappa) = c_0\otimes f(t) &+ \alpha_s(t + \kappa) c_1\otimes f(t) + \alpha_s^2(t + \kappa)  \lp c_2 - \kappa \beta_0 c_1 \rp \otimes f(t)\\ 
 &+\alpha_s^3(t + \kappa) \lp c_3-\kappa (\beta_1c_1+2\beta_0c_2)+ \kappa^2 \beta_0^2 c_1 \rp \otimes f(t) + \ldots\>. 
 \end{split}
-\ee.
+\ee
 In practice, when predicting scale varied observables, using these equations is relatively straightforward. Because the coefficients, $c_i$ and $\beta_i$, are already known to some order, the workflow consists of some basic algebra to create the new, scale varied, coefficients at each order from the central-scale coefficients at the surrounding orders.
 
 \subsubsection{Hadron-hadron collisions}
@@ -233,7 +233,7 @@ Once again we can use the beta function expansion (Eqn.~\ref{eqn:beta}) alongsid
 \bea \label{eqn:anomdimresult}
     \overline{\gamma}(\alpha_s(t + \kappa), \kappa) &=& \alpha_s(t+\kappa) \gamma_0 + \alpha_s^2(t+\kappa) (\gamma_1 - \kappa \beta_0 \gamma_0) \nonumber\\ &+& \alpha_s^3(t+\kappa) (\gamma_2 - \kappa (\beta_1 \gamma_0 + 2 \beta_0 \gamma_1) + \kappa^2 \beta_0^2 \gamma_0) \nonumber\\ &+& \cdots \, ,
 \eea
-which has the same form as Eqn.~\ref{eqn:svarH} upon setting $n=1$. We can use this equation to estimate MHOUs in PDFs, which can be done by refitting the PDF at each scale choice using different anomalous dimensions. This method has been applied in previous analyses~\cite{Martin:1990fq, Virchaux:1991jc, Ridolfi:1999vr}, but the process of refitting the PDFs is computationally intensive and so we would like to avoid having to do this if possible. Instead, we can look directly at the PDF level and consider evaluating the PDFs themselves at different scales, as was done in Ref.~\cite{Altarelli:2008aj}.  
+which has the same form as Eqn.~\ref{eqn:svarH} upon setting $n=1$. We can use this equation to estimate MHOUs in PDFs, which can be done by refitting the PDF at each scale choice using different anomalous dimensions. This method has been applied in previous analyses~\cite{Martin:1990fq, Virchaux:1991jc, Ridolfi:1999vr}, but the process of refitting the PDFs is computationally intensive and so we would like to avoid having to do this if possible. Instead, we can look directly at the PDF level and consider evaluating the PDFs themselves at different scales, as was done in \cite{Altarelli:2008aj}.  
 
 We can define the scale varied PDF as that obtained by varying the scale in the anomalous dimension,
 \be
@@ -304,7 +304,7 @@ Taking a closer look, and comparing to Eqn.~\ref{eqn:doublesv}, we can write thi
 \eea
 Considering this expression, we can think of $\kappa_F\smallfrac{\partial}{\partial t_F}$ and $\kappa_R\smallfrac{\partial}{\partial t_R}$ as being the generators of the two types of scale variations.
 
-For hadronic-hadron processes, the double-scale-varied cross section is instead
+For hadron-hadron processes, the double-scale-varied cross section is instead
 \be 
 \overline{\Sigma}(t_F, t_R, \kappa_F, \kappa_R) = \overline{H}(\as(t_R), \kappa_R)\otimes  \lp \overline{f}(t_F, \kappa_F)\otimes\overline{f}(t_F, \kappa_F) \rp \, .
 \ee
@@ -326,7 +326,7 @@ Sticking for the time being with correlated factorisation scale variation, for t
 \label{sec:prescrip}
 We now have all the components we need to set about constructing a theory covariance matrix; we can carry out double scale variation for both DIS and hadron-hadron processes, and correlate scale variation between multiple processes. All that remains is to formulate a prescription for estimating MHOUs given scale variations.
 
-In Chapter~\ref{chapter:thuncs} we formulated a method for including theory uncertainties in PDFs using a theory covariance matrix composed using a distribution of shifts between theory predictions at fixed order and the unknown all-order ``true" theory. We know that scale variation can be used to provide an estimate of these shifts, but as discussed previously the exact combination of scales is arbitrary. To address this problem, we present a series of prescriptions for constructing the theory covariance matrix, which we will later go on to test using results at known orders and in addition by studying the impact on the PDFs; we can then select the best prescription.
+In Chapter~\ref{chapter:thuncs} we formulated a method for including theory uncertainties in PDFs using a theory covariance matrix composed using a distribution of shifts between theory predictions at fixed order and the unknown all-order ``true" theory. We know that scale variation can be used to provide an estimate of these shifts, but as discussed previously the exact combination of scales is arbitrary. To address this problem, we present a series of prescriptions for constructing the theory covariance matrix, which we will later go on to test using results at known orders and, in addition, by studying the impact on the PDFs; we can then select the best prescription.
 
 We consider a set of data involving $p$ different types of processes, each with data points $\{i_a\}$, $a = 1, \ldots, p$ and an associated renormalisation scale ratio $\kappa_{R_a} = \ln \mu_{R_a}^2/Q^2$. The theory covariance matrix can be constructed by taking an average over the outer products of the shifts in scale varied theory relative to the central theory. For the $a$-th process, these shifts are
 \be 
@@ -353,7 +353,7 @@ For a single process ($p=1$), there are two scales, $\kappa_F$ and $\kappa_R$. L
 \be 
   S_{ij} = n_{m} \sum_{v_{m}} \Delta_{i} (\kappa_F, \kappa_R)\Delta_{j} (\kappa_F, \kappa_R)\, ,
 \ee
-where $v_m$ is the set of $m$ scale-varied points and $n_m$ is a normalisation factor, to be determined. Note that $v_m$ excludes any points for which $\Delta_i$ vanishes, since these will not contribute to $S$. In practice, this means the central point ($\kappa_F = \kappa_R = 0$) is not included. Overall there is one central point and $m$ variations, so we typically refer to a given prescription as an ``$(m+1)$-point prescription". We can find $n_m$ by summing over the number of independent scales, $s$, and averaging over the contributions from each scale, $m$. This means we can write
+where $v_m$ is the set of $m$ scale-varied points and $n_m$ is a normalisation factor, to be determined. Note that $v_m$ excludes any points for which $\Delta_i$ vanishes, since these will not contribute to $S$. In practice, this means the central point ($\kappa_F = \kappa_R = 0$) is not included. Overall there is one central point and $m$ variations about it, so we typically refer to a given prescription as an ``$(m+1)$-point prescription". We can find $n_m$ by summing over the number of independent scales, $s$, and averaging over the contributions from each scale, $m$. This means we can write
 \be
 n_m = s/m.
 \ee
@@ -446,14 +446,14 @@ S_{i_2j_1}&S_{i_2j_2}\end{array}\right)\, ,
 \ee
 so the diagonal elements deal with data points in the same process, and the off-diagonals deal with data points in different processes. For the diagonal blocks, the form of $S$ must be equivalent to the $p=1$ case, and so 
 \be
-S_{i_1j_1}= N_m \sum_{V_m} \Delta_{i_1} (\kappa_f, \kappa_{r_1}) \Delta_{j_1} (\kappa_f, \kappa_{r_1})=
-n_{m} \sum_{v_{m}} \Delta_{i_1} (\kappa_f, \kappa_{r_1})\Delta_{j_1} (\kappa_f, \kappa_{r_1}) \, .
+S_{i_1j_1}= N_m \sum_{V_m} \Delta_{i_1} (\kappa_F, \kappa_{R_1}) \Delta_{j_1} (\kappa_F, \kappa_{R_1})=
+n_{m} \sum_{v_{m}} \Delta_{i_1} (\kappa_F, \kappa_{R_1})\Delta_{j_1} (\kappa_F, \kappa_{R_1}) \, .
 \ee
 This means that $v_m$ must be a subset of $V_m$, so that if we sum over $V_m$ setting $\kappa_{R_2}$ to 0, we should recover $v_m$ up to a degeneracy factor, $d_m$, which is the number of copies of $v_m$ in $V_m$. This means the overall normalisation factor is
 \be 
 N_m = n_m/d_m \, .
 \ee
-We now go on to consider the 5-point, $\overline{5}$-point and 9-points prescriptions for the case of two processes, depicted in Fig.~\ref{fig:symmetricPrescriptions2proc}. We expand the notation to include three scales, that is $(\kappa_F; \kappa_{R_1},\kappa_{R_2})$.
+We now go on to consider the 5-point, $\overline{5}$-point and 9-point prescriptions for the case of two processes, depicted in Fig.~\ref{fig:symmetricPrescriptions2proc}. We expand the notation to include three scales, that is $(\kappa_F; \kappa_{R_1},\kappa_{R_2})$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \begin{figure}[t]
 \centering
@@ -552,7 +552,7 @@ We will now formulate prescriptions for these two asymmetric prescriptions, bein
 \be 
    S^{(\rm 3pt)}_{ij} = \smallfrac{1}{2}\big\{ \Delta_i^{++}\Delta_j^{++}  + \Delta_i^{--}\Delta_j^{--}\big\} \, .
 \ee
-For two different processes we have $v_2 = \{\pm, \pm\}$, and can see explicitly that we are ignoring the correlations in $\kappa_F$ between the two processes. We have $d_2 =2$ and so $N_2 = (1/2)/2 =1/4$, and the off-diagonal blocks of the covariance matrix are evaluated as
+For two different processes we have $V_2 = \{\pm, \pm\}$, and can see explicitly that we are ignoring the correlations in $\kappa_F$ between the two processes. We have $d_2 =2$ and so $N_2 = (1/2)/2 =1/4$, and the off-diagonal blocks of the covariance matrix are evaluated as
 \be 
     S^{(\rm 3pt)}_{i_1j_2} = \smallfrac{1}{4}\big\{\big(\Delta_{i_1}^{++} + \Delta_{i_1}^{--} \big) \big(\Delta_{j_2}^{++} + \Delta_{j_2}^{--} \big) \big\}\, .
 \ee
@@ -605,7 +605,7 @@ and by {\tt APFELgrid}~\cite{Bertone:2016lga} combined with
 {\tt APPLgrid}~\cite{Carli:2010rw} for the hadronic
 cross-sections. They are all evaluated using the central NLO PDF obtained by performing a NLO fit to the same dataset, for consistency. The resulting predictions are then used to construct the theory covariance matrices using the {\tt ReportEngine} software~\cite{zahari_kassabov_2019_2571601}.
 
-We now present the theory covariance matrices at NLO, and discuss their features. In Fig.~\ref{fig:diag_covmats} we compare the square root of the diagonal elements of the experiment ($C$) and theory ($S$) covariance matrices, normalised to experimental data values; these are equivalent to the fractional per-point uncertainties. In this and what follows, the data are grouped by process and, within each process, by dataset according to Table~\ref{tab:datasets_process_categorisation}, wherein they are binned according to kinematics. $S$ is the 9-pt covariance matrix, being that with the largest number of independent scale variations. On the whole, the size of NLO MHOUs is comparable to the experimental uncertainties, and we can see that each will dominate in different regions. One particularly striking instance of this is seen in the HERA data, which can be found in the middle of DIS NC: for high ($x$, $Q^2$) there is low statistics and so the experimental uncertainties dominate; for low ($x$, $Q^2$) perturbation theory holds less strongly and the MHOUs dominate. 
+We now present the theory covariance matrices at NLO, and discuss their features. In Fig.~\ref{fig:diag_covmats} we compare the square root of the diagonal elements of the experiment ($C$) and theory ($S$) covariance matrices, normalised to experimental data values; these are equivalent to the fractional per-point uncertainties. In this and what follows, the data are grouped by process and, within each process, by dataset according to Table~\ref{tab:datasets_process_categorisation}, wherein they are binned according to kinematics (the same as in the experimental papers). $S$ is the 9-pt covariance matrix, being that with the largest number of independent scale variations. On the whole, the size of NLO MHOUs is comparable to the experimental uncertainties, and we can see that each will dominate in different regions. One particularly striking instance of this is seen in the HERA data, which can be found in the middle of DIS NC: for high ($x$, $Q^2$) there is low statistics and so the experimental uncertainties dominate; for low ($x$, $Q^2$) perturbation theory holds less strongly and the MHOUs dominate. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t!]
   \begin{center}
@@ -622,7 +622,7 @@ We now present the theory covariance matrices at NLO, and discuss their features
   \begin{center}
     \includegraphics[width=0.49\linewidth]{mhous/plots/exp_covmat.pdf}
     \includegraphics[width=0.49\linewidth]{mhous/plots/th_covmat_9pt.pdf}
-    \caption{\small Comparison of the  experimental $C_{ij}$ (left)
+    \caption{\label{fig:covmats}\small Comparison of the  experimental $C_{ij}$ (left)
       and the 9-point theoretical  $S_{ij}$  
       (right) covariance matrices.
       %
@@ -631,7 +631,9 @@ We now present the theory covariance matrices at NLO, and discuss their features
   \end{center}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We can also explore the structure of correlations between data points by viewing the covariance matrices as a whole. In Fig.~\ref{fig:covmats} we show $C$ alongside $S$ (9-point) as a $\%$ of experimental data value. It is immediately obvious that $S$ contains a much richer and more vibrant structure than $C$; experimental correlations only exist within experiments as they exist in isolation. However, predictions for these experiments originate from a common theoretical framework, and therefore theory uncertainties can exist between any two data points, regardless of experimental origin. In particular, data points within the same process are assigned a common renormalisation scale, inducing correlations between them. Furthermore, all points are predicted using the same PDFs and, in the 9-point prescription, share a common factorisation scale. This introduces entries in $S$ outwith individual processes. Along the block diagonal we note that correlations within an individual experiments are broadly positive, due to these points sharing a close kinematic region. In other regions we see a mixture of positive and negative correlations, for example HERA is generally positively correlated with DY but negatively correlated with fixed target DIS. 
+We can also explore the structure of correlations between data points by viewing the covariance matrices as a whole. 
+
+In Fig.~\ref{fig:covmats} we show $C$ alongside $S$ (9-point) as a $\%$ of experimental data value. It is immediately obvious that $S$ contains a much richer and more vibrant structure than $C$; experimental correlations only exist within experiments as the experiments are isolated from one another. However, predictions for these experiments originate from a common theoretical framework, and therefore theory uncertainties can exist between any two data points, regardless of experimental origin. In particular, data points within the same process are assigned a common renormalisation scale, inducing correlations between them. Furthermore, all points are predicted using the same PDFs and, in the 9-point prescription, share a common factorisation scale. This introduces entries in $S$ outwith individual processes. Along the block diagonal we note that correlations within an individual experiment are broadly positive, due to these points sharing a close kinematic region. In other regions we see a mixture of positive and negative correlations, for example HERA is generally positively correlated with DY but negatively correlated with fixed target DIS. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
@@ -649,23 +651,23 @@ We can also explore the structure of correlations between data points by viewing
   \end{center}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-The exact structure of $S$ is dependent on the chosen prescription in Sec.~\ref{sec:prescrip}. In Fig.~\ref{fig:corrmats} we delve into these differences by comparing correlation matrices, defined
+The exact structure of $S$ is dependent on the chosen prescription in Sec.~\ref{sec:prescrip}. In Fig.~\ref{fig:corrmats} we delve into these differences by comparing correlation matrices for each prescription, defined
 \be
 \text{corr}^A_{ij} \equiv \frac{A_{ij}}{\sqrt{A_{ii}}\sqrt{A_{jj}}}.
 \ee
-This removes the effect of the differing magnitude of entries, laying bare the underlying structure; a value of 1 corresponds to full correlation between two points, a value of 0 corresponds to no correlation and a value of -1 corresponds to full anticorrelation. This time we look at the impact of adding the theory covariance matrix to the experiement covariance matrix. In all cases a richer structure emerges, however we note that
+This removes the effect of the differing magnitude of entries, laying bare the underlying structure; a value of 1 corresponds to full correlation between two points, a value of 0 corresponds to no correlation and a value of -1 corresponds to full anticorrelation. This time we look at the impact of adding the theory covariance matrix to the experiement covariance matrix. In all cases a richer structure emerges, however we note that:
 \begin{itemize}
-\item For 3-point the correlations between processes are a lot weaker, and this is because both factorisation and renormalisation scale are uncorrelated between processes.
-\item For 7-point (the other asymmetric prescription), the correlations are weaker than in 5-point despite the fact that 7-point uses the same scale variation points as 5-point plus two additional ones. This is because the $\mu_F$ variation is combined with the uncorrelated ``scale of process" variation.
+\item For 3-point the correlations between processes are a lot weaker, and this is because both factorisation and renormalisation scale are uncorrelated between processes;
+\item For 7-point (the other asymmetric prescription), the correlations are weaker than in 5-point despite the fact that 7-point uses the same scale variation points as 5-point plus two additional ones. This is because the $\mu_F$ variation is combined with the uncorrelated ``scale of process" variation;
 \item All three symmetric prescriptions show similar patterns of correlation.
 \end{itemize}
 From this, it seems that any of the symmetric prescriptions might be a suitable choice. However, in the next section we outline more quantitative tests to validate whether or not each prescription provides a reasonable estimate of MHOUs, and hence determine the best prescription. 
 
 \section{Validating the theory covariance matrix}
 \label{sec:valid}
-Whilst in general the structure of MHOs is unknown to us, due to the perturbative nature of calculations we do know that the MHOU is dominated by the next MHO; so at NLO we expect the MHOU to be dominated by the NNLO terms. A good test of the NLO theory covariance matrix, therefore, is that it reliably encapsulates the known NNLO predictions. In this section we describe a method of validation based on this observation.
+Whilst in general the structure of MHOs is unknown to us, due to the perturbative nature of calculations we do know that the MHOU is dominated by the next MHO; so at NLO we expect the MHOU to be dominated by the NNLO terms. A good test of the NLO theory covariance matrix, therefore, is that it reliably encapsulates the known NNLO predictions. In this section we describe a method of validation based on this observation.We summarise the procedure here, before going into some considerable detail in Sec.~\ref{subsec:val_details}. 
 
-We summarise the procedure here, before going into some considerable detail in Subsec.~\ref{subsec:val_details}. We consider the space of experimental data, $D$, spanned by the vector of experimental data points, $D_i$, $i=1,\dots, N_{dat}$. The theory covmat, $S_{ij}$ acts as a linear operator on this space. We know that $S_{ij}$ is positive semi-definite and symmetric, and therefore has positive or zero eigenvalues only. As an uncertainty matrix, $S_{ij}$ defines ellipsoids, $E$, of given confidence level. These lie in the subspace $S \in D$, and are centred on the NLO prediction, $T_i^{NLO}$. A test of the efficacy of $S_{ij}$ is that the 1-$\sigma$ ellipse broadly encapsulates the known shift to the next higher order, $\delta_i \sim T_i^{NNLO} - T_i^{NLO}$. Note that here $T_i^{NNLO}$ must be evaluated using the same NLO PDF, to ensure that the shift is due only to perturbative differences and not to effects from refitting. This is a robust test, owing to the great difference between $\text{dim}\ D\ \sim 1000$ and $\text{dim}\ S\ \sim 10$; for a random matrix we would expect only 1\% of $\delta_i$ to lie in $S$. 
+We consider the space of experimental data, $D$, spanned by the vector of experimental data points, $D_i$, $i=1,\dots, N_{dat}$. The theory covmat, $S_{ij}$ acts as a linear operator on this space. We know that $S_{ij}$ is positive semi-definite and symmetric, and therefore has positive or zero eigenvalues only. As an uncertainty matrix, $S_{ij}$ defines ellipsoids, $E$, of given confidence level. These lie in the subspace $S \in D$, and are centred on the NLO prediction, $T_i^{NLO}$. A test of the efficacy of $S_{ij}$ is that the 1-$\sigma$ ellipse broadly encapsulates the known shift to the next higher order, $\delta_i \sim T_i^{NNLO} - T_i^{NLO}$. Note that here $T_i^{NNLO}$ must be evaluated using the same NLO PDF, to ensure that the shift is due only to perturbative differences and not to effects from refitting. This is a robust test, owing to the great difference between $\text{dim}\ D\ \sim 1000$ and $\text{dim}\ S\ \sim 10$; for a random matrix we would expect only 1\% of $\delta_i$ to lie in $S$. 
 
 \subsection{Details of validation procedure}
 \label{subsec:val_details}
@@ -680,7 +682,7 @@ We can find the eigenvectors and eigenvalues of $\widehat{S}_{ij}$ by diagonalis
 \be
 \sum_i e_i^\alpha e_i^\beta = \delta^{\alpha \beta}.
 \ee
-This diagonalisation procedure is somewhat involved owing to the large number of zero eigenvalues. To make this easier, we can project $\widehat{S}$ onto the subspace, $S$, where all the eigenvalues are positive definite by construction. We can then perform the diagonalisation here. We can make this projection by noting that $S$ is spanned by the vectors used to construct $S_{ij}$, that is $\{\Delta_i(\kappa_F, \kappa_{R_a}): \kappa_F, \kappa_{R_a} \in V_m\}$. Correspondingly, $\hat{S}_{ij}$ is spanned by $\hat{\Delta}_i \equiv \delta_i/T_i^{NLO}$. The caveat is that not all of these vectors are linearly independent, and so we must find a linearly independent subset of these on a case by case basis, of which there will be $N_{sub}$. We now consider each of the prescriptions in Sec.~\ref{sec:prescrip} in turn.
+This diagonalisation procedure is somewhat involved owing to the large number of zero eigenvalues. To make this easier, we can project $\widehat{S}$ onto the subspace, $S$, where all the eigenvalues are positive definite by construction. We can then perform the diagonalisation here. We can make this projection by noting that $S$ is spanned by the vectors used to construct $S_{ij}$, that is $\{\Delta_i(\kappa_F, \kappa_{R_a}): \kappa_F, \kappa_{R_a} \in V_m\}$. Correspondingly, $\widehat{S}_{ij}$ is spanned by $\widehat{\Delta}_i \equiv \delta_i/T_i^{NLO}$. The caveat is that not all of these vectors are linearly independent, and so we must find a linearly independent subset of these on a case by case basis, of which there will be $N_{sub}$. We now consider each of the prescriptions in Sec.~\ref{sec:prescrip} in turn.
 \subsubsection{3-point}
 Here the factorisation scale is always correlated with the renormalisation scale variation so we can consider  $(\kappa_{R_1}, \kappa_{R_2}, \dots , \kappa_{R_p})$ only. The table below summarises the possible permutations of scale variations under this scheme; each type of scale variation configuration is displayed alongisde the number of permutations of this type.
 \begin{center}
@@ -841,9 +843,9 @@ Tab.~\ref{tab:global_efficiencies} displays these values for each of the prescri
 	\label{tab:process_efficiencies}
 \end{table}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Tab.~\ref{tab:process_efficiencies} shows the same analysis carried out individually for the various processes. The same hierarchy of prescriptions is evident within each process, with $\theta$ smallest for the processes with the least data (e.g. TOP). This is expected, since larger collections of data span a greater kinematic range and include a richer structure, which is correspondingly harder to capture. DIS NC, the largest process, is the most poorly described. Note that the global value for $\theta$ is better than this, and so it is correlations within individual processes which seem most critical.
+Tab.~\ref{tab:process_efficiencies} shows the same analysis carried out individually for the various processes. The same hierarchy of prescriptions is evident within each process, with $\theta$ smallest for the processes with the least data (e.g. TOP). This is expected, since larger collections of data span a greater kinematic range and include a richer structure, which is correspondingly harder to capture. DIS NC, the largest process, is the most poorly described. Note that the global value for $\theta$ is better than this, and so it is correlations within individual processes which are hardest to capture.
 
-Having established what fraction of $\delta_i$ falls within $S$, we now go on to look at the complimentary component which falls outside, $\delta_i^{miss}$. Fig.~\ref{fig:deltamiss} shows this alongside $\delta_i$. The missing element is non-zero for all processes, and with a shape following that of the shift. This suggests there could be a component of $\delta_i$ which is missing for most data points, pointing to a poor estimation of the MHOU in the PDFs, which are common to all data. A good candidate for this is that the factorisation scale variation, as mentioned before, is only approximate; it would be better to include a separate variation for each of the eigenvalues of evolution, e.g. splitting up the singlet and non-singlet.
+Having established what fraction of $\delta_i$ falls within $S$, we now go on to look at the complimentary component which falls outside, $\delta_i^{miss}$. Fig.~\ref{fig:deltamiss} shows this alongside $\delta_i$. The missing element is non-zero for all processes, and with a shape following that of the shift. This suggests there could be a component of $\delta_i$ which is missing for most data points, pointing to a poor estimation of the MHOU in the PDFs, which is common to all data. A good candidate for this is that the factorisation scale variation, as mentioned before, is only approximate; it would be better to include a separate variation for each of the eigenvalues of evolution, e.g. to first order splitting up the singlet and non-singlet.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
@@ -864,17 +866,13 @@ We know the component of the shift in the space of theory uncertainties, $S$, bu
     \includegraphics[scale=0.55]{mhous/plots/projector_eigenvalue_ratio_5barpt_global.pdf}
     \includegraphics[scale=0.55]{mhous/plots/projector_eigenvalue_ratio_7pt_global.pdf}
     \includegraphics[scale=0.55]{mhous/plots/projector_eigenvalue_ratio_9pt_global.pdf}
-    \caption{\small The projection, $\delta^\alpha$, of the normalized shift vector,
-      $\delta_i$, along each eigenvector, $e^\alpha_i$, of the normalized theory covariance
-      matrix, compared to the corresponding eigenvalue ,
+    \caption{\small The projection, $\delta^\alpha$, of the normalised shift vector,
+      $\delta_i$, along each eigenvector, $e^\alpha_i$, of $\Shat$, compared to the corresponding eigenvalue ,
     $s^\alpha$, ordered
       by the size of the projections (from largest to
       smallest). In each case results are shown as absolute (upper) and
-      as ratios $\delta^\alpha/s^\alpha$ (lower), the horizontal line indicating when this ratio is one.  The length of the 
-        component of 
-       $\delta_i$ that is not captured at all by the theory covariance 
-    matrix, $|\delta^{\rm miss}_i|$ is also shown (blue star).
-      Prescriptions are ordered numerically: (top left) 3-point, 5-point
+      as ratios $\delta^\alpha/s^\alpha$ (lower). The magnitude of missing component, $|\delta^{\rm miss}_i|$ is also shown (blue star).
+      Prescriptions: (top left) 3-point, 5-point
       $\overline{5}$-point, 7-point and 9-point (bottom right)}
         \label{fig:evals_all_prescriptions}
   \end{center}
@@ -884,7 +882,7 @@ We know the component of the shift in the space of theory uncertainties, $S$, bu
 \begin{figure}[H]
   \begin{center}
     \includegraphics[width=0.95\textwidth]{mhous/plots/eigenvector_plot_10.pdf}\\
-    \caption{\small The components  $e^\alpha_i$ (green) of the eigenvectors, corresponding
+    \caption{\small The components,  $e^\alpha_i$ (green), of the eigenvectors, corresponding
       to the five largest eigenvalues for the 9-point theory covariance matrix. The NNLO-NLO shift, $\delta_i$ (black), is shown for comparison.
     \label{fig:evecs1} }
   \end{center}
@@ -899,11 +897,11 @@ Overall, we have shown that all of the prescriptions capture most of the importa
 
 \section{PDFs with missing higher order uncertainties}
 \label{sec:pdfs}
-In this section we present aim of this project: PDFs at NLO with the sysematic inclusion of MHOUs. We compare NLO PDFs with and without MHOUs against the known NNLO PDFs, addressing the stability of the results to changes in prescription for the covariance matrix (9-pt vs 7-pt vs 3-pt). We break down the impact of MHOUs by including them separately in the Monte-Carlo sampling or the fitting. 
+In this section we present the goal of this project: PDFs at NLO with the systematic inclusion of MHOUs. We compare NLO PDFs with and without MHOUs against the known NNLO PDFs, addressing the stability of the results to changes in prescription for the covariance matrix (9-pt vs 7-pt vs 3-pt). We break down the impact of MHOUs by including them separately in the Monte-Carlo sampling and the fitting. 
 
 To recap, there are only two places in which a theory covariance matrix changes the PDF determination: 
 \subsubsection{Sampling}
-Recall that Monte Carlo pseudodata replicas $D_i^{(k)}$, $k=1, \dots N_{rep}$, are generated such that their covariance gives the total covariance matrix:
+Recall from Chapter \ref{chapter:background} that Monte Carlo pseudodata replicas $D_i^{(k)}$, $k=1, \dots N_{rep}$, are generated such that their covariance gives the total covariance matrix:
 \be 
 \lim_{N_{rep} \to \infty} \frac{1}{N_{rep}(N_{rep}-1)} \sum_{k=1}^{N_{rep}} (D_i^{(k)}- \langle D_i \rangle)(D_j^{(k)}- \langle D_j \rangle) = C_{ij} + S_{ij},
 \ee
@@ -913,43 +911,45 @@ During fitting the $\chi^2$ is minimised, and this depends on $S_{ij}$ through t
 \be
 \chi^2 = \frac{1}{N_{dat}} \sum_{i,j}^{N_{dat}} (D_i - T_i) (C+S)_{ij}^{-1}(D_j - T_j),
 \ee
-where $C_{ij}$ is the t0 covariance matrix to avoid d'Agostini bias, as mentioned previously~\cite{DAgostini:1993arp, Ball:2009qv}.
+where $C_{ij}$ is the t0 covariance matrix to avoid d'Agostini bias~\cite{DAgostini:1993arp, Ball:2009qv}, as mentioned in Chapter \ref{chapter:background}.
 
 We can assess the quality of the fit using this $\chi^2$ estimator alongside the $\phi$ estimator, defined as
 \be 
 \phi = \sqrt{ \langle \chi^2_{exp}[T_i] \rangle - \chi^2_{exp}[\langle T_i \rangle ] },
 \ee
-where $\chi^2_{exp}$ is evaluated using the (non-t0) experimental covariance matrix, $C_{ij}$. Following Ref.~\cite{Ball:2014uwa}, this can be expressed as
+where $\chi^2_{exp}$ is evaluated using the (non-t0) experimental covariance matrix, $C_{ij}$. Following \cite{Ball:2014uwa}, this can be expressed as
 \be 
 \phi = \sqrt{ \frac{1}{N_{dat}} \sum_{i,j=1}^{N_{dat}} (C_{ij} + S_{ij})^{-1} X_{ij} },
 \ee
-where $X_{ij} = \langle T_i T_j \rangle - \langle T_i \rangle \langle T_j \rangle$ is the covariance matrix of theoretical predictions. Thiis is a measure of the consistency of the data; if they are consistent, then they should combine to reduce the uncertainty and so $\phi \ll 1$. The result should be a factor of $r_{\phi}$ greater than when $S$ is not included, where
+where $X_{ij} = \langle T_i T_j \rangle - \langle T_i \rangle \langle T_j \rangle$ is the covariance matrix of theoretical predictions. This is a measure of the consistency of the data; if they are consistent, then they should combine to reduce the uncertainty and so $\phi \ll 1$. The result should be a factor of $r_{\phi}$ greater than when $S$ is not included, where
 \be
 r_{\phi} = \sqrt{1 + \frac{1}{N_{dat}} \sum_{i,j=1}^{N_{dat}} C_{ij}^{-1} S_{ij} }.
 \ee
-?? Work out why ??
 This means that if there were no other changes we would expect PDF uncertainties to increase by $r_{\phi}$ upon including MHOUs. 
+The PDFs considered in this section are summarised in Table~\ref{tab:thcovmatFits}. NNLO PDFs with MHOUs are to
+be determined in a future work. The $\phi$ and $\chi^2$ values
+for these fits are shown in Tables~\ref{table:phitable_covth_global_nlo}, \ref{table:chi2table_covth_global_nlo}, broken down by process type and, for $\chi^2$ by dataset.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \input{mhous/tables/chi2table_covth_global_nlo.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \input{mhous/tables/list-fits-thcovmat.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \input{mhous/tables/chi2table_phi_global.tex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \input{mhous/tables/chi2table_covth_global_nlo.tex}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-The PDFs considered in this section are summarised in Table~\ref{tab:thcovmatFits}. NNLO PDFs with MHOUs are to
-be determined in a future work. The $\phi$ and $\chi^2$ values
-for these fits are shown in Tabs.~\ref{table:phitable_covth_global_nlo}, \ref{table:chi2table_covth_global_nlo}, broken down by process type and, for $\chi^2$ by dataset.
 
 \subsection{Fit quality}
 We can see that including MHOUs causes the $\chi^2$ to decrease, both globally and for many individual datasets. This is an indication that the fit quality has improved, and is to be expected as we have added additional uncertainties. This varies slightly by prescription, with 9-point showing the greatest improvement, down 3\%, which is comparable to the NNLO value. This suggests that the theory uncertainty is doing a reasonable job of accounting for the NNLO correction. Individual datasets follow a similar trend, with the caveat that at NNLO some datasets acquire additional uncertainties, which confuses the comparison (e.g. CMS $Z$ $p_{T}$). $\phi$ increases by 30\% for 9-point, less than the expected value of $r_\phi$=1.69, suggesting a resolution of tension between datasets. This is relatively stable across prescription choice, although a little higher for 9-point. 
 
-Let us now turn our attention to the fits were $S$ is only included in the sampling or the fitting. For sampling only, we expect the uncertainty to increase, leading to broad fluctuations in the data replicas, but because this is not accounted for in the $\chi^2$ the fit quality should be worse. This is indeed what we see, with the $\chi^2$ increasing and the $\phi$ tripling in value.  For fitting only, the MHOU should mostly affect the weighting between datasets, and therefore the central value of the PDFs. We can see that the $\chi^2$ is close to that of the fit with $S$ in fitting \textit{and} sampling, and the $\phi$ increases less. But it is clear that it is inclusion of $S$ in the fitting which drives the best fit.
+Let us now turn our attention to the fits were $S$ is only included in the sampling or the fitting. For sampling only, we expect the uncertainty to increase, leading to broad fluctuations in the data replicas, but because this is not accounted for in the $\chi^2$ the fit quality should be worse. This is indeed what we see, with the $\chi^2$ increasing and the $\phi$ tripling in value.  For fitting only, the MHOU should mostly affect the weighting between datasets, and therefore the central value of the PDFs. We can see that the $\chi^2$ is close to that of the fit with $S$ in fitting \textit{and} sampling, and the $\phi$ increases less. But it is clear that it is the inclusion of $S$ in the fitting which drives the best fit.
 
 \subsection{Form of PDFs}
 We now consider the form of the PDFs themselves. Fig~\ref{fig:Global-NLO-CovMatTH} shows the NLO PDFs before and after adding (9-point) MHOUs. These are compared to the central value of the NNLO $C$-only PDF. Results are shown at the parametrisation scale, $Q=1.6$ GeV, alongside a higher scale, $Q=10$ GeV, for $g$, $\Sigma$, $\bar{d}$ and $s^+ = s + \bar{s}$. In the data region, the PDF uncertainties increase a small amount, but the biggest difference is in the significant shift of central value, up to 1-$\sigma$. This corresponds with what we saw earlier in the $\phi$ values, which increase only a small amount, suggesting that tension in the data region has been partially resolved. Outwith the data region, however, the uncertainties increase more, particularly in the poorly-understood extrapolation region at very low $x$.
+
+We can see that the central values are compatible with the NNLO ones within uncertainties, but more strikingly it is especially evident at the parametrisation scale that adding MHOUs tends to shift the central value towards the NNLO one. Although this shift is scale dependent, given that NLO and NNLO PDFs evolve differently, this agreement is still somewhat apparent at the higher scale; the strange content shifts up and the gluon shifts down. 
+%
+Comparing the different prescriptions (Fig.~\ref{fig:Global-NLO-CovMatTH-prescriptions}), it is apparent that the results are fairly stable, with the asymmetric prescriptions (3-point and 7-point) showing closer similarity to one another but with 3-point having slightly larger uncertainties.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
@@ -966,7 +966,7 @@ We now consider the form of the PDFs themselves. Fig~\ref{fig:Global-NLO-CovMatT
      to the former, alongside the central value of the NNLO fit based on $C$ (blue line).
      %
      Results are shown at $Q=1.6$ GeV (left column) and $Q=10$ GeV (right column). From top to bottom: gluon; total quark singlet;
-     anti-down quark; total strangeness.
+     anti-down quark; strange quark.
     \label{fig:Global-NLO-CovMatTH} }
   \end{center}
 \end{figure}
@@ -989,10 +989,6 @@ We now consider the form of the PDFs themselves. Fig~\ref{fig:Global-NLO-CovMatT
   \end{center}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-We can see that the central values are compatible with the NNLO ones within uncertainties, but more strikingly it is especially evident at the parametrisation scale that adding MHOUs tends to shift the central value towards the NNLO one. Although this shift is scale dependent, given that NLO and NNLO PDFs evolve differently, this agreement is still somewhat apparent at the higher scale; the strange content shifts up and the gluon shifts down. 
-%
-Comparing the different prescriptions (Fig.~\ref{fig:Global-NLO-CovMatTH-prescriptions}), it is apparent that the results are fairly stable, with the asymmetric prescriptions (3-point and 7-point) showing closer similarity to one another but with 3-point having slightly larger uncertainties.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
   \begin{center}
@@ -1002,11 +998,12 @@ Comparing the different prescriptions (Fig.~\ref{fig:Global-NLO-CovMatTH-prescri
        \includegraphics[scale=0.44]{mhous/plots/jplots/j3s.png}
    \caption{\small Same as Fig.~\ref{fig:Global-NLO-CovMatTH}, now comparing $C+S^{(\rm 9pt)}$ fit (green) with those in which
      the theory covariance matrix $S$ is included either in the $\chi^2$
-     definition (orange) or in the generation of Monte Carlo replicas (blue), but not on both.
+     definition (orange) or in the generation of Monte Carlo replicas (blue), but not in both.
     \label{fig:Global-NLO-CovMatTH-tests} }
   \end{center}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 Finally we compare using $S$ in only fitting or sampling (Fig~\ref{fig:Global-NLO-CovMatTH-tests}). For sampling only, the PDF uncertainty increases dramatically, with poor fit quality, especially in the quark distributions. For fitting only, the central value is affected due to the change in relative weights of the datasets, such that it is similar to that for fitting + sampling. The uncertainty, however, shows only a very small change in the data region. This all arises because the inclusion of MHOUs in data generation cause the pseudodata broadness to increase dramatically, which is in turn balanced by a relaxation of tensions due to the inclusion of MHOUs in fitting. This has the effect of a sizeable shift in central values with only a small increase in uncertainties. 
 
 \section{Overview}
@@ -1019,4 +1016,4 @@ The PDFs detailed in this chapter, along with PDFs with varied scales, are avail
  \href{http://nnpdf.mi.infn.it/nnpdf3-1th/}{\tt http://nnpdf.mi.infn.it/nnpdf3-1th/}
 \end{center}
 
-It now remains to investigate the impact of including MHOUs in PDFs on phenomenology, that is, in using them to compute predictions for cross-sections. For this some thorough analysis is required to address the potential ``double counting" of theory uncertainties, where they are included both in the PDF and in the hard cross-section. We will address this in considerable detail in the following chapter.
+It now remains to investigate the impact of including MHOUs in PDFs on phenomenology, that is, in using them to compute predictions for cross-sections. For this some thorough analysis is required to address the potential ``double counting" of theory uncertainties, where they are included both in the PDF and in the hard cross-section. We will address this in considerable detail in Chapter \ref{chapter:correlations}. First, however, we will look at one other important form of theory uncertainties: those due to nuclear effects.
