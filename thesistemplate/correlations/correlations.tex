@@ -1,22 +1,22 @@
 \chapter{Making predictions using PDFs with theoretical uncertainties}
-
+\label{chapter:correlations}
 Earlier in this thesis we have discussed the importance of theoretical uncertainties, and how to include them in PDFs. We have also produced PDFs including MHOUs (see Chapter~\ref{chapter:mhous}) and deuteron and nuclear uncertainties (see Chapter~\ref{chapter:nuclear}), which are freely available. In the future, PDFs with theory uncertainties will become the norm, and will be used widely to make theoretical predictions for observables by convoluting them with parton-level hard cross sections. 
 
-When making predictions for hadronic observables there are two sources of uncertainty: the hard cross section and the PDF. Typically, MHOUs for the former are estimated using scale variation, and these are added in quadrature to the latter. When the PDFs themselves also include MHOUs, we can think of the two scale evolutions considered being $Q_0 \to Q_{dat}$ and $Q_0 \to Q_{pred}$, where $Q_0$ is the PDF parametrisation scale, $Q_{dat}$ is the scale of data in the PDF and $Q_{pred}$ is the scale the prediction is made at. Then each of these sources has both a contribution from renormalisation scale variation and from factorisation scale variation.  The PDFs themselves contain a wealth of data from various processes, so when making a prediction for a process which is included in the PDFs there will invariably be correlations between the renormalisation scale variation in the PDF and that in the hard cross section. Even if the process is a new one, for example Higgs production, correlations due to factorisation scale variation will always be present. Simply combining the two sources of uncertainty in quadrature will miss these correlations and lead to an inflation in overall uncertainties. 
+When making predictions for hadronic observables there are two sources of uncertainty: the hard cross section and the PDF. Typically, MHOUs for the former are estimated using scale variation, and these are added in quadrature to the latter. When the PDFs themselves also include MHOUs, we can think of the two scale evolutions considered being $Q_0 \to Q_{dat}$ and $Q_0 \to Q_{pred}$, where $Q_0$ is the PDF parametrisation scale, $Q_{dat}$ is the scale of data in the PDF and $Q_{pred}$ is the scale the prediction is made at. Then each of these sources has both a contribution from renormalisation scale variation and from factorisation scale variation.  The PDFs themselves contain a wealth of data from various processes, so when making a prediction for a process which is included in the PDFs there will invariably be correlations between the renormalisation scale variation in the PDF and that in the hard cross section. Even if the process is a new one, for example Higgs production, correlations due to factorisation scale variation will always be present. Simply combining the two sources of uncertainty in quadrature will miss these correlations and lead to an inflation in overall uncertainties. Hence we refer to this method of combining uncertainties in quadrature as the ``conservative prescription".
 
 This issue was explored in detail in \cite{Harland-Lang:2018bxd}, noting that PDFs are a tool to express one observable in terms of others. This can be realised exactly in the simple case of fully correlated factorisation scale variation for non-singlet structure functions. Here the PDF can be eliminated entirely, and it is manifest that there is only one independent scale ($Q_{dat} \to Q_{pred}$), rather than two, with the MHOUs cancelling to a large degree. If MHOUs were used in both the PDF and the hard cross section in this case, it would amount to ``double counting". It was also shown that correlations existed for renormalisation scale variation, albeit less strongly.
 
-When using PDFs in predictions we include both sources of scale variation in an uncorrelated way, and so miss the MHOU cancellation and corresponding reduction in uncertainties. As noted in \cite{MHOUbig}, this is a consequence of PDFs being universal. We cannot reconstruct the full data and MHOUs from the PDFs alone as information is lost in the fitting process; one set of PDFs could arise from many different data possibilities. However, if we want PDFs to be useful in a wide range of predictions, universality is required and so we must live with this loss of correlation.
+When using PDFs in predictions we include both sources of scale variation in an uncorrelated way, and so miss the MHOU cancellation and corresponding reduction in uncertainties. As noted in \cite{AbdulKhalek:2019ihb}, this is a consequence of PDFs being universal. We cannot reconstruct the full data and MHOUs from the PDFs alone as information is lost in the fitting process; one set of PDFs could arise from many different data possibilities. However, if we want PDFs to be useful in a wide range of predictions, universality is required and so we must live with this loss of correlation.
 
-Fortunately, the increase in PDF uncertainties due to MHOUs is small, and the effect is mostly realised in changes to the central value as the fit is rebalanced by changes to the weighting of different data. In indicative cases explored in Chapter 7 of \cite{MHOUbig}, it was seen that the PDF uncertainty is consequently much smaller than the MHOU on the hard cross section. When combining these two in quadrature, the effect of missing correlations will therefore likely be small, and so the overestimate of uncertainty will be small. It was argued that a small overestimate of uncertainty is better than neglecting MHOUs altogether. However, accounting for these correlations is desirable in order to keep uncertainties as low as possible in the current high precision era.
+Fortunately, the increase in PDF uncertainties due to MHOUs is small, and the effect is mostly realised in changes to the central value as the fit is rebalanced by changes to the weighting of different data. In indicative cases explored in Chapter 7 of \cite{AbdulKhalek:2019ihb}, it was seen that the PDF uncertainty is consequently much smaller than the MHOU on the hard cross section. When combining these two in quadrature, the effect of missing correlations will therefore likely be small, and so the overestimate of uncertainty will be small. It was argued that a small overestimate of uncertainty is better than neglecting MHOUs altogether. However, accounting for these correlations is desirable in order to keep uncertainties as low as possible in the current high precision era.
 
 In this chapter we investigate correlations between PDF MHOUs and hard cross section MHOUs when making predictions. Although we focus on MHOUs, the analysis extends naturally to all sources of theory uncertainty. We develop a method for algebraically determining these correlations, and show how to include them when making a prediction. This is a complicated problem so we proceed incrementally:
 
 \begin{itemize}
-\item In Sec.~\ref{sec:p1} we show how a theoretical uncertainty can be reformulated in terms of a nuisance parameter, which holds the key to the propagation of uncertainties. We consider as a starting point an exact fit, showing that the experimental data partially decorrelate the theory uncertainties in the fit and those in the prediction.
-\item In Sec.~\ref{sec:p2} we move on to a model where the data are fitted using just one parameter. Here the correlations lead to a shift in the theoretical predictions, but the fitting of the data leads to loss of information and consequently further decorrelation.
-\item In Sec.~\ref{sec:p3} we extend this analysis to a multi-parameter fit with multiple theory uncertainties, and then to a PDF fit, where the PDFs are continuous functions with a functional uncertainty. We show that this functional uncertainty leads to a further decorrelation in the MHOUs. 
-\item In Sec.~\ref{sec:p4} we present numerical results comparing this procedure with the naive approach of adding the uncorrelated contributions in quadrature, in the context of the NLO global fit with MHOUs discussed in Chapter \ref{chapter:mhous}. We make predictions including MHOUs for repetitions of all the experiments already in the fit (so-called ``autopredictions"). We then investigate the scenario of a prediction for a process already in the fit (top production), and for a new process (Higgs production), and show that including these correlations leads to a shift in the central value of the prediction that is well within the total uncertainty, and that the decorrelation of the MHOUs is almost complete. We see that in practice adding the two contributions in quadrature and keeping them uncorrelated (the ``conservative" prescription of Chapter \ref{chapter:mhous}) is remarkably accurate. Having said that, the methodology for including full correlations is now available. Finally, we suggest a novel way of improving theoretical predictions, using ths correlated shift.
+\item In Sec.~\ref{sec:p1} we show how a theoretical uncertainty can be reformulated in terms of a nuisance parameter, which holds the key to the propagation of uncertainties. We consider two extremal toy models: one where the theory is rigid with no unknown parameters (``pure theory"); the other where the theory is completely flexible and can fit the data exactly (``pure phenomenology"). 
+\item In Sec.~\ref{sec:p2} we move on to a model where the data are fitted using just one parameter. Here the correlations lead to a shift in the theoretical predictions. This is somewhere between the two scenarios in Sec.~\ref{sec:p1}.
+\item In Sec.~\ref{sec:p3} we extend this analysis to a multi-parameter fit with multiple theory uncertainties, and then to a PDF fit, where the PDFs are continuous functions with a functional uncertainty. 
+\item In Sec.~\ref{sec:p4} we present numerical results comparing this procedure with the naive approach of adding the uncorrelated contributions in quadrature, in the context of the NLO global fit with MHOUs discussed in Chapter \ref{chapter:mhous}. We make predictions including MHOUs for repetitions of all the experiments already in the fit (so-called ``autopredictions"). We then investigate the scenario of a prediction for a process already in the fit (top production), and for a new process (Higgs production). We show that including these correlations leads to a shift in the central value of the prediction, which is within the uncertainties for the naive approach but takes the NLO predictions closer to the known NNLO result, reducing the $\chi^2$ to experimental data. Furthermore, we find that for the autopredictions and top predictions there is a significant reduction in uncertainties due to the correlations, so the correlated predictions are both more precise and more accurate. For Higgs production, we find that the effect is much weaker, because there are only correlations through the factorisation scale and not through the renormalisation scale. We emphasise the power of these correlations as a way to improve theoretical predictions.
 \item In Sec.~\ref{sec:p5} we provide a summary.
 \end{itemize}
 
@@ -127,7 +127,223 @@ so the theory uncertainty is always reduced when information on $D$ is added. Fi
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Decorrelation}
+\subsection{Predictions without fits}
+We will now test out this formalism for a toy model where we have ``pure theory" values, $T_0$. These have no unknown parameters, so cannot be fitted. They do, however, have a theory uncertainty. Despite the fact we cannot fit them to the data, $T_0 \neq D$ in general, the data can still give us information on the predictions via the nuisance parameters in the theory uncertainties. The expectation value of $\lambda$ can be evaluated 
+\be
+E[\lambda] = \mathcal{N}_\lambda \int d\lambda \ \lambda\ P(\lambda |T_0 D) = \bar{\lambda}(T_0,D).
+\ee
+Note that $\mathcal{N}_\lambda$ is set such that $E[1]=1$. We can then find the variance
+\be 
+Var[\lambda] \equiv E[(\lambda - E[\lambda])^2] = Z.
+\ee
+Both of these can be seen straight away from the form of the posterior for $\lambda$, Eqn.{eqn:lambdaposterior}.
+
+In the nuisance parameter formalism, we can write 
+\be 
+T(\lambda) = T_0 + \lambda \beta.
+\ee
+Before comparing these theory predictions to the data, we could use the prior for $\lambda$ in this expression, which would give us
+\be 
+E[T(\lambda)] = T_0, \qquad \Cov[(T(\lambda)] = \beta \beta^T = S.
+\ee
+But we could instead first compare $T$ to $D$, and then use the posterior distribution. In that case we'd end up with
+\be
+\label{eqn:expT}
+\begin{split} 
+E[T(\lambda)] &= T_0 + \bar{\lambda}(T,D)\beta \\
+& = T_0 + \beta \beta^T (C+S)^{-1} (D-T_0),
+\end{split}
+\ee
+and
+\be 
+\begin{split}
+\Cov[(T(\lambda)] &= E[(T(\lambda) - E[T(\lambda)])^2] \\
+&= \Var[\lambda] \beta \beta^T \\
+&= ZS.
+\end{split}
+\ee 
+We can think of these predictions as ``autopredictions", i.e. we:
+\begin{enumerate}
+\item compare the data to the theory;
+\item use the information from 1. to make new predictions for exact repetitions of the same experiments.
+\end{enumerate}
+From Eqn.~\ref{eqn:expT} we can see that there is a shift in the autopredictions of
+\be 
+\label{eqn:autoshift1}
+\delta T = -S(C+S)^{-1}(T_0-D),
+\ee
+and that the uncertianties are reduced by a factor $\sqrt{Z}$, thanks to information provided by the data. Overall, the autoprediction covariance matrix is
+\be 
+\begin{split}
+ZS &= S - S(C+S)^{-1}S \\
+&= C(C+S)^{-1}S = S(C+S)^{-1}C.
+\end{split}
+\ee 
+To see the impact of the shift in the predictions, we can compare the experimental $\chi^2$ (i.e. using the experimental covariance matrix only) of the original predictions to the auto predictions. The original $\chi^2$ is
+\be  
+\chi^2_{exp} = (T_0-D)^T C^{-1} (T_0-D),
+\ee
+and, using Eqn.~\ref{eqn:autoshift1}, the autoprediction $\chi^2$ is
+\be
+\begin{split} 
+\chi^2_{auto} &= (T_0 + \delta T - D)^T C^{-1} (T_0 + \delta T -D) \\
+&= (T_0-D) (C+S)^{-1} C (C+S)^{-1} (T_0-D).
+\end{split}
+\ee
+From this we can see that $\chi^2_{auto} \leq \chi^2_{exp}$ because $C$ and $S$ are both positive semidefinite. In other words, the shifts always lead to improved quality of fit by exploiting the theory uncertainty to add information from the data.
+
+We can investigate more explicitly by using a simple model where the experimental covariance matrix is diagonal and the theory uncertainty is fully correlated. Writing $\beta = s e$, where $s$ is the size of correlated theory uncertainty and $e^Te=1$, we have
+\be
+\label{eq:modelCS}
+C = \sigma^2 \mathbb{I},\qquad S = s^2 e e^T,
+\ee
+where $\sigma$ is the per-point uncertainty. Then we can evaluate:
+\be
+\begin{split}
+\label{eq:modelCplusSinv}
+(C+S)^{-1} &= \frac{1}{\sigma^2}\left(1-\frac{s^2}{\sigma^2+s^2}e e^T\right); \\
+Z &= (1+s^2/\sigma^2)^{-1}.
+\end{split}
+\ee
+so the reduction in the theory uncertainties depends on $s^2/\sigma^2$:
+\begin{itemize}
+\item for $s^2 \ll \sigma^2$, there is a small influence of the data on the theory uncertainty;
+\item for $\sigma^2 \ll s^2$, the theory uncertainty size is reduced from $s$ to $\sigma$, because in the limit $s^2/\sigma^2 \to \infty$, $Z \to \sigma^2 ee^T$;
+\item for theory uncertainties the same size as experimental ones, $\sigma^2 \sim s^2/N$ and $Z \sim 1/(N+1)$, so if there are a large number of independent data points then there is a large reduction in uncertainty; more data gives more information.
+\end{itemize}
+In this model the autoprediction shifts are
+\be 
+\delta T = \frac{-s^2}{\sigma^2 + s^2} e^T (T_0-D)e,
+\ee
+which are in the direction of the theory uncertinty, $e$, as we would expect. When $s^2/\sigma^2 \to \infty$, $e^T(T_0 + \delta T) \to e^T D$, soin this direction the autopredictions coincide with the data.
+
+It can also be shown that the autoprediction $\chi^2$ is
+\be 
+\chi^2_{auto} = (T_0-D)^T \frac{1}{\sigma} \bigg(1- \frac{s^2(s^2+2\sigma^2)}{(s^2 + \sigma^2)^2} e e^T \bigg) (T_0-D),
+\ee 
+so the contributions to the $\chi^2$ which are orthogonal to $e$ are unchanged, and the contributions along $e$ are reduced by $Z^2$. This means unless the theory uncertainties are very small, we will end up with a $\chi^2$ for the autopredictions which is size $(N-1)$ rather than $N$, because the contribution along $e$ will be substantially reduced.
+
+We can also make genuine predictions, $\Ttil_I$, $I=1,\dots \ \widetilde{N}$. In this scenario these also have no free parameters, but their theory uncertainty is correlated with that of $T_i$, $i=1, \dots , N$, for which we have experimental data, $D_i$. We can write the predictions in the nuisance parameter formalism as
+\be 
+\Ttil(\widetilde{\lambda}) = \Ttil + \widetilde{\lambda} \widetilde{\beta},
+\ee
+where the vector $\widetilde{\beta}$ gives the size and direction of the theory uncertainty in $\Ttil$. If $\widetilde{\lambda}$ are independent of $\lambda$, then the theory uncertainties in $\Ttil$ are uncorrelated with those in $T$ and the covariance for the predictions is just
+\be 
+\Stil = \betatil \betatil^T.
+\ee
+In the opposite scenario where they are fully correlated, $\lambdatil = \lambda$ and we can use the data $D$ for $T$ to improve our prediction by using the posterior of $\lambda$, i.e. $P(\lambda|TD)$:
+\be 
+\begin{split}
+E[\Ttil (\lambda)] &= \Ttil + \overline{\lambda} (T,D) \betatil \\
+&= \Ttil + \betatil \beta^T (C+S)^{-1} (D-T),
+\end{split}
+\ee 
+so there is a shift in the predictions of 
+\be 
+\delta \Ttil = - \Shat (C+S)^{-1} (T-D),
+\ee
+where $\Shat = \betatil \beta^T$ is the covariance matrix of cross correlations between the theory uncertainty in the theory for which there are data and that in the predictions. The covariance matrix of the predictions can be calculated 
+\be
+\begin{split}
+\Cov[\Ttil(\lambda)] &\equiv E[(\Ttil(\lambda) - E[\Ttil(\lambda)]^2) \\
+&= E[((\lambdatil - \overline{\lambda})\betatil)((\lambdatil - \overline{\lambda})\betatil)^T]\\
+&= \Var[\lambda] \betatil \betatil^T \\
+&= Z \Stil.
+\end{split}
+\ee
+So the covariance of the genuine predictions is reduced by the same factor, $Z$, as the autopredictions. This means the data can work via the correlations in theory uncertainties to produce more precise and (if the theory is correct) more accurate predictions for observables that aren't yet measured. This is accompanied by a shift which is proportional to the cross covariance between theory uncertainties.
+
+We can understand a little more about the various theory covariance matrices by imagining we obtained some experimental measurements, $\widetilde{D}$, corresponding to predictions $\Ttil$. Then we could add these to the fit, and would get a new fitting theory covariance matrix with dimensions $(N+\widetilde{N})\times(N+\widetilde{N})$ and content
+\be
+\left(\begin{array}{cc}
+S&\Shat\\
+\Shat^T&\Stil\end{array}\right)
+ =
+\left(\begin{array}{cc}
+\beta\beta^T&\beta\betatil^T\\
+\betatil\beta^T&\betatil\betatil^T\end{array}\right).
+\label{eq:covmatglobal}
+\ee
+Here the role of $\Shat$ and $\Shat^T$ as cross-correlation theory covariance matrices is clear. We can see that the theory uncertainties in the prediction are consistent with the theory uncertainties we would use when including observables in a fit, which makes sense in the comparison with the autopredictions case. 
+
+Ideally, the shifted predictions would give a better $\chi^2$ to the new data $\widetilde{D}$, but this is not guaranteed because the shifts were induced from the old data, $D$, and there could be inconsistencies between $D$ and $\widetilde{D}$.
+
+\subsection{Autopredictions in a perfect fit}
+We have just considered the scenario where $T$ is unfitted to the data. Now consider the ``opposite" situation of a perfect fit. Here $T$ have a high level of flexibility, and can fit $D$ exactly. $P(T|D)$ is always maximised when $T=D$, so $\chi^2=0$. We can extract the expectation value and covariance of $T$ as 
+\be 
+E[T] = \mathcal{N}_T \int\ dT\ T\ P(T|D) = D,
+\ee 
+where $\mathcal{N}_T$ is such that $E[1]=1$, and
+\be 
+\label{eq:varTpheno}
+\Cov[T] \equiv E[(T-E[T])^2] = C+S.
+\ee
+We can write the autopredictions again in the nuisance parameter formalism, so
+\be 
+T(\lambda) = T + \lambda \beta.
+\ee 
+When calculating the expectation value of a function of $T$ and $\lambda$, we must take some care. The data, $D$ are always held fixed because they are set values from experiment. Then the expectation value can be calculated using conditional probabilities,
+\be 
+E[f(T, \lambda)] \equiv \mathcal{N}_T \int dT\ \mathcal{N}_\lambda \int d\lambda\ f(T,\lambda) P(\lambda|TD)P(T|D).
+\ee
+We must therefore integrate first over $\lambda$, because this is conditional on $T$, and then over $T$. So to get the expectation value of $\lambda$, we first take the expectation value over $\lambda$, with both $T$ and $D$ fixed, making use of Eqn.~\ref{eqn:lambdabardef}:
+\be 
+\begin{split}
+E[\lambda] &= E[\overline{\lambda}(T,D)] \\
+&= \beta^T (C+S)^{-1} E[D-T].
+\end{split}
+\ee
+Then we take the expectation value over $T$, keeping $D$ fixed, which just gives us
+\be
+E[\lambda] = \beta^T (C+S)^{-1} (D-D) =0.
+\ee
+For the variance we have
+\be 
+\Var[\lambda] = E[(\lambda-E\lambda])^2] = E[\lambda^2].
+\ee
+To evaluate this we can use the trick of adding and subtracting $\overline{\lambda}(T,D)$ to $\lambda$ because we are aiming to put it in terms of $Z = E[(\lambda-\overline{\lambda}(T,D))^2]$. Making use of Eqn.~\ref{eq:Zdef2} and Eqn.~\ref{eq:varTpheno},
+\be 
+\begin{split}
+\Var[\lambda] = E[(\lambda - \overline{\lambda}(T,D) + \overline{\lambda}(T,D))^2] \\
+&= E[(\lambda-\overline{\lambda}(T,D))^2] + E[\overline{\lambda}(T,D)^2] \\
+&= Z + \beta^T (C+S)^{-1} \\ & \qquad \times E[(T-D)(T-D)^T] (C+S)^{-1} \beta \\
+&= Z + \beta^T (C+S)^{-1} \Cov[T] (C+S)^{-1} \beta \\
+&= 1 - \beta^T(C+S)^{-1} \beta + \beta^T (C+S)^{-1} \beta \\
+&= 1. 
+\end{split}
+\ee
+So in a perfect fit, the posterior distribution of nuisance parameters is exactly the same as the prior. All the information from the data is absorbed into the fitted parameters, and so we are left with no update to the theoretical uncertainty. In the calculation of the variance you can see how the reduction by factor $Z$ that we saw in the pure theory case is exactly cancelled by the factor due to the fluctuation of $\overline{\lambda}(T,D)$ due to the covariance of $T$.
+
+We can now use the posterior of $\lambda$ to calculate the autopredictions. Fist we calculate the expectation value:
+\be 
+E[T(\lambda)] = E[T + \lambda \beta] = D,
+\ee
+which is a consistency check. Next we calculate the covariance, where we remember the expectation value is taken first over $\lambda$ with $T$ and $D$ fixed, and then over $T$ with $D$ fixed: 
+\be 
+\begin{split}
+\Cov[T(\lambda)] &= E[(T(\lambda)-E[T(\lambda)])^2] \\
+&=E[(T-D+\lambda \beta)(T-D+\lambda \beta)^T] \\
+&=[(T-D)(T-D)^T] + E[\lambda \beta (T-D)^T]\\ &\qquad + E[(T-D) \lambda \beta^T] + E[\lambda^2] \beta \beta^T.
+\end{split}
+\end{equation}
+The first term is just $\Cov[T]$ and the last term is $\Var[\lambda] S$. To calculate the middle terms, consider
+\be
+\begin{split}
+E[\lambda \beta (T-D)^T] &= E[\beta \overline{\lambda}(T,D)(T-D)^T] \\
+&=-S(C+S)^{-1}E[(T-D)(T-D)^T] \\ 
+&=-S(C+S)^{-1}\Cov[T].
+\end{split}
+\ee
+So overall
+\be 
+\begin{split}
+\Cov[T(\lambda)] &= \Cov[T] - S(C+S)^{-1}\Cov[T] - \Cov[T](C+S)^{-1}S + \Var[\lambda] S \\
+&= (C+S) -S -S +S \\
+&=C.
+\end{split}
+\ee
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% OLD STUFF
 We will now test out this formalism in the case of a ``perfect fit". This is one where the theory inputs to the fit are flexible enough to fit the data exactly. It is not a especially realistic situation in the context of PDF fits, but will serve as a useful foundation on which to model more complex situations. 
 
 In this perfect fit $P(T|D)$ (Eqn.~\ref{eqn:ptd2}) is maximised when $T=D$, which corresponds to $\chi^2 = 0$. The data and theory are therefore fully correlated, and the expectation value, $E[\cdot]$, and covariance, $\Cov[\cdot]$, of the theory are
@@ -805,7 +1021,7 @@ Still with us? In this section we will apply all the results we worked up to in 
 \end{enumerate}
 We showed that as well as the covariance matrix of theories, $X_{ij}$, we also need to compute the covariance between the theories and the data, $Y_{ij}$. Here we compute both of these and use them to generate autopredictions and then genuine predictions, where the effect of correlations is included.
 
-We start by computing $X$ and $Y$. We use as a baseline the NNPDF3.1 NLO global fit with 9 point MHOUs which was generated in Chapter \ref{chapter:mhous}. This includes 2819 data points, split up into 5 processes. We use 1000 replicas because 100 replicas is insufficient to reliably calculate $Y$. This is because it is small due to large numerical cancellations. The only alteration we make to the fit is to drop the imposition of positivity at the data replica level, which was enforced in Ref.~\cite{Ball:2017nwa}. This is because imposing positivity skews the pseudodata generation and makes their distributions nongaussian. This makes negligible difference to the fit outcome, but can have an effect on the calculation of $Y$. Additionally, we are careful to distinguish between $D_i$ and $D_i^{(0)}$; they will be equal in the limit of infinite replicas and where the positivity condition has been dropped, but otherwise they differ slightly. As a final measure we employ a bootstrap method when calculating $Y$, resampling 1000 sets of 500 out of the 1000 total replicas.
+We start by computing $X$ and $Y$. We use as a baseline the NNPDF3.1 NLO global fit with 9 point MHOUs which was generated in Chapter \ref{chapter:mhous}. This includes 2819 data points, split up into 5 processes. We use 1000 replicas because 100 replicas is insufficient to reliably calculate $Y$. This is because it is small due to large numerical cancellations. The only alteration we make to the fit is to drop the imposition of positivity at the data replica level, which was enforced in \cite{Ball:2017nwa}. This is because imposing positivity skews the pseudodata generation and makes their distributions nongaussian. This makes negligible difference to the fit outcome, but can have an effect on the calculation of $Y$. Additionally, we are careful to distinguish between $D_i$ and $D_i^{(0)}$; they will be equal in the limit of infinite replicas and where the positivity condition has been dropped, but otherwise they differ slightly. As a final measure we employ a bootstrap method when calculating $Y$, resampling 1000 sets of 500 out of the 1000 total replicas.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
     \begin{center}
@@ -947,7 +1163,7 @@ We saw that in general $Y_{ii} < X_{ii}$, suggesting that $P_{sim}$ (Eqn.~\ref{e
 Likewise, we have previously argued that the conservative prescription, where the theory uncertainty in the PDF and the prediction are uncorrelated, should be reasonable, because the level of correlation is likely to be small. Here we simply add the PDF uncertainty and the prediction uncertainty in quadrature, i.e. $P_{con} = X + S$. We are now in a position to test the validity of this claim. Fig.~\ref{fig:PminA} also shows the difference between $P$ and $P_{con}$. The approximation is not as good as $P_{sim}$, as expected, but it is still fairly accurate for most data points.
 
 Taking a closer look at the uncertainties, we can look at the \% per-point uncertainties, shown in Fig.~\ref{fig:Pdiag}. We show all three versions of $P$, i.e. $\sqrt{P_{ii}}$, $\sqrt{P^{\rm sim}_{ii}}$ and $\sqrt{P^{\rm con}_{ii}}$. They are very similar and hard to distinguish, so we also show in 
-Fig.~\ref{fig:Pdiagapprox} the \% difference in the uncertainties. From this we see that the conservative approach overestimates the uncertainty by at most $\sim$10\%, and usually much less (not 100\%, as suggested in Ref.~\cite{Harland-Lang:2018bxd}). The simplification (Eqn.~\ref{eq:covTfitfunapprox}) deviates by at most $\sim$5\%. Note that these results must be evaluated in the context of the overall reliability of the MHOUs, which here were estimated by scale variation, and therefore the reliability of the choice of prescription which was used to construct $S$.
+Fig.~\ref{fig:Pdiagapprox} the \% difference in the uncertainties. From this we see that the conservative approach overestimates the uncertainty by at most $\sim$10\%, and usually much less (not 100\%, as suggested in \cite{Harland-Lang:2018bxd}). The simplification (Eqn.~\ref{eq:covTfitfunapprox}) deviates by at most $\sim$5\%. Note that these results must be evaluated in the context of the overall reliability of the MHOUs, which here were estimated by scale variation, and therefore the reliability of the choice of prescription which was used to construct $S$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[h]
@@ -993,10 +1209,9 @@ We look at $t\bar{t}$ production rapidity distributions in two channels (dilepto
 \item The base fit contains $t\bar{t}$ total cross sections at 7, 8 and 13 TeV and normalised rapidity distributions at 8 TeV, all from both ATLAS and CMS.
 \item The NLO theory uncertainty for the 13 TeV data is $\sim$10\%, considerably larger than the PDF uncertainty.
 \end{itemize}
-Both these things mean that we'd expect the correlation between the theory uncertainties in these data and the 13 TeV distributions to be high, and so we should see some of the largest effects currently possible with these PDFs. The CMS 13 TeV $t\bar{t}$ rapidity predictions were computed using the same procedure as the 8 TeV distributions in Ref.~\cite{Ball:2017nwa}:NLO theoretical predictions were been generated with {\tt Sherpa}~\cite{Gleisberg:2008ta}, in a format compliant with {\tt APPLgrid}~\cite{Carli:2010rw}, using the {\tt MCgrid} 
+Both these things mean that we'd expect the correlation between the theory uncertainties in these data and the 13 TeV distributions to be high, and so we should see some of the largest effects currently possible with these PDFs. The CMS 13 TeV $t\bar{t}$ rapidity predictions were computed using the same procedure as the 8 TeV distributions in \cite{Ball:2017nwa}:NLO theoretical predictions were been generated with {\tt Sherpa}~\cite{Gleisberg:2008ta}, in a format compliant with {\tt APPLgrid}~\cite{Carli:2010rw}, using the {\tt MCgrid} 
 code~\cite{DelDebbio:2013kxa} and the {\tt Rivet}~\cite{Buckley:2010ar} analysis package, with {\tt OpenLoops}~\cite{Cascioli:2011va} for the NLO 
-matrix elements. Renormalization and factorization scales have been chosen based on the recommendation of 
-Ref.~\cite{Czakon:2016dgf} as $H_T/4$.
+matrix elements. Renormalization and factorization scales have been chosen based on the recommendation of \cite{Czakon:2016dgf} as $H_T/4$.
 
 Our aim is to calculate $\Ptil$ and $\delta \Ttil$, so we first need to calculate $\Stil$ (the theory covariance matrix for the predictions) and $\Shat$ (the theory correlations between the predictions and the theories in the fit). Then we need to find $\Xtil$ and $\Xhat$ (the PDF uncertainties) and $\Yhat$ (the correlations of the data in the fit with the new predictions). If we're just going to find $\Ptil_{sim}$ rather than $\Ptil$, we won't need $\Yhat$, and therefore won't need the data replicas. Further, if we're going to use $\Ptil_{cons}$, we only need $\Xtil$ and $\Stil$, and therefore won't need any information about the replicas in the fit. These variations are therefore significantly simpler calculations.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1079,7 +1294,7 @@ Renormalization and factorization scales are set to half the Higgs' mass, and th
     \makebox{\includegraphics[width=0.9\columnwidth]{correlations/plots/higgs_plot_1000.png}}
     \end{center}
   \vspace{-0.55cm}
-  \caption{Predictions for the Higgs total cross-section at 14 TeV, made using a variety of approximations. All results use NLO PDFs, while the Higgs total cross-section is computed at NLO (left panel), NNLO (centre panel) and N3LO (right panel). In each panel, we then have, from left to right: PDFs and cross-section both computed with No MHOU; MHOU included only in the PDF determination in the 9pt scheme; the same but with the factorization scale uncertainty (MHOU in PDF evolution) included; the same but with instead the renormalization scale uncertainty (MHOU in the Higgs cross-section); the total in the Higgs cross-section combined in quadrature, as recommended in Ref.~\cite{AbdulKhalek:2019ihb}; the total PDF plus 9pt MHOU, but now including also the correlation between theoretical uncertainties, using the approximate result; the same, but now using the exact result. In the centre panel we also show the NNLO prediction with NNLO PDFs (but no theoretical uncertainties), as a dashed line. }
+  \caption{Predictions for the Higgs total cross-section at 14 TeV, made using a variety of approximations. All results use NLO PDFs, while the Higgs total cross-section is computed at NLO (left panel), NNLO (centre panel) and N3LO (right panel). In each panel, we then have, from left to right: PDFs and cross-section both computed with No MHOU; MHOU included only in the PDF determination in the 9pt scheme; the same but with the factorization scale uncertainty (MHOU in PDF evolution) included; the same but with instead the renormalization scale uncertainty (MHOU in the Higgs cross-section); the total in the Higgs cross-section combined in quadrature, as recommended in \cite{AbdulKhalek:2019ihb}; the total PDF plus 9pt MHOU, but now including also the correlation between theoretical uncertainties, using the approximate result; the same, but now using the exact result. In the centre panel we also show the NNLO prediction with NNLO PDFs (but no theoretical uncertainties), as a dashed line. }
   \label{fig:Higgs}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1095,23 +1310,25 @@ Our results are shown in in Fig.~\ref{fig:Higgs}. All results use the baseline N
 \end{enumerate}
 Note that 2. and 3. sum to give the 5-point prescription in Chapter \ref{chapter:mhous}. 
 
-At NLO the MHOU in the Higgs cross section (estimated by varying the Higgs renormalisation scale) completely dominates the other uncertainties, so the effect of correlations between the sources of MHOU is negligible.  At higher orders, the renormalisation scale uncertainty shrinks dramatically until it is comparable to the other sources of uncertainty at N$^3$LO. Notice also that the shift due to correlations is always very small compared to the overall uncertainty, and gets smaller order by order. Here, unlike for top production, the fit includes no information on Higgs production, so the renormalisation scale is totally uncorrelated. This means any information from the fit must propagate through factorisation scale uncertainties. We can see that at NNLO the small shit due to this pulls the NNLO prediction very close to the calculation using NNLO PDFs, although this is most likely coincidental. The effect of correlations on the total uncertainties is also minimal, and the difference between the simlified and full calculations is negligible. 
+At NLO the MHOU in the Higgs cross section (estimated by varying the Higgs renormalisation scale) completely dominates the other uncertainties, so the effect of correlations between the sources of MHOU is negligible.  At higher orders, the renormalisation scale uncertainty shrinks dramatically until it is comparable to the other sources of uncertainty at N$^3$LO. Notice also that the shift due to correlations is always very small compared to the overall uncertainty, and gets smaller order by order. Here, unlike for top production, the fit includes no information on Higgs production, so the renormalisation scale is totally uncorrelated. This means any information from the fit must propagate through factorisation scale uncertainties. We can see that at NNLO the small shift due to this pulls the NNLO prediction very close to the calculation using NNLO PDFs, although this is most likely coincidental. The effect of correlations on the total uncertainties is also minimal, and the difference between the simlified and full calculations is negligible. 
 
 Note that if we used NNLO (or higher order) PDFs with MHOUs here (we can't - they don't exist!), the MHOU in the PDFs would have been smaller, and therefore the effects due to theory uncertainty correlations would be again smaller.
-
+\newpage
 \section{Summary}
 \label{sec:p5}
 
+{\bf \underline{Main conclusion:} PDFs with MHOUs can be used in exactly the same way as PDFs without.}
+
 We considered the scenario where PDFs with theory uncertainties are used to make predictions with theory uncertainties. We studied the correlations between these two sources of theory uncertainties. We did this by recasting the theory uncertainties as nuisance parameters for each PDF replica, which contain information about the experimental data's impact on the theory uncertainties. We built our way through increasingly complex and correspondingly realistic models of the fitting procedure, isolating three distrinct decorrelation effects, namely:
 \begin{enumerate}
-\item {\bf Experimental uncertainties: } hese are uncorrelated to theory uncertainties so their presence washes out the effect of theory uncertainty correlations.
-\item {\bf Projection onto the PDFs: } we lose information when we fit PDFs because the process of experimental data $\to$ PDFs is non-reversible. Part of the information lose is the correlation of the theory uncertainties.
-\item {\bf Functional uncertainties: } PDFs are continuous functions generated using discrete experimental data, so a functional uncertainty is introduced via extrapolation. Again, this functional uncertainty is uncorrelated to the theory uncertainty, so this is another effect washing out the theory uncertainty correlations.
+\item {\bf Experimental uncertainties: }these are uncorrelated to theory uncertainties so their presence washes out the effect of theory uncertainty correlations.
+\item {\bf Projection onto the PDFs: }we lose information when we fit PDFs because the process of experimental data $\to$ PDFs is non-reversible. Part of the information lose is the correlation of the theory uncertainties.
+\item {\bf Functional uncertainties: }PDFs are continuous functions generated using discrete experimental data, so a functional uncertainty is introduced via extrapolation. Again, this functional uncertainty is uncorrelated to the theory uncertainty, so this is another effect washing out the theory uncertainty correlations.
 \end{enumerate}
 
 We then explicitly calculated the shift and change in uncertainty due to theory uncertainty correlations. We did this for: autopredictions of the fit experiments; predictions for a process included in the fit (top); and predictions for a process outwith the fit (Higgs). We saw in all our numerical results that the decorrelation is practially complete. We must bear in mind that the initial estimate for MHOUs when generating $S$ is just a prior, and depends on a point prescription and scale variation range. This means that getting information on the MHOUs from experimental data is very hard, and we see that the data hardly reduce the MHOU at all. We only calculated numerical results for NNPDFs, but for PDFs with fixed parametrisation the results from Sec.~\ref{subsec:p32} demonstrate that we'd also expect significant decorrelation here through the first two methods of decorrelation.
 
-Our main conclusion is that when using PDFs with MHOUs to make predictions, we can in practice ignore correlations between the MHOUs in the PDF and those in the prediction. So {\bf PDFs with MHOUs can be used in exactly the same was as PDFs without.} This is true regardless of whether the process is already included. When making a prediction, just add the PDF uncertainty in quadrature with the MHOU in the prediction, i.e. use the conservative prescription of Chapter ~\ref{chapter:mhous}. 
+Our main conclusion is that when using PDFs with MHOUs to make predictions, we can in practice ignore correlations between the MHOUs in the PDF and those in the prediction. So PDFs with MHOUs can be used in exactly the same way as PDFs without. This is true regardless of whether the process is already included. When making a prediction, just add the PDF uncertainty in quadrature with the MHOU in the prediction, i.e. use the conservative prescription of Chapter ~\ref{chapter:mhous}. 
 
 Having said this, an interesting finding of this work is that the experimental data can give us information. The first piece of information is about the central scale choice, which survives because the shifts in the central values of the nuisance parameter distributions remain after decorrelation. This resilience is in particular because they are unaffected by functional uncertainty. The second piece of information comes via the shifts in the central values of the predictions. These provide a systematic way of using the experimental data to improve the theory predictions. This is especially powerful for processes already in the fit, where the experimental data have more implicit knowledge of the MHOU.
 

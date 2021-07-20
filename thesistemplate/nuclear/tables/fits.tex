@@ -6,17 +6,17 @@
     \toprule
     {\bf Iteration }  & {\bf Dataset }            & {\bf Fit ID }        & { \bf Description }\\
     \midrule
-    Baseline    & Proton and Deuteron & global-base    & Same as {\tt base} fit in~\cite{Faura:2020oom}.\\
+    Baseline    & Proton and Deuteron & global-base    & NNPDF4.0 fit without nuclear uncertainties\\
     \midrule
     Iteration 0 & Proton              & proton-ite0    & Same as baseline, but restricted to the proton dataset\\
     \midrule
     Iteration 1 & Deuteron            & deuteron-ite1  & Same as baseline, but restricted to the deuteron dataset
                                                          and supplemented with a proton covariance matrix determined
                                                          from the proton-ite0 fit according to
-                                                         Eq.~\eqref{eq:protoncovmatrix}.\\
+                                                         Eqn.~\ref{eq:protoncovmatrix}.\\
                 & Proton and Deuteron & global-ite1-dw & Same as baseline, but supplemented with a deuteron covariance
                                                          matrix determined from the deuteron-ite1 fit according to
-                                                         Eq.~\eqref{eq:deuteroncovmatrix}.\\
+                                                         Eqn.~\ref{eq:deuteroncovmatrix}.\\
     \midrule
     Iteration 2 & Deuteron            & deuteron-ite2  & Same as deuteron-ite1, but with a proton covariance matrix
                                                          determined from the global-ite1-dw fit.\\
@@ -24,7 +24,7 @@
                                                          determined from the deuteron-ite2 fit.\\
                 & Proton and Deuteron & global-ite2-sh & Same as global-ite2-sh, but with a deuteron covariance matrix
                                                          and shifts determined according to
-                                                         Eq.~\eqref{eq:deuteronshifted}.\\
+                                                         Eqn.~ref{eq:deuteronshifted}.\\
     \bottomrule
   \end{tabularx}
   \caption{A summary of the fits performed in this study, see text for details.}
