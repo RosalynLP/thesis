@@ -13,19 +13,19 @@ PDFs are produced in fits which compare experimental measurements with theoretic
 
 To calculate theoretical uncertainties we must first consider what it is we are trying to calculate. Underlying the uncertainty is a ``true" value, which we are unable to determine exactly. This suggests a Bayesian approach is most appropriate~\cite{DAgostini:1998klm,DAgostini:2003bpu}, where the uncertainty quantifies our belief that the true value lies within a certain range. We will use such a Bayesian framework, and assume Gaussianity of the expected true value of the theory calculation in order to simplify the situation. This should be sufficient to capture the main features of the uncertainty. 
 
-In this section we will show that including general theory uncertainties in PDFs can be done by constructing a theory covariance matrix, $S$, to complement the experimental covariance matrix, $C$. Theory uncertainties can then be included in a fit by the replacement $C \to C + S$~\cite{Ball:2018odr}. The plus sign appears because the experimental and theoretical uncertainties are independent, so the errors are combined in quadrature. They are also on an equal footing in terms of their effect on the PDFs. When there are many data sets, for example in a global fit, there can be very strong correlations in theory uncertainty, even outwith individual experiments. This is because the underlying theory connects different predictions, even when the corresponding data come from different experiments. 
+In this section we will show that including general theory uncertainties in PDFs can be done by constructing a theory covariance matrix, $S$, to complement the experimental covariance matrix, $C$. Theory uncertainties can then be included in a fit by the replacement $C \to C + S$~\cite{Ball:2018odr}. The plus sign appears because the experimental and theoretical uncertainties are independent, so the uncertainties are combined in quadrature. They are also on an equal footing in terms of their effect on the PDFs. When there are many data sets, for example in a global fit, there can be very strong correlations in theory uncertainty, even outwith individual experiments. This is because the underlying theory connects different predictions, even when the corresponding data come from different experiments. 
 
 \section{Fitting PDFs including theory uncertainties}
-Historically, experimental uncertainties have been the dominant source of error in PDF fits. 
+Historically, experimental uncertainties have been the dominant source of uncertainty in PDF fits. 
 In the NNPDF3.1 framework, both replica generation and computation of $\chi^2$ 
 are based entirely on these. We must now try to match the ongoing drive to 
-increase experimental precision by including errors introduced at the theoretical level. This is
-especially important given recent data sets such as the $Z$ boson transverse momentum
+increase experimental precision by including uncertainties introduced at the theoretical level. This is
+especially important given data sets new in NNPDF3.1 such as the $Z$ boson transverse momentum
 distributions~\cite{Aad:2014xaa,Khachatryan:2015oaa,Aad:2015auj}, which have very high experimental precision. Without
-the inclusion of theoretical errors, this has led to tension with the other datasets.
+the inclusion of theoretical uncertainties, this has led to tension with the other datasets.
 
 In future NNPDF fits theoretical uncertainties will be included following a procedure outlined in Sec. 4.1 of \cite{Ball:2018odr}. This hinges on a result from Bayesian statistics
-which applies to Gaussian errors. Namely, theory uncertainties can be included by directly 
+which applies to Gaussian uncertainties. Namely, theory uncertainties can be included by directly 
 adding a theoretical
 covariance matrix to the experimental covariance matrix prior to the fitting. We will now give a brief summary of this derivation.
 
@@ -43,9 +43,9 @@ We can take a similar approach when writing an expression for the conditional pr
 \label{eqn:gausstheory}
 P(\truev|T) = P(T|\truev) \propto \exp\bigg( -\frac{1}{2}(\truev_i-T_i)S_{ij}^{-1}(\truev_j - T_j)\bigg),
 \eeq
-where $S_{ij}$ is a ``theory covariance matrix" encapsulating the magnitude and correlation of the various theory errors. We will need to do some work to determine $S_{ij}$ for the different sources of error, and this will be outlined in detail in the following chapters. 
+where $S_{ij}$ is a ``theory covariance matrix" encapsulating the magnitude and correlation of the various theory uncertainties. We will need to do some work to determine $S_{ij}$ for the different sources of uncertainty, and this will be outlined in detail in the following chapters. 
 
-When we fit PDFs we aim to maximise the probability that a PDF-dependent theory is true given the experimental data available. This amounts to maximising $P(T|D)$, marginalised over the unknown true values $\truev$. To make this more useful for fitting purposes, we can relate this to $P(D|T)$ using Bayes' Theorem:
+When we fit PDFs we aim to maximise the probability that a PDF-dependent theory is true given the experimental data available. This amounts to maximising $P(T|D)$, marginalised over the unknown true values $\truev$. To make this more useful for fitting purposes, we can relate it to $P(D|T)$ using Bayes' Theorem:
 \beq
 P(D|T)P(\truev |DT) = P(\truev |T)P(D|\truev T),
 \eeq
@@ -104,6 +104,6 @@ Now all that remains is to construct a theory covariance matrix which parametris
 \label{eqn:covmat_formal_def}
 S_{ij} = \langle (\truev_i - T_i) (\truev_j - T_j) \rangle,
 \eeq
-where $\langle \cdot \rangle$ denotes an average over true values, $\truev$. We need to find methods to calculate the various contributions, $S_{ij}$, (be them MHOUs, nuclear corrections, higher twist corrections etc.) which not only encapsulate the per-point theoretical errors but also preserve the correlations between different data points. Unlike experimental uncertainties, these correlations can exist outwith individual experiments; in fact, all data in PDF fits depend themselves on PDFs, and this common link will lead to correlations between all datapoints, albeit of varying strength. 
+where $\langle \cdot \rangle$ denotes an average over true values, $\truev$. We need to find methods to calculate the various contributions, $S_{ij}$, (be they MHOUs, nuclear corrections, higher twist corrections etc.) which not only encapsulate the per-point theoretical uncertainties but also preserve the correlations between different data points. Unlike experimental uncertainties, these correlations can exist outwith individual experiments; in fact, all data in PDF fits depend themselves on PDFs, and this common link will lead to correlations between all datapoints, albeit of varying strength. 
 
 The rest of this thesis addresses two of the most important types of theoretical uncertainties: MHOUs (Chapter \ref{chapter:mhous}) and nuclear uncertainties (Chapter \ref{chapter:nuclear}). For each type, we show how to construct a theoretical covariance matrix, and present and discuss the results of PDF fits including these covariance matrices. Then in Chapter \ref{chapter:correlations} we consider how to use these PDFs with theory uncertainties to make new physics predictions which also include theory uncertainties.

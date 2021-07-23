@@ -314,16 +314,16 @@ In this section we review the necessary background for PDF determination within 
 
 \subsection{Experimental and theoretical input}
 
-NNPDF uses a variety of experimental data from a number of particle colliders, including those based at CERN \cite{cern} and Fermilab \cite{fermilab}. These are observables such as cross sections, differential cross sections and structure functions. Fig. \ref{data} is a plot of the $(x,Q^2)$ range spanned by the datasets in the NNPDF3.1~\cite{Ball:2017nwa} release. Much of the data are from DIS processes, which are crucial in determining PDF functional form, but in recent years increasingly more LHC collider data has been added including $t\bar{t}$ production, high energy jets and single top production \cite{Nocera:2019wyk}. For a full review of the data see \cite{EmanueleTalk}.
+NNPDF uses a variety of experimental data from a number of particle colliders, including those based at CERN \cite{cern} and Fermilab \cite{fermilab}. These are observables such as cross sections, differential cross sections and structure functions. Fig. \ref{data} is a plot of the $(x,Q^2)$ range spanned by the datasets in the upcoming NNPDF4.0 release, with those in NNPDF3.1~\cite{Ball:2017nwa} shown without a black edge. Much of the data are from DIS processes, which are crucial in determining PDF functional form, but in recent years increasingly more LHC collider data has been added including $t\bar{t}$ production and high energy jets. For a full review of the data in both NNPDF3.1 and NNPDF4.0 see \cite{EmanueleTalk}.
 
 \begin{figure}
 \centering
-\includegraphics[width=15cm]{background/NNPDF31_nlo_as_0118_1000_markers0_fitcontext_plot_xq2.png}
-\caption{Plot of the $(x,Q^2)$ range spanned by data included in the NNPDF3.1 NLO fit.}
+\includegraphics[width=15cm]{background/kinplot.pdf}
+\caption{Plot of the $(x,Q^2)$ range spanned by data included in the upcoming NNPDF4.0 NLO fit. Datasets in NNPDF3.1 are those without the black edge.}
 \label{data}
 \end{figure}
 
-Theoretical predictions of the corresponding parton-level observables are computed using external codes~\cite{jr:mcfm,Alwall:2014hca,Catani:2009sm,Gavin:2010az,Catani:1996vz}. These are converted to higher orders of perturbation theory as necessary using QCD and electroweak correction factors (known as ``$c$'' or ``$k$"). They are then combined with DGLAP evolution kernels, which evolve PDFs from an initial reference energy scale to the energy scale of each experiment using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). This evolution is done using \texttt{APFEL}~\cite{Bertone:2013vaa}. 
+Theoretical predictions of the corresponding parton-level observables are computed using external codes~\cite{jr:mcfm,Alwall:2014hca,Catani:2009sm,Gavin:2010az,Catani:1996vz}. These are converted to higher orders of perturbation theory as necessary using QCD and electroweak correction factors (known as ``$c$'' or ``$k$" factors). They are then combined with DGLAP evolution kernels, which evolve PDFs from an initial reference energy scale to the energy scale of each experiment using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). This evolution is done using \texttt{APFEL}~\cite{Bertone:2013vaa}. 
 
 
 \subsection{Experimental uncertainties}
@@ -453,7 +453,7 @@ The choice of this sigmoid activation function for the hidden layers allows suff
 The training of the neural networks is implemented using a ``genetic algorithm"~\cite{DelDebbio:2007ee} (CMA-ES), so-called because of the introduction of mutation to the fitting parameters. This additional degree of randomness helps to avoid getting stuck in local minima. In practice, this involves ``mutating" some chosen fraction of the thresholds, $\theta$, by perturbing them at random.
 
 \subsection{Parametrisation, preprocessing and postprocessing}
-A scale of $Q=1.65$ $GeV$ is chosen to parametrise the PDFs at, and then they can be determined at any other scale by evolution using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). The PDFs are fitted parametrised in a ``fitting basis" of eight combinations of flavours, to help convergence \cite{Ball:2014uwa}, defined:
+A scale of $Q=1.65$ GeV is chosen to parametrise the PDFs at, and then they can be determined at any other scale by evolution using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). The PDFs are fitted parametrised in a ``fitting basis" of eight combinations of flavours, to help convergence \cite{Ball:2014uwa}, defined:
 \begin{itemize}
 \item $g$;
 \item $\Sigma \equiv \sum_{u,d,s} q_i + \bar{q}_i$;
@@ -495,7 +495,7 @@ Sometimes, if there are more degrees of freedom in the PDF than in the data, the
 To circumvent this problem, the data are split into a training and a validation set. The training data are used to optimise the neural network, and the validation data are used to test the network output, in a process known as ``cross validation". As training epochs elapse, the target error function compared to both the training and validation data should decrease as the network learns the underlying law. At some point, however, the network will begin to learn the noise in the training data, at which point the training error function will continue to decrease, but the validation error function will stop decreasing and start to increase again. In NNPDF3.1 we determine the optimum fit using the ``lookback" method, where after training the model corresponding to the minimum in the validation error function is selected.
 
 \section{NNPDF4.0}
-The earlier parts of this section describe the methodology for the NNPDF3.1~\cite{Ball:2017nwa} release, on which Chapters \ref{chapter:mhous} and \ref{chapter:correlations} are based. However, at the time of writing this thesis a new release, NNPDF4.0, is being launched. The work in Chapter~\ref{chapter:nuclear} is based on this methodology, and so we briefly explain the main developments between NNPDF3.1 and NNPDF4.0. For more information see \cite{PDF4LHC, EmanueleTalk}.
+The earlier parts of this section describe the methodology for the NNPDF3.1~\cite{Ball:2017nwa} release, on which Chapters \ref{chapter:mhous} and \ref{chapter:correlations} are based. However, at the time of writing this thesis a new release, NNPDF4.0, is being launched. The work in Chapter~\ref{chapter:nuclear} is based on this methodology, and so we briefly explain the main developments between NNPDF3.1 and NNPDF4.0. For more information see \cite{PDF4LHC, EmanueleTalk}, and the future NNPDF4.0 paper.
 
 \subsection{Methodology}
 NNPDF4.0 heralds some significant methodological changes to the NNPDF procedure, the most important of which we will outline here. Perhaps most strikingly, the architecture of the neural network is changed~\cite{Carrazza:2019mzf} from that in Fig.~\ref{fig:nn}, which is implemented separately for each flavour, to a single neural network with flexible architecture. The implementation is via \texttt{Keras}~\cite{keras} and \texttt{Tensorflow}~\cite{tensorflow}, and the optimisation is with an inbuilt gradient descent algorithm rather than the genetic algorithm in NNPDF3.1. The stopping criterion follows a patience method where the fit stops once the minimiser is stable for a set length of time. All of these parameters, including architecture are determined via hyperoptimisation with k-folding, which is a process to determine the best combination for stability and performance.
@@ -511,5 +511,5 @@ The other is the inclusion of NLO electroweak (EW) corrections. This consists of
 The effectiveness of the fitting methodology has traditionally  been tested using closure tests~\cite{Ball:2014uwa}, which use a separate PDF to create proxy known ``true values". This procedure has been updated, whereby fits are carried out to many proxy PDF replicas, and the bias and variance of the results are compared. This is made possible by the significantly increased speed of the new fitting methodology~\cite{Carrazza:2019mzf}.
 
 \subsection{New data}
-NNPDF4.0 also includes a large number of additional datasets, including many from the 13 TeV run at the LHC. What's more, many of the existing datasets' implementation has been improved~\cite{EmanueleTalk}.
+NNPDF4.0 also includes a large number of additional datasets, including many from the 13 TeV run at the LHC (see Fig.~\ref{data}). What's more, many of the existing datasets' implementation has been improved~\cite{EmanueleTalk}.
 
