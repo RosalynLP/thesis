@@ -982,6 +982,7 @@ We see that the central values fluctuate about zero, but stay in the $\pm$1 band
 Already we see that information from the data in the fit significantly updates the priors for the nuisance parameter distribution. From this it is likely that there will be an effect at the level of the autopredictions, which is the subject of the next section.
 
 \subsection{Autopredictions}
+\label{subsec:autopredictions}
 As described in Sec.~\ref{sec:p1}, autopredictions are where we fit a PDF and then use that PDF to make predictions for the data that went into the PDF. These are essentially postdictions, and are ideal for testing the extent of correlation between theory uncertainties in the PDF fit and in the (auto)predictions. 
 
 Although this situation is somewhat artificial because experiments are never redone in exactly the same way, the implications of this investigation will be general. This is because for a global fit of this size (2819 data points, 35 datasets and 5 processes), removing only one of the smaller datasets has negligible impact on the PDFs. 
@@ -1097,6 +1098,7 @@ We can do a similar breakdown for the correlated PDF uncertainty diagonals, this
 For the autopredictions, we expect high levels of learning and correlation, because we are making predictions for exact repetitions of experiments already in teh fit. However, as noted earlier, removing one of the smaller datasets will have little effect on the fit, which leads us to suspect that there will be similar results for genuine predictions if the process is already in the fit and, especially, if the kinematics are similar.
 
 \subsection{Predictions for an existing process: top production}
+\label{subsec:topnhiggs}
 Finally we can consider genuine predictions for experiments that weren't used in the PDF fits. These can either be for processes already in the fit, or for new ones. Here we consider the former, and in the next subsection we'll end with the latter.
 \begin{figure}[H]
     \begin{center}
@@ -1158,6 +1160,7 @@ The theory uncertainties in the predictions are all highly correlated with one a
 Fig.~\ref{fig:CMSttbarcorrlns}. The predictions are all to start with more than 50\% correlated by the PDF. Then, when correlated theory uncertainties are included, the correlations bump up to $>$ 70\%. We saw before that this is due to the constraint that they must all sum to give the total cross section. The pattern of correlations nicely shows the symmetry within the dilepton distribution, and with the lepton + jets distribution; the greater the rapidity separation, the smaller the correlation.
 
 \subsection{Predicting a new process: Higgs production}
+\label{subsec:higgs}
 At last we can make some predictions for a new process: one outwith the fit. For this we choose Higgs production via gluon fusion. We calculate the total cross section at 14 TeV using {\tt  ggHiggs}~\cite{Ball:2013bra,Bonvini:2014jma,Bonvini:2016frm}.
 Renormalization and factorization scales are set to half the Higgs' mass, and the computation is performed using rescaled effective theory.
 

@@ -21,26 +21,27 @@ This chapter is organised as follows. First we review the nuclear data in proton
 \label{sec:nucdat}
 We consider the NNPDF4.0 NNLO dataset which consists of $\sim$ 4000 data points, of which $\sim$ 10\% are deuteron data and $\sim$ 20\% are heavy nuclear data. The table below summarises the datasets which make up the total nuclear data, giving the name of dataset, the observable it corresponds to, and the nuclear target involved.
 \begin{table}[h]
-\resizebox{\linewidth}{!}{
-\begin{tabular}{ p{4cm} p{7cm} p{2cm}  }
+\centering
+\resizebox{0.8\linewidth}{!}{
+\begin{tabular}{ p{4cm} p{3cm} p{2cm} p{2cm}  }
 \hline
-\multicolumn{3}{c}{{\bf Nuclear data}} \\
+\multicolumn{4}{c}{{\bf Nuclear data}} \\
 \hline
-{\bf Dataset } & {\bf Observable } & {\bf Target} \\
+{\bf Dataset } & {\bf Process } & {\bf$ N_{dat}$} & {\bf Target} \\
 \hline
 \hline
-DYE605 \cite{Heinrich:1989cp}& DY dimuon cross sections & $^{64}_{32}$Cu  \\
-NuTeV \cite{Tzanov:2005kr}& DIS dimuon cross sections & $^{56}_{26}$Fe  \\
-CHORUS \cite{Onengut:2005kv}& charged current DIS cross sections & $^{208}_{82}$Pb  \\
+DYE605 \cite{Heinrich:1989cp}& DY & 85 & $^{64}_{32}$Cu  \\
+NuTeV \cite{Tzanov:2005kr}& DIS CC & 76 & $^{56}_{26}$Fe  \\
+CHORUS \cite{Onengut:2005kv}& DIS CC & 832 & $^{208}_{82}$Pb  \\
 \hline
-SLAC \cite{Whitlow:1991uw} & DIS structure functions $F_2^d$ & $^4_2 D$  \\
-BCDMS \cite{Benvenuti:1989fm}& DIS structure functions $F_2^d$ & $^4_2 D$ \\
-NMC \cite{Arneodo:1996kd}& DIS structure function ratios $F_2^d/F_2^p$ & $^4_2 D$ and $p$\\
-DYE866/NuSea \cite{Towell:2001nh}& DY cross section ratios $\sigma^{\rm DY}_{pd}/\sigma^{\rm DY}_{pp}$ & $^4_2 D$ and $p$\\
-DYE906/SeaQuest \cite{Dove:2021ejl} & DY deuterium to hydrogen cross section ratios $\sigma_D/(2\sigma_H)$ & $^4_2 D$ and $p$\\ 
+SLAC \cite{Whitlow:1991uw} & DIS NC & 67 & $^2H$  \\
+BCDMS \cite{Benvenuti:1989fm}& DIS NC & 581 & $^2H$ \\
+NMC \cite{Arneodo:1996kd}& DIS CC & 204 & $^2H$ and $p$\\
+DYE866/NuSea \cite{Towell:2001nh}& DY & 15 & $^2H$ and $p$\\
+DYE906/SeaQuest \cite{Dove:2021ejl} & DY & 6 & $^2H$ and $p$\\ 
 \hline
 \end{tabular}}
-\caption{The nuclear data in NNPDF4.0. \label{tab:nucdat}}
+\caption{The nuclear data in NNPDF4.0. The process (Deep inelastic scattering (DIS) charged current (CC), neutral current (NC) and Drell-Yan (DY) is displayed for each dataset, alongside the number of data ($N_{dat}$) and the target. \label{tab:nucdat}}
 \end{table}
 \section{Heavy nuclear uncertainties}
 \label{sec:hnucunc}
@@ -230,12 +231,12 @@ The deuteron uncertainty is smaller than the experimental uncertainty for the  p
 
 \subsection{Deuteron correction factor}
 
-As an additional investigation, we can use the fitted deuteron PDFs to evaluate a correction to $F_2$ by computing the ratio $F_2^d/F_2^p$. This can then be compared to the result from nNNPDF2.0 and to the parametric correction used in MMHT2014 analyses~\cite{Harland-Lang:2014zoa}, which is based on four fitted parameters. 
+As an additional investigation, we can use the fitted deuteron PDFs to evaluate a correction to $F_2$ by computing the ratio $F_2^d/F_2^p$. This can then be compared to the result from nNNPDF2.0 and to the parametric correction used in MSHT20~\cite{Bailey:2020ooq}, which is based on four fitted parameters. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
-      \includegraphics[width=0.8\linewidth]{nuclear/plots/corrfac_new.png}
-    \caption{$F_2^d/F_2^p$ evaluated using deuteron PDFs from the present determination (deuteron-ite2), deuteron PDFs from nNNPDF2.0, and via the model correction used in MMHT2014 fits.
+      \includegraphics[width=0.8\linewidth]{nuclear/plots/newdeut_10.pdf}
+    \caption{$F_2^d/F_2^p$ evaluated using deuteron PDFs from the present determination (deuteron-ite2), deuteron PDFs from nNNPDF2.0, and via the model correction used in MSHT20 fits.
     \label{fig:deutpdfcomp} }
     \end{center}
 \end{figure}   
@@ -279,27 +280,17 @@ Also displayed in Fig.~\ref{fig:pdfs1} is a fit with only heavy nuclear uncertai
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
-      \includegraphics[width=0.49\linewidth]{nuclear/plots/ubar2.png}
-     \includegraphics[width=0.49\linewidth]{nuclear/plots/dbar2.png}
-    \caption{NNPDF4.0 (green) versus a fit where the nuclear data are also shifted according to Eqn.~\ref{eqn:shiftnuc} (orange).
-    \label{fig:pdfs2} }
-    \end{center}
-\end{figure}   
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{figure}[H]
-  \begin{center}
-      \includegraphics[width=0.49\linewidth]{nuclear/plots/deutcomp.png}
-     \includegraphics[width=0.49\linewidth]{nuclear/plots/nuccomp.png}
-    \caption{The impact of shifting (blue) versus deweighting (orange) for deuteron (left) and heavy nuclear (right) data separately.
+      \includegraphics[width=0.49\linewidth]{nuclear/plots/shiftvdw_pdfplot.png}
+     \includegraphics[width=0.49\linewidth]{nuclear/plots/shiftvdw_errplot.png}
+    \caption{The impact of shifting (orange) versus deweighting (green) for the $\bar{d}$ distribution. The right panel shows the uncertainties for clarity. The effects on the $\bar{u}$ distribution are qualitatively similar. 
     \label{fig:pdfs3} }
     \end{center}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Secondly, we would like to look at what happens when we also apply a shift to the nuclear data, following Eqn.~\ref{eqn:shiftnuc}. This can be seen in Figs.~\ref{fig:pdfs2} and \ref{fig:pdfs3}. The first figure shows this for all the data together, and the second shows a deuteron and heavy nuclear separately. There is a clear reduction of PDF uncertainties when using the shifted prescription versus the deweighted prescription. However, as we saw before, there is little impact at the level of $\chi^2$ and $\phi$ values. From this we can conclude that the deweighted prescription is the more conservative one. Given this, and that it leads to a slightly lower total $\chi^2$ and $\phi$, we opted to use the deweighted prescription in NNPDF4.0; including only an uncertainty for both deuteron and heavy nuclear data.
+Secondly, we would like to look at what happens when we also apply a shift to the nuclear data, following Eqn.~\ref{eqn:shiftnuc}. This can be seen in Fig.~\ref{fig:pdfs3} for the $\bar{d}$ distribution. There is a clear reduction of PDF uncertainties when using the shifted prescription versus the deweighted prescription. However, as we saw before, there is little impact at the level of $\chi^2$ and $\phi$ values. From this we can conclude that the deweighted prescription is the more conservative one. Given this, and that it leads to a slightly lower total $\chi^2$ and $\phi$, we opted to use the deweighted prescription in NNPDF4.0; including only an uncertainty for both deuteron and heavy nuclear data.
 
 
-\section{Summary and outlook}
+\section{Summary}
 Nuclear data are important in PDF fits, but effects due to the nuclear environment are hard to quantify. To bring PDFs to 1\% accuracy, we need  to address these ``small" but nevertheless important differencecs. We used the theory covariance matrix formalism outlined in Chapter~\ref{chapter:thuncs} to include nuclear uncertainties in the next generation PDF fits. We adopted an empirical approach by recalculating predictions for nuclear observables with nuclear PDFs and using the shifts in predictions to construct a nuclear covariance matrix. 
 
 We analysed deuteron and heavy nuclear data separately, using nNNPDF2.0 for heavy nuclear PDFs, and fitting deuteron PDFs using an iterative proceduere in the NNPDF3.1 methodology. The resulting uncertainties are a crucial ingredient in the latest release, NNPDF4.0. They lead to a reduced global $\chi^2$ and the relaxation of tension between the nuclear DIS and LHC DY data. Including the uncertainties causes a modest shift in the central value of PDFs and an increase in errors, in the high $x$ nuclear data region. This difference is driven by the heavy nuclear data. We also investigated a procedure to shift the nuclear predictions, which was equivalent within errors to including only an uncertainty, but with a slightly higher global $\chi^2$. Given this, we adopted using an uncertainty only as the conservative approach. 

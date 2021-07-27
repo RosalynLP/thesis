@@ -378,8 +378,8 @@ In the following sections we will provide an overview of these aspects, which ca
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.8\textwidth]{background/generalstrategy.png}
-\caption{NNPDF general strategy.}
+\includegraphics[width=0.8\textwidth]{background/eleanor_strategy.pdf}
+\caption{NNPDF general strategy. Image credit: Eleanor Conole.}
 \label{fig:generalstrategy}
 \end{figure}
 
@@ -471,19 +471,18 @@ Since the form of the neural networks ($N_i(x)$) is determined by training on ex
 $A_i$ are normalisation coefficients set by the sum rules and fixed at each iteration of the fit. The powers $\alpha_i$ and $\beta_i$ are fitted parameters determined by iteration from one fit to the next. This preprocessing has the effect that the PDFs approach 0 at large $x$, and generally grow at small $x$. This is because the probability of the existence of a parton is generally small at high $x$ and larger with decreasing $x$ outwith the data region.
 
 Postprocessing is also applied to the PDF replicas to remove those which don't satisfy certain quality conditions. That is, where the target error function or arc-length of the replica is more than four standard deviations outwith the mean, or where the positivity of the resulting cross-sections is not satisfactorily maintained. 
-
-\subsection{Cross validation}
-Neural networks are effective at learning the functional form which underlies data.
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.6\textwidth]{background/overfitteddata.png}
-\caption{\label{fig:overlearning}Overlearning: the data points (black dots) fluctuate around the linear underlying law (black line), but the neural network continues to minimise the error function until it passes through every data point (blue curve), fitting the noise in the data.}
+\includegraphics[width=0.6\textwidth]{background/eleanor_overlearning.pdf}
+\caption{\label{fig:overlearning}Overlearning: the data points (black dots) fluctuate around the linear underlying law (black line), but the neural network continues to minimise the error function until it passes through every data point (blue curve), fitting the noise in the data. Image credit: Eleanor Conole.}
 \end{figure}
-Sometimes, if there are more degrees of freedom in the PDF than in the data, they can be ``too effective", picking up not just the underlying law but also the noise. This is known as ``overlearning" (see Fig. \ref{fig:overlearning} for an example).
+
+\subsection{Cross validation}
+Neural networks are effective at learning the functional form which underlies data. Sometimes, if there are more degrees of freedom in the PDF than in the data, they can be ``too effective", picking up not just the underlying law but also the noise. This is known as ``overlearning" (see Fig. \ref{fig:overlearning} for an example).
 \begin{figure}[h]
 \centering
-\includegraphics[width=\textwidth]{background/crossvalidation.png}
-\caption{\label{fig:crossvalidation} Cross validation with the lookback method.}
+\includegraphics[width=\textwidth]{background/eleanor_lookback.pdf}
+\caption{\label{fig:crossvalidation}Cross validation with the lookback method. Image credit: Eleanor Conole.}
 \end{figure}
 
 \begin{figure}[h]
