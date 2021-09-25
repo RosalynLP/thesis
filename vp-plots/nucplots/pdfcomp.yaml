@@ -1,0 +1,49 @@
+meta:
+  title: Nuclear uncertainties
+  author: Rosalyn Pearson
+  keywords: [nuclear]
+
+
+pdfs:
+    - {id: "210629-n3fit-001", label: "NNPDF4.0"}
+#    - {id: "210701-n3fit-meth-005", label: "No nuclear uncs"}
+#    - {id: "210701-n3fit-meth-003", label: "Heavy nuclear uncs only"}
+    - {id: "210701-n3fit-meth-004", label: "Deuteron uncs only"}
+    - {id: "210701-n3fit-meth-006", label: "Deuteron uncs only + shift"}
+#    - {id: "210701-n3fit-meth-007", label: "Heavy nuclear uncs only + shift"}
+#    - {id: "210701-n3fit-meth-008", label: "With shift"}
+
+#pdfs_noband: ["NNPDF31_nnlo_as_0118_kF_1_kR_1"]
+
+Q: 30 #10
+
+xmin: 0.01
+
+pdfnormalize:
+    - normalize_to: 1
+      normtitle: Ratio
+
+basespecs:
+    - basis: flavour
+      basistitle: Flavour basis
+
+pdfscalespecs:
+#    - xscale: log
+#      xscaletitle: Log
+    - xscale: linear
+      xscaletitle: Linear
+      
+template_text: |
+  {@with pdfscalespecs@}
+  {@with basespecs@}
+  {@with pdfnormalize@}
+  {@plot_pdfs@}
+  {@plot_pdf_uncertainties@}
+  {@endwith@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@endwith@}
+
+  
+actions_:
+  - report(main=True)

@@ -4,7 +4,7 @@ Parton distribution functions (PDFs) bridge the gap between short and long range
 
 This section provides some background to PDFs neccesary for understanding the remainder of this thesis. It is divided in to two main parts, being the necessary physics and the necessary methodology of PDF determination.
 
-To review the physics, we begin by looking at the process of deep inelastic scattering, and how the na\"ive parton model was developed to explain these experimental observations. Next we look at this in the context of QCD, see how PDFs fit into the picture, and how they evolve with the scale of the physics. Finally we briefly touch on hadron-hadron collisions, which along with DIS constitute the bulk of the processes in modern PDF fits.
+To review the physics, we begin by looking at the process of deep inelastic scattering (DIS), and how the na\"ive parton model was developed to explain these experimental observations. Next we look at this in the context of QCD, see how PDFs fit into the picture, and how they evolve with the scale of the physics. Finally we briefly touch on hadron-hadron collisions, which along with DIS constitute the bulk of the processes in modern PDF fits.
 
 To review the methodology we consider the NNPDF fitting strategy, explaining how theory and experiment are used together with neural networks to determine PDFs. We distinguish between the NNPDF3.1 methodology, on which the results in Chapters \ref{chapter:mhous} and \ref{chapter:correlations} are based, and the NNPDF4.0 methodology, on which the results in Chapter \ref{chapter:nuclear} are based. We note that the difference between these methodologies doesn't affect the main lines of argument in these chapters.
 
@@ -12,9 +12,9 @@ To review the methodology we consider the NNPDF fitting strategy, explaining how
 \subsection{Deep inelastic scattering}
 For a more in-depth analysis, see \cite{pinkbook, hm}. In this section we rely heavily on \cite{nikhefnotes, Hartland:2014nha}.
 
-The notion of bombarding matter to uncover its structure has led to many important discoveries in the last hundred or so years, starting with the Geiger-Marsden experiments from 1908-1913 and the subsequent uncovering of the atomic nucleus \cite{nucleus}. In the decades following the discovery of the neutron in 1932, nuclei were probed at higher energies, leading to them being understood in terms of ``form factors" which parametrised their electric and magnetic distributions. At this stage it was clear that they are not point-like particles and so a series of important experiments were carried out in the 1960s at the Stanford Linear Accelerator (SLAC), involving a high energy beam of charged leptons scattering off a stationary hadronic target. This process is known as Deep Inelastic Scattering (DIS). 
+The notion of bombarding matter to uncover its structure has led to many important discoveries in the last hundred or so years, starting with the Geiger-Marsden experiments from 1908-1913 and the subsequent uncovering of the atomic nucleus \cite{nucleus}. In the decades following the discovery of the neutron in 1932, nuclei were probed at higher energies, leading to them being understood in terms of ``form factors" which parametrised their electric and magnetic distributions. At this stage it was clear that they are not point-like particles and so a series of important experiments were carried out in the 1960s at the Stanford Linear Accelerator (SLAC), involving a high energy beam of charged leptons scattering off a stationary hadronic target. This process is known as deep inelastic scattering. 
 
-In this section we will consider the example of electrons incident on protons, as shown in Fig. \ref{fig:dis}. In the deep inelastic regime, there is a large momentum transfer, $q=k-k'$, mediated by a virtual photon. The proton, $P$, with initial momentum $p$, fragments into some hadronic state $X$, and the electron starts with energy $E$ and momentum $k$ and ends with energy $E'$ and momentum $k'$. The momentum transfer is large enough that the masses of the proton and electron can be neglected. 
+In this section we will consider the example of electrons incident on protons, as shown in Fig. \ref{fig:dis}. In the deep inelastic regime, there is a large momentum transfer, $q=k-k'$, mediated by a virtual photon. The proton, $P$, with mass $M$ and initial momentum $p$, fragments into some hadronic state $X$, and the electron starts with energy $E$ and momentum $k$ and ends with energy $E'$ and momentum $k'$. The momentum transfer is large enough that the masses of the proton and electron can be neglected. 
 
 It is customary to define some useful variables for help in the analysis, listed in the table below.
 \begin{table}[H]
@@ -40,7 +40,7 @@ where $L_{\mu\nu}$ is the leptonic part, determined from perturbative Quantum El
 \caption{Deep inelastic scattering. \label{fig:dis}}
 \end{figure}
 
-From QED, for an unpolarised photon beam in the DIS regime we can use the Feynman rules to write
+From QED, for an unpolarised photon beam in the DIS regime we can use the Feynman rules at tree level to write
 \bdm
 \label{eqn:ltensor}
 L_{\mu\nu} = \sum_{spins} \bar{u}(k')\gamma_\mu u(k) \bar{u}(k) \gamma_\nu u(k')
@@ -78,7 +78,7 @@ Carrying out DIS experiments allows us to measure the structure functions for di
 
 Furthermore, $F_L(x)$ was measured to be 0, known as the Callan-Gross relation~\cite{Callan:1968zza, Callan:1973pu}, which suggests that the point-like particles could not absorb longitudinal photons. This fitted in nicely with the quark models developed shortly before \cite{GellMann:1962xb, GellMann:1964nj, Zweig:1964jf, Dothan:1965aa}, which described hadrons in terms of spin-1/2 quarks; spin-1/2 particles cannot interact with longitudinal photons. This was the first experimental evidence for the existence of quarks.
 
-In the DIS regime, $Q^2$ is large and so the virtual photon probes at the short timescale $1/Q$, meaning that the interaction will be effectively instantaneous when compared with the inner proton dynamics which operate at the QCD scale $1/\lambda_{QCD} \sim $ 1 fm.  In the parton model we make the assumption that the partons have only a small momentum transverse to the proton's, and that they are effectively on shell for the interaction ($k^2 \approx 0$). In addition, we consider the process in the infinite momentum frame of the proton, in which it is Lorentz contracted by $M/P$ (a small number), so we can assume the photon will only interact with one parton because it will only traverse a narrow cross-section of the proton. The updated picture is shown in Fig. \ref{fig:disparton}.
+In the DIS regime, $Q^2$ is large and so the virtual photon probes at the short timescale $1/Q$, meaning that the interaction will be effectively instantaneous when compared with the inner proton dynamics which operate at the QCD scale $1/\lambda_{QCD} \sim $ 1 fm.  In the parton model we make the assumption that the partons have only a small momentum transverse to the proton's, and that they are effectively on shell for the interaction ($k^2 \approx 0$). In addition, we consider the process in the infinite momentum frame of the proton, in which its diameter is Lorentz contracted by $M/|\underline{p}|$ (a small number), so we can assume the photon will only interact with one parton because it will only traverse a narrow cross-section of the proton. The updated picture is shown in Fig. \ref{fig:disparton}.
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{../diagrams/parton_dis.pdf}
@@ -106,7 +106,7 @@ where $q$ runs over the possible quark flavours and $f_q$ are distributions, wit
 \label{eqn:ampcomparison}
 |\mathcal{M}|^2 = \frac{1}{Q^2} \sum_q  f_q(x) |\mathcal{\hat{M}}_q|^2.
 \ee
-This means that the total amplitude can be expressed in terms of the partonic amplitudes and the PDFs. If we assume that the partons are massless Dirac particles, we can infer the partonic amplitudes directly from that of electron-muon scattering. In this scenario the electron has a current like Eqn. \ref{eqn:ltensor}, and the muon has the same, but with the substitutions $k \to p$ and $q \to -q$. Once again we can use $q_\mu L^{\mu \nu} =0$ and the expression
+This means that the total amplitude can be expressed in terms of the partonic amplitudes and the PDFs. If we assume that the partons are massless Dirac particles, we can draw a mathematical equivalence with electron-muon scattering. In this scenario the electron has a current like Eqn. \ref{eqn:ltensor}, and the muon has the same, but with the substitutions $k \to p$ and $q \to -q$. Once again we can use $q_\mu L^{\mu \nu} =0$ and the expression
 \be
 |\mathcal{M}_{(e \mu)}|^2 = \mathcal{N}_1 \frac{\alpha^2}{q^4} L^{(e)}_{\mu\nu} L_{(\mu)}^{\mu\nu}
 \ee
@@ -176,9 +176,9 @@ Quantities are infrared safe if they do not depend on long-distance physics. Thi
 
 \subsection{The QCD improved parton model and factorisation}
 
-In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into infrared divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In infrared-safe observables the soft and collinear divergences exactly canel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short- and long- scale physics. 
+In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into infrared divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In infrared-safe observables the soft and collinear divergences exactly canel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short and long range physics. 
 
-This is done using the factorisation theorem \cite{Collins:1989gx}, which allows us to factorise the incalculable long-distance physics into the PDFs, meaning we are able to use perturbative QCD as a predictive theory. The PDFs are then non-perturbative, meaning we must obtain them from experiments, but they are universal quantities and so once determined can be applied everywhere, much like the coupling constants. This process introduces the artificial ``factorisation scale", $\mu_F$, in addition to the renormalisation scale. The factorisation scale separates the short- and long- distance physics; loosely, if a parton's transverse momentum is less than $\mu_F$ it is considered part of the hadron and is factored into the PDFs, otherwise it is seen as taking part in the hard scattering process, and will appear in the partonic cross section.
+This is done using the factorisation theorem \cite{Collins:1989gx}, which allows us to factorise the incalculable long-distance physics into the PDFs, meaning we are able to use perturbative QCD as a predictive theory. The PDFs are then non-perturbative, meaning we must obtain them from experiments, but they are universal quantities and so once determined can be applied everywhere, much like the coupling constants. This process introduces the artificial ``factorisation scale", $\mu_F$, in addition to the renormalisation scale. The factorisation scale separates the short and long distance physics; loosely, if a parton's transverse momentum is less than $\mu_F$ it is considered part of the hadron and is factored into the PDFs, otherwise it is seen as taking part in the hard scattering process, and will appear in the partonic cross section.
 
 \begin{figure}[H]
 \centering
@@ -192,7 +192,7 @@ We can write a DIS cross section as
 \label{eqn:disfact}
 \sigma^{DIS} = \sum_i \int dx f_i(x, \mu_F^2) \hat{\sigma}_i \bigg(x, \frac{Q^2}{\mu_F^2} \bigg),
 \ee
-corresponding to Fig \ref{fig:improvedparton}. 
+corresponding to Fig \ref{fig:improvedparton}, where $i$ runs over partons.
 
 We can see how this works in practice by considering the case where a quark emits a gluon before interaction with the photon, such as in Fig. \ref{fig:scalingviolation}. Here the parent parton, with fraction $y$ of the proton's momentum, emits a gluon giving rise to a daughter parton with a fraction $z$ of the parent hadron's momentum. We can see that $z = x/y$.
 
@@ -363,7 +363,7 @@ The covariance matrix can be used to define the $\chi^2$ figure of merit,
 \label{eqn:chi2}
 \chi^2 = \frac{1}{N_{dat}} (D_i-T_i) C_{ij}^{-1} (D_j-T_j),
 \ee
-which measures the goodness of fit between the experimental data $D_i$ with associated error breakdown $C_{ij}$, and theory predictions $T_i$. In practice, this definition is subject to d'Agostini bias \cite{DAgostini:1993arp} due to the presence of normalisation uncertainties. To avoid this, NNPDF employ the iterative $t0$ procedure \cite{Ball:2009qv} whereby $D_i$ in Eqn. \ref{eq:expcov} are replaced initially with the predictions from a baseline fit, and the covariance matrix is iterated concurrently with preprocessing. 
+which measures how good the fit is between the experimental data $D_i$ with associated covariance $C_{ij}$, and theory predictions $T_i$. In practice, this definition is subject to d'Agostini bias \cite{DAgostini:1993arp} due to the presence of normalisation uncertainties. To avoid this, NNPDF employ the iterative $t0$ procedure \cite{Ball:2009qv} whereby $D_i$ in Eqn. \ref{eq:expcov} are replaced initially with the predictions from a baseline fit, and the covariance matrix is iterated concurrently with preprocessing. 
 
 
 \subsection{NNPDF fitting strategy}
@@ -396,7 +396,7 @@ They are generated using Gaussian random numbers $n_a^{(k)}$ and $\hat{n}_m^{(k)
 \be
 D^{(k)} = (D^0 + \sum_a n_a^{(k)} \sigma^a) \prod_m (1 + \hat{n}_m^{(k)}\sigma^p),
 \ee
-where $D^0$ is the (symmetrised) experimental data value, and $\sigma^a$ and $\sigma^m$ are the additive and multiplicative uncertainties discussed in Sec. \ref{sec:expuncs}. Explicitly, the pseudodata replicas satisfy the relations:
+where $D^0$ is the experimental data value, and $\sigma^a$ and $\sigma^m$ are the additive and multiplicative uncertainties discussed in Sec. \ref{sec:expuncs}. Sometimes uncertainties are asymmetric, and in this case we adjust the data value such that the uncertainties are made symmetric. Explicitly, the pseudodata replicas satisfy the relations:
 \be
 \langle D_i^{(k)} \rangle = D_i^0; \qquad (\langle  D_i^{(k)} \rangle -D_i^0)(\langle  D_j^{(k)} \rangle-D_j^0) = C_{ij},
 \ee
@@ -413,7 +413,7 @@ Once the pseudodata have been generated, each replica, $D^{(k)}$, is fitted sepa
 \label{eq:chi2background}
 \chi^{2\ (k)} = \frac{1}{N_{dat}}\sum_q \sum_{i,j=1}^{N_{dat}} (D_i^{(k)}-T_i[f_q^{(k)}])C(t_0)_{ij}^{-1}(D_j^{(k)}-T_j[f_q^{(k)}]).
 \ee
-Here $C(t_0)$ is the t0 covariance matrix, which is Eqn.~\ref{eq:expcov} with $D_i \to t_{0\ i}$, where $t_0$ are theory predictions from a similar previous fit. This is to remove d'Agostini bias~\cite{DAgostini:1993arp, Ball:2009qv}. Doing this fit then results in a PDF set of each flavour. These act as a Monte Carlo parametrisation of the PDFs (for example, Fig. \ref{fig:replicas}).  This means that the PDFs and their errors can be extracted by taking the means and standard deviations over the ensemble. The final PDFs are made publicly available as downloadable files on the LHAPDF website \cite{lhapdf, Buckley:2014ana}. 
+Here $C(t_0)$ is the t0 covariance matrix, which is Eqn.~\ref{eq:expcov} with $D_i \to t_{0\; i}$, where $t_0$ are theory predictions from a similar previous fit. This is to remove d'Agostini bias~\cite{DAgostini:1993arp, Ball:2009qv}. Doing this fit then results in a PDF set of each flavour. These act as a Monte Carlo parametrisation of the PDFs (for example, Fig. \ref{fig:replicas}).  This means that the PDFs and their errors can be extracted by taking the means and standard deviations over the ensemble. The final PDFs are made publicly available as downloadable files on the LHAPDF website \cite{lhapdf, Buckley:2014ana}. 
 
 \begin{figure}[H]
 \centering
@@ -434,8 +434,7 @@ Fig. \ref{fig:nn} depicts the architecture used in NNPDF3.1. This is a ``2-5-3-1
 \caption{Schematic depiction of the 2-5-3-1 architecture of an artificial neural network of NNPDF3.1. Here $\xi_1^{(1)}$ and $\xi_2^{(1)}$ are the variables $x$ and $\ln (1/x)$ respectively. \label{fig:nn}}
 \end{figure}
 It is a ``multilayer perceptron", meaning the graph is fully connected, and it is a feed-forward; information can only be passed in one direction through the layers (from 
-input to output). The two inputs are $x$ and $\ln (1/x)$, and the output, $f$, is the PDF at the parametrisation scale, $Q_0$. In this network the output
-of a node in the $l^{th}$ layer is given by
+input to output). The two inputs are $x$ and $\ln (1/x)$, and the output, $f$ or $\xi^{(4)}$, is the PDF at the parametrisation scale, $Q_0$. In this network the output of a node in the $l^{th}$ layer is given by
 \beq
   \xi_i^{(l)} = g \bigg( \sum_j^{inputs} \omega_{ij}^{(l)} \xi_j^{(l-1)} + \theta_i^{(l)} \bigg)
 \eeq
@@ -453,7 +452,7 @@ The choice of this sigmoid activation function for the hidden layers allows suff
 The training of the neural networks is implemented using a ``genetic algorithm"~\cite{DelDebbio:2007ee} (CMA-ES), so-called because of the introduction of mutation to the fitting parameters. This additional degree of randomness helps to avoid getting stuck in local minima. In practice, this involves ``mutating" some chosen fraction of the thresholds, $\theta$, by perturbing them at random.
 
 \subsection{Parametrisation, preprocessing and postprocessing}
-A scale of $Q=1.65$ GeV is chosen to parametrise the PDFs at, and then they can be determined at any other scale by evolution using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). The PDFs are fitted parametrised in a ``fitting basis" of eight combinations of flavours, to help convergence \cite{Ball:2014uwa}, defined:
+A scale of $Q=1.65$ GeV is chosen to parametrise the PDFs at, and then they can be determined at any other scale by evolution using the DGLAP equations (Eqn. \ref{eqn:DGLAP}). The PDFs are fitted whilst parametrised in a ``fitting basis" of eight combinations of flavours, to help convergence \cite{Ball:2014uwa}, defined:
 \begin{itemize}
 \item $g$;
 \item $\Sigma \equiv \sum_{u,d,s} q_i + \bar{q}_i$;
@@ -485,13 +484,13 @@ Neural networks are effective at learning the functional form which underlies da
 \caption{\label{fig:crossvalidation}Cross validation with the lookback method. Image credit: Eleanor Conole.}
 \end{figure}
 
-\begin{figure}[h]
-\centering
-\includegraphics[width=\textwidth]{background/trvalchi2.pdf}
-\caption{\label{fig:trvalchi2}Comparing the training and validation $\chi^2$s for the 100 replicas (green circles) of a PDF fit. The red square gives the average.}
-\end{figure}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=\textwidth]{background/trvalchi2.pdf}
+%\caption{\label{fig:trvalchi2}Comparing the training and validation $\chi^2$s %for the 100 replicas (green circles) of a PDF fit. The red square gives the average.}
+%\end{figure}
 
-To circumvent this problem, the data are split into a training and a validation set. The training data are used to optimise the neural network, and the validation data are used to test the network output, in a process known as ``cross validation". As training epochs elapse, the target error function compared to both the training and validation data should decrease as the network learns the underlying law. At some point, however, the network will begin to learn the noise in the training data, at which point the training error function will continue to decrease, but the validation error function will stop decreasing and start to increase again. In NNPDF3.1 we determine the optimum fit using the ``lookback" method, where after training the model corresponding to the minimum in the validation error function is selected.
+To circumvent this problem, the data are split into a training and a validation set. The training data are used to optimise the neural network, and the validation data are used to test the network output, in a process known as ``cross validation". As training epochs elapse, the target error function compared to both the training and validation data should decrease as the network learns the underlying law. At some point, however, the network will begin to learn the noise in the training data, at which point the training error function will continue to decrease, but the validation error function will stop decreasing and start to increase again. In NNPDF3.1 we determine the optimum fit using the ``lookback" method (Fig.~\ref{fig:crossvalidation}), where after training the model corresponding to the minimum in the validation error function is selected.
 
 \section{NNPDF4.0}
 The earlier parts of this section describe the methodology for the NNPDF3.1~\cite{Ball:2017nwa} release, on which Chapters \ref{chapter:mhous} and \ref{chapter:correlations} are based. However, at the time of writing this thesis a new release, NNPDF4.0, is being launched. The work in Chapter~\ref{chapter:nuclear} is based on this methodology, and so we briefly explain the main developments between NNPDF3.1 and NNPDF4.0. For more information see \cite{PDF4LHC, EmanueleTalk}, and the future NNPDF4.0 paper.

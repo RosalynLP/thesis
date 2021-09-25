@@ -1,0 +1,45 @@
+meta:
+  title: Top mass unc PDFs at top mass scale
+  author: Rosalyn Pearson
+  keywords: [top]
+pdfs:
+#    - {id: "NNPDF31_nlo_as_0118", label: "no theory uncertainties"}
+#    - {id: "rp_200624_nlo_topcovmat_global", label: "top uncertainties only (mass plus MHOU)"}
+#    - {id: "NNPDF31_nlo_as_0118_scalecov_9pt", label: "9pt MHOUs"}
+#    - {id: "rp_20201005_nlo_9pt_plus_topmass", label: "9pt MHOUs and top mass uncertainties"}
+- {id: NNPDF31_nnlo_as_0118_1000, label: no top uncertainties}
+- {id: rp_20210104_nnlo_Stop, label: top mass unc.}
+- {id: rp_20210104_nnlo_Smhou, label: top MHOUs}
+- {id: rp_20210104_nnlo_Stot, label: top mass unc. + top MHOUs}
+
+
+
+
+
+Q: 173.1
+pdfnormalize:
+    #- normtitle: Absolute
+- normalize_to: 1
+  normtitle: Ratio
+
+basespecs:
+- basis: flavour
+  basistitle: Flavour basis
+
+pdfscalespecs:
+- xscale: log
+  xscaletitle: Log
+- xscale: linear
+  xscaletitle: Linear
+
+template_text: |
+  {@with pdfscalespecs@}
+  {@with basespecs@}
+  {@with pdfnormalize@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@endwith@}
+actions_:
+- report(main=True)

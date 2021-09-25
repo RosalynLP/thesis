@@ -1,0 +1,39 @@
+meta:
+  title: Comparing orders of PDF fits
+  author: Rosalyn Pearson
+  keywords: []
+pdfs:
+- NNPDF31_lo_as_0118
+- NNPDF31_nlo_as_0118
+- NNPDF31_nnlo_as_0118
+
+
+Q: 10
+pdfnormalize:
+- normtitle: Absolute
+- normalize_to: 1
+  normtitle: Ratio
+
+basespecs:
+- basis: flavour
+  basistitle: Flavour basis
+- basis: evolution
+  basistitle: Evolution basis
+
+pdfscalespecs:
+- xscale: log
+  xscaletitle: Log
+- xscale: linear
+  xscaletitle: Linear
+
+template_text: |
+  {@with pdfscalespecs@}
+  {@with basespecs@}
+  {@with pdfnormalize@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@endwith@}
+actions_:
+- report(main=True)

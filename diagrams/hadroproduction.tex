@@ -8,7 +8,7 @@
 \vertex [blob, right=of li] (a) {$f_i(x_1)$};
 \path (a.+5) ++ (00:2) node[vertex] (lf1);
 \path (a.+60-|lf1.center)node[vertex] (lf2);
-\vertex [blob, below right=of a] (b) {$\hat{\sigma}_i$};
+\vertex [blob, below right=of a] (b) {$\hat{\sigma}_{ij}$};
 \vertex [right=of b] (hf1);
 \vertex [blob, right=of hi] (c) {$f_j(x_2)$};
 \path (c.-5) ++ (00:2) node[vertex] (hf2);
@@ -16,8 +16,8 @@
 
 \diagram* {
     (li) -- [fermion, edge label=\(p_1\)] (a) -- [fermion] (lf1),
-    (hi) -- [fermion, edge label=\(p_2\)] (c) -- [fermion, edge label=\(x_1 p_1\)] (b),
-    (a) -- [fermion, edge label=\(x_2 p_2\)] (b) -- [fermion] (hf1),
+    (hi) -- [fermion, edge label=\(p_2\)] (c) -- [fermion, edge label=\(x_2 p_2\)] (b),
+    (a) -- [fermion, edge label=\(x_1 p_1\)] (b) -- [fermion] (hf1),
     (c.-5) -- [fermion] (hf2),
     (c.-20) -- [with arrow=0.52] (hf3),
     (a.+20) -- [fermion] (lf2)

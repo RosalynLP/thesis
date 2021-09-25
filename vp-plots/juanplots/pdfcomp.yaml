@@ -1,0 +1,51 @@
+meta:
+  title: Th covmat 
+  author: Rosalyn Pearson
+  keywords: [top]
+
+
+pdfs:
+#    - {id: "NNPDF31_nlo_as_0118_kF_1_kR_1", label: "C"}
+#    - {id: "NNPDF31_nlo_as_0118_scalecov_9pt", label: "C+S (9pt)"}
+#    - {id: "NNPDF31_nlo_as_0118_scalecov_7pt", label: "C+S (7pt)"}
+#    - {id: "NNPDF31_nlo_as_0118_scalecov_3pt", label: "C+S (3pt)"}
+#    - {id: "NNPDF31_nnlo_as_0118_kF_1_kR_1", label: "C (NNLO)"}
+ #   - {id: "NNPDF31_nnlo_as_0118_kF_1_kR_1", label: "C (NNLO)"}
+    - {id: "190406-ern-nlo-global", label: "Fitting + sampling (9pt)"}
+    - {id: "190324-tg-nlo-global-fitting-only", label: "Fitting only (9pt)"}
+    - {id: "190324-tg-nlo-global-sampling-only", label: "Sampling only (9pt)"}
+
+#pdfs_noband: ["NNPDF31_nnlo_as_0118_kF_1_kR_1"]
+
+Q: 10 #10
+
+pdfnormalize:
+    - normalize_to: 1
+      normtitle: Ratio
+
+basespecs:
+    - basis: flavour
+      basistitle: Flavour basis
+    - basis: evolution
+      basistitle: Evolution basis
+
+pdfscalespecs:
+    - xscale: log
+      xscaletitle: Log
+    - xscale: linear
+      xscaletitle: Linear
+      
+template_text: |
+  {@with pdfscalespecs@}
+  {@with basespecs@}
+  {@with pdfnormalize@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@plot_pdfs@}
+  {@endwith@}
+  {@endwith@}
+  
+ #  {@plot_pdf_uncertainties@}
+  
+actions_:
+  - report(main=True)
