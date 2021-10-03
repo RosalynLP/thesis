@@ -170,13 +170,16 @@ At one-loop order the solution of this equation is
 \be 
 \alpha_s(Q^2) = \frac{\alpha_s(\mu_R^2)}{1+ \beta_0 \alpha_s (\mu_R^2) \ln\big(\frac{Q^2}{\mu_R^2}\big)},
 \ee
-where $\beta_0$ is the first coefficient of the $\beta$ expansion. From this solution we can explicitly see asymptotic freedom because $\alpha_s$ decreases as the energy scale increases. We also see the role of the renormalisation scale in specifying a particular reference value for $\alpha_s$. This solution is not exact because the RGE (Eqn.~\ref{eqn:rge}) only holds to all orders. Any residual $\mu_R$ dependence characterises the accuracy of our calculation, because going to higher and higher orders should reduce this dependence, eventually to 0.
+where $\beta_0$ is the first coefficient of the $\beta$ expansion. From this solution, taking into account that $\beta_0$ is positive, we can explicitly see asymptotic freedom because $\alpha_s$ decreases as the energy scale increases. 
+We also see the role of the renormalisation scale in specifying a particular reference value for $\alpha_s$. In particular, the scale at which the coupling constant starts to diverge is known as the QCD scale, $\Lambda$, and is of order 100 MeV. 
+
+%This solution is not exact because the RGE (Eqn.~\ref{eqn:rge}) only holds to all orders. Any residual $\mu_R$ dependence characterises the accuracy of our calculation, because going to higher and higher orders should reduce this dependence, eventually to 0.
 
 Quantities are infrared safe if they do not depend on long-distance physics. This means we can apply perturbation theory because $\alpha_s$ is small enough in the short-distance regime. Unforunately, at the partonic level, structure functions and cross sections are not infrared safe. 
 
 \subsection{The QCD improved parton model and factorisation}
 
-In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into infrared divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In infrared-safe observables the soft and collinear divergences exactly canel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short and long range physics. 
+In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into infrared divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In infrared-safe observables the soft and collinear divergences exactly cancel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short and long range physics. 
 
 This is done using the factorisation theorem \cite{Collins:1989gx}, which allows us to factorise the incalculable long-distance physics into the PDFs, meaning we are able to use perturbative QCD as a predictive theory. The PDFs are then non-perturbative, meaning we must obtain them from experiments, but they are universal quantities and so once determined can be applied everywhere, much like the coupling constants. This process introduces the artificial ``factorisation scale", $\mu_F$, in addition to the renormalisation scale. The factorisation scale separates the short and long distance physics; loosely, if a parton's transverse momentum is less than $\mu_F$ it is considered part of the hadron and is factored into the PDFs, otherwise it is seen as taking part in the hard scattering process, and will appear in the partonic cross section.
 
@@ -256,13 +259,15 @@ The DGLAP equations are commonly dealt with in Mellin space where the convolutio
 M(n) \equiv \int_0^1 dx \ x^{n-1} M(x).
 \ee
 Considering the Mellin transform of the RHS of the DGLAP equation, and suppressing the parton indices, $i$, for clarity,  we have
-\bea
- \int_0^1 dx\ x^{n-1} && \int_x^1 \frac{dy}{y}\ \frac{\alpha_s}{2 \pi}\ \mathcal{P} \bigg( \frac{x}{y} \bigg)f(y, \mu_F^2) \nonumber\\
-&=& \int_0^1 dx\ x^{n-1}  \bigg[ \int_0^1 dy \int_0^1 dz\ \frac{\alpha_s}{2 \pi}\ \mathcal{P}(z) f(y) \delta(x-yz) \bigg] \nonumber\\
-&=& \frac{\alpha_s}{2 \pi} \int_0^1 dz\ z^{n-1}\ \mathcal{P}(z)\int_0^1 dy\ y^{n-1} f(y) \nonumber\\
-&=& \frac{\alpha_s}{2 \pi} \mathcal{P}(n)\ f(n) \nonumber\\
-&\equiv& \gamma(n)\ f(n),
-\eea
+\be 
+\begin{split}
+ &\ \int_0^1 dx\ x^{n-1} \ \int_x^1 \frac{dy}{y}\ \frac{\alpha_s}{2 \pi}\ \mathcal{P} \bigg( \frac{x}{y} \bigg)f(y, \mu_F^2) \nonumber\\
+&= \int_0^1 dx\ x^{n-1}  \bigg[ \int_0^1 dy \int_0^1 dz\ \frac{\alpha_s}{2 \pi}\ \mathcal{P}(z) f(y) \delta(x-yz) \bigg] \nonumber\\
+&= \frac{\alpha_s}{2 \pi} \int_0^1 dz\ z^{n-1}\ \mathcal{P}(z)\int_0^1 dy\ y^{n-1} f(y) \nonumber \\
+&= \frac{\alpha_s}{2 \pi} \mathcal{P}(n)\ f(n) \equiv \gamma(n)\ f(n),
+\end{split}
+\ee
+
 where $\gamma(n)_{ij}$ (with parton indices explicit) are known as the anomalous dimensions, and are calculable order by order in perturbation theory. 
 \subsection{Hadroproduction}
 
@@ -329,7 +334,7 @@ Theoretical predictions of the corresponding parton-level observables are comput
 \subsection{Experimental uncertainties}
 \label{sec:expuncs}
 
-Experimental uncertainties are described using a covaraince matrix, $C_{ij}$, which gives the uncertainties and correlations between each of the data points $i,j = 1,...,N_{dat}$. It encapsulates the total breakdown of errors, $\sigma$, and can be constructed using uncorrelated errors ($\sigma_i^{uncorr}$), and  additive ($\sigma_{i,a}$) and multiplicative  ($\sigma_{i,m}$) correlated systematic errors (more on these below):
+Experimental uncertainties are described using a covariance matrix, $C_{ij}$, which gives the uncertainties and correlations between each of the data points $i,j = 1,...,N_{dat}$. It encapsulates the total breakdown of errors, $\sigma$, and can be constructed using uncorrelated errors ($\sigma_i^{uncorr}$), and  additive ($\sigma_{i,a}$) and multiplicative  ($\sigma_{i,m}$) correlated systematic errors (more on these below):
 \beq
   C_{ij} = \delta_{ij}\sigma_i^{uncorr}\sigma_j^{uncorr} + \sum_a \sigma_{i,a}\sigma_{j,a} +
   \bigg( \sum_m \sigma_{i,m}\sigma_{j,m} \bigg) D_i D_j,
@@ -398,14 +403,14 @@ D^{(k)} = (D^0 + \sum_a n_a^{(k)} \sigma^a) \prod_m (1 + \hat{n}_m^{(k)}\sigma^p
 \ee
 where $D^0$ is the experimental data value, and $\sigma^a$ and $\sigma^m$ are the additive and multiplicative uncertainties discussed in Sec. \ref{sec:expuncs}. Sometimes uncertainties are asymmetric, and in this case we adjust the data value such that the uncertainties are made symmetric. Explicitly, the pseudodata replicas satisfy the relations:
 \be
-\langle D_i^{(k)} \rangle = D_i^0; \qquad (\langle  D_i^{(k)} \rangle -D_i^0)(\langle  D_j^{(k)} \rangle-D_j^0) = C_{ij},
+\langle D_i^{(k)} \rangle = D_i^0; \qquad \langle (\langle  D_i^{(k)} \rangle -D_i^0)(\langle  D_j^{(k)} \rangle-D_j^0)\rangle = C_{ij},
 \ee
 in the limit of $N_{rep} \to \infty$, where the notation $\langle \cdot \rangle$ denotes the mean over replicas. Fig. \ref{fig:datarepchorus} shows the distribution of pseudodata for a single data point.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=0.7\textwidth]{background/datarepchorus.png}
-\caption{Histogram of the distribution of 100 pseudodata replicas for a single data point, normalised to $D^0$. The purple line is the mean value $\langle D^{(k)} \rangle$, which is equal to $D^0$ (black line) to arbitrary precision.}
+\caption{Histogram of the distribution of 100 pseudodata replicas for a single data point with 8.89\% uncertainty, normalised to $D^0$. The purple line is the mean value $\langle D^{(k)} \rangle$, which is equal to $D^0$ (black line) to arbitrary precision.}
 \label{fig:datarepchorus}
 \end{figure}
 Once the pseudodata have been generated, each replica, $D^{(k)}$, is fitted separately to the theoretical predictions, $T_i[f_q^{(k)}]$, which depend on the PDF replicas, $f_q^{(k)}$ (where $q$ runs over the fitted flavours: $g$, $u$, $d$, $s$, $c$, $\bar{u}$, $\bar{d}$, $\bar{s}$, $\bar{c}$). This is done by fitting the PDFs to minimise a target error function based on the $\chi^2$:

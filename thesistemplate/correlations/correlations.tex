@@ -55,7 +55,7 @@ P(T|D\lambda) \propto \exp \bigg( -\frac{1}{2} (T + \lambda \beta -D)^T C^{-1}  
 Using Bayes' Theorem, 
 \be 
 \label{eqn:bayes}
-P(T|D\lambda) P(\lambda |D) = P(\lambda | TD)P(T|D).
+P(T|D\lambda) P(\lambda |D) \propto P(\lambda | TD)P(T|D).
 \ee
 We want to find $P(T|D)$, so we need an expression for the prior for $\lambda$, $P(\lambda |D) = P(\lambda)$, where we assume that the theory uncertainty is independent of the experimental data. We choose a unit-width Gaussian centred on zero, 
 \be 
@@ -216,7 +216,7 @@ In this model the autoprediction shifts are
 \be 
 \delta T = \frac{-s^2}{\sigma^2 + s^2} e^T (T_0-D)e,
 \ee
-which are in the direction of the theory uncertinty, $e$, as we would expect. When $s^2/\sigma^2 \to \infty$, $e^T(T_0 + \delta T) \to e^T D$, so in this direction the autopredictions coincide with the data.
+which are in the direction of the theory uncertainty, $e$, as we would expect. When $s^2/\sigma^2 \to \infty$, $e^T(T_0 + \delta T) \to e^T D$, so in this direction the autopredictions coincide with the data.
 
 It can also be shown that the autoprediction $\chi^2$ is
 \be 
@@ -433,7 +433,7 @@ T^{(r)}-T_0 = X(C+S)^{-1}(D^{(r)}-D^{(0)}),
 \ee
 so $X(C+S)^{-1}$ projects the data replicas onto the theory replicas.
 
-Now let's revisit the model for covariance matrices, Eqn.~\ref{eq:modelCS}. If we define the angle between the experimental uncertainties and the $\theta$ variation by $\cos \phi = n^T e$, we find that
+Now let's revisit the model for covariance matrices, Eqn.~\ref{eq:modelCS}. If we define the angle between the theoretical uncertainties and the $\theta$ variation by $\cos \phi = n^T e$, we find that
 \bea
 \label{eq:denom}
 n^T(C+S)^{-1}n &=& \frac{\sigma^2+s^2\sin^2\phi}{\sigma^2(\sigma^2+s^2)},\\
