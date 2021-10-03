@@ -51,7 +51,7 @@ L_{\mu\nu} = \sum_{spins} \bar{u}(k')\gamma_\mu u(k) \bar{u}(k) \gamma_\nu u(k')
 where in the last line we used the fact that the electron is massless so $
 0 = k^{'2} = q^2 + k^2 - 2 q \cdot k \implies q^2 = 2 q \cdot k.$ 
 
-Finding the hadronic tensor is more difficult because we lack knowledge of the hadronic states $P$ and $X$, so our only constraints are that $W^{\mu\nu}$ is Lorentz-invariant and that the electromagnetic current must be conserved, so $q \cdot W =0$. This allows us to write its general form as
+Finding the hadronic tensor is more difficult because we lack knowledge of the hadronic states $P$ and $X$, so our only constraints are that $W^{\mu\nu}$ is Lorentz-invariant and that the electromagnetic current must be conserved, so $q \cdot W =0$. Since we are considering only the electromagnetic interaction, we ignore the possibility for $Z$ boson exchange and therefore also require parity conservation. This allows us to write the general form of the tensor as
 \bdm
 \label{eqn:htensor}
 W^{\mu\nu}(p,q) = - \bigg(g^{\mu\nu} - \frac{q^\mu q^\nu}{q^2}\bigg) W_1(p,q)
@@ -373,20 +373,20 @@ which measures how good the fit is between the experimental data $D_i$ with asso
 
 \subsection{NNPDF fitting strategy}
 
-There are a number of groups currently active in carrying out proton PDF fits including MSHT~\cite{Bailey:2020ooq}, CTEQ~\cite{Hou:2019efy}, NNPDF~\cite{nnpdf}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2019ntu}. The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will concentrate on this fitting strategy, which is summarised in Fig.~\ref{fig:generalstrategy}. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
-\begin{enumerate}
-\item  The use of Monte Carlo approach to error analysis;
-    \item  Fitting using artificial neural networks.
-\end{enumerate}
-
-In the following sections we will provide an overview of these aspects, which can be found in more detail in \cite{Ball:2010de, Ball:2012cx, Ball:2017nwa}.
-
+There are a number of groups currently active in carrying out proton PDF fits including MSHT~\cite{Bailey:2020ooq}, CTEQ~\cite{Hou:2019efy}, NNPDF~\cite{nnpdf}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2019ntu}. 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.8\textwidth]{background/eleanor_strategy.pdf}
 \caption{NNPDF general strategy. Image credit: Eleanor Conole.}
 \label{fig:generalstrategy}
 \end{figure}
+The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will concentrate on this fitting strategy, which is summarised in Fig.~\ref{fig:generalstrategy}. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
+\begin{enumerate}
+\item  The use of Monte Carlo approach to error analysis;
+    \item  Fitting using artificial neural networks.
+\end{enumerate}
+
+In the following sections we will provide an overview of these aspects, which can be found in more detail in \cite{Ball:2010de, Ball:2012cx, Ball:2017nwa}.
 
 \subsection{Monte Carlo approach}
 The uncertainties in the functional form of PDFs come as a direct consequence of the uncertainties in the experimental and theoretical inputs. In order to propagate experimental uncertainties through to the PDFs, NNPDF represent the experimental data (central values and uncertainty distribution) as a Monte Carlo ensemble. This is a set of $N_{rep}$ Monte Carlo ``replicas" which, given high enough replica number, have a mean value equal to the data central value and covariance equal to the experimental covariance. Fig. \ref{fig:MC} is a schematic illustrating the generation of these ``pseudodata", $D^{(k)}$, $k=1,...,N_{rep}$.
