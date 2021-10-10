@@ -472,7 +472,7 @@ Since the form of the neural networks ($N_i(x)$) is determined by training on ex
 \beq
   f_i(x) = A_i x^{-\alpha_i} (1-x)^{\beta_i} N_i(x).
 \eeq
-$A_i$ are normalisation coefficients set by the sum rules and fixed at each iteration of the fit. The powers $\alpha_i$ and $\beta_i$ are fitted parameters determined by iteration from one fit to the next. This preprocessing has the effect that the PDFs approach 0 at large $x$, and generally grow at small $x$. This is because the probability of the existence of a parton is generally small at high $x$ and larger with decreasing $x$ outwith the data region.
+$A_i$ are normalisation coefficients, which are fixed at each iteration of the fit. There are seven of these initial coefficients, three of which are set by the valence sum rules and one by the momentum sum rule. The other three are initially set to 1; see \cite{NNPDF:2014otw} for more information. The powers $\alpha_i$ and $\beta_i$ are fitted parameters determined by iteration from one fit to the next. This preprocessing has the effect that the PDFs approach 0 at large $x$, and generally grow at small $x$. This is because the probability of the existence of a parton is generally small at high $x$ and larger with decreasing $x$ outwith the data region.
 
 Postprocessing is also applied to the PDF replicas to remove those which don't satisfy certain quality conditions. That is, where the target error function or arc-length of the replica is more than four standard deviations outwith the mean, or where the positivity of the resulting cross-sections is not satisfactorily maintained. 
 \begin{figure}[H]
