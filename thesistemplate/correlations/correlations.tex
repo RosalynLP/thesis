@@ -138,8 +138,8 @@ which is Eqn.~\ref{eqn:ptd}. The advantage of this approach is that we can also 
 \begin{split}
 \label{eqn:lambdaposterior}
 P(\lambda |TD) &= \frac{P(T|D\lambda) P(\lambda)}{P(T|D)} \\
-&= \exp \bigg( -\frac{1}{2} \bigg[ (T+ \lambda \beta -D)^T C^{-1}(T+ \lambda \beta -D) + \lambda^2 - \chi^2 \bigg] \bigg) \\
-& = \exp \bigg( -\frac{1}{2} Z^{-1}(\lambda - \bar{\lambda})\bigg),
+&\propto \exp \bigg( -\frac{1}{2} \bigg[ (T+ \lambda \beta -D)^T C^{-1}(T+ \lambda \beta -D) + \lambda^2 - \chi^2 \bigg] \bigg) \\
+&\propto \exp \bigg( -\frac{1}{2} Z^{-1}(\lambda - \bar{\lambda})\bigg),
 \end{split}
 \ee
 where we recognised the similarity between the exponent here and in Eqn.~\ref{eqn:ptd2}. So the effect of the fit is to shift the centre of the distribution from 0 $\to \bar{\lambda}$, and the width from 1 $\to Z$. Note that from the definition of $Z$ (Eqn.~\ref{eqn:z}), 
