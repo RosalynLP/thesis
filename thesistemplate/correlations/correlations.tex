@@ -164,7 +164,7 @@ E[\lambda] = \mathcal{N}_\lambda \int d\lambda \ \lambda\ P(\lambda |T_0 D) = \b
 \ee
 Note that $\mathcal{N}_\lambda$ is set such that $E[1]=1$. We can then find the variance
 \be 
-Var[\lambda] \equiv E[(\lambda - E[\lambda])^2] = Z.
+\Var[\lambda] \equiv E[(\lambda - E[\lambda])^2] = Z.
 \ee
 Both of these can be seen straight away from the form of the posterior for $\lambda$, Eqn.~\ref{eqn:lambdaposterior}.
 
@@ -185,6 +185,7 @@ E[T(\lambda)] &= T_0 + \bar{\lambda}(T,D)\beta \\
 &= T_0 + S(C+S)^{-1} (D-T_0),
 \end{split}
 \ee
+where we substituted Eqn.~\ref{eqn:lambdabardef} to get to the second line,
 and
 \be 
 \begin{split}
