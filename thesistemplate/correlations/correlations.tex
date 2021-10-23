@@ -219,10 +219,14 @@ and, using Eqn.~\ref{eqn:autoshift1}, the autoprediction $\chi^2$ is
 \be
 \begin{split} 
 \chi^2_{auto} &= (T_0 + \delta T - D)^T C^{-1} (T_0 + \delta T -D) \\
-&= (T_0-D) (C+S)^{-1} C (C+S)^{-1} (T_0-D).
+&= (T_0 - S(C+S)^{-1}(T_0-D)-D)^TC^{-1}(T_0 - S(C+S)^{-1}(T_0-D)-D) \\
+&= ((1-S(C+S)^{-1})(T_0-D))^TC^{-1}((1-S(C+S)^{-1})(T_0-D)) \\
+&= (C(C+S)^{-1}(T_0-D))^TC^{-1}(C(C+S)^{-1}(T_0-D)) \\
+&= (T_0-D) (C+S)^{-1} C (C+S)^{-1} (T_0-D),
 \end{split}
 \ee
-From this we can see that $\chi^2_{auto} \leq \chi^2_{exp}$ because $C$ and $S$ are both positive semidefinite. In other words, the shifts always lead to improved quality of fit by exploiting the theory uncertainty to add information from the data.
+where we used Eqn.~\ref{eqn:autoshift1} to get to the second line.
+From this we can see that $\chi^2_{auto} \leq \chi^2_{exp}$ because $C+S$ is positive definite. In other words, the shifts always lead to improved quality of fit by exploiting the theory uncertainty to add information from the data.
 
 We can investigate this more explicitly by using a simple model where the experimental covariance matrix is diagonal and the theory uncertainty is fully correlated. Writing $\beta = s e$, where $s$ is the size of correlated theory uncertainty and $e^Te=1$, we have
 \be
