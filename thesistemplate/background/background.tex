@@ -98,13 +98,13 @@ This allows us to identify the parton's momentum fraction in this frame with the
 
 We can think of the total collection of interactions in terms of a weighted sum over the interactions between the photon and the individual point-like partons, and so can write the proton-level hadronic tensor, $W_{\mu\nu}$ in terms of the parton-level ones, $\hat{W}^q_{\mu\nu}$, as
 \be
-W_{\mu\nu} = \sum_q  f_q(x) \hat{W}^q_{\mu\nu} \delta(Q^2 - 2xp \cdot q)
-= \frac{1}{Q^2} \sum_q  f_q(x) \hat{W}^q_{\mu\nu} \delta(1 - \frac{2xp \cdot q}{Q^2}),
+W_{\mu\nu} = \sum_q  f_q(\xi) \hat{W}^q_{\mu\nu} \delta(Q^2 - 2\xi p \cdot q)
+= \frac{1}{Q^2} \sum_q  f_q(\xi) \hat{W}^q_{\mu\nu} \delta(1 - \frac{2\xi p \cdot q}{Q^2}),
 \ee
-where $q$ runs over the possible quark flavours and $f_q$ are distributions, with $f_q(x)dx$ giving the probability that in an interaction a parton of flavour $q$ will be found in the momentum range $x \to x +dx$. We call these functions ``parton distribution functions" (PDFs). The delta function appears due to integration over the final phase space of $X$, and enforces conservation of momentum. Using Eqn \ref{eqn:matrixelement}, we can see that
+where $q$ runs over the possible quark flavours and $f_q$ are distributions, with $f_q(\xi)d \xi$ giving the probability that in an interaction a parton of flavour $q$ will be found in the momentum range $\xi \to \xi +d \xi$. We call these functions ``parton distribution functions" (PDFs). The delta function appears due to integration over the final phase space of $X$, and enforces conservation of momentum, sending $\xi \to x$. Using Eqn \ref{eqn:matrixelement}, we can see that
 \be
 \label{eqn:ampcomparison}
-|\mathcal{M}|^2 = \frac{1}{Q^2} \sum_q  f_q(x) |\mathcal{\hat{M}}_q|^2.
+|\mathcal{M}|^2 = \frac{1}{Q^2} \sum_q  f_q(x) |\mathcal{\hat{M}}_q|^2
 \ee
 This means that the total amplitude can be expressed in terms of the partonic amplitudes and the PDFs. If we assume that the partons are massless Dirac particles, we can draw a mathematical equivalence with electron-muon scattering. In this scenario the electron has a current like Eqn. \ref{eqn:ltensor}, and the muon has the same, but with the substitutions $k \to p$ and $q \to -q$. Once again we can use $q_\mu L^{\mu \nu} =0$ and the expression
 \be
