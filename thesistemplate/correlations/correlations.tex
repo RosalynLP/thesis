@@ -621,7 +621,16 @@ Note that we can rewrite the covariance as
 In this recasting, we end up with $ZS$ as the last term. We can see that $X$ is altered such that $n$ gets an additional component in the direction of $e$, due to the correlation with the theory. This:
 \begin{enumerate}
 \item changes the direction;
-\item reduces the magnitude of the fitting uncertainty by a factor $\sqrt{\sin^2 \phi + Z^2 \cos^2 \phi}$, although the resulting fitting uncertainty is still larger than it would have been had the theory uncertainty not been included in the fit.
+\item reduces the magnitude of the fitting uncertainty by a factor $\sqrt{\sin^2 \phi + Z^2 \cos^2 \phi}$, although the resulting fitting uncertainty is still larger than it would have been had the theory uncertainty not been included in the fit. We can see this result by considering $\tilde{n} = n - \frac{s^2 \cos \phi}{s^2 + \sigma^2}e$ and calculating
+\be 
+\begin{split}
+\sqrt{\frac{\tilde{n} \cdot \tilde{n}}{n \cdot n}} &= \sqrt{1 - \frac{2s^2 \cos^2 \phi}{s^2 + \sigma^2} + \frac{s^4 \cos^2 \phi}{(s^2+\sigma^2)^2}} \\
+&= \sqrt{\sin^2 \phi + \cos^2 \phi \bigg(1 - \frac{2s^2}{s^2 + \sigma^2} + \frac{s^4}{(s^2 + \sigma^2)^2} \bigg) }\\
+&= \sqrt{\sin^2 \phi + \cos^2 \phi \bigg(1 - \frac{s^2}{s^2 + \sigma^2} \bigg)^2 }\\
+&= \sqrt{ \sin^2 \phi + Z^2 \cos^2 \phi},
+\end{split}
+\ee
+where in the last line we used the fact that $Z= \frac{\sigma^2}{\sigma^2 + s^2}$.
 \end{enumerate}
 
 \subsection{Correlated predictions in single parameter fits}
