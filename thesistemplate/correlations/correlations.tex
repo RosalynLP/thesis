@@ -517,14 +517,28 @@ and therefore the shift induced is
 Note that Eqn.~\ref{eq:consistency} tells us that $n^T(C+S)^{-1} (T_0-D) = 0$, so the shifts are only non-zero when $n$ and $e$ point in different directions. When they are parallel (i.e. $\phi=0$), the theory uncertainty is absorbed by the fit, like in the perfect fit. We can use the same arguments as we did in the pure theory case to conclude that the shifts always improve the fit to experimental data.
 
 \subsubsection{Covariance}
-Now we can find the covariance of autopredictions. We start by computing the variance of $\lambda$, again using the trick of adding and subtracting $\overline{\lambda}(T^{(r)},D)$. When taking the expectation value over $T$ we use the replica average. 
+Now we can find the covariance of autopredictions. We start by computing the variance of $\lambda$, again using the trick of adding and subtracting $\overline{\lambda}(T^{(r)},D)$:
 \be 
 \begin{split}
 \Var[\lambda] &= E[(\lambda - E[\lambda])^2] \\
 &= E[(\lambda - \overline{\lambda}(T^{(r)},D) +  \overline{\lambda}(T^{(r)},D) - \overline{\lambda}_0)^2] \\
-&=E[(\lambda - \overline{\lambda}(T,D))^2] + \langle(\overline{\lambda}(T^{(r)},D) - \overline{\lambda}_0)^2 \rangle \\
-&= Z + \beta^T (C+S)^{-1} \langle (T^{(r)}-T_0)(T^{(r)}-T_0)^T \rangle(C+S)^{-1} \beta \\
-&= 1 - \beta^T (C+S)^{-1} \beta + \beta^T (C+S)^{-1} X (C+S)^{-1} \beta \\
+&= E[(\lambda - \overline{\lambda}(T^{(r)},D))^2] + E[(\overline{\lambda}(T^{(r)},D) - \overline{\lambda}_0)^2] \\
+&\qquad + E[(\lambda - \overline{\lambda}(T^{(r)},D)(\overline{\lambda}(T^{(r)},D) - \overline{\lambda}_0)] \\
+&\qquad +  E[(\overline{\lambda}(T^{(r)},D) - \overline{\lambda}_0)(\lambda - \overline{\lambda}(T^{(r)},D))].
+\end{split}
+\ee
+The next step is to take the expectation value over $\lambda$, and we see that the two cross terms are 0 because $\lambda \to \overline{\lambda}$. So
+\be 
+\Var[\lambda] = E[(\lambda - \overline{\lambda}(T,D))^2] + \langle(\overline{\lambda}(T^{(r)},D) - \overline{\lambda}_0)^2 \rangle,
+\ee
+where when taking the expectation value over $T$ we use the replica average. The first term is just $Z$, and to evaluate the second term we can use Eqn.~\ref{eqn:lambdabardef} to substitute for $\overline{\lambda}$:
+\be 
+\Var[\lambda] = Z + \beta^T (C+S)^{-1} \langle (T^{(r)}-T_0)(T^{(r)}-T_0)^T \rangle(C+S)^{-1} \beta .
+\ee
+Now we can use the definitions of $Z$, Eqn.~\ref{eqn:z}, and $X$, Eqn.~\ref{eq:Xdef}, to write
+\be
+\begin{split}
+\Var[\lambda]&= 1 - \beta^T (C+S)^{-1} \beta + \beta^T (C+S)^{-1} X (C+S)^{-1} \beta \\
 &\equiv \Zbar.
 \end{split}
 \ee
