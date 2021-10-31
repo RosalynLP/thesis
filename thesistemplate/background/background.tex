@@ -31,9 +31,9 @@ It is customary to define some useful variables for help in the analysis, listed
 The interaction is made up of a leptonic current (that of the electron) and a hadronic current (the fragmentation of the proton from $P$ to $X$). This means we can express the squared matrix element, $|\mathcal{M}|^2,$ as
 \be
 \label{eqn:matrixelement}
-|\mathcal{M}|^2 = \mathcal{N}_1 \frac{\alpha^2}{q^4} L_{\mu\nu} W^{\mu\nu},
+|\mathcal{M}|^2 = \mathcal{N} \frac{\alpha^2}{q^4} L_{\mu\nu} W^{\mu\nu},
 \ee
-where $L_{\mu\nu}$ is the leptonic part, determined from perturbative Quantum Electrodynamics (QED), and $W^{\mu\nu}$ is the hadronic part, containing the incalculable strongly coupled dynamics. $\alpha$ is the QED coupling constant and $\mathcal{N}_1$ is a normalisation constant which can differ according to convention, hence we keep it undefined here so as to render the analysis clearer.
+where $L_{\mu\nu}$ is the leptonic part, determined from perturbative Quantum Electrodynamics (QED), and $W^{\mu\nu}$ is the hadronic part, containing the incalculable strongly coupled dynamics. $\alpha$ is the QED coupling constant and $\mathcal{N}$ is a normalisation constant which can differ according to convention, hence we keep it undefined here so as to render the analysis clearer.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{../diagrams/disdiag.pdf}
@@ -70,7 +70,7 @@ and are known as the ``structure functions". Often the hadronic tensor is parame
 We can now combine Eqns. \ref{eqn:ltensor} and \ref{eqn:htensor} in Eqn. \ref{eqn:matrixelement}, making use of the fact that due to current conservation $q^\mu L_{\mu \nu} = 0$ to help simplify things. This leads us to the result:
 \bdm
 \label{eqn:disamplitude}
-|\mathcal{M}|^2 = 16\ \mathcal{N}_1 \frac{\alpha^2}{q^4} \bigg\{ (-2q^2)W_1(p,q) + \bigg( 4(p \cdot k)^2 - 4 (p \cdot q)(p \cdot k)) \bigg)W_2(p,q) \bigg\}.
+|\mathcal{M}|^2 = 16\ \mathcal{N} \frac{\alpha^2}{q^4} \bigg\{ (-2q^2)W_1(p,q) + \bigg( 4(p \cdot k)^2 - 4 (p \cdot q)(p \cdot k)) \bigg)W_2(p,q) \bigg\}.
 \edm
 
 \subsection{The parton model}
@@ -108,18 +108,18 @@ where $q$ runs over the possible quark flavours and $f_q$ are distributions, wit
 \ee
 This means that the total amplitude can be expressed in terms of the partonic amplitudes and the PDFs. If we assume that the partons are massless Dirac particles, we can draw a mathematical equivalence with electron-muon scattering. In this scenario the electron has a current like Eqn. \ref{eqn:ltensor}, and the muon has the same, but with the substitutions $k \to p$ and $q \to -q$. Once again we can use $q_\mu L^{\mu \nu} =0$ and the expression
 \be
-|\mathcal{M}_{(e \mu)}|^2 = \mathcal{N}_1 \frac{\alpha^2}{q^4} L^{(e)}_{\mu\nu} L_{(\mu)}^{\mu\nu}
+|\mathcal{M}_{(e \mu)}|^2 = \mathcal{N} \frac{\alpha^2}{q^4} L^{(e)}_{\mu\nu} L_{(\mu)}^{\mu\nu}
 \ee
 to show (in the massless limit)
 \be 
-|\mathcal{M}_{(e \mu)}|^2 = 16\ \mathcal{N}_1 \frac{\alpha^2}{q^4} \bigg( 16 (p \cdot k)^2 + 8 q^2 (p \cdot k) + 2 q^4 \bigg).
+|\mathcal{M}_{(e \mu)}|^2 = 16\ \mathcal{N} \frac{\alpha^2}{q^4} \bigg( 16 (p \cdot k)^2 + 8 q^2 (p \cdot k) + 2 q^4 \bigg).
 \ee
 Using the symmetry of Fig. \ref{fig:disparton}, we can see this is analogous to $|\mathcal{\hat{M}}_q|^2$ under the substitution $p \to xp$, provided we replace the charge of the electron, $e$, with that of the parton, $e_q$, so that $\alpha \to e_q \alpha$. Making use of the expression $p \cdot k = Q^2/2xy$,
 \be 
 \begin{split}
-|\mathcal{\hat{M}}_q|^2 &= 16\ \mathcal{N}_1 \frac{e_q^2 \alpha^2}{q^4} \bigg\{ 4 (2xp \cdot k)^2 + 4 (2 x p\cdot k) q^2 + 2q^4 \bigg\} \\
-&= 16\ \mathcal{N}_1 \frac{e_q^2 \alpha^2}{Q^4} \bigg\{ 4 \bigg(\frac{Q^2}{y}\bigg)^2 - 4 \bigg(\frac{Q^2}{y}\bigg) Q^2 + 2Q^4 \bigg\} \\ 
-&= 16\ \mathcal{N}_1 e_q^2 \alpha^2 \bigg\{ 2 + 4 \bigg( \frac{1-y}{y^2} \bigg) \bigg\}.
+|\mathcal{\hat{M}}_q|^2 &= 16\ \mathcal{N} \frac{e_q^2 \alpha^2}{q^4} \bigg\{ 4 (2xp \cdot k)^2 + 4 (2 x p\cdot k) q^2 + 2q^4 \bigg\} \\
+&= 16\ \mathcal{N} \frac{e_q^2 \alpha^2}{Q^4} \bigg\{ 4 \bigg(\frac{Q^2}{y}\bigg)^2 - 4 \bigg(\frac{Q^2}{y}\bigg) Q^2 + 2Q^4 \bigg\} \\ 
+&= 16\ \mathcal{N} e_q^2 \alpha^2 \bigg\{ 2 + 4 \bigg( \frac{1-y}{y^2} \bigg) \bigg\}.
 \end{split}
 \ee 
 Now we can use this alongside Eqn. \ref{eqn:disamplitude} in  Eqn. \ref{eqn:ampcomparison}, giving us
