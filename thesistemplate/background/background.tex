@@ -184,16 +184,22 @@ Quantities are infrared safe if they do not depend on long-distance physics. Thi
 
 \subsection{The QCD improved parton model and factorisation}
 
-In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into infrared divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In infrared-safe observables the soft and collinear divergences exactly cancel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short and long range physics. 
-
-This is done using the factorisation theorem \cite{Collins:1989gx}, which allows us to factorise the incalculable long-distance physics into the PDFs, meaning we are able to use perturbative QCD as a predictive theory. The PDFs are then non-perturbative, meaning we must obtain them from experiments, but they are universal quantities and so once determined can be applied everywhere, much like the coupling constants. This process introduces the artificial ``factorisation scale", $\mu_F$, in addition to the renormalisation scale. The factorisation scale separates the short and long distance physics; loosely, if a parton's transverse momentum is less than $\mu_F$ it is considered part of the hadron and is factored into the PDFs, otherwise it is seen as taking part in the hard scattering process, and will appear in the partonic cross section.
-
+In the na\"ive parton model, we did not include any interactions involving gluons; their incorporation leads to the QCD improved parton model. The addition of gluons leads to significant complications, owing to the fact that the interacting quarks are free to emit gluons at some stage before detection (remember the detector is at long-distance so we cannot ignore the long-distance physics). When these gluons are ``soft" (low energy) or collinear to one of the partons we run into infrared divergences. This situation is equivalent to the internal propagator quark going on-shell, or in other words there is a large time separation between the partonic interaction and the gluon emission. The observed violation of Bj\"orken scaling has its origins in interactions with gluons. In infrared-safe observables the soft and collinear divergences exactly cancel \cite{Kinoshita:1962ur, Lee:1964is}, but for other cases we need a way of dealing with the disparate short and long range physics.
+ 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{../diagrams/improvedparton_dis.pdf}
 \caption{\label{fig:improvedparton} Factorisation and the QCD improved parton model}
 \end{figure}
 
+This is done using the factorisation theorem \cite{Collins:1989gx}, which allows us to factorise the incalculable long-distance physics into the PDFs, meaning we are able to use perturbative QCD as a predictive theory. The PDFs are then non-perturbative, meaning we must obtain them from experiments, but they are universal quantities and so once determined can be applied everywhere, much like the coupling constants. This process introduces the artificial ``factorisation scale", $\mu_F$, in addition to the renormalisation scale. The factorisation scale separates the short and long distance physics; loosely, if a parton's transverse momentum is less than $\mu_F$ it is considered part of the hadron and is factored into the PDFs, otherwise it is seen as taking part in the hard scattering process, and will appear in the partonic cross section.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{../diagrams/scalingviolation.pdf}
+\caption{\label{fig:scalingviolation} A quark radiating a gluon before interacting.}
+\end{figure}
 
 We can write a DIS cross section as
 \be
@@ -204,11 +210,6 @@ corresponding to Fig \ref{fig:improvedparton}, where $i$ runs over partons.
 
 We can see how this works in practice by considering the case where a quark emits a gluon before interaction with the photon, such as in Fig. \ref{fig:scalingviolation}. Here the parent parton, with fraction $y$ of the proton's momentum, emits a gluon giving rise to a daughter parton with a fraction $z$ of the parent hadron's momentum. We can see that $z = x/y$.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{../diagrams/scalingviolation.pdf}
-\caption{\label{fig:scalingviolation} A quark radiating a gluon before interacting.}
-\end{figure}
 
 It transpires (see \cite{hm} for the derivation) that the structure function $F_2$ can be expressed as
 \begin{dmath}
@@ -276,16 +277,18 @@ Considering the Mellin transform of the RHS of the DGLAP equation, and suppressi
 where $\gamma(n)_{ij}$ (with parton indices explicit) are known as the anomalous dimensions, and are calculable order by order in perturbation theory. 
 \subsection{Hadroproduction}
 
-At the LHC most processes involve the interaction of two protons. Hadron-hadron collisions can be approached in much the same way as DIS, but instead the process is like in Fig. \ref{fig:hadroproduction}. Because two protons are involved the expression for the cross section is the natural extension of the DIS case (Eqn.~\ref{eqn:disfact}):
+At the LHC most processes involve the interaction of two protons. 
+Hadron-hadron collisions can be approached in much the same way as DIS, but instead the process is like in Fig. \ref{fig:hadroproduction}. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{../diagrams/hadroproduction.pdf}
+\caption{\label{fig:hadroproduction}Factorisation in hadron-hadron collisions.}
+\end{figure}
+Because two protons are involved the expression for the cross section is the natural extension of the DIS case (Eqn.~\ref{eqn:disfact}):
 \be
 \sigma = \sum_{i,j} \int dx_1 dx_2 f_i(x_1, \mu_F^2) f_j(x_2, \mu_F^2) \hat{\sigma}_{ij}\bigg(x_1, x_2, \frac{Q^2}{\mu_F^2},...\bigg).
 \ee
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{../diagrams/hadroproduction.pdf}
-\caption{\label{fig:hadroproduction}Factorisation in hadron-hadron collisions.}
-\end{figure}
 
 \subsection{Sum rules}
 
@@ -359,14 +362,14 @@ experiments, a common example is total detector luminosity. This is because reco
 sections are dependent on the luminosity of the detector; a higher luminosity means more
 collisions will take place so the measured cross section will be greater.
 
-Fig. \ref{fig:expcovmat} is an example of an experimental covariance matrix for data included in an NNPDF fit. The data are grouped according to what type of process the interaction belongs to (DIS charged current (CC) and neutral current (NC), Drell-Yan (DY), jets and top production). Systematic correlations within experiments are responsible for off-diagonal contributions, and these are mostly positive correlations but there is some anticorrelated behaviour in DIS CC, as a result of data in different kinematic regimes. 
-
 \begin{figure}
 \centering
 \includegraphics[width=15cm]{background/exp_covmat.pdf}
 \caption{An example of an experimental covariance matrix for data included in an NNPDF fit. The data are grouped according to what type of process the interaction belongs to (DIS charged current (CC) and neutral current (NC), Drell-Yan (DY), jets and top production).}
 \label{fig:expcovmat}
 \end{figure}
+
+Fig. \ref{fig:expcovmat} is an example of an experimental covariance matrix for data included in an NNPDF fit. The data are grouped according to what type of process the interaction belongs to (DIS charged current (CC) and neutral current (NC), Drell-Yan (DY), jets and top production). Systematic correlations within experiments are responsible for off-diagonal contributions, and these are mostly positive correlations but there is some anticorrelated behaviour in DIS CC, as a result of data in different kinematic regimes. 
 
 The covariance matrix can be used to define the $\chi^2$ figure of merit, 
 \be
@@ -378,20 +381,19 @@ which measures how good the fit is between the experimental data $D_i$ with asso
 
 \subsection{NNPDF fitting strategy}
 
-There are a number of groups currently active in carrying out proton PDF fits including MSHT~\cite{Bailey:2020ooq}, CTEQ~\cite{Hou:2019efy}, NNPDF~\cite{nnpdf}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2019ntu}. 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.8\textwidth]{background/eleanor_strategy.pdf}
-\caption{NNPDF general strategy. Image credit: Eleanor Conole.}
-\label{fig:generalstrategy}
-\end{figure}
-The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will concentrate on this fitting strategy, which is summarised in Fig.~\ref{fig:generalstrategy}. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
+There are a number of groups currently active in carrying out proton PDF fits including MSHT~\cite{Bailey:2020ooq}, CTEQ~\cite{Hou:2019efy}, NNPDF~\cite{nnpdf}, HERAPDF/xFitter~\cite{CooperSarkar:2011aa} and ABM~\cite{Alekhin:2019ntu}. The work in this thesis has been carried out in the framework developed by the NNPDF collaboration, so we will concentrate on this fitting strategy, which is summarised in Fig.~\ref{fig:generalstrategy}. There are two main features which differ from other fitting collaborations'~\cite{Forte:2002fg}. These are:
 \begin{enumerate}
 \item  The use of Monte Carlo approach to error analysis;
     \item  Fitting using artificial neural networks.
 \end{enumerate}
 
 In the following sections we will provide an overview of these aspects, which can be found in more detail in \cite{Ball:2010de, Ball:2012cx, Ball:2017nwa}.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{background/eleanor_strategy.pdf}
+\caption{NNPDF general strategy. Image credit: Eleanor Conole.}
+\label{fig:generalstrategy}
+\end{figure}
 
 \subsection{Monte Carlo approach}
 The uncertainties in the functional form of PDFs come as a direct consequence of the uncertainties in the experimental and theoretical inputs. In order to propagate experimental uncertainties through to the PDFs, NNPDF represent the experimental data (central values and uncertainty distribution) as a Monte Carlo ensemble. This is a set of $N_{rep}$ Monte Carlo ``replicas" which, given high enough replica number, have a mean value equal to the data central value and covariance equal to the experimental covariance. Fig. \ref{fig:MC} is a schematic illustrating the generation of these ``pseudodata", $D^{(k)}$, $k=1,...,N_{rep}$.
