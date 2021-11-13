@@ -92,24 +92,19 @@ We parametrise the momentum of the interacting parton as $\xi p$, $\xi \in [0,1]
 \implies 2 \xi p \cdot q + q^2 &= 0 \\
 \implies 2 \xi p \cdot q - Q^2 &= 0  \\
 \implies \xi &= \frac{Q^2}{2p \cdot q} \equiv x.
+\label{eqn:momcons}
 \end{split}
 \ee
 This allows us to identify the parton's momentum fraction in this frame with the Bj\"orken $x$ variable.
 
 We can think of the total collection of interactions in terms of a weighted sum over the interactions between the photon and the individual point-like partons, integrated over the possible parton momentum fractions. So we can write the proton-level hadronic tensor, $W_{\mu\nu}$ in terms of the parton-level ones, $\hat{W}^q_{\mu\nu}$, as
 \be
-\begin{split}
-W_{\mu\nu} &= \int \d \xi \sum_q  f_q(\xi) \hat{W}^q_{\mu\nu} \delta(Q^2 - 2\xi p \cdot q) \\
-&= \int \d \xi \frac{1}{Q^2} \sum_q  f_q(\xi) \hat{W}^q_{\mu\nu} \delta(1 - \frac{2\xi p \cdot q}{Q^2}),
-\end{split}
+W_{\mu\nu} = \frac{1}{Q^2} \sum_q  f_q(x) \hat{W}^q_{\mu\nu} ,
 \ee
-where $q$ runs over the possible quark flavours and $f_q$ are distributions, with $f_q(\xi)d \xi$ giving the probability that in an interaction a parton of flavour $q$ will be found in the momentum range $\xi \to \xi +d \xi$. We call these functions ``parton distribution functions" (PDFs). The delta function appears due to integration over the final phase space of $X$, and enforces conservation of momentum. Using Eqn \ref{eqn:matrixelement}, we can see that
+where $q$ runs over the possible quark flavours and $f_q$ are distributions, with $f_q(x)d x$ giving the probability that in an interaction a parton of flavour $q$ will be found in the momentum range $x\to x +dx$. We call these functions ``parton distribution functions" (PDFs). We consider $x$ here rather than $\xi$ following momentum conservation in Eqn.~\ref{eqn:momcons}. The factor of $1/Q^2$ is convention. Using Eqn \ref{eqn:matrixelement}, we can see that
 \be
-\begin{split}
 \label{eqn:ampcomparison}
-|\mathcal{M}|^2 &= \int \d \xi \frac{1}{Q^2} \sum_q  f_q(\xi) |\mathcal{\hat{M}}_q|^2 \delta(1 - \frac{2\xi p \cdot q}{Q^2}) \\
-&= \frac{1}{Q^2} \sum_q  f_q(x) |\mathcal{\hat{M}}_q|^2.
-\end{split}
+|\mathcal{M}|^2 = \frac{1}{Q^2} \sum_q  f_q(x) |\mathcal{\hat{M}}_q|^2.
 \ee
 This means that the total amplitude can be expressed in terms of the partonic amplitudes and the PDFs. If we assume that the partons are massless Dirac particles, we can draw a mathematical equivalence with electron-muon scattering. In this scenario the electron has a current like Eqn. \ref{eqn:ltensor}, and the muon has the same, but with the substitutions $k \to p$ and $q \to -q$. Once again we can use $q_\mu L^{\mu \nu} =0$ and the expression
 \be
