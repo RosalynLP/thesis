@@ -245,14 +245,15 @@ This comparison can be seen in Fig.~\ref{fig:deutpdfcomp} at $Q$ = 10 GeV. From 
 
 \section{PDFs with nuclear uncertainties}
 \label{sec:nucpdfs}
-Having constructed and studied deuteron and heavy nuclear uncertainties, we can then include them in fits. Table~\ref{tab:fits-unc} summarises the various configurations of nuclear uncertainties and shifts. The NNPDF4.0 release includes (deweighted) deuteron and heavy nuclear uncertainties as a default, so it serves as the baseline for comparison.
+Having constructed and studied deuteron and heavy nuclear uncertainties, we can then include them in fits. 
+Table~\ref{tab:fits-unc} summarises the various configurations of nuclear uncertainties and shifts, including that where nuclear data are left out of the fit entirely. The NNPDF4.0 release includes (deweighted) deuteron and heavy nuclear uncertainties as a default, so it serves as the baseline for comparison.
 \input{nuclear/tables/fits-unc.tex}
 \input{nuclear/tables/tab-total-chi2.tex}
 Table~\ref{tab:totchi2} gives the total $\chi^2$ and $\phi$ values for these fits, where $\phi$ is defined
 \begin{equation}
 \phi \equiv \sqrt{\langle \chi^2[T] \rangle - \chi^2[\langle T \rangle ]},
 \end{equation}
-where $T$ are the theoretical predictions and $\langle \cdot \rangle$ denotes the average over PDF replicas. In \cite{Ball:2014uwa} it is shown that this gives the ratio of uncertainties after fitting to the uncertainties of the original data, averaged over data points. The partial values per nuclear dataset can be seen in Fig.~\ref{fig:chi2phi}. Overall, including nuclear uncertainties causes the $\chi^2$ to drop from 1.27 to 1.16, indicating a substantially better fit quality. This is to be expected, seeing as we are adding an uncertainty into the fit, accompanied by an increase in $\phi$. The NNPDF4.0 baseline gives the best fit, which is dominated by the inclusion of heavy nuclear uncertainties without a shift. The impact at the nuclear dataset level is striking, with a significant improvement in both $\chi^2$ and $\phi$ for most of these datasets. The difference between the deweighted and shifted prescriptions, however, is minimal.
+where $T$ are the theoretical predictions and $\langle \cdot \rangle$ denotes the average over PDF replicas. In \cite{Ball:2014uwa} it is shown that this gives the ratio of uncertainties after fitting to the uncertainties of the original data, averaged over data points. The partial values per nuclear dataset can be seen in Fig.~\ref{fig:chi2phi}. Overall, including nuclear uncertainties causes the $\chi^2$ to drop from 1.27 to 1.16, indicating a substantially better fit quality. This is to be expected, seeing as we are adding an uncertainty into the fit, accompanied by an increase in $\phi$. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
@@ -267,6 +268,21 @@ where $T$ are the theoretical predictions and $\langle \cdot \rangle$ denotes th
     \end{center}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The worst fit is the no nuclear data fit, demonstrating that the nuclear data do play a role in determining the PDFs, however this effect is less marked compared to that observed for NNPDF3.1 in ~\cite{Ball:2018twp}, owing to the improved 4.0 methodology and increased dataset which means that nuclear data are becoming less crucial. It is therefore worth continuing to review the impact of nuclear data as there may become a point where they are no longer useful. The NNPDF4.0 baseline gives the best fit, which is dominated by the inclusion of heavy nuclear uncertainties without a shift. The impact at the nuclear dataset level is striking, with a significant improvement in both $\chi^2$ and $\phi$ for most of these datasets. The difference between the deweighted and shifted prescriptions, however, is minimal. 
+
+It's also helpful to look at the PDFs themselves. Nuclear uncertainties have an effect which is important in the large $x$ region, where the nuclear data are. Firstly, Fig.~\ref{fig:pdfs_nodat} shows the effect of removing the nuclear data from the fit entirely. Removing the nuclear data shifts the central values of the PDFs and increases the uncertainties, however the two agree within uncertainties. As noted before, this effect is smaller than what was observed for NNPDF3.1 in \cite{Ball:2018twp}.
+
+Now we would like to know what impact adding nuclear uncertainties has on the PDFs. In Fig.~\ref{fig:pdfs1} we compare NNPDF4.0 to the fit without nuclear uncertainties. Including nuclear uncertainties causes a significant change to the shape of the PDFs in the large $x$ region. This corresponds to the nuclear shadowing region, where nPDFs are lower compared to proton ones. Having no nuclear uncertainties causes the PDFs to be pulled downwards in this region, in the direction of the nPDFs.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{figure}[H]
+  \begin{center}
+      \includegraphics[width=0.49\linewidth]{nuclear/plots/nonucdat_ubar.png}
+     \includegraphics[width=0.49\linewidth]{nuclear/plots/nonucdat_dbar.png}
+    \caption{Comparison of NNPDF4.0 (orange) with a fit with the nuclear data left out (green). 
+    \label{fig:pdfs_nodat} }
+    \end{center}
+\end{figure}   
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[H]
   \begin{center}
@@ -277,8 +293,6 @@ where $T$ are the theoretical predictions and $\langle \cdot \rangle$ denotes th
     \end{center}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-It's also helpful to look at the PDFs themselves. Nuclear uncertainties have an effect which is important in the large $x$ region, where the nuclear data are. Firstly, we would like to know what impact adding nuclear uncertainties has on the PDFs. In Fig.~\ref{fig:pdfs1} we compare NNPDF4.0 to the fit without nuclear uncertainties. Including nuclear uncertainties causes a significant change to the shape of the PDFs in the large $x$ region. This corresponds to the nuclear shadowing region, where nPDFs are lower compared to proton ones. Having no nuclear uncertainties causes the PDFs to be pulled downwards in this region, in the direction of the nPDFs.
 
 Also displayed in Fig.~\ref{fig:pdfs1} is a fit with only heavy nuclear uncertainties. It is clear that heavy nuclear uncertainties are responsible for the bulk of the impact, which is expected given the impact at the data level is more significant for thcese data (see Figs.~\ref{fig:nuccov1} and ~\ref{fig:deutcov}).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -291,12 +305,12 @@ Also displayed in Fig.~\ref{fig:pdfs1} is a fit with only heavy nuclear uncertai
     \end{center}
 \end{figure}   
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Secondly, we would like to look at what happens when we also apply a shift to the nuclear data, following Eqn.~\ref{eqn:shiftnuc}. This can be seen in Fig.~\ref{fig:pdfs3} for the $\bar{d}$ distribution. There is a clear reduction of PDF uncertainties when using the shifted prescription versus the deweighted prescription. However, as we saw before, there is little impact at the level of $\chi^2$ and $\phi$ values, and the two outcomes are equivalent within uncertainties. From this we see that choosing one of these approaches over the other will not have a great impact. When making the choice of approach, we note that the shift is calculated relative to the value with proton PDFs, and so is itself dependent on the proton PDFs. This opens up the risk of double counting, and so the shift must be treated with caution. Adding uncertainties, however, always decreases the weight of data points, and so the deweighted prescription is the most conservative. Given also that it leads to a slightly lower total $\chi^2$ and $\phi$, we will opt to use the deweighted prescription in NNPDF4.0; including only an uncertainty for both deuteron and heavy nuclear data.
+Next, we look at what happens when we also apply a shift to the nuclear data, following Eqn.~\ref{eqn:shiftnuc}. This can be seen in Fig.~\ref{fig:pdfs3} for the $\bar{d}$ distribution. There is a clear reduction of PDF uncertainties when using the shifted prescription versus the deweighted prescription. However, as we saw before, there is little impact at the level of $\chi^2$ and $\phi$ values, and the two outcomes are equivalent within uncertainties. From this we see that choosing one of these approaches over the other will not have a great impact. When making the choice of approach, we note that the shift is calculated relative to the value with proton PDFs, and so is itself dependent on the proton PDFs. This opens up the risk of double counting, and so the shift must be treated with caution. Adding uncertainties, however, always decreases the weight of data points, and so the deweighted prescription is the most conservative. Given also that it leads to a slightly lower total $\chi^2$ and $\phi$, we will opt to use the deweighted prescription in NNPDF4.0; including only an uncertainty for both deuteron and heavy nuclear data.
 
 \section{Summary}
 Nuclear data are important in PDF fits, but effects due to the nuclear environment are hard to quantify. To bring PDFs to 1\% accuracy, we need  to address these ``small" but nevertheless important differencecs. We used the theory covariance matrix formalism outlined in Chapter~\ref{chapter:thuncs} to include nuclear uncertainties in the next generation PDF fits. We adopted an empirical approach by recalculating predictions for nuclear observables with nuclear PDFs and using the shifts in predictions to construct a nuclear covariance matrix. 
 
-We analysed deuteron and heavy nuclear data separately, using nNNPDF2.0 for heavy nuclear PDFs, and fitting deuteron PDFs using an iterative procedure in the NNPDF3.1 methodology. The resulting uncertainties are a crucial ingredient in the latest release, NNPDF4.0. They lead to a reduced global $\chi^2$ and the relaxation of tension between the nuclear DIS and LHC DY data. Including the uncertainties causes a modest shift in the central value of PDFs and an increase in errors, in the high $x$ nuclear data region. This difference is driven by the heavy nuclear data. We also investigated a procedure to shift the nuclear predictions, which was equivalent within uncertainties to including only an uncertainty, but with a slightly higher global $\chi^2$ and smaller PDF uncertainties. We opt to include uncertainties without a shift in NNPDF4.0.
+We analysed deuteron and heavy nuclear data separately, using nNNPDF2.0 for heavy nuclear PDFs, and fitting deuteron PDFs using an iterative procedure in the NNPDF3.1 methodology. The resulting uncertainties are a crucial ingredient in the latest release, NNPDF4.0. Including the uncertainties causes a modest shift in the central value of PDFs and an increase in errors, in the high $x$ nuclear data region. This difference is driven by the heavy nuclear data. We also investigated a procedure to shift the nuclear predictions, which was equivalent within uncertainties to including only an uncertainty, but with a slightly higher global $\chi^2$ and smaller PDF uncertainties. We opt to include uncertainties without a shift in NNPDF4.0.
 
 
 \label{sec:summandoutlook}

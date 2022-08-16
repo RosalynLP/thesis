@@ -97,7 +97,7 @@ Finally, with indices restored we are left with
 \bdm
 P(T|D) \propto \exp \bigg(-\frac{1}{2}(D_i-T_i)(C+S)^{-1}_{ij}(D_j-T_j) \bigg).
 \edm
-Comparing this result to Eqn. \ref{eqn:gaussexp}, we can confirm that when we possess theoretical predictions, $T_i$, rather than true values, $\truev_i$, we can account for this by adding a theoretical covariance matrix, $S_{ij}$ to the experimental covariance matrix, $C_{ij}$ \cite{Ball:2018odr}. This means the theory uncertainties are on an equal footing with experimental systematic uncertainties. Note that $C_{ij}$ is positive definite by construction and so $(C+S)_{ij}$ is always invertible, even if $S_{ij}$ has negative eigenvalues.
+Comparing this result to Eqn. \ref{eqn:gaussexp}, we can confirm that when we possess theoretical predictions, $T_i$, rather than true values, $\truev_i$, we can account for this by adding a theoretical covariance matrix, $S_{ij}$ to the experimental covariance matrix, $C_{ij}$ \cite{Ball:2018odr}. This means the theory uncertainties are on an equal footing with experimental systematic uncertainties. Note that $C_{ij}$ is positive definite by construction and so $(C+S)_{ij}$ is always invertible, even if $S_{ij}$ has zero eigenvalues.
 
 Now all that remains is to construct a theory covariance matrix which parametrises each instance of theoretical uncertainty. This is a nebulous task, given that we are not privy to the true values, $\truev$, and so are unable to simply apply the formal definition
 \beq
